@@ -1,0 +1,71 @@
+<html>
+<head><title>WebBrick to WebBrick events</title></head>
+<body>
+	<h1>WebBrick to WebBrick events</h1>
+
+	<p>In this example we listen for events generated on one WebBrick and from these issue actions to
+	other WebBricks.
+	</p>
+
+	<p>
+	As shipped the example is designed to work on a single WebBrick, with only the following configuration changes
+	</p>
+
+	<p>Nodename: bench</p>
+	<p>Nodenumber: 101</p>
+
+	<p>This configuration is kept away from a new unconfigured WebBrick to avoid any confusion when bringing WebBricks up
+	for the first time.</p>
+
+	<p>Note that all the internal events begin with '03'.  This is so that they are mot confused with other similar events
+	that might be generated buy having more than one WebBrick to WebBrick event sampple file in the EventDespatch directory.
+	</p>
+
+	<h2>Behaviour</h2>
+
+	<p>In this example, Digital Inputs 0,1,2 will trigger Digital Inputs 7,6,5 and after a delay Digital Input 4</p>
+
+	<p> 0 - 7 </p>
+	<p> 1 - 6, then after 5 seconds 4</p>
+	<p> 2 - 5 </p>
+
+	<h2>File Sections</h2>
+
+	<p>There are three main sections in this file:</p>
+	<ul>
+	<li>
+	'EventHandlers.HttpAction' name='HttpAction'
+	</li>
+	<li>
+	'EventHandlers.DelayedEvent' name='DelayedEvent'
+	</li>
+	<li>
+	'EventHandlers.EventMapper' name='EventMapper'
+	</li>
+	</ul>
+
+	<h3>HttpAction</h3>
+
+	<p> This section deals with the TARGET WebBricks and the actions that will be called </p>
+
+	<h3>DelayedEvent</h3>
+
+	<p> This section deals with events that will be directed to the TARGET WebBricks after a delay </p>
+
+	<h3>EvMapper</h3>
+
+	<p> This section deals with mapping events that arrive from:
+	<ul>
+
+		<li> URI calls </li>
+		<li> WebBrick Web Interfaces </li>
+		<li> WebBrick Physical Interfaces </li>
+	</ul>
+	</p>
+
+	<pre class="shell">
+	    &gt;eventInterface module='EventHandlers.EventMapper' name='EventMapper' &lt;
+	</pre>
+
+</body>
+</html>

@@ -1,0 +1,152 @@
+
+#scheduler {
+	position:absolute;
+	left:5px;
+	top:153px;
+}
+#tempslider {
+	position:absolute;
+	left:740px;
+	top:198px;
+}
+.temp_bar {
+	width: 26px;
+	height: 200px;
+	background:url(../images/tempslider.png);
+}
+#tsCursor {
+	height:6px;
+	width:32px;
+	position:absolute;
+	z-index:100;
+	background:url(../images/tsCursor.png);
+}
+.tsLabel {
+	position:absolute;
+}
+.twTimeRuler {
+	position:relative;
+	height: 22px;
+	left:100px;  /* to centre the numbers */
+}
+.twTimeRulerLabel {
+	position:absolute;
+	font-size:16px;
+}
+.twDay {
+	text-align:right;
+	font-size:14px;
+	height: 33px;
+	text-transform:uppercase;
+}
+.twDay td {
+	padding:1px 1px 6px;
+	height:26px;
+}
+.twDayLabel {
+	padding-right:30px !important;
+}
+.twDayDiv {
+	background-color:#d5d7d6;
+	height:100%;
+	position:relative;
+}
+.twTimeSlot {
+	background-color:#b80e17;
+	position:absolute;
+	height:100%;
+}
+.twSlotSel {
+	border: 6px solid #f7e638;
+	top: -6px;
+	left: -3px;
+}
+.twSelDay {
+	background-color:#aaa;
+}
+#twCursor {
+	background-color:#000;
+	width:6px;
+	height:32px;
+	position:absolute;
+	z-index:100;
+}
+.selected {
+	background-color:#f7e638 !important; 
+}
+.twSlotStartTime {
+	display:none;
+	position:absolute;
+	top:0px;
+	left:0px;
+	font-size:10px;
+	line-height:10px;
+}
+.twSlotT {
+	color:white !important;
+	width:100%;
+	position:absolute;
+	padding-top:5px;
+	text-align:center;
+	overflow:hidden;
+}
+.twSchedEnd {
+	background:url(../images/schedend.png);
+	width:8px;
+	height:26px;
+	right:-1px;
+	top:0px;
+	background-repeat:no-repeat;
+	position:absolute;
+}
+
+#leftroundbuttons {
+	position:absolute;
+	top:448px;
+	left:10px;
+}
+
+#dow_spinner {
+	position:absolute;
+	left:103px;
+	top:460px;
+}
+#starttime_spinner {
+	position:absolute;
+	left:244px;
+	top:460px;
+}
+
+#rightroundbuttons {
+	position:absolute;
+	top:448px;
+	left:540px;
+}
+
+.timespinner .spinner_controls {
+	position:absolute;
+	top:-11px;
+	left:86px;
+}
+
+#setpointbox {
+	display:inline-block;
+	background:url(../images/setpointboxbg.png);
+	background-repeat:no-repeat;
+	width:92px;
+	height:56px;
+	padding-left:13px;
+	padding-top:13px;
+	font-size:25px;
+}	
+
+#setpoint_spinner {
+	position:absolute;
+	left:386px;
+	top:460px;				
+}	
+#setpoint_spinner .spinner_controls {
+	position:absolute;
+	top:-11px;
+	left:99px;
+}			

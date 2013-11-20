@@ -1,0 +1,9 @@
+2008-10-26 18:18:23,086 temperature,temperature/outside,{u'name': u'Outside', u'val': 11.4}
+2008-10-26 18:18:23,717 http://id.webbrick.co.uk/events/webbrick/1,webbrick/3/1,{'seqNr': 80, 'pktType': '1', 'ipAdr': '192.168.1.63', 'fromNode': 3, 'data': '\xfe\x04\x14\x08 22\x07\x06\x07\x00\x04'}
+2008-10-26 18:18:23,735 http://id.webbrick.co.uk/events/webbrick/1,webbrick/3/1,{'seqNr': 81, 'pktType': '1', 'ipAdr': '192.168.1.63', 'fromNode': 3, 'data': '\x00\x02\x0f\x0f\x0f\x0f\x0f\x0f\x0f\x12\x0f'}
+2008-10-26 18:18:23,833 http://id.webbrick.co.uk/events/webbrick/ST,webbrick/6,{'uptime': 693, 'resetCode': 92, 'hour': 18, 'fromNode': 6, 'udpType': 'G', 'second': 0, 'version': 6, 'pktType': 'ST', 'ipAdr': '192.168.1.66', 'day': 0, 'minute': 19}
+2008-10-26 18:18:23,908 http://id.webbrick.co.uk/events/webbrick/ST,webbrick/2,{'uptime': 31309, 'resetCode': 15, 'hour': 18, 'fromNode': 2, 'udpType': 'G', 'second': 0, 'version': 6, 'pktType': 'ST', 'ipAdr': '192.168.1.62', 'day': 0, 'minute': 19}
+2008-10-26 18:18:24,014 http://id.webbrick.co.uk/events/webbrick/ST,webbrick/7,{'uptime': 36004, 'resetCode': 15, 'hour': 18, 'fromNode': 7, 'udpType': 'G', 'second': 0, 'version': 6, 'pktType': 'ST', 'ipAdr': '192.168.1.67', 'day': 0, 'minute': 19}
+2008-10-26 18:18:24,182 http://id.webbrick.co.uk/events/webbrick/ST,webbrick/4,{'uptime': 23768, 'resetCode': 92, 'hour': 18, 'fromNode': 4, 'udpType': 'G', 'second': 0, 'version': 6, 'pktType': 'ST', 'ipAdr': '192.168.1.64', 'day': 0, 'minute': 19}
+2008-10-26 18:18:24,184 http://id.webbrick.co.uk/events/webbrick/CT,webbrick/9/CT/3,{'srcChannel': 3, 'curhi': 100.0, 'val': 19.600000000000001, 'fromNode': 9, 'curlo': -50.0, 'defhi': 100.0, 'deflo': -50.0}
+2008-10-26 18:18:24,186 http://id.webbrick.co.uk/events/webbrick/AI,webbrick/9/AI/0,{'srcChannel': 0, 'curhi': 100.0, 'val': 24.0, 'fromNode': 9, 'curlo': 0.0, 'defhi': 100, 'deflo': 0}

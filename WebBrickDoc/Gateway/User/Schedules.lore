@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Schedules</title>
+  </head>
+  <body>
+
+    <h1>Schedules</h1>
+
+      <p>
+        The WebBrick Gateway runs global schedules, mostly these are applied to heating, but could be applied to a range of services.
+        To enter the schedule for hot water select the hot water zone and the heating function and then 'edit schedule':
+      </p>
+
+      <p>
+          The page will be similar to:
+          <div class="center">
+              <img src="../../Images/RoundSchedule.png" alt="Sample schedule page" width="60%" />
+          </div>
+      </p>
+
+      <p>
+        There are a number of 'active' areas on this page, if you select them they will bring up menu overlays.
+        As an example to change a temperature, select the temperature, likewise for actions, days and time:
+          The interface elements Day, Time,. Numeric, State previously described are used for this purpose.
+      </p>
+
+      <p>
+          For example select a temperature and the display changes to.
+          <div class="center">
+              <img src="../../Images/RoundScheduleNumericKeypad.png" alt="Sample schedule page with keypad overlayed" width="60%" />
+          </div>
+      </p>
+
+      <p>
+        The schedule is built up from a number of 'time and day' events, in this case eight, but there could be any number.
+        When the 'time and day' event occurs, all the actions for the event are evaluated and issued.  Note that <b>Ignore</b>
+        generates no action.
+      </p>
+
+      <h2>Organising Schedules</h2>
+
+      <p>
+          With the WebBrick Gateway, the organisation of the rows and columns of a schedule are relatively free form.  This means that the user could
+          create schedules that are difficult to read or interpret at a glance.
+      </p>
+
+      <p>
+          Here are our suggestions:
+          
+          <ul><li><b>Weekday grouping</b>  We feel that the order should be:
+                  <ol type="1"><li><b>Weekdays</b> i.e. Monday to Friday
+                      </li><li><b>Weekends</b> i.e. Saturday and Sunday
+                      </li><li><b>Specials</b> This means things that happen on a regular basis, for example heating a zone for events like music lessons
+                      </li></ol>
+              </li><li>
+                  <b>Chronological Ordering</b>  
+                  We suggest that schedules are ordered with the earliest time first and times following
+                  in chronological order down the page.
+              </li></ul>
+      </p>
+  </body>
+</html>

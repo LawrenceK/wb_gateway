@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<eventInterface module='EventHandlers.Backup' name='Backup`'>
+    <eventtype type="">
+        <eventsource source="time/minute" >
+            <event>
+                <params>
+                    <testEq name="minute">
+                        <value>1</value>
+                    </testEq>
+                </params>
+                <!-- Check for changes to files in backup set -->
+                <checkBackup/>
+            </event>
+        </eventsource>
+    </eventtype>
+
+    <!-- The steps we want -->
+    <fileSet rootpath="" absolutenames="yes|no" basename="">
+        <!-- if path does not start with then it is assumed to be relative to rootpath -->
+        <file path="">
+        <directory path="" recursive="yes|no">
+    </fileSet>
+
+    <!-- Where to send backup -->
+    <destination transport="https" 
+            address="silent" 
+            nameTemplate="/BACKUP/bu_%(year)04u%(month)02u%(date)02uT%(hour)02u%(minute)02u00.zip" >
+    </destination>
+
+    <destination transport="file" 
+        nameTemplate="./TestOut/bu_%(year)04u%(month)02u%(date)02uT%(hour)02u%(minute)02u00.zip" >
+    </destination>
+
+</eventInterface>

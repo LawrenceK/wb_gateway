@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Event Interface Overview</title>
+</head>
+
+<body>
+
+    <h1>Event Interface Overview</h1>
+
+        <p>All event handlers/interfaces use a common structure for their configuration data.</p>
+
+    <h2>Loader</h2>
+        <p>The event interface loader looks in each XML configuration file for XML elements called EventInterface. 
+            This element has 2 or 3 attributes that control the loading of the event handler. (It is possible to develop
+            custom handlers for bespoke applications). The contents of this element are used to configure the event handler.</p>
+
+    <h2>Common event consumers</h2>
+        <p> A lot of the event handlers use a common style to their configuration. This consists of one or more eventtype 
+        elements whose attribute type is either an empty string to match all possible event types or a specific
+        event type, in the long term this will normally be the empty string.</p>
+        <p> Each eventtype element contains one or more eventsource elements that again may be the empty string or an event source string. This
+        will not normally be blank, unless you are selecting all events of a specific event type.
+        </p>
+        <p>Once the event has passed this first level filter there are one or more event elements that can contain a further level of
+        filtering based on the other data of the source event and some event haandler specific data thaat controls what happens when the event 
+        passes all the filtering.</p>
+        <p>The third level filter uses the params element.
+        See for further details in <a href="../eventInterfaces/ParamtereSet.html">parameter filtering.</a>
+        See information on <a href="../events/index.html">Events</a>
+        </p>
+
+        <p>Once an event has passed these 3 levels of filtering the event handler processes the event element. In some cases the event 
+        element is empty if the event handler requires no further data to perform its action.</p>
+
+    <h2>Examples</h2>
+        <a href="BaseAction1.xml" class="html-listing" />
+
+        This is a sample for the event mapper it picks up the sunrise event and creates a new event when sunrise occurs. (This new 
+        event is used to update some data in the web server for the user interface). This example does not use the params filter.
+
+        <a href="BaseAction2.xml" class="html-listing" />
+
+        This example looks for a minute event at 5 minutes past the hour.
+
+</body>
+
+</html>

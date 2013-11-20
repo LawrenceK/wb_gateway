@@ -1,0 +1,37 @@
+<eventInterfaces>
+    <!--
+
+    This file contains stuff that drives the logic that tell us that wether
+    or not the home occupants are around.  This can then be used for all sorts of stuff
+    like driving heating or lighting
+
+    LPK amended to persist occupancy.
+    -->
+
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+        	
+        <eventtype type="http://id.webbrick.co.uk/events/uri">
+
+        <!-- Used for interface based setting of the occupants state -->
+
+            <eventsource source="occupants/arehome">
+                <event>
+                    <newEvent type="http://id.webbrick.co.uk/events/config/set" source="occupants/home">
+                        <other_data val='1'/>
+                    </newEvent>
+                </event>
+            </eventsource>
+
+            <eventsource source="occupants/areaway">
+                <event>
+                    <newEvent type="http://id.webbrick.co.uk/events/config/set" source="occupants/home">
+                        <other_data val='0'/>
+                    </newEvent>
+                </event>
+            </eventsource>
+
+        </eventtype>
+
+    </eventInterface>
+    
+</eventInterfaces>

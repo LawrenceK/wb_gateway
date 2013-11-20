@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Compound</title>
+</head>
+
+<body>
+
+    <h1>Compound</h1>
+
+        <p>Conditional and combining events.</p>
+
+    <h2>Description</h2>
+        <p>This is the most complex of the event handlers at present, it enables you to perform conditional actions and combine
+        events to produce new events. For example only allowing heating zone requests if the zone is command enabled or 
+        combining the two inputs from a garage door into a single garage door state value.</p>
+
+        <p>This event handler maintains a state table in memory that is updated by configured events, when this table is updated then
+        the action defintions are checked to see whether an update to the state table should cause an action to be performed. In the future this 
+        state table may be totally or partially persisted through an WebBrick Gateway restart.</p>
+
+    <h2>Configuration</h2>
+        <p>The configuration for this handler is split into to
+        four parts
+        <ul>
+            <li>The first is our normal set of event source and type filters along with actions that are used to define local state updates, 
+            these are local to this copy of thw Compound. Think of this as creating local short names for
+            event values.
+
+            <p>The action elements contained within the event elements define updates to the local state table, 
+            the action has the following attributes</p>
+            <ul>
+                <li>name - the name of a local state value to update</li>
+                <li>key - the name of a value within the triggering event other data, this becomes the new value for the local state</li>
+                <li>value - this is the new value for the local state</li>
+                <li>transient - if this attribute is present then the update to local state is discarded after the event has been processed,
+                    this is usefull for causing aactions to occur but not remembering the state, such that a later update causes the 
+                    action to occur again, e.g. when the action is caused by a time event.</li>
+                
+            </ul>
+            <p>name must be present along with either key or value, the result is always an update to a 
+            local state value</p></li>
+
+            <li><p>There then may be 0 or more initialState values that set startup values for the local state, 
+            each has a name and value</p></li>
+            <li><p>There then may be 0 or more persistState values at present these are treated 
+                exactly the same as initialState, 
+                in the long term the named value will be loaded from persistant state and value used if it does not yet exist in the persistant state</p></li>
+            <li>Finally there will be some compound elements, these define tests and actions against the locaal state</li>
+        </ul></p>
+        <p>The compound element
+            Each compound element consists of a params element which defines some tests against the local state store and some 
+            updates to the local state or new events to be generated. Refer to <a href="../eventInterfaces/ParamtereSet.html">
+            parameter filtering.</a> for details of what goes in the Params element. The comound element may have the 
+            attribute redo, if this has the value 'yes' then each time the data is seen for this comound it
+            is re-evaluated otherwise it only re-evaluates if the data changes value (default).
+            NOTE: These tests are performed against the local state of this Compound interface.
+        </p>
+        <p>The newEvent element
+            This contains two attributes for the event type and source and possibly nested elements other_data and copy_other_data.
+        </p>
+        <p>The newState element
+            This contains updates to the element local state.
+        </p>
+        
+    <h2>Logging</h2>
+        This handler uses the logging stream 'EventDespatch.Compound'.
+        
+    <h3>Debug</h3>
+        At startup the configured comound elements will be logged.
+        An update to the local state will be logged as 'update name:value Transient(True|False)'
+        On update all compounds that use the updated value and match the current state will be logged as 'cmp matches'
+
+  <div>
+    <h2>Example 1</h2>
+    This example shows a garage door combination that is used where a garage door has two sensor outputs. In the case of this door one output shows
+    that the door is closed and the other shows that the door is open. If the door is not open and not closed then it is a ajar, if the door 
+    is open and closed it is an error condition.
+
+    <table>
+        <tr><th>doorOpen</th><th>doorClosed</th><th>status</th></tr>
+        <tr><th>0</th><th>0</th><th>Ajar</th></tr>
+        <tr><th>0</th><th>1</th><th>Closed</th></tr>
+        <tr><th>1</th><th>0</th><th>Open</th></tr>
+        <tr><th>1</th><th>1</th><th>Error</th></tr>
+    </table>
+
+      <a href="Garage.xml" class="html-listing" />
+   
+  </div>
+  
+
+   <h2>Example 2</h2>
+    This example shows a heating zone that is nominaally controlled by a temperature sensor but an event from a user interface
+    can be used to disable the zone. Note we define temperature as transient in this and for the enable flag to be persisted.
+
+
+    Define the events to listen too and the local state values to update.
+    <pre>
+    &lt;eventInterface module='EventHandlers.Compound' name='Compound'&gt;
+        &lt;eventtype type=""&gt;
+            &lt;eventsource source="heating/zone/1enable/" &gt;
+		&lt;event&gt;
+		    &lt;action name="Zone1Enabled" value="0"/&gt;
+		&lt;/event&gt;
+            &lt;/eventsource&gt;
+            &lt;eventsource source="heating/zone/1/disable" &gt;
+		&lt;event&gt;
+		    &lt;action name="Zone1Enabled" value="1"/&gt;
+		&lt;/event&gt;
+            &lt;/eventsource&gt;
+        &lt;/eventtype&gt;
+        &lt;eventtype type="http://id.webbrick.co.uk/events/webbrick/CT"&gt;
+            &lt;eventsource source="webbrick/25/CT/1" &gt;
+		&lt;event&gt;
+		    &lt;action name="Zone1Temp" state="val" transient/&gt;
+		&lt;/event&gt;
+            &lt;/eventsource&gt;
+        &lt;/eventtype&gt;
+    </pre>
+
+    define initial values for the local state, zone 1 enabled
+    <pre>
+
+        &lt;persistState name="Zone1Enabled" value="1"/&gt;
+
+    </pre>
+
+    define the new event and values for each of the state combinations.
+    In this case only allow on if zone enabled, allow off always and on receiving zone disable 
+    switch the zone off.
+    <pre>
+        &lt;compound&gt;
+            &lt;params&gt;
+                &lt;testEq name="Zone1Enabled" value="1"/&lt;
+                &lt;testLt name="Zone1Temp" value="18.0"/&lt;
+            &lt;/params&gt;
+            &lt;newEvent type="internal" source="heating/zone/1/On"&gt;
+            &lt;/newEvent&gt;
+        &lt;/compound&gt;
+
+        &lt;compound&gt;
+            &lt;params&gt;
+                &lt;testGt name="Zone1Temp" value="21.0"/&lt;
+            &lt;/params&gt;
+            &lt;newEvent type="internal" source="heating/zone/1/Off"&gt;
+            &lt;/newEvent&gt;
+        &lt;/compound&gt;
+
+        &lt;compound&gt;
+            &lt;params&gt;
+                &lt;testEq name="Zone1Enabled" value="0"/&lt;
+            &lt;/params&gt;
+            &lt;newEvent type="internal" source="heating/zone/1/Off"&gt;
+            &lt;/newEvent&gt;
+        &lt;/compound&gt;
+
+    &lt;/eventInterface&gt;   
+    </pre>
+
+    The events source of heating/zone/1/On or heating/zone/1/Off are user friendly names thaat wwould be translated 
+    by another handler into the incantation required to switch the zone valve, i.e. HttpAction issuing a webbrick 
+    command string.
+
+</body>
+
+</html>

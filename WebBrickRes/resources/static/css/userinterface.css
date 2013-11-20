@@ -1,0 +1,51 @@
+html, body {
+	margin:0px;
+	padding:0px;
+	-webkit-text-size-adjust:none;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+    -moz-user-select:none;
+    
+}
+
+#background {
+	position:absolute;
+	background-image:url(../images/backgrounds/bggradient.png);
+	background-repeat:repeat-x;
+	background-position:bottom;
+	height:600px;
+	bottom:0px;
+	width:100%;
+}
+
+#backgroundscatter {
+	position:absolute;
+	background-image:url(../images/backgrounds/bgscatter.png);
+	background-repeat:no-repeat;
+	background-position:bottom;
+	height:239px;
+	width:100%;
+	bottom:0px;
+}
+
+#content {
+	position:relative;
+	top:44px;
+	text-align: center;
+	width:800px;
+    height:512px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+p,th {
+    font-size:16px;
+}
+
+table {
+    width:100%;
+}
+
+#done_button {
+    font-size:22px;
+}

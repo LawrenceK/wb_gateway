@@ -1,0 +1,368 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+
+    <!-- !  This file will allows interfacing with an Onkyo AV Amplifier
+        
+        TODO: 
+            1.  Change the node number in the Decoding section the the node number of the 
+                WebBrick the amplifier is connected to.
+                
+            2.  Change "SampleWb", to the name of the WebBrick the amplifier is connected to. 
+    
+    -->
+
+    <!-- !  Decoding serial comming back from the amplifier -->
+    <eventInterface module='EventHandlers.SerialDataConvertor' name='SerialDataConvertor'>
+        <eventtype type="http://id.webbrick.co.uk/events/webbrick/1">
+            <eventsource source="webbrick/10/1" >
+                <!-- all events from a single source -->
+                <event>
+                    <!-- These are all matches in the data attribute of the payload -->
+                    <!-- !1MVLhh -->
+                    <match offset='0' char='!'/>
+                    <match offset='1' char='1'/>
+                    <match offset='2' char='M'/>
+                    <match offset='3' char='V'/>
+                    <match offset='4' char='L'/>
+                    <newEvent type="avamp/volume/current" source="avamp/1/volume/main/current">
+                        <other_data attr='val' offsetb='5' lenb="2" type="hex_string"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+    
+    
+    
+    
+    
+
+    <!-- !  Commands to control the amplifier -->
+    
+        <!-- !  Some value conversion needed to send volume to Onkyo AV amps -->
+    <eventInterface module='EventHandlers.ValueConvert' name='ValueConvert'>
+        <eventtype type=''>
+            <eventsource source='avamp/1/volume/main/set' >
+                <event>
+                    <newEvent type='' source='avamp/1/volume/main/send' 
+                            conversion='dec_to_hex'
+                            informat='int'
+                            outformat='bytes_dec'
+                            attr='vol'
+                            >
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+    
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+        <eventtype type=''>
+            <eventsource source='time/runtime'>
+                <event>
+                    <params>
+                        <testEq name="elapsed" value='5'/>
+                    </params>
+					<!-- ensure serial port on 9600 8 N 1 -->
+                    <url cmd='GET' uri='/hid.spi?COM=CR2;5:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+			<!-- In the following commnds we need to convert from the hex chars in the documentation to decimal, for the webbrick -->
+            <eventsource source='avamp/1/power/main/on'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;80;87;82;48;49;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/power/main/off'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;80;87;82;48;48;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/volume/main/up'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;77;86;76;85;80;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/volume/main/down'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;77;86;76;68;79;87;78;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/volume/main/send'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;77;86;76;%(vol1)s;%(vol2)s;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            
+            <eventsource source='avamp/1/volume/main/muteon'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;65;77;84;48;49;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/volume/main/muteoff'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;65;77;84;48;48;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            
+            <eventsource source='avamp/1/volume/main/mutetoggle'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;65;77;84;84;71;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/select/main/hd'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=RD;;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/select/main/dvd'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;83;76;73;49;48;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/select/main/game'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;83;76;73;48;50;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            
+            <eventsource source='avamp/1/select/main/tv'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;83;76;73;48;50;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/select/main/sat'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;83;76;73;48;49;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/select/main/cable'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;83;76;73;48;49;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/select/main/dvr'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;83;76;73;48;48;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/select/main/vcr'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;83;76;73;48;48;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/select/main/cd'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;83;76;73;50;51;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/select/main/dock'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=RD;;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/select/main/pc'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=RD;;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/select/main/tuner'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;83;76;73;50;54;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/select/main/tape'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;83;76;73;50;48;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/select/main/phono'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;83;76;73;50;50;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/select/main/aux1'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;83;76;73;48;51;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/select/main/aux2'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;83;76;73;48;52;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+			
+            
+            <eventsource source='avamp/1/power/zone2/on'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;90;80;87;48;49;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/power/zone2/off'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;90;80;87;48;48;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/volume/zone2/up'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;90;86;76;85;80;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/volume/zone2/down'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;90;86;76;68;79;87;78;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <!-- Need a function to translate int to hex to get 'vol1' & 'vol2'
+            
+            <eventsource source='avamp/1/volume/zone2/send'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=RD;10:' address='MainCab3'/>
+                </event>
+            </eventsource>
+            -->
+            
+            <eventsource source='avamp/1/volume/zone2/muteon'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;90;77;84;48;49;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/volume/zone2/muteoff'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;90;77;84;48;48;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            
+            <eventsource source='avamp/1/volume/zone2/mutetoggle'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;90;77;84;84;71;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/select/zone2/hd'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/select/zone2/dvd'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;83;76;90;49;48;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/select/zone2/game'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;83;76;90;48;50;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            
+            <eventsource source='avamp/1/select/zone2/tv'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;83;76;90;48;50;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/select/zone2/sat'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;83;76;90;48;49;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/select/zone2/cable'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;83;76;90;48;49;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/select/zone2/dvr'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;83;76;90;48;48;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/select/zone2/vcr'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;83;76;90;48;48;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            
+            <eventsource source='avamp/1/select/zone2/cd'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;83;76;90;50;51;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/select/zone2/dock'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=RD;;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/select/zone2/pc'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=RD;;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/select/zone2/tuner'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;83;76;90;50;54;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/select/zone2/tape'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;83;76;90;50;48;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            
+            <eventsource source='avamp/1/select/zone2/phono'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;83;76;90;50;50;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            
+            <eventsource source='avamp/1/select/zone2/aux1'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;83;76;90;48;51;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='avamp/1/select/zone2/aux2'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;33;49;83;76;90;48;52;10:' address='SampleWb'/>
+                </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+
+</eventInterfaces>
+

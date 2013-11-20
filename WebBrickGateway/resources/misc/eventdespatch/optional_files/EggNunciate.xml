@@ -1,0 +1,178 @@
+<eventInterfaces>
+
+    <eventInterface module='EventHandlers.EggNunciate' name='EggNunciate'>
+
+        <eventtype type="">
+            <!-- setup default scene -->
+            <eventsource source="time/runtime" >
+	        <event>
+                    <params>
+                        <testEq name="elapsed">
+                            <value>5</value>
+                        </testEq>
+                    </params>
+		    <add name="defaultLow" egg="house" pri="0"/>
+		    <add name="defaultHigh" egg="house" pri="0"/>
+		    <add name="defaultLow" egg="media" pri="0"/>
+		    <add name="defaultHigh" egg="media" pri="0"/>
+	        </event>
+            </eventsource>
+        </eventtype>
+
+        <eventtype type="">
+            <!-- setup default scene -->
+            <eventsource source="time/second" >
+                <event>
+                    <params>
+                        <testEq name="second">
+                            <value>0</value>
+                            <value>2</value>
+                            <value>4</value>
+                            <value>6</value>
+                            <value>8</value>
+                            <value>10</value>
+                            <value>12</value>
+                            <value>14</value>
+                            <value>16</value>
+                            <value>18</value>
+                            <value>20</value>
+                            <value>22</value>
+                            <value>24</value>
+                            <value>26</value>
+                            <value>28</value>
+                            <value>30</value>
+                            <value>32</value>
+                            <value>34</value>
+                            <value>36</value>
+                            <value>38</value>
+                            <value>40</value>
+                            <value>42</value>
+                            <value>44</value>
+                            <value>46</value>
+                            <value>48</value>
+                            <value>50</value>
+                            <value>52</value>
+                            <value>54</value>
+                            <value>56</value>
+                            <value>58</value>
+                        </testEq>
+                    </params>
+                    <next/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <eventtype type="">
+            <!-- events from a source of a specific type -->
+            <eventsource source="webbrick/mediawb/DI/7" >
+            <!-- Zone valve feedback switch -->
+	        <event>
+                    <params>
+                        <testEq name="state">
+                            <value>1</value>
+                        </testEq>
+                    </params>
+		    <add name="zoneValveStatus" egg="media" pri="1"/>
+		    <add name="somethingActive" egg="media" pri="1"/>
+		    <add name="somethingActive" egg="msg" pri="1"/>
+	        </event>
+	        <event>
+                    <params>
+                        <testEq name="state">
+                            <value>0</value>
+                        </testEq>
+                    </params>
+		    <delete name="zoneValveStatus" egg="media" pri="1"/>
+		    <delete name="somethingActive" egg="media" pri="1"/>
+		    <delete name="somethingActive" egg="msg" pri="1"/>
+	        </event>
+            </eventsource>
+        </eventtype>
+
+        <eventtype type="">
+            <!-- events from a source of a specific type -->
+            <eventsource source="webbrick/mediawb/DO/5" >
+            <!-- Zone valve feedback switch -->
+	        <event>
+                    <params>
+                        <testEq name="state">
+                            <value>0</value>
+                        </testEq>
+                    </params>
+		    <add name="amplifierStatus" egg="media" pri="1"/>
+		    <add name="somethingActive" egg="media" pri="1"/>
+		    <add name="somethingActive" egg="msg" pri="1"/>
+	        </event>
+	        <event>
+                    <params>
+                        <testEq name="state">
+                            <value>1</value>
+                        </testEq>
+                    </params>
+		    <delete name="amplifierStatus" egg="media" pri="1"/>
+		    <delete name="somethingActive" egg="media" pri="1"/>
+		    <delete name="somethingActive" egg="msg" pri="1"/>
+	        </event>
+            </eventsource>
+        </eventtype>
+
+        <eventtype type="">
+            <!-- events from a source of a specific type -->
+            <eventsource source="webbrick/mediawb/DO/3" >
+            <!-- Zone valve feedback switch -->
+	        <event>
+                    <params>
+                        <testEq name="state">
+                            <value>1</value>
+                        </testEq>
+                    </params>
+		    <add name="doorStatus" egg="media" pri="1"/>
+		    <add name="somethingActive" egg="media" pri="1"/>
+		    <add name="somethingActive" egg="msg" pri="1"/>
+	        </event>
+	        <event>
+                    <params>
+                        <testEq name="state">
+                            <value>0</value>
+                        </testEq>
+                    </params>
+		    <delete name="doorStatus" egg="media" pri="1"/>
+		    <delete name="somethingActive" egg="media" pri="1"/>
+		    <delete name="somethingActive" egg="msg" pri="1"/>
+	        </event>
+            </eventsource>
+        </eventtype>
+
+        <!-- The steps we want -->
+        <step id="defaultHigh" redMin="16" redMax="32" blueMin="16" blueMax="32"  greenMin="16" greenMax="32"/>
+        <step id="defaultLow" redMin="8" redMax="16" blueMin="8" blueMax="16"  greenMin="8" greenMax="16"/>
+
+        <step id="template" redMin="0" redMax="0" blueMin="0" blueMax="0"  greenMin="0" greenMax="0"/>
+
+        <step id="doorStatus" redMin="63" redMax="63" blueMin="0" blueMax="0"  greenMin="0" greenMax="0"/>
+        <step id="amplifierStatus" redMin="0" redMax="0" blueMin="0" blueMax="0"  greenMin="63" greenMax="63"/>
+        <step id="zoneValveStatus" redMin="0" redMax="0" blueMin="63" blueMax="63"  greenMin="0" greenMax="0"/>
+
+        <step id="garageOpenLow" redMin="32" redMax="32" blueMin="32" blueMax="32"  greenMin="32" greenMax="32"/>
+        <step id="garageOpenHigh" redMin="48" redMax="63" blueMin="48" blueMax="63"  greenMin="48" greenMax="63"/>
+
+        <step id="somethingActive" redMin="0" redMax="7" blueMin="0" blueMax="7"  greenMin="0" greenMax="7"/>
+
+        <!-- the cmdTemplate and adr are mandatory, the cmdTemplate will be filled using a combination of the dictionary with all
+            these attributes and the red,green,blue attributes calculated for a scene -->
+        <egg name="house" adr="house3" 
+                redChn="5" greenChn="6" blueChn="7" 
+                cmdTemplate="/hid.spi?com=:DM%(redChn)s;%(red)s;%(greenChn)s;%(green)s;%(blueChn)s;%(blue)s:"/>
+        <egg name="media" adr="mediawb" 
+                redChn="0" greenChn="6" blueChn="7" 
+                cmdTemplate="/hid.spi?com=:DM%(redChn)s;%(red)s;%(greenChn)s;%(green)s;%(blueChn)s;%(blue)s:"/>
+        <egg name="control" adr="controlwb" 
+                redChn="0" greenChn="6" blueChn="7" 
+                cmdTemplate="/hid.spi?com=:DM%(redChn)s;%(red)s;%(greenChn)s;%(green)s;%(blueChn)s;%(blue)s:"/>
+        <egg name="msg" adr="localhost" 
+                redChn="0" greenChn="6" blueChn="7" 
+                cmdTemplate="/local/postmessage?msg=Egg&amp;priority=0&amp;validFor=5"/>
+
+    </eventInterface>
+    
+</eventInterfaces>

@@ -1,0 +1,9 @@
+<eventInterfaces>
+    <eventInterface module='EventHandlers.TimeEventGenerator' name='TimeEventGenerator' 
+            latitude='51.5086' longitude='-0.1264' 
+            interval='seconds' runtime='90' 
+            startup_delay='30'>
+        <!-- change latitude and longitude to match location, or sunset and sunrose will be wrong -->
+        <!-- startup_delay delays sending any time events for a default of 30 seconds -->
+    </eventInterface>
+</eventInterfaces>

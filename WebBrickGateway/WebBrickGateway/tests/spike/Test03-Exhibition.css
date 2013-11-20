@@ -1,0 +1,145 @@
+/* CSS Document */
+
+body 		{
+			/* background-image : url("water_1280x1024.jpg") ; */
+			background-image : url("wallpaper_winter.jpg") ;
+			-moz-user-select:none;
+			}
+
+.flowerTheme{background-image : url("wallpaper.jpg") }
+.leafTheme{background-image : url("wallpaper_leaf.jpg") }
+.winterTheme{background-image : url("wallpaper_winter.jpg") }
+.asbtractTheme{background-image : url("feltcy.jpg") }
+.dropletTheme{background-image : url("water.jpg") }
+
+.rule		{width : 95% ; 
+			 text-align : CENTER ;
+			 border-spacing : 4pt
+			}
+.ruleBar	{background-image: url("orange.png") ;
+			height : 4px ;
+			margin : 0 ;
+			border : 0 ;
+			padding : 0 0 0 0 ;
+			}
+table		{
+			margin-left: 15pt ;
+			}
+
+td			{
+			padding-left : 1% ;
+			padding-right : 1% ;
+			padding-top : 1% ;
+			padding-bottom : 1% ;
+			}
+
+.buttonTable{
+			width : 90% ;
+			border-spacing: 10pt ;
+			}
+
+.isAbsent 	{
+			background-image : url("grey.png") ;
+			text-align: CENTER; 
+			font-family: Verdana, Arial, Helvetica, sans-serif; 
+			font-size: large; 
+			font-weight: bolder; 
+			color: #AAAAAA
+			}
+.isOn 		{
+			background-image : url("red.png") ;
+			text-align: CENTER; 
+			font-family: Verdana, Arial, Helvetica, sans-serif; 
+			font-size: large; 
+			font-weight: bolder; 
+			color: #FFAAAA
+			}
+.isOff 		{
+			background-image : url("green.png") ;
+			text-align: CENTER; 
+			font-family: Verdana, Arial, Helvetica, sans-serif; 
+			font-size: large; 
+			font-weight: bolder; 
+			color: #AAFFAA
+			}
+.isLocked 	{
+			background-image : url("orange.png") ;
+			text-align: CENTER; 
+			font-family: Verdana, Arial, Helvetica, sans-serif; 
+			font-size: large; 
+			font-weight: bolder; 
+			color: #FFAA88
+			}
+
+.isPending 	{
+			background-image : url("pending.png") ;
+			text-align: CENTER; 
+			font-family: Verdana, Arial, Helvetica, sans-serif; 
+			font-size: large; 
+			font-weight: bolder; 
+			color: #FFFFFF
+			}
+
+.isSelectable 	{
+			background-image : url("yellow.png") ;
+			text-align: CENTER; 
+			font-family: Verdana, Arial, Helvetica, sans-serif; 
+			font-size: large; 
+			font-weight: bolder; 
+			color: #444444
+			}
+
+.goUp 	{
+			background-image : url("red.png") ;
+			text-align: CENTER; 
+			font-family: Verdana, Arial, Helvetica, sans-serif; 
+			font-size: large; 
+			font-weight: bolder; 
+			color: #FF4444
+			}
+
+.goDown 	{
+			background-image : url("blue.png") ;
+			text-align: CENTER; 
+			font-family: Verdana, Arial, Helvetica, sans-serif; 
+			font-size: large; 
+			font-weight: bolder; 
+			color: #4444FF
+			}
+
+.goNext 	{
+			background-image : url("next.svg") ;
+			text-align: CENTER; 
+			font-family: Verdana, Arial, Helvetica, sans-serif; 
+			font-size: large; 
+			font-weight: bolder; 
+			color: #4444FF
+			}
+
+.infoBar 	{
+			background-image : url("yellow.png") ;
+			text-align: CENTER; 
+			font-family: Verdana, Arial, Helvetica, sans-serif; 
+			font-size: large; 
+			font-weight: bolder; 
+			color: #FF6600
+			}
+.infoTable	{
+			width: 90% ;
+			text-align: CENTER ;
+			position: absolute ;
+			top: 85% ;
+			}
+
+.navBar 	{
+			background-image : url("cyan.png") ;
+			text-align: CENTER; 
+			font-family: Verdana, Arial, Helvetica, sans-serif; 
+			font-size: x-large; 
+			font-weight: bolder; 
+			color: 0044AA ;
+			}
+.navTable	{
+			width: 90% ;
+			text-align: CENTER ;
+			}

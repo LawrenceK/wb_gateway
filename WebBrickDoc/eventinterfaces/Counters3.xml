@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eventInterfaces>
+    <eventInterface module='EventHandlers.Counters' name='Counters'>
+        <eventtype type="http://id.webbrick.co.uk/events/time/minute">
+            <eventsource source="time/minute" >
+                <event>
+                    <!-- all three are optional -->
+                    <increment name="count1" limit="1000" by="" resetvalue="0">
+                        <!-- if limit is reached then send newEvent and clear -->
+                        <newEvent type="test/1" source="test/1">
+                            <copy_other_data val="count1" />
+                        </newEvent>
+                    </increment>
+
+                    <decrement name="count1" resetvalue="0" by="2">
+                        <!-- if 0 is reached then send newEvent and set to resetvalue -->
+                        <newEvent type="test/1" source="test/1">
+                            <copy_other_data val="count1" />
+                        </newEvent>
+                    </decrement>
+
+                    <newEvent type="test/1" source="test/1">
+                        <!-- used to send a counter -->
+                        <copy_other_data val="count1" />
+                    </newEvent>
+
+                    <reset name="count1" resetvalue="0" >
+                        <!-- send newEvent and set to resetvalue -->
+                        <newEvent type="test/1" source="test/1">
+                            <copy_other_data val="count1" />
+                        </newEvent>
+                    </reset>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <!-- All counters must be declared -->
+        <counter name="count1" minimum="0" maximum="2147483647" type="int|float"/>
+
+    </eventInterface>
+</eventInterfaces>

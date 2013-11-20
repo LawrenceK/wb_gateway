@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+    <!-- !  TODO: If dimmable comfort lights are used use the AA command to target the
+            analogue channels. If the comfor lights are not dimmable use DO commands.
+            
+                1.  Replace Xurl with url, if http request are to be issued.
+
+                2.  Replace SampleWb1/SampleWb2 with the correct webbrick names
+                
+                3.  Change the channel in the AA/DO command to taget the correct
+                    channel on the webbrick. 
+    -->
+
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+       <!-- This responds to events and does an HTTP request(s) as the action. -->
+
+        <!-- Dayphase events -->
+        <eventtype type="internal">
+            
+            <eventsource source="general/lighting/comfort/off" >
+                <event>
+                    <Xurl address="SampleWb1" uri="/hid.spi?COM=AA;0;0:" cmd="GET" />
+                    <Xurl address="SampleWb2" uri="/hid.spi?COM=DO;1;F:" cmd="GET" />
+                </event>
+            </eventsource>
+            
+            <eventsource source="general/lighting/comfort/low" >
+                <event>
+                    <Xurl address="SampleWb1" uri="/hid.spi?COM=AA;0;25:" cmd="GET" />
+                    <Xurl address="SampleWb2" uri="/hid.spi?COM=DO;1;N:" cmd="GET" />
+                </event>
+            </eventsource>
+            
+            <eventsource source="general/lighting/comfort/medium" >
+                <event>
+                    <Xurl address="SampleWb1" uri="/hid.spi?COM=AA;0;50:" cmd="GET" />
+                    <Xurl address="SampleWb2" uri="/hid.spi?COM=DO;1;N:" cmd="GET" />
+                </event>
+            </eventsource>
+            
+            <eventsource source="general/lighting/comfort/high" >
+                <event>
+                    <Xurl address="SampleWb1" uri="/hid.spi?COM=AA;0;100:" cmd="GET" />
+                    <Xurl address="SampleWb2" uri="/hid.spi?COM=DO;1;N:" cmd="GET" />
+                </event>
+            </eventsource>
+        
+        </eventtype>
+    </eventInterface>
+</eventInterfaces>

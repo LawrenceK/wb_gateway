@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML, 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1-strict-dtd">
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+ +  $Id: heating1.xhtml 1457 2008-05-23 01:34:46Z webbrick $
+ +
+ +  WebBrick home gateway panel definition for a simple light switch.
+ +  Shower (pull-to-toggle) light switch emulation.
+ +
+ -->
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" >
+
+<head>
+  <title>Heating View</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  <link href="/static/css/panel.css" rel="stylesheet" />
+  <script src="/static/javascript/MochiKit.js"></script>
+  <script src="/static/javascript/WebBrick.js"></script>
+</head>
+
+<body onLoad="InitPanelElements(this);">
+
+<table class="navTable">
+  <tr>
+    <td class="navBar" onClick="window.location='/'">Home</td>
+    <td class="buttonAbsent" id="backButton">Back</td>
+    <td class="buttonAbsent" id="moreButton">More</td>
+    <td class="navBar" id="menuTitle">Heating - Ventillation</td>
+  </tr>
+</table>
+
+<table class="rule"><tr><td class="ruleBar">&nbsp;</td></tr></table>
+
+<table>
+  <tr>
+    <td colspan="2" wbType="Caption" wbLoad="loadCaption()">Zone - Upstairs</td>
+  </tr>
+  <tr wbLoad='loadPushSelect([[1,0],["Off","On"]])' wbSource="10.100.100.107:DO1">
+    <td wbType="PushButton" wbTarget="10.100.100.107:DO1">Open</td>
+    <td wbType="PushButton" wbTarget="10.100.100.107:DO1">Close</td>
+  </tr>
+</table>
+
+<table class="rule"><tr><td class="ruleBar">&nbsp;</td></tr></table>
+
+<table>
+  <tr>
+    <td colspan="4" wbType="Caption" wbLoad="loadCaption()">Heating and Ventillation</td>
+  </tr>
+  <tr>  
+    <td wbType="PushButton" wbLoad="loadButton()" 
+        wbTarget="10.100.100.107:DI0" wbSource="10.100.100.107:DO0">Ensuite Fan</td>
+    <td wbType="PushButton" wbLoad="loadButton()" 
+         wbTarget="10.100.100.107:DI5" wbSource="10.100.100.107:DO5">Boiler</td>
+    <td wbType="PushButton" wbLoad="loadButton()" 
+        wbTarget="10.100.100.107:DI2" wbSource="10.100.100.107:DO2">Radiator Valve</td>
+    <td wbType="PushButton" wbLoad="loadButton()" 
+        wbTarget="10.100.100.107:DI3" wbSource="10.100.100.107:DO3">Radiator</td>
+  </tr>
+</table>
+  
+<table>
+  <tr>
+    <td wbType="Numeric" wbLoad='loadNumericDisplay("CH return: ","##.#","&ordm;C")'
+        wbSource='10.100.100.107:Tmp0'>-</td>
+    <td wbType="Numeric" wbLoad='loadNumericDisplay("HW return: ","##.#","C")'
+        wbSource='10.100.100.107:Tmp1'>-</td>
+    <td wbType="Numeric" wbLoad='loadNumericDisplay("HW feed: ","##.#","C")'
+        wbSource='10.100.100.107:Tmp2'>-</td>
+    <td wbType="Numeric" wbLoad='loadNumericDisplay("Ambient: ","##.#","C")'
+        wbSource='10.100.100.107:Tmp3'>-</td>
+    <td wbType="Numeric" wbLoad='loadNumericDisplay("CH feed: ","##.#","C")'
+        wbSource='10.100.100.107:Tmp4'>-</td>
+  </tr>
+</table>
+
+<table class="infoTable">
+  <tr>
+  <td class="infoBar" id="ibLeft"> A bigger Left bit </td>
+  <td class="infoBar" id="ibCenter"> Center </td>
+  <td class="infoBar" id="ibRight"> Right </td>
+  </tr>
+</table>
+
+</body>
+
+</html>

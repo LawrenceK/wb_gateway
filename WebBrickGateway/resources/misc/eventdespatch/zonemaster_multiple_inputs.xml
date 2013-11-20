@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!-- TODO chnage the webbrick monitores so that we can get feedbcak on bolier  -->
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+    
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/DO'>
+            <!-- Pick up the state of the zone master -->
+            <eventsource source='webbrick/8/DO/0'>
+                <event>
+                    <params>
+                        <testEq type='int' name="state" value="0" />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/master" source="zonemaster/stopped">
+                    </newEvent>
+                </event>
+                <event>
+                    <params>
+                        <testEq type='int' name="state" value="1" />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/master" source="zonemaster/running">
+                    </newEvent>
+                </event>
+            </eventsource>            
+        </eventtype>
+        
+    </eventInterface>
+
+</eventInterfaces>

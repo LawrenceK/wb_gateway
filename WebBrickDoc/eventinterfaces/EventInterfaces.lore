@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>WebBrick Gateway Event Interfaces.</title>
+</head>
+
+<body>
+    <h1>WebBrick Gateway Event Interfaces.</h1>
+
+    <h1>Event Handlers</h1>
+
+        <p>An event handler (AKA Event Interface) generates and/or consumes events. These event handlers
+        may be very simple, be an external interface or be complex. The following documents are technical 
+        documents attempting to cover the principles and configuration of the event handlers.</p>
+
+    <h2>Event Generators</h2>
+
+        <p>An event handler may generates events that are then distributed both locally and optionally across a
+        network where the events will be consumed. Currently the events may be generated:
+            <ul>
+                <li>by physical hardware for which there is an event interface to pick them.</li>
+                <li>by external software for which there is an event interface to pick them.</li>
+                <li>by internal software where they caan be fed into event distribution.</li>
+            </ul>
+        </p>
+        <p>
+        The WebBrick Gateway is a distributed event system.
+        </p>
+
+    <h2>Event Consumers</h2>
+
+        <p>An event handler may consume events that are have distributed. Currently the events may be consumed:
+            <ul>
+                <li>by physical hardware for which there is an event interface to forward them on.</li>
+                <li>by external software for which there is an event interface to forward them on.</li>
+                <li>by internal software where they can generate further events to be fed into event distribution.</li>
+            </ul>
+        </p>
+        <p>
+        The WebBrick Gateway consists of a web server tht provides the user interface and an event distributed system that enables 
+        communication between the componenst that make up the automated house. The event distribution allows for a fault tolerant and 
+        distributed system, following our premise is local control, global intelligence.
+        </p>
+
+
+    <h2>Event Interfaces</h2>
+    <ul>
+        <li><a href="BaseAction.xhtml">BaseHandler</a> All event handlers have a common base for their configuration, this is covered in this document.</li>
+        <li><a href="ParameterSet.xhtml">ParameterSet</a> Common selection syntax.</li>
+
+        <br/>
+
+        <li><a href="Asterisk.xhtml"> Asterisk</a> Listen for AGI calls from asterisk and turn into events.</li>
+        <li><a href="Backup.xhtml"> Backup</a> Can generate remote backups of local files.</li>
+        <li><a href="Compound.xhtml">Compound </a> Use a combination of events to generate new events, can be used to 
+            block events i.e. conditional actions or map a group of events into a single event i.e. garage door state.</li>
+        <li><a href="Counters.xhtml">Counters </a> Count and accumulate.</li>
+        <li><a href="DelayedEvent.xhtml"> DelayedEvent</a> Delay and Map events from one one event to another.</li>
+        <li><a href="Dataset.xhtml"> Dataset</a> Collect event values and send them to a logging stream</li>
+        <li><a href="EmailAction.xhtml">EmailAction</a> Send an email.</li>
+        <li><a href="EventMapper.xhtml">EventMapper</a> Map events from one one event to another, typically used to give user friendly
+            names to external events or generate multiple actions from a single event.</li>
+        <li><a href="HttpAction.xhtml"> HttpAction</a> Perform an HTTP request.</li>
+        <li><a href="HVAC.xhtml">HVAC</a> Control of HVAC zones, zone groups and heatsources</li>
+        <li><a href="LogEvents.xhtml"> LogEvents</a> Log events to disk, see section on logging.</li>
+        <li><a href="PersistFile.xhtml"> PersistFile</a> Persists user entered configuration to persistant store, a disk file.</li>
+        <li><a href="RgbLedLighting.xhtml"> RgbLedLighting</a> Control Colorstar/Tristar RGB LED lighting.</li>
+        <li><a href="ShellAction.xhtml"> ShellAction</a> Run arbitrary local command.</li>
+        <li><a href="TimeEventGenerator.xhtml"> TimeEventGenerator</a> Generates time events.</li>
+        <li><a href="UPNP.xhtml">UPNP</a> Monitors UPNP resources.</li>
+        <li><a href="ValueConvert.xhtml"> ValueConvert</a> Map events from one one event to another, similar to EventMapper
+        but does simple maths on the val attribute of an event.</li>
+        <li><a href="WebBrickMonitor.xhtml"> WebBrickMonitor</a> Monitor webbricks.</li>
+        <li><a href="WebbrickStatusQuery.xhtml"> WebbrickStatusQuery</a> Ensure the current webbrick status is seen.</li>
+        <li><a href="WebbrickUdpEventReceiver.xhtml"> WebbrickUdpEventReceiver</a> Listen for UDP events from webbricks and distribute them.</li>
+        <li><a href="X10.xhtml">X10Handler</a> X10 interface.</li>
+        <br/>
+        <li><a href="HttpEvent.xhtml">HttpEvent</a> Listen for events to be delivered using HTTP.</li>
+    </ul>
+
+</body>
+
+</html>

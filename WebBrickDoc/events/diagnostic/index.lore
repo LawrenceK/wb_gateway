@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Diagnostic Events.</title>
+</head>
+
+<body>
+
+<h2>Diagnostic Events.</h2>
+<p>These events are issued at start-up and are used by the UI to display the build numbers of the various software packages 
+that are in use:
+</p> 
+<h3>Event Type</h3>
+
+http://id.webbrick.co.uk/events/diagnostics/software/version
+
+<h3>Event Source</h3>
+
+<p>
+The event source is the name of the package:
+</p>
+
+<ul>
+    <li>WebBrickLibs -- Libraries</li>
+    <li>WebBrickRes -- Resources such as images, css, swf files etc</li>
+    <li>WebBrickDoc -- Documentation, this documentation is built here</li>
+    <li>WebBrickGateway -- The main operating code</li>
+    <li>WebBrickConfig -- WebBrick configuration management</li>
+</ul>
+
+<h3>Other Data</h3>
+
+<p>  There are two values available here:</p>
+
+<ul>
+    <li>build -- the build number of the package</li>
+    <li>name -- the name of the system that generated this event</li>
+</ul>
+
+<h2>Diagnostic web pages</h2>
+
+<p>From build 3021 onwards diagnostic web pages have been made available</p>
+
+<p>These pages are not active like other Gateway pages, they are simple HTML served with the minimum of format or overhead.
+There key function is for remote use by installers or their support staff</p>
+    
+<p>These pages start at http://gname/template/diag</p>    
+</body>
+
+</html>

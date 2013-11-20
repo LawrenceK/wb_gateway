@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!-- !  This file defines the connection between UI & WebBricks and vice versa 
+        for LIGHTING. Correcsponding kid files: 
+            lighting_overview.kid -->
+            
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>  
+    <!-- !  UI to WebBrick
+            Replace 'Xurl' with 'url' and edit address adn uri field issue the correct command-->
+        
+            
+        <eventtype type="http://id.webbrick.co.uk/events/uri">   
+            
+            <!-- !  Set Upstairs to Off -->
+            <eventsource source="from_ui/upstairs/lighting/off" >
+                <event>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=DI;0:" cmd="GET" />
+                </event>
+            </eventsource>
+        
+        
+            <!-- !  Set Upstairs to On -->
+            <eventsource source="from_ui/upstairs/lighting/on" >
+                <event>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=DI;0:" cmd="GET" />
+                </event>
+            </eventsource>
+
+        
+            <!-- !  Set Downstairs to Off -->
+            <eventsource source="from_ui/downstairs/lighting/off" >
+                <event>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=DI;0:" cmd="GET" />
+                </event>
+            </eventsource>
+      
+        
+            <!-- !  Set Downstairs to On -->
+            <eventsource source="from_ui/downstairs/lighting/on" >
+                <event>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=DI;0:" cmd="GET" />
+                </event>
+            </eventsource>
+        
+        
+            <!-- !  Set Outside to Off -->
+            <eventsource source="from_ui/outside/lighting/off" >
+                <event>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=DI;0:" cmd="GET" />
+                </event>
+            </eventsource>
+       
+        
+            <!-- !  Set Outside to On -->
+            <eventsource source="from_ui/outside/lighting/on" >
+                <event>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=DI;0:" cmd="GET" />
+                </event>
+            </eventsource>
+           
+        </eventtype>
+    
+    </eventInterface>
+</eventInterfaces>

@@ -1,0 +1,508 @@
+<eventInterfaces>
+    <!--
+    ============================================================================================
+                                    Generic Zone Control    
+    ============================================================================================
+
+      NOTE once edited, regenerate the distinct zone files and run the TestZones.py test harness.
+      
+      LPK to 2-May-2008
+      ASH 2-May-2008
+                    Added 'cmdsource' to heating events so that the UI can see where a command has come from
+                    Changed 'warm' to 'Idle' as a status for useability
+                    Added new eventtype 'http://id.webbrick.co.uk/events/manual/control' for manually driven controls
+                    Used uppercase for the first character of each status for consistency
+      ASH 9-May-2008
+                    Changed 'http://id.webbrick.co.uk/events/manual/control' to
+                            'http://id.webbrick.co.uk/events/zones/manual'
+                    Changed source to: zonenn/manual/set
+
+      Data held:
+        from configuration 
+            zoneenabled - is zone enabled
+                0 Zone locked, also ignores minzonetemp
+                1 Zone Enabled
+            minzonetemp - frost stat setting
+                Value :  A materials or frost stat that sets the minimum temperature of a zone
+                     only zoneenabled blocks this from running
+            followoccupancy - do we only action when occupied
+                0 Will run regardless of Occupancy
+                1 Will run when Occupancy is true (i.e. not run in Vacation)
+            wcselect - the nweather set to follow - 0 is not.
+            occupied - is building occupied
+        from schedule
+            schedulesetpoint - current zone setpoint, defaults to minzonetemp until seen
+        from weather
+            weathercompensation - Run or HoldOff from selected weather compensation
+                Run
+                HoldOff
+            weather/1 - current status of weather set 1
+            weather/2 - current status of weather set 2
+            weather/3 - current status of weather set 3
+        internal
+            enabled - internal temporary based on zoneenabled, occupation and weather
+            state - 0 is unknown off and 1 is off for zone 2 is on
+        from temperature sensors, via zone10_inputs.
+`            zoneSensorName - current sensor providing temperature
+            zonetemp - current temperature
+
+        Expects Events:
+            type='http://id.webbrick.co.uk/zones/zone' 
+                source="zone10/running"
+                source="zone10/stopped"
+            needs mapping in zone10_inputs from feedback from controlled device 
+            or generating in zone10_outputs if no feedback available.
+            
+    
+      actions:
+      
+        Generates EVENT:
+           
+            type='http://id.webbrick.co.uk/zones/zone' 
+                source="zone10/run"
+                source="zone10/stop"
+            needs mapping in zone10_outputs to correct device control
+
+            type='http://id.webbrick.co.uk/zones/zone' 
+                source="zone10/state"
+    -->
+
+    <eventInterface module='EventHandlers.Compound' name='Compound'>
+
+        <!--  
+        =================================================================================
+                        Build the information
+        =================================================================================
+        -->
+
+        <!-- configured information 4 items -->
+        <!-- Sensible defaults -->
+        <initialState name='zoneenabled' value='0' />
+        <initialState name='minzonetemp' value='10.0' />
+        <initialState name='followoccupancy' value='0' />
+        <initialState name='wcselect' value='0' />
+        <!-- default is occupied -->
+        <initialState name='occupied' value='1' />
+        <eventtype type="http://id.webbrick.co.uk/events/config/get">
+            <eventsource source="zone10/enabled">
+                <event>
+                    <action name='zoneenabled' key="val"/>
+                    <action name='checkconditions' value="1" transient="true" />
+                </event>
+            </eventsource>
+            <eventsource source='zone10/matStat'>
+                <event>
+                    <action name='minzonetemp' key="val"/>
+                    <action name='checkconditions' value="1" transient="true" />
+                </event>
+            </eventsource>
+            <eventsource source='zone10/occupancy'>
+                <event>
+                    <action name='followoccupancy' key="val"/>
+                    <action name='checkconditions' value="1" transient="true" />
+                </event>
+            </eventsource>
+            <eventsource source='zone10/wcselect'>
+                <event>
+                    <action name="wcselect" key="val"/>
+                    <action name='checkconditions' value="1" transient="true" />
+                </event>
+            </eventsource>
+            <eventsource source='zone10/manualsetpoint'>
+                <event>
+                    <action name="manualsetpoint" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone10/schedulesetpoint'>
+                <event>
+                    <action name="schedulesetpoint" key="val"/>
+                </event>
+            </eventsource>
+
+            <!-- Are occupants home or not? -->
+            <eventsource source="occupants/home" >
+                <event>
+                    <action name="occupied" key="val"/>
+                    <action name='checkconditions' value="1" transient="true" />
+                </event>
+            </eventsource>
+
+        </eventtype>
+        
+        <initialState name='schedulesetpoint' value='' />
+        <initialState name='manualsetpoint' value='' />
+        <initialState name='targetsetpoint' value='' />
+        <initialState name='cmdsource' value="Awaiting" />
+        <initialState name='zonesource' value='default' />
+        <initialState name='weathercompensation' value='Run' />
+        <!-- we will set this enabled flag at a high level based on uccupancy and zone enabling -->
+        <initialState name='enabled' value='0' />
+        <initialState name='state' value='0' />
+        <initialState name='status' value='' />
+
+
+        <eventtype type="http://id.webbrick.co.uk/zones/weather">
+            <eventsource source='weather/1'>
+                <event>
+                    <action name='weather/1' key="state"/>
+                    <action name='checkconditions' value="1" transient="true" />
+                </event>
+            </eventsource>
+            <eventsource source='weather/2'>
+                <event>
+                    <action name='weather/2' key="state"/>
+                    <action name='checkconditions' value="1" transient="true" />
+                </event>
+            </eventsource>
+            <eventsource source='weather/3'>
+                <event>
+                    <action name='weather/3' key="state"/>
+                    <action name='checkconditions' value="1" transient="true" />
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <!-- schedule information -->
+        <eventtype type='http://id.webbrick.co.uk/events/schedule/control'>
+            <eventsource source="zone10/set" >
+                <event>
+                    <action name="schedulesetpoint" key="val" />
+                    <action name="manualsetpoint" value="" />
+                    <action name='checkconditions' value="1" transient="true" />
+                </event>
+            </eventsource>
+        </eventtype>
+        <compound>
+            <params>
+                <testChanged name="schedulesetpoint"/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/events/config/set' source="zone10/schedulesetpoint">
+                <copy_other_data val='schedulesetpoint' />
+            </newEvent>
+        </compound>
+
+        <!-- Manual Input information -->
+        <eventtype type='http://id.webbrick.co.uk/events/zones/manual'>
+            <eventsource source="zone10/manual/set" >
+                <event>
+                    <action name="manualsetpoint" key="val" />
+                    <action name='checkconditions' value="1" transient="true" />
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <!-- Incoming temperature information -->
+        <eventtype type='http://id.webbrick.co.uk/zones/sensor'>
+            <eventsource source="zone10/sensor" >
+                <event>
+                    <!-- Webbricks are eronousuly sending out zero degree readings, this suppresses any action on a 0.0 value as a short term work around to stop heating coming on -->
+                    <param>
+                        <testNe name="val" value="0.0"/>
+                    </param>
+                    <action name="zonetemp" key="val"/>
+                    <action name="zoneSensorName" key="name" />
+                    <action name='checkconditions' value="1" transient="true" />
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <eventtype type='http://id.webbrick.co.uk/zones/zone/heatsource'>
+            <eventsource source="zone10/heatsource" >
+                <event>
+                    <action name="zonesource" key="name"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <compound>
+            <params>
+                <testEq name="wcselect" value='0'/>
+            </params>
+            <newState name='weathercompensation' value="Run" />
+        </compound>
+        <compound>
+            <params>
+                <testEq name="wcselect" value='1'/>
+                <testNe name='weather/1' value=''/>
+            </params>
+            <newState name='weathercompensation' key='weather/1' />
+        </compound>
+        <compound>
+            <params>
+                <testEq name="wcselect" value='2'/>
+                <testNe name='weather/2' value=''/>
+            </params>
+            <newState name='weathercompensation' key='weather/2' />
+        </compound>
+        <compound>
+            <params>
+                <testEq name="wcselect" value='3'/>
+                <testNe name='weather/3' value=''/>
+            </params>
+            <newState name='weathercompensation' key='weather/3' />
+        </compound>
+        
+        <!--  Locked Out -->
+        <compound>
+            <params>
+                <!-- not enabled -->
+                <testEq name='zoneenabled' value='0'/>
+            </params>
+            <newState name='enabled' value="0" />
+            <newState name='status' value="LockedOut" />
+            <newState name='cmdsource' value="" />
+        </compound>
+        
+        <compound>
+            <params>
+                <!-- enabled and do not follow occupancy  -->
+                <testEq name='zoneenabled' value='1'/>
+                <testEq name='followoccupancy' value='0'/>
+            </params>
+            <newState name='enabled' value="1" />
+        </compound>
+        
+        <compound>
+            <params>
+                <!-- enabled and follow occupancy and occupied-->
+                <testEq name='zoneenabled' value='1'/>
+                <testEq name='followoccupancy' value='1'/>
+                <testEq name="occupied" value='1'/>
+            </params>
+            <newState name='enabled' value="1" />
+            <newState name='status' value="Idle" />
+        </compound>
+        
+        <!--  Vacation Mode -->
+        <compound>
+            <params>
+                <!-- enabled and follow occupancy and NOT occupied-->
+                <testEq name='zoneenabled' value='1'/>
+                <testEq name='followoccupancy' value='1'/>
+                <testEq name="occupied" value='0'/>
+            </params>
+            <newState name='enabled' value="0" />
+            <newState name='status' value="Idle" />
+            <newState name='cmdsource' value="Frost" />
+        </compound>
+        
+        <!-- ================================================================================= -->
+        <!--  Here is the main decision zone -->
+        <!--  We have already worked out whether we are enabled -->
+
+        <!-- target temperature decisions  -->
+        <!-- -->
+        <compound>
+            <params>
+                <testEq name='checkconditions' value='1'/>
+                <testEq name="enabled" value='0'/>
+                <testNe name="targetsetpoint" param2='minzonetemp'/>
+            </params>
+            <newState name='targetsetpoint' key='minzonetemp' />
+            <newState name='cmdsource' value="Frost" />
+            <newEvent type='http://id.webbrick.co.uk/zones/zone' source="zone10/targetset">
+                <copy_other_data val='targetsetpoint' />
+            </newEvent>
+        </compound>
+        
+        <compound>
+            <params>
+                <testEq name='checkconditions' value='1'/>
+                <testEq name="enabled" value='1'/>
+                <testNe name='manualsetpoint' value=''/>
+                <testGe type='float' name="manualsetpoint" param2='minzonetemp'/>
+                <testNe name="targetsetpoint" param2='manualsetpoint'/>
+            </params>
+            <newState name='cmdsource' value="Manual" />
+            <newState name='targetsetpoint' key="manualsetpoint" />
+            <newEvent type='http://id.webbrick.co.uk/zones/zone' source="zone10/targetset">
+                <copy_other_data val='targetsetpoint' />
+            </newEvent>
+        </compound>
+        <compound>
+            <params>
+                <testEq name='checkconditions' value='1'/>
+                <testEq name="enabled" value='1'/>
+                <testNe name='manualsetpoint' value=''/>
+                <testLt type='float' name="manualsetpoint" param2='minzonetemp'/>
+                <testNe name="targetsetpoint" param2='minzonetemp'/>
+            </params>
+            <newState name='cmdsource' value="Frost" />
+            <newState name='targetsetpoint' key="minzonetemp" />
+            <newEvent type='http://id.webbrick.co.uk/zones/zone' source="zone10/targetset">
+                <copy_other_data val='targetsetpoint' />
+            </newEvent>
+        </compound>
+
+<!-- Handle Hold Off -->        
+        <compound>
+            <params>
+                <testEq name='checkconditions' value='1'/>
+                <testEq name="enabled" value='1'/>
+                <testEq name='manualsetpoint' value=''/>
+                <testNe name='schedulesetpoint' value=''/>
+                <testGe type='float' name="schedulesetpoint" param2='minzonetemp'/>
+                <!-- always issue if set point now lower than existing -->
+                <testGt name="targetsetpoint" param2='schedulesetpoint'/>
+            </params>
+            <newState name='cmdsource' value="Schedule" />
+            <newState name='targetsetpoint' key="schedulesetpoint" />
+            <newEvent type='http://id.webbrick.co.uk/zones/zone' source="zone10/targetset">
+                <copy_other_data val='targetsetpoint' />
+            </newEvent>
+        </compound>
+        <compound>
+            <params>
+                <testEq name='checkconditions' value='1'/>
+                <testEq name="enabled" value='1'/>
+                <testEq name='manualsetpoint' value=''/>
+                <testNe name='schedulesetpoint' value=''/>
+                <testGe type='float' name="schedulesetpoint" param2='minzonetemp'/>
+                <!-- issue if set point now higher than existing and in Run state -->
+                <testLt name="targetsetpoint" param2='schedulesetpoint'/>
+                <testEq name='weathercompensation' value='Run'/>
+            </params>
+            <newState name='cmdsource' value="Schedule" />
+            <newState name='targetsetpoint' key="schedulesetpoint" />
+            <newEvent type='http://id.webbrick.co.uk/zones/zone' source="zone10/targetset">
+                <copy_other_data val='targetsetpoint' />
+            </newEvent>
+        </compound>
+
+        <compound>
+            <params>
+                <testEq name='checkconditions' value='1'/>
+                <testEq name="enabled" value='1'/>
+                <testEq name='manualsetpoint' value=''/>
+                <testNe name='schedulesetpoint' value=''/>
+                <testLt type='float' name="schedulesetpoint" param2='minzonetemp'/>
+                <testNe name="targetsetpoint" param2='minzonetemp'/>
+            </params>
+            <newState name='cmdsource' value="Frost" />
+            <newState name='targetsetpoint' key="minzonetemp" />
+            <newEvent type='http://id.webbrick.co.uk/zones/zone' source="zone10/targetset">
+                <copy_other_data val='targetsetpoint' />
+            </newEvent>
+        </compound>
+        
+        <compound>
+            <params>
+                <testEq name='checkconditions' value='1'/>
+                <testEq name="enabled" value='1'/>
+                <testEq name='manualsetpoint' value=''/>
+                <testEq name='schedulesetpoint' value=''/>
+                <testNe name="targetsetpoint" param2='minzonetemp'/>
+            </params>
+            <newState name='cmdsource' value="Frost" />
+            <newState name='targetsetpoint' key='minzonetemp' />
+            <newEvent type='http://id.webbrick.co.uk/zones/zone' source="zone10/targetset">
+                <copy_other_data val='targetsetpoint' />
+            </newEvent>
+        </compound>
+        
+        <!-- stop decisions -->
+        <compound>
+            <params>
+                <testEq name='checkconditions' value='1'/>
+                <testEq name='enabled' value='0'/>
+                <testNe name='state' value='1'/>
+            </params>
+            <newState name='state' value="1" />
+            <newState name='status' value="Idle" />
+            <newEvent type='http://id.webbrick.co.uk/zones/zone' source="zone10/stop" />
+        </compound>
+        
+        <compound>
+            <params>
+                <testEq name='checkconditions' value='1'/>
+                <testEq name='enabled' value='1'/>
+                <testEq name='state' value='0'/>
+            </params>
+            <newState name='state' value="1" />
+            <newState name='status' value="Idle" />
+            <newEvent type='http://id.webbrick.co.uk/zones/zone' source="zone10/stop" />
+        </compound>
+        
+        <compound>
+            <params>
+                <testEq name='checkconditions' value='1'/>
+                <testEq name='enabled' value='1'/>
+                <testNe name='weathercompensation' value='Run'/>
+                <testGt type="float" name='zonetemp' param2='minzonetemp'/>
+                <testNe name='state' value='1'/>
+            </params>            
+            <newState name='state' value="1" />
+            <newState name='status' value="Idle" />
+            <newEvent type='http://id.webbrick.co.uk/zones/zone' source="zone10/stop"/>
+        </compound>
+        <compound>
+            <params>
+                <testEq name='checkconditions' value='1'/>
+                <testEq name='enabled' value='1'/>
+                <testEq name='weathercompensation' value='Run'/>
+                <testGe type="float" name='zonetemp' param2="targetsetpoint"/>
+                <testNe name='state' value='1'/>
+            </params>            
+            <newState name='state' value="1" />
+            <newState name='status' value="Idle" />
+            <newEvent type='http://id.webbrick.co.uk/zones/zone' source="zone10/stop"/>
+        </compound>
+        
+        <compound>
+            <params>
+                <testEq name='checkconditions' value='1'/>
+                <testEq name='enabled' value='1'/>
+                <testEq name='weathercompensation' value='Run'/>
+                <testLt type="float" name='zonetemp' param2="targetsetpoint"/>
+                <testNe name='state' value='2'/>
+            </params>            
+            <newState name='state' value="2" />
+            <newState name='status' value="Demand" />
+            <newEvent type='http://id.webbrick.co.uk/zones/zone' source="zone10/run"/>
+        </compound>
+
+        <!--  ================================================================================= -->
+        <!-- Frost Stat decision zone Here we keep the house above the 'matStat' temperature -->
+        <!-- Note that minzonetemp will become the schedulesetpoint if this is triggered -->
+
+        <compound>
+            <params>
+                <testEq name='checkconditions' value='1'/>
+                <testEq name='zoneenabled' value='1'/>
+                <testLt type ="float" name='zonetemp' param2='minzonetemp'/>
+                <testNe name='state' value='2'/>
+            </params>
+            <newState name='state' value="2" />
+            <newState name='status' value="Demand" />
+            <newState name='cmdsource' value="Frost" />
+            <newEvent type='http://id.webbrick.co.uk/zones/zone' source="zone10/run"/>
+        </compound>
+
+        <compound>
+            <params>
+                <testEq name='checkconditions' value='1'/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/zones/zone' source="zone10/state">
+                <copy_other_data enabled="enabled" state="state"
+                        weathercompensation="weathercompensation" 
+                        wcselect="wcselect" 
+                        weather1="weather/1" 
+                        weather2="weather/2" 
+                        weather3="weather/3" 
+                        cmdsource="cmdsource"
+                        status='status'
+                        zoneenabled='zoneenabled'
+                        zonesource="zonesource"
+                        followoccupancy='followoccupancy'
+                        occupied="occupied"
+                        zoneTemp="zonetemp" 
+                        schedulesetpoint="schedulesetpoint" 
+                        manualsetpoint="manualsetpoint" 
+                        targetsetpoint="targetsetpoint" 
+                        minzonetemp='minzonetemp'/>
+            </newEvent>
+        </compound>
+        
+    </eventInterface>
+
+</eventInterfaces>

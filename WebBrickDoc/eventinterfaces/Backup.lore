@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Backup</title>
+</head>
+
+<body>
+
+    <h1>Backup</h1>
+
+        <p>Generate a backup of configutred files.</p>
+
+    <h2>Description</h2>
+        <p>This event handler can be configured to run a backup of a local set of files. The backup may be a complete
+        backup or only the files that have changed since the last backup. The target can be the local file system
+        or an HTTP post for offsite backup</p>
+
+
+    <h2>Configuration</h2>
+        <p>The configuration consists of one or more backup trigger events, these follow the standard
+        format and therefore can be set to trigger on all sorts of conditions, typically the backup 
+        will be triggered on a time basis. Three sorts of backups can be triggered these are: i) FullBackup, 
+        ii) FullBackup if any files in the save set have changed and iii) Delta backup - only files that
+        have changed.</p>
+
+    <h3>FileSet</h3>
+        A fileset is a list of directories and files that comprise a single backup set.
+
+    <h3>Destination</h3>
+        A destination configures the target for a set of files. The transport attribute selects
+        the type of disposal method. Currently these can be file for local file creation, ftp for ftp put,
+        https for https put and commandline for paassing to the local command shell for disposal.
+
+    <h2>Example</h2>
+    <a href="Backup1.xml" class="html-listing" />
+
+</body>
+
+</html>

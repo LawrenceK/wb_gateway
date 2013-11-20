@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>HVAC</title>
+</head>
+
+<body>
+
+    <h1>HVAC</h1>
+
+        <p>Handles Heating Ventilation and Cooling Plant</p>
+
+    <h2>Description</h2>
+        <p>This event handler listens for and creates HVAC events, the events that are created are typically consumed by the configurations for:</p>
+		<ul>
+			<li><b>Zones</b>  This maps to a discreet area of the building that can be individually controlled.  Typically a zone will have at least one sensor and one 'valve'.
+			<br/>
+			</li>
+			<li><b>Zone Groups</b>  This may map to a physical or virtual grouping of zones.  An example of physical grouping would be a pumped manifold, the pump needs to be 
+			running if any of the zone valves are in demand.
+			<br/>
+			</li>
+			<li><b><i>Mixing Valves</i></b>  These are typically part of a ZoneGroup, a Mixing Valve will follow ZoneGroup parameter to manage a compensated flow temperature.  The flow temperature can be calculated from a number of parameters, normally this is a value based on the delta between an average of zone target temperatures and the outside temperature.
+			<br/>
+			</li>
+			<li><b>Heat Sources</b> This maps to a device that is capable of sourcing or sinking heat.
+			<br/>
+			</li>
+		</ul>
+
+	<p><b>Simple Schematic</b></p>	
+    <p>This diagram shows a single HeatSource that can drive a DHW zone (+ virtual ZoneGroup) and other Zones via 2 ZoneGroups.</p>
+
+		<p><img width="85%" src="../Images/SimpleHeatingDiagram.png"  alt="Simple Heating Diagram"/>
+		</p>
+
+
+	<p><b>Overview Diagram</b></p>
+	<p>This diagram indicates the notion of operational parameters and events that are passed around a HVAC solution.</p>	
+
+
+		<p><img width="85%" src="../Images/HeatingSolution.png"  alt="Heating Diagram"/>
+		</p>
+
+
+    <h2>Configuration</h2>
+        <p>Zones, ZoneGroups and HeatSources need to be defined</p>
+		
+	<h3>Zones</h3>
+	
+		<p>Zones are simply defined as a 'key' and a 'name' to be displayed for that zone, Example:
+		</p>
+		<br/>
+		<pre>
+            &lt;zone key="zone1"  name='Hot Water' /&gt;
+		</pre>
+
+	<h3>Zone Groups</h3>
+	
+	<p>You need to define as many zone groups as you need.  It does not harm to define more than you need.  Again a ZoneGroup definition is simply a key and a name, Example:
+	</p>
+
+		<br/>
+		<pre>
+            &lt;zonegroup key="1"  name='ZoneGroup1' /&gt;
+		</pre>
+	<p> Note that ZoneGroups can be virtual, it that their sole function is to connect a group of zones to heat sources</p>
+
+	<h2>Heat Sources</h2>
+	
+	<p>Managing heat sources is one of the key functions of the HVAC event handler, for this to work properly you need to define the heat sources you have and their types.
+	</p>
+	
+	<h3>Heat Source Types</h3>
+	
+		<ul>
+			<li><b>Boiler  type="boiler"</b> :  This is a simple type, a boiler is simply a single source that acts like a gas, oil or electric boiler</li>
+			<li><b>MultipleBoiler type="multiboiler"</b> :  This is a complex type, it is used to set up a group of identical or near identical boilers that will be managed as a group.  This means that as
+			demand increases so more boilers in the group will be called upon.  It also means that the order of boiler call-up is adjusted to level the wear across the group.</li>
+			<li><b>Solar type="solar"</b> :  This is a simple type, it is used to set-up a single solar panel that will have varying degrees of availability depending on weather conditions</li>
+			<li><b>MultiSolar type="multisolar"</b> :  This is a complex type, it is used to set-up a multiple solar panels that are face diffent directions and elevations.
+			Each panel will have varying availability depending on weather conditions</li>
+			<li><b>GroundSource type="ground"</b> :  This is a simple type, this heat source generally has very little interaction, zones and zonegroups create demand and it is expected to
+			autonomously serve that demand.</li>
+		</ul>
+	
+    <h2>HVAC whole file Example</h2>
+
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;eventInterfaces&gt;
+
+    &lt;eventInterface module='EventHandlers.HVAC' name='HeatingVentilationAC'&gt;
+        &lt;zones&gt;
+            &lt;zone key="zone1"  name='Hot Water' /&gt;
+            &lt;zone key="zone2"  name='Dining' /&gt;
+            &lt;zone key="zone3"  name='Office' /&gt;
+            &lt;zone key="zone4"  name='Hall' /&gt;
+            &lt;zone key="zone5"  name='Sitting Room' /&gt;
+            &lt;zone key="zone6"  name='Garden Room' /&gt;
+            &lt;zone key="zone7"  name='Up Bath' /&gt;
+            &lt;zone key="zone8"  name='Ensuite' /&gt;
+            &lt;zone key="zone9"  name='Gnd Bath' /&gt;
+            &lt;zone key="zone10"  name='Playroom' /&gt;
+            &lt;zone key="zone11"  name='Kitchen' /&gt;
+            &lt;zone key="zone12"  name='Master Bed' /&gt;
+            &lt;zone key="zone13"  name='Landing' /&gt;
+            &lt;zone key="zone14"  name='Guest Bed' /&gt;
+            &lt;zone key="zone15"  name='Notused' /&gt;
+            &lt;zone key="zone16"  name='Kids Rooms' /&gt;
+        &lt;/zones&gt;
+        &lt;zonegroups&gt;
+            &lt;zonegroup key="1"  name='ZoneGroup1' /&gt;
+            &lt;zonegroup key="2"  name='ZoneGroup2' /&gt;
+            &lt;zonegroup key="3"  name='ZoneGroup3' /&gt;
+            &lt;zonegroup key="4"  name='ZoneGroup4' /&gt;
+            &lt;zonegroup key="5"  name='ZoneGroup5' /&gt;
+        &lt;/zonegroups&gt;
+        &lt;heatsources&gt;
+            &lt;heatsource key="1" type="boiler" name="Boiler" /&gt;
+            &lt;heatsource key="2" type="ground" name="Heat Pump" /&gt;
+
+            &lt;heatsource key="3" type="multisolar" name="Multi Solar"&gt;
+                &lt;elevations&gt;
+                    &lt;elevation key="east" type="elevation" name="East"/&gt;
+                    &lt;elevation key="south" type="elevation" name="South"/&gt;
+                    &lt;elevation key="west" type="elevation" name="West"/&gt;
+                &lt;/elevations&gt;
+            &lt;/heatsource&gt;
+            
+            &lt;heatsource key="4" type="solar" name="Solar" /&gt;
+            &lt;heatsource key="5" type="multiboiler" name="Multi Boiler" &gt;
+                &lt;boilers&gt;
+                    &lt;boiler key="1" name="Boiler 1" /&gt;
+                    &lt;boiler key="2" name="Boiler 2" /&gt;
+                &lt;/boilers&gt;
+            &lt;/heatsource&gt;
+        &lt;/heatsources&gt;
+        &lt;zonemaster active="1" /&gt;
+    &lt;/eventInterface&gt;
+
+&lt;/eventInterfaces&gt;
+</pre>
+      
+</body>
+
+</html>

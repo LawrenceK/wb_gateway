@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Initial Setup.</title>
+</head>
+<body><h1>Initial Setup.</h1>
+        <p>
+            How to setup a brand new screen. 
+        </p>
+        <p>
+            Required Fedora 8 Boot disk or similar with recovery mode live CD. 
+            USB connected DVD.
+            touchscreen image file, DVD with touchscreen.gx on it.
+        </p>
+    <h2>Boot touch screen</h2>
+        <p>
+            Connect USB DVD drive.
+            Power on, you may have to change boot sequence in Bios.
+            Select rescue mode for boot.
+            Do not search for existing partition, just boot.
+        </p>
+
+    <h2>Write Image</h2>
+        <p>
+            Once a shell prompt is given, eject the boot media and insert the image media.
+            mkdir /cdrom
+            mount /dev/scd0 /cdrom
+            The later may vary dependant on your boot disk.
+            gzip -d -c /cdrom/touchscreen.img | dd of=/dev/sda bs=1M
+        </p>
+        <p>
+            When complete.
+            sync and shut down
+        </p>
+        <p>
+            Power up, enter Bios and set power mode to be power up on AC recovery.
+            sync and shut down
+        </p>
+        <p>
+            The touch overlay may need alignment adjusting.
+        </p>
+        <p>
+            The orientation will need correcting.
+            Try pmode = 6
+            <ul>
+                <li>pmode 1 - X:0 left Y:0 top</li>
+                <li>pmode 2 - X:0 left Y:0 bottosm</li>
+                <li>pmode 3 - X:0 right Y:0 top</li>
+                <li>pmode 4 - X:0 right Y:0 bottom</li>
+                <li>pmode 5 - swop X/Y X:0 left Y:0 top</li>
+                <li>pmode 6 - swop X/Y X:0 left Y:0 bottom</li>
+                <li>pmode 7 - swop X/Y X:0 right Y:0 top</li>
+                <li>pmode 8 - swop X/Y X:0 right Y:0 bottom</li>
+            </ul>
+        </p>
+
+</body>
+</html>

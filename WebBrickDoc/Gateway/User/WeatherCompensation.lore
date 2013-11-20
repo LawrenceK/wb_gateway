@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Weather Compensation</title>
+  </head>
+  <body>
+
+    <h1>Weather Compensation</h1>
+
+      <p>There are three 'channels' of weather compensation. Their function is to supress a zone from going into demand, based on two temperature thresholds. Lets consider two scenarios: </p>
+
+		<ul>
+			<li>a warm morning</li>
+			<li>a warm evening</li>
+		</ul>
+
+	<p>Then in first case you have rising temperatures and in the second falling. So, for the morning case the user can define a temperature threshold for a rising condition, 
+	say 10 degrees:  if the outside temperature is 10 degrees or above <i>and</i> rising then a zone using that weather compensation would not call for demand.  
+	Therefore on a morning that was getting warmer, zones would either not demand at all, or cease demand as temperature rises.
+	</p>
+	<p>
+	For the evening its the opposite way round, where zones can be held off until the outside temperature drops.
+	We have different channels of weather compensation so you can apply them to different parts of the home.
+	</p>
+
+	<p>The weather compensation page, found under "Home --> Heating --> Config"</p>
+
+	<center>
+		<img src="../../Images/WCConfig.jpg" alt="Weather Compensation Config" width="40%" />
+	</center>
+
+	<p>Zone Configuration</p>
+
+	<center>
+		<img src="../../Images/WCZoneConfiguration.jpg" alt="Weather Compensation Zone Configuration" width="40%" />
+	</center>
+
+
+</body>
+</html>

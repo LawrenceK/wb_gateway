@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!-- Generate lots of temperature sensors from one webbrick -->
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+    
+        <eventtype type='http://id.webbrick.co.uk/events/time/runtime'>
+            <eventsource source='time/runtime'>
+                <event>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/config/nodename" source="webbrick/0">
+                        <other_data ipAdr='10.100.100.100' fromNode='0' nodename='house1' version= '6.6.2479' />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/config/nodename" source="webbrick/0">
+                        <other_data ipAdr='10.100.100.100' fromNode='0' nodename='house2' version= '6.6.2479' />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/config/nodename" source="webbrick/0">
+                        <other_data ipAdr='10.100.100.100' fromNode='0' nodename='house3' version= '6.6.2479' />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/config/nodename" source="webbrick/0">
+                        <other_data ipAdr='10.100.100.100' fromNode='0' nodename='mediawb' version= '6.6.2479' />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/config/nodename" source="webbrick/0">
+                        <other_data ipAdr='10.100.100.100' fromNode='0' nodename='controlwb' version= '6.6.2479' />
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+    </eventInterface>
+
+</eventInterfaces>

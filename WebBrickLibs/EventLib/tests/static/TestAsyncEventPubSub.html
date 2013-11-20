@@ -1,0 +1,32 @@
+<!-- $Id: TestAsyncEventPubSub.html 2154 2008-05-23 09:46:47Z webbrick $ -->
+<!-- To run this test, just load it into a browser -->
+<html>
+
+  <head>
+    <title>Asynchronous Test Suite for event publish/subscribe functions</title>
+    <link rel="stylesheet" type="text/css" href="mochikit/tests/SimpleTest/test.css">
+    <script type="text/javascript" src="../../static/javascript/URI.js"></script>
+    <script type="text/javascript" src="../../static/javascript/Status.js"></script>
+    <script type="text/javascript" src="../../static/javascript/Event.js"></script>
+    <script type="text/javascript" src="../../static/javascript/EventEnvelope.js"></script>
+    <script type="text/javascript" src="../../static/javascript/EventSerializer.js"></script>
+    <script type="text/javascript" src="../../static/javascript/EventAgent.js"></script>
+    <script type="text/javascript" src="../../static/javascript/EventHandler.js"></script>
+    <script type="text/javascript" src="../../static/javascript/EventRouter.js"></script>
+    <script type="text/javascript" src="javascript/MochiKit.js"></script>
+    <script type="text/javascript" src="mochikit/tests/SimpleTest/SimpleTest.js"></script>
+    <script type="text/javascript" src="javascript/DeferredMonad.js"></script>
+    <script type="text/javascript" src="javascript/AsyncUnitTest.js"></script>
+    <script type="text/javascript" src="javascript/TestEventPubSub.js"></script>
+
+  </head>
+
+  <body>
+    <pre id="test">
+    <script type="text/javascript">
+    runTestSuite(TestEventPubSub);
+    </script>
+    </pre>
+  </body>
+
+</html>

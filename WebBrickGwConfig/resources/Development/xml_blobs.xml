@@ -1,0 +1,208 @@
+<!-- Sample blobs of xml:  -->
+
+<!-- http://192.168.1.14:8080/wbgwcnf/GetXml/KnownDevices -->
+
+<items>
+    <item id="002" name="ExtEncSky"/>
+    <item id="001" name="ExtDecLiv"/>
+</items>
+
+
+
+<!-- http://192.168.1.14:8080/wbgwcnf/GetXml/NewDevices -->
+
+<items>
+    <item id="003" name="Exterity"/>
+</items>
+
+
+
+<!-- http://192.168.1.14:8080/wbgwcnf/GetXml/DeviceInfo/<device_id> -->
+
+<device>
+    <name name="Name" value="TestDevice" />
+    <location name="Location" value="livingroom" />
+    <sourcecount name="Number of Sources" value="3" />
+    <sinkcount name="Number of Sinks" value="1" />
+    <sourcetypes name="Types of Sources">
+        <value>analogue</value>
+        <value>digital</value>
+    </sourcetypes>
+    <sinktypes name="Types of Sinks">
+        <value>upnp</value>
+    </sinktypes>
+    <confstatus name="Configuration Status" value="not configured" />
+</device> 
+
+
+<!-- http://192.168.1.14:8080/wbgwcnf/GetXml/Sources/<device_id> -->
+
+<sources>
+    <source>
+        <type name="Type" value="analogue" />
+        <name name="Name" value="Output 1" />
+        <connection name="Connection">
+            <device>Lexicon</device> 
+            <channel>DVD</channel>
+            <status>connected</status>
+        </connection>
+    </source>
+    <source>
+        <type name="Type" value="analogue" />
+        <name name="Name" value="Output 2" />
+        <connection name="Connection">
+            <device></device> 
+            <channel></channel>
+            <status>not configured</status>
+        </connection>
+    </source>
+</sources>
+
+
+<!-- http://192.168.1.14:8080/wbgwcnf/GetXml/Sinks/<device_id> -->
+
+<sinks>
+    <sink>
+        <type name="Type" value="analogue" />
+        <name name="Name" value="Output 1" />
+        <connection name="Connection">
+            <device></device> 
+            <channel></channel>
+            <status>not connected</status>
+        </connection>
+    </sink>
+    <sink>
+        <type name="Type" value="analogue" />
+        <name name="Name" value="Output 1" />
+        <connection name="Connection">
+            <device>Lexicon</device> 
+            <channel>DVD</channel>
+            <status>connected</status>
+        </connection>
+    </sink>
+<sinks>
+
+
+
+<!-- http://192.168.1.14:8080/wbgwcnf/GetXml/compatible/sinks/<device_id>/<source_id> -->
+
+<devices>
+    <device>
+        <name name="Name" value="TestDevice" />
+        <id name="id" value="004" />
+        <sinks>
+            <sink>
+                <type name="Type" value="analogue" />
+                <name name="Name" value="Input 1" />
+                <connection name="Connection">
+                    <device></device> 
+                    <channel></channel>
+                    <status>not connected</status>
+                </connection>
+            </sink>
+            <sink>
+                <type name="Type" value="analogue" />
+                <name name="Name" value="Input 2" />
+                <connection name="Connection">
+                    <device>Lexicon</device> 
+                    <channel>DVD</channel>
+                    <status>connected</status>
+                </connection>
+            </sink>
+        </sinks>
+    </device>
+    <device>
+        <name name="Name" value="TestDevice2" />
+        <id name="id" value="002" />
+        <sinks>
+            <sink>
+                <type name="Type" value="analogue" />
+                <name name="Name" value="Input 1" />
+                <connection name="Connection">
+                    <device></device> 
+                    <channel></channel>
+                    <status>not connected</status>
+                </connection>
+            </sink>
+        </sinks>
+    </device>  
+<devices>
+
+
+<!-- http://192.168.1.14:8080/wbgwcnf/GetXml/compatible/sources/<device_id>/<sink_id> -->
+
+<devices>
+    <device>
+        <name name="Name" value="TestDevice" />
+        <id name="id" value="004" />
+        <sources>
+            <source>
+                <type name="Type" value="analogue" />
+                <name name="Name" value="Input 1" />
+                <connection name="Connection">
+                    <device></device> 
+                    <channel></channel>
+                    <status>not connected</status>
+                </connection>
+            </source>
+            <source>
+                <type name="Type" value="analogue" />
+                <name name="Name" value="Input 2" />
+                <connection name="Connection">
+                    <device>Lexicon</device> 
+                    <channel>DVD</channel>
+                    <status>connected</status>
+                </connection>
+            </source>
+        </sources>
+    </device>
+    <device>
+        <name name="Name" value="TestDevice2" />
+        <id name="id" value="002" />
+        <sources>
+            <source>
+                <type name="Type" value="analogue" />
+                <name name="Name" value="Input 1" />
+                <connection name="Connection">
+                    <device></device> 
+                    <channel></channel>
+                    <status>not connected</status>
+                </connection>
+            </source>
+        </sources>
+    </device>  
+<devices>
+
+
+
+
+<!-- DONT THINK WE NEED THESE!!!! 
+
+http://192.168.1.14:8080/wbgwcnf/GetXml/Source/<device_id>/<source_id>
+
+<source>
+    <type name="Type" value="analogue" />
+    <name name="Name" value="Output 1" />
+    <connection name="Connection">
+        <device>Lexicon</device> 
+        <channel>DVD</channel>
+        <status>connected</status>
+    </connection>
+<source>
+
+
+http://192.168.1.14:8080/wbgwcnf/GetXml/Sink/<device_id>/<source_id>
+
+<sink>
+    <type name="Type" value="analogue" />
+    <name name="Name" value="Output 1" />
+    <connection name="Connection">
+        <device>Lexicon</device> 
+        <channel>DVD</channel>
+        <status>connected</status>
+    </connection>
+<sink>
+
+-->
+
+

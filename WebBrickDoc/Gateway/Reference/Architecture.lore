@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+     <title>Architecture</title>
+  </head>
+  <body>
+
+
+  <h1>Architecture</h1>
+
+  <h2>Overview</h2>
+	<p>
+	The WebBrick Gateway has a number of key components:
+	</p>
+
+	<ul>
+		<li>Event Despatch, this implements the distributed event model</li>
+		<li>UI generator, this projects UI elements in HTML and XML forms</li>
+		<li>WebBrick Manager, this manages WebBrick configurations on a site basis</li>
+		<li>Functional modules, for example the HVAC module deals with all the fuctions of heating, cooling and ventilation</li>
+	</ul>
+	
+      <center>
+        <img src="../../Images/GatewayArchitecture.png" alt="Gateway Architecture Diagram" width="80%"/>
+      </center>
+
+
+  <h2>Architecture and Events</h2>
+      <p>
+        The WebBrick automation solutions are based around a distributed event model, with components being event generators and/or event consumers.
+      </p>
+
+      <p>
+        An event consists of an event type, and event source and other data (possibly none). The event type defines the event context
+        and whether there is other data associated with the event.
+        The aim is for event distribution to be very light weight with high level event routing decisions made using just
+        the event type and/or event source. 
+      </p>
+      
+      <p>
+        Event type's and event sources's are specified using URI's (Universal Resource Identifier).
+        Event type's should be absolute and unique URI's, i.e. all of Webbrick solutions event types start with
+        http://id.webbrick.co.uk/ as the webbrick domain is registered to us. 
+      </p>
+
+      <p>
+        Event source URI's may be relative URI's (i.e. missing a prefix), in this 
+        case the URI would be updated if the event passes across event source boundaries, i.e. to a WebBrick Gateway on a different site.
+      </p>
+
+    <h2>WebBrick Gateway User Interface</h2>
+    <p>
+        The WebBrick Gateway contains a web server which is used to generate user interfaces and provide access to dynamic data
+        for use in user interfaces.
+    </p>
+      .
+    <p>
+      Within the WebBrick Gateway the web server provides a number of services:
+      <ul>
+        <li>
+          <b>General Purpose HTML Pages:</b>
+            These are used to provide a user interface to a browser running on any device
+            for example PC, Laptops, PDAs, Smartphone’s and Touch screens.  These interfaces use an AJAX paradigm in that they
+            are self updating.  A page can display the status of dynamic systems and provide button style controls for those
+            systems.
+        </li>
+
+        <li><b>XML menus:</b>  
+          These are used to populate the button and soft key menus found on VOIP based phones.
+        </li>
+
+        <li><b>Internal Services:</b>  
+          These are used by logic in the Ajax based dynamic pages.
+        </li>
+      </ul>
+    </p>
+
+    <h2>Styling</h2>
+
+    <p>
+            There will be a full reference for styling later in this manual.  The basic principles are that the
+            WebBrick Gateway generates basic XHTML pages which are then styled using CSS Style sheets.  There are some styles that
+            the installer is encouraged to modify to suit the home and owners.
+    </p>
+
+    <p>
+         <h3>WebBrick Gateway Event distribution</h3>
+        The WebBrick Gateway's event system is i) an event distributor, ii) an event consumer, iii) an event generator.
+    </p>
+    <p>
+        As an event distributor the WebBrick Gateway itself can receive events from multiple sources, i.e. WebBricks, via email, from SMS, from user browsers 
+        and other devices and deliver them to internal or external event consumers.
+    </p>
+    <p>
+        In consuming events it may: i) use them to make decisions or ii) to update state used for the user interface.
+    </p>
+    <p>
+        It may translate them into a format understood by external systems, e.g. Apple ITunes.
+    </p>
+    <p>
+        As an event generator it may respond to events by generating new events, for example time events are the basis of
+        tasks or jobs that are scheduled by the WebBrick Gateway. The result of a time event at a configured time is to generate new events,
+        these would typically be commands to switch on heating or lights.
+    </p>
+    
+    <h3>WebBrick Gateway Security</h3>
+    <p>
+      Consider the diagram here:
+      <center>
+        <img src="../../Images/GatewaySecurityModel.png" alt="../../Images/GatewaySecurityModel.png" width="80%"/>
+      </center>
+    </p>
+    
+    <p>
+      We can see that the WebBrick Gateway is to be connected to both the <em>Home network</em> 
+      and the <em>Global Internet</em>.  Note that the Internet connection is made via the general purpose adapter that is used
+      for the home's general Internet connection.
+    </p>
+    <p>
+      The WebBrick Gateway then provides a security interface between the <em>Home network</em> and <em>Global Internet</em>:
+    </p>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eventInterfaces>
+    <eventInterface module='EventHandlers.UPNP' name='UPNP'>
+
+	<!-- these are made visible if the string is in the modelName from the device description, overrides exclude -->
+	<includedevice>
+	    <modelName>Sonos</modelName>
+	</includedevice>
+
+	<!-- these are not made visible if the string is in the modelName from the device description-->
+	<excludedevice>
+	    <modelName>TwonkyMedia</modelName>
+	    <modelName>Roku</modelName>
+	    <modelName>Media Player</modelName>
+	</excludedevice>
+
+        <webserver serverport='0' interface=''/>
+
+    </eventInterface>
+</eventInterfaces>

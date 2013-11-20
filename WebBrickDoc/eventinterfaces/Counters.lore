@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Counters</title>
+</head>
+
+<body>
+
+    <h1>Counters</h1>
+
+        <p>Counting and adding up.</p>
+
+    <h2>Description</h2>
+        <p>This event handler is used to provide counters and accumulators. The 'Counter' may be 
+        incremented or decremented by an amount on a trigger event. 
+        When thresholds are reached events may be sent. The contents of counters may be
+        sent on a trigger event and the value may be reset by another trigger event.</p>
+
+        <p>This event handler maintains a state table in memory that is updated by configured events, when this table is updated then
+        the action defintions are checked to see whether an update to the state table should cause an action to be performed. </p>
+
+    <h2>Configuration</h2>
+        <p>The configuration for this handler is split into to
+        two parts
+        <ul>
+            <li>The first is our normal set of event source and type filters along with the main actions that 
+            can be performed, increment, decrement, newEvent and reset.
+
+            <p>The action element contains zero or more of each of the following elements.</p>
+            <ul>
+                <li>newEvent</li>
+                <li>increment</li>
+                <li>decrement</li>
+                <li>reset</li>
+                <li>set - this can use either 'by' for a fixed value or 'key' for taking the value of an incoming event</li>
+            </ul>
+            </li>
+
+            <li><p>There then will be 1 or more counter elements. Each element has the following attributes.</p>
+                <li>name - mandatory, must be unique.</li>
+                <li>minimum - lowest value for counter, may be used as reset value if not given.</li>
+                <li>maximum - highest value for counter, may be used as reset value if not given.</li>
+                <li>type - either int (integer counter) or float (accumulator)</li>
+            </li>
+        </ul></p>
+        <p> The elements are processed in the order increment, decrement, reset, newEvent so that new events
+        get the value after the processing steps. If you want the value before reset specify the newEvent as
+        part of reset processing and not independantly. Generally it is expected that you will not want
+        to see the running count of a fast changing counter.</p>
+        
+    <h2>Logging</h2>
+        This handler uses the logging stream 'EventHandlers.Counters'.
+        
+    <h3>Debug</h3>
+        At startup the configured counter elements will be logged.
+
+    <h2>Example 1</h2>
+        This example is counting the number of times the entry door has been opened. It uses the default counter type.
+        Once an hour it sends the count and resets the value.
+
+      <a href="Counters1.xml" class="html-listing" />
+  
+    <h2>Example 2</h2>
+        This example is measuring power consumption using a metering device that triggers for each 0.5W or power
+        used. It specifies the by attribute for the increment and uses the counter of float.
+
+      <a href="Counters2.xml" class="html-listing" />
+
+    <h2>Example 3</h2>
+        This example just aims to show all possible configurations attributes.
+
+      <a href="Counters3.xml" class="html-listing" />
+
+</body>
+
+</html>

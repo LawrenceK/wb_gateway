@@ -1,0 +1,42 @@
+/* CSS Document */
+
+#nowplaying {
+	position:absolute;
+	top:57px;
+	left:42px;
+}	
+
+#nowplaying table.rect8pxlistwtitle {
+	width:208px;
+}
+
+#nowplaying div.tablecontent {
+	height:250px;
+	overflow:auto;
+}
+
+#rightarrow {
+	position:absolute;
+	top:200px;
+	left:252px;
+}
+
+.listbox a {
+	color:white !important;
+}
+
+.listbox {
+	position:absolute;
+	top:57px;
+	left:310px;
+}	
+
+.listbox table.rect8pxlistwtitle {
+	width:458px;
+	height:172px;
+}
+
+.listbox div.tablecontent {
+	height:250px;
+	overflow:auto;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>EmailAction</title>
+</head>
+
+<body>
+
+    <h1>EmailAction</h1>
+
+        <p>Send an Email.</p>
+
+    <h2>Description</h2>
+        <p>This event handler responds to events by sending one or more emails through a defined mail relay.</p>
+
+
+    <h2>Configuration</h2>
+        <p>This event handler has the following parameters:</p>
+        <ul>
+        <li>smartHost - the IP address or name of the host that will handle email for the WebBrick Gateway.</li>
+        <li>smartPort - the TCP port on smartHost that listens for SMTP email, default 25.</li>
+        </ul>
+		<p> The smartHost has to be accessible from the Gateway, a good choice would be your ISP's SMTP relay.
+		</p>
+        <p>For each mapped event there can be one or more email elements, each email element defines and email message
+        to be sent. Within this there must be four elements:</p>
+        <ul>
+        <li>to - addressee for email.</li>
+        <li>from - sender for email.</li>
+        <li>subject - subject line.</li>
+        <li>body - message body.</li>
+        </ul>
+        <p>Each of th above can substitute in values from the other data of the triggering event message, this is done by wrapping the
+        name of the other data value in %()s, i.e. %(state)s, %(val)s, %(value)s. 
+        The other data may be from one of the system defined event types or your own
+        event type created as newEvent in a handler such as EventMapper</p>
+
+    <h2>Example</h2>
+    <pre>
+      &lt;eventInterface module='EventHandlers.EmailAction' name='EmailAction' smartHost='localhost' smartPort='25'&gt;
+          &lt;eventtype type=""&gt;
+              &lt;eventsource source="webbrick/100/DO/0" &gt;
+            &lt;event&gt;
+                      &lt;email&gt;
+                          &lt;to&gt;TestUser&lt;/to&gt;
+                          &lt;from&gt;TestUser&lt;/from&gt;
+                          &lt;body&gt;TestUser %(state)s&lt;/body&gt;
+                          &lt;subject&gt;TestUser %(state)s&lt;/subject&gt;
+                      &lt;/email&gt;
+            &lt;/event&gt;
+              &lt;/eventsource&gt;
+          &lt;/eventtype&gt;
+      &lt;/eventInterface&gt;
+  </pre>
+</body>
+
+</html>

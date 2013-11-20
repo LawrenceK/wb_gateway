@@ -1,0 +1,747 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!--    
+    Gloabl Fan Control or Heat Recovery
+    
+    This file is describes the logic behind controlling an HRV unit and works in conjunction with the 
+    following files: 
+        heatrecovery_ventialtion_inputs.xml
+        heatrecovery_ventilation_outputs.xml
+        
+    NOTE: 
+        For normal operation this file does not need to be touched, all inputs and outputs are to be 
+        configured in the inputs/outputs file respectively.
+-->
+
+    <eventInterface module='EventHandlers.Compound' name='Compound'>
+        
+    <!-- Declaring the variables and setting initial states -->
+        
+        <initialState name="ventilation_enabled" value="0" />
+        <initialState name="target_fan_speed" value="1" /> <!-- 0 = Stop, 1 = Low, 2 = Medium, 3 = High -->
+        <initialState name="actual_fan_speed_is_low" value="0" />
+        <initialState name="actual_fan_speed_is_medium" value="0" /> 
+        <initialState name="actual_fan_speed_is_high" value="0" /> 
+        <initialState name="stale_fan_enabled" value="1" />
+        <initialState name="check_minute" value="0" />
+        
+        <initialState name="boost_requested" value="0" /> 
+        <initialState name="boost_run" value="0" /> 
+        <initialState name="boost_stop" value="0" /> 
+        <initialState name="boost_running" value="0" />  
+        <initialState name="boost_runtime" value="120" />  <!-- 2 minutes -->
+        
+        <initialState name="pir_1_enabled" value="Off" />
+        <initialState name="pir_2_enabled" value="Off" />
+        <initialState name="pir_3_enabled" value="Off" />
+        <initialState name="pir_4_enabled" value="Off" />
+        
+        <initialState name="pir_1_triggered" value="0" />
+        <initialState name="pir_2_triggered" value="0" />
+        <initialState name="pir_3_triggered" value="0" />
+        <initialState name="pir_4_triggered" value="0" />
+        
+        <initialState name="hum_1_threshold" value="100" />
+        <initialState name="hum_2_threshold" value="100" />
+        <initialState name="hum_3_threshold" value="100" />
+        <initialState name="hum_4_threshold" value="100" />
+        
+        <initialState name="hum_1_current" value="0" />
+        <initialState name="hum_2_current" value="0" />
+        <initialState name="hum_3_current" value="0" />
+        <initialState name="hum_4_current" value="0" />
+        
+        
+    <!-- Gathering the information -->
+    
+    
+        <eventtype type="http://id.webbrick.co.uk/events/time/minute">
+            <eventsource source="time/minute" >
+                <event>
+                    <action name="check_minute" value="1" transient='yes'/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <!-- ! Get persisted Data -->
+        <eventtype type="http://id.webbrick.co.uk/events/config/get">
+        
+            <eventsource source="general/ventilation/hrv/enabled">
+                <event>
+                    <action name='ventilation_enabled' key="val"/>
+                </event>
+            </eventsource>
+            
+            <eventsource source="general/ventilation/fan/stale/enabled">
+                <event>
+                    <action name='stale_fan_enabled' key="val"/>
+                </event>
+            </eventsource>
+            
+            <eventsource source="general/ventilation/fan/target/speed">
+                <event>
+                    <action name='target_fan_speed' key="val"/>
+                </event>
+            </eventsource>
+            
+            <eventsource source="general/ventilation/boost/runtime">
+                <event>
+                    <action name='boost_runtime' key="val"/>
+                </event>
+            </eventsource>
+            
+            <eventsource source="general/ventilation/pir/1/enabled">
+                <event>
+                    <action name='pir_1_enabled' key="onoff"/>
+                </event>
+            </eventsource>
+            
+            <eventsource source="general/ventilation/pir/2/enabled">
+                <event>
+                    <action name='pir_2_enabled' key="onoff"/>
+                </event>
+            </eventsource>
+            
+            <eventsource source="general/ventilation/pir/3/enabled">
+                <event>
+                    <action name='pir_3_enabled' key="onoff"/>
+                </event>
+            </eventsource>
+            
+            <eventsource source="general/ventilation/pir/4/enabled">
+                <event>
+                    <action name='pir_4_enabled' key="onoff"/>
+                </event>
+            </eventsource>
+            
+            
+            <eventsource source="general/ventilation/hum/1/threshold">
+                <event>
+                    <action name='hum_1_threshold' key="val"/>
+                </event>
+            </eventsource>
+            
+            <eventsource source="general/ventilation/hum/2/threshold">
+                <event>
+                    <action name='hum_2_threshold' key="val"/>
+                </event>
+            </eventsource>
+            
+            <eventsource source="general/ventilation/hum/3/threshold">
+                <event>
+                    <action name='hum_3_threshold' key="val"/>
+                </event>
+            </eventsource>
+            
+            <eventsource source="general/ventilation/hum/4/threshold">
+                <event>
+                    <action name='hum_4_threshold' key="val"/>
+                </event>
+            </eventsource>
+            
+        </eventtype>     
+        
+        
+        
+        <eventtype type="internal">
+        
+            <eventsource source="general/ventilation/hum/1/level" >
+                <event>
+                    <action name="hum_1_current" key="val"/>
+                </event>
+            </eventsource>
+            
+            <eventsource source="general/ventilation/hum/2/level" >
+                <event>
+                    <action name="hum_2_current" key="val"/>
+                </event>
+            </eventsource>
+            
+            <eventsource source="general/ventilation/hum/3/level" >
+                <event>
+                    <action name="hum_3_current" key="val"/>
+                </event>
+            </eventsource>
+            
+            <eventsource source="general/ventilation/hum/4/level" >
+                <event>
+                    <action name="hum_4_current" key="val"/>
+                </event>
+            </eventsource>
+            
+            
+            <eventsource source="general/ventilation/pir/1/tiggered" >
+                <event>
+                    <action name="pir_1_triggered" value="1" transient="yes"/>
+                </event>
+            </eventsource>
+            
+            <eventsource source="general/ventilation/pir/2/tiggered" >
+                <event>
+                    <action name="pir_2_triggered" value="1" transient="yes"/>
+                </event>
+            </eventsource>
+            
+            <eventsource source="general/ventilation/pir/3/tiggered" >
+                <event>
+                    <action name="pir_3_triggered" value="1" transient="yes"/>
+                </event>
+            </eventsource>
+            
+            <eventsource source="general/ventilation/pir/4/tiggered" >
+                <event>
+                    <action name="pir_4_triggered" value="1" transient="yes"/>
+                </event>
+            </eventsource>
+            
+            
+            <eventsource source="general/ventilation/fan/speed/low" >
+                <event>
+                    <action name="actual_fan_speed_is_low" key="val"/>
+                </event>
+            </eventsource>
+            
+            <eventsource source="general/ventilation/fan/speed/medium" >
+                <event>
+                    <action name="actual_fan_speed_is_medium" key="val"/>
+                </event>
+            </eventsource>
+            
+            <eventsource source="general/ventilation/fan/speed/high" >
+                <event>
+                    <action name="actual_fan_speed_is_high" key="val"/>
+                </event>
+            </eventsource>
+            
+            
+            <eventsource source="general/ventilation/requestBoost" >
+                <event>
+                    <action name="boost_requested" value="1" />
+                </event>
+            </eventsource>
+            
+            <eventsource source="general/ventilation/clearRequestBoost" >
+                <event>
+                    <action name="boost_requested" value="0" />
+                </event>
+            </eventsource>
+            
+            <eventsource source="general/ventilation/runBoost" >
+                <event>
+                    <action name="boost_run" value="1" transient="yes"/>
+                </event>
+            </eventsource>
+            
+            <eventsource source="general/ventilation/stopBoost" >
+                <event>
+                    <action name="boost_stop" value="1" transient="yes"/>
+                </event>
+            </eventsource>
+            
+        </eventtype>
+        
+        
+        <eventtype type="http://id.webbrick.co.uk/events/uri">
+            <eventsource source="from_ui/general/ventilation/requestBoost" >
+                <event>
+                    <action name="boost_requested" value="1" />
+                </event>
+            </eventsource>
+        </eventtype>
+        
+       
+        
+        <!-- Disable HRV -->
+        <compound>
+            <params>
+                <testEq name='ventilation_enabled' value='0'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/fan/stop" />
+        </compound>
+        
+        
+        <!-- Enable / Disable stale air fan -->
+        <compound>
+            <params>
+                <testEq name='stale_fan_enabled' value='0'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/fan/stale/disable" />
+
+        </compound>
+        
+        <compound>
+            <params>
+                <testEq name='stale_fan_enabled' value='1'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/fan/stale/enable" />
+        </compound>
+        
+        <!-- Set target fan speed displays  -->
+        
+        <compound>
+            <params>
+                <testEq name='target_fan_speed' value='0'/>
+            </params>
+            <newEvent type="internal" source="to_ui/general/ventilation/fan/speed/stop" >
+                <other_data val="1"/>
+            </newEvent>
+            <newEvent type="internal" source="to_ui/general/ventilation/fan/speed/low" >
+                <other_data val="0"/>
+            </newEvent>
+            <newEvent type="internal" source="to_ui/general/ventilation/fan/speed/medium" >
+                <other_data val="0"/>
+            </newEvent>
+            <newEvent type="internal" source="to_ui/general/ventilation/fan/speed/high" >
+                <other_data val="0"/>
+            </newEvent>
+        </compound>
+        
+        <compound>
+            <params>
+                <testEq name='target_fan_speed' value='1'/>
+            </params>
+            <newEvent type="internal" source="to_ui/general/ventilation/fan/speed/stop" >
+                <other_data val="0"/>
+            </newEvent>
+            <newEvent type="internal" source="to_ui/general/ventilation/fan/speed/low" >
+                <other_data val="1"/>
+            </newEvent>
+            <newEvent type="internal" source="to_ui/general/ventilation/fan/speed/medium" >
+                <other_data val="0"/>
+            </newEvent>
+            <newEvent type="internal" source="to_ui/general/ventilation/fan/speed/high" >
+                <other_data val="0"/>
+            </newEvent>
+        </compound>
+        
+        <compound>
+            <params>
+                <testEq name='target_fan_speed' value='2'/>
+            </params>
+            <newEvent type="internal" source="to_ui/general/ventilation/fan/speed/stop" >
+                <other_data val="0"/>
+            </newEvent>
+            <newEvent type="internal" source="to_ui/general/ventilation/fan/speed/low" >
+                <other_data val="0"/>
+            </newEvent>
+            <newEvent type="internal" source="to_ui/general/ventilation/fan/speed/medium" >
+                <other_data val="1"/>
+            </newEvent>
+            <newEvent type="internal" source="to_ui/general/ventilation/fan/speed/high" >
+                <other_data val="0"/>
+            </newEvent>
+        </compound>
+        
+        <compound>
+            <params>
+                <testEq name='target_fan_speed' value='3'/>
+            </params>
+            <newEvent type="internal" source="to_ui/general/ventilation/fan/speed/stop" >
+                <other_data val="0"/>
+            </newEvent>
+            <newEvent type="internal" source="to_ui/general/ventilation/fan/speed/low" >
+                <other_data val="0"/>
+            </newEvent>
+            <newEvent type="internal" source="to_ui/general/ventilation/fan/speed/medium" >
+                <other_data val="0"/>
+            </newEvent>
+            <newEvent type="internal" source="to_ui/general/ventilation/fan/speed/high" >
+                <other_data val="1"/>
+            </newEvent>
+        </compound>
+        
+
+        <!-- Set fan speed  -->
+        
+        <compound>
+            <params>
+                <testEq name='ventilation_enabled' value='1'/>
+                <testEq name='target_fan_speed' value='0'/>
+                <testNe name='boost_running' value='1'/>
+                <testNe name='boost_requested' value='1'/>
+                <testOr>
+                    <testNe name='actual_fan_speed_is_low' value='0'/>
+                    <testNe name='actual_fan_speed_is_medium' value='0'/>
+                    <testNe name='actual_fan_speed_is_high' value='0'/>
+                </testOr>
+            </params>
+            <newEvent type="internal" source="general/ventilation/fan/stop" />
+        </compound>
+        
+        <compound>
+            <params>
+                <testEq name='ventilation_enabled' value='1'/>
+                <testEq name='target_fan_speed' value='1'/>
+                <testNe name='actual_fan_speed_is_low' value='1'/>
+                <testNe name='boost_running' value='1'/>
+                <testNe name='boost_requested' value='1'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/fan/run/low" />
+        </compound>
+        
+        <compound>
+            <params>
+                <testEq name='ventilation_enabled' value='1'/>
+                <testEq name='target_fan_speed' value='2'/>
+                <testNe name='actual_fan_speed_is_medium' value='1'/>
+                <testNe name='boost_running' value='1'/>
+                <testNe name='boost_requested' value='1'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/fan/run/medium" />
+        </compound>
+        
+        <compound>
+            <params>
+                <testEq name='ventilation_enabled' value='1'/>
+                <testEq name='target_fan_speed' value='3'/>
+                <testNe name='actual_fan_speed_is_high' value='1'/>
+                <testNe name='boost_running' value='1'/>
+                <testNe name='boost_requested' value='1'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/fan/run/high" />
+        </compound>
+        
+        
+        <!-- Boost -->
+        
+        <compound>
+            <params>
+                <testEq name='boost_requested' value='1'/>
+                <testEq name='boost_running' value='0'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/runBoost" /> 
+        </compound>
+        
+        <compound>
+            <params>
+                <testEq name='boost_run' value='1'/>
+                <testEq name='ventilation_enabled' value='1'/>
+                <testEq name='actual_fan_speed_is_high' value='0'/>
+            </params>
+            
+            <newEvent type="internal" source="general/ventilation/doBoost" >
+                <copy_other_data delay="boost_runtime"/>
+            </newEvent>
+            <newEvent type="internal" source="to_ui/general/ventilation/boost" >
+                <other_data val="1"/>
+            </newEvent>
+            
+            
+            <newState name="boost_running" value="1"/>
+            <newState name="boost_requested" value="0"/>
+            
+        </compound>
+        
+        <!-- Received boost_stop -->
+        <compound>
+            <params>
+                <testEq name='boost_stop' value='1'/>
+                <testEq name='ventilation_enabled' value='1'/>
+                <testEq name='boost_running' value='1'/>
+                <testEq name='boost_requested' value='1'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/delay/stopBoost" >
+                <copy_other_data delay="boost_runtime"/>
+            </newEvent>
+        </compound>
+        
+        <compound>
+            <params>
+                <testEq name='boost_stop' value='1'/>
+                <testEq name='ventilation_enabled' value='1'/>
+                <testEq name='target_fan_speed' value='0'/>
+                <testEq name='boost_running' value='1'/>
+                <testEq name='boost_requested' value='0'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/fan/stop" />
+            <newEvent type="internal" source="to_ui/general/ventilation/boost" >
+                <other_data val="0"/>
+            </newEvent>
+            <newState name="boost_running" value="0"/>
+        </compound>
+        
+        <compound>
+            <params>
+                <testEq name='boost_stop' value='1'/>
+                <testEq name='ventilation_enabled' value='1'/>
+                <testEq name='target_fan_speed' value='1'/>
+                <testEq name='boost_running' value='1'/>
+                <testEq name='boost_requested' value='0'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/fan/run/low" />
+            <newEvent type="internal" source="to_ui/general/ventilation/boost" >
+                <other_data val="0"/>
+            </newEvent>
+            <newState name="boost_running" value="0"/>
+        </compound>
+        
+        <compound>
+            <params>
+                <testEq name='boost_stop' value='1'/>
+                <testEq name='ventilation_enabled' value='1'/>
+                <testEq name='target_fan_speed' value='2'/>
+                <testEq name='boost_running' value='1'/>
+                <testEq name='boost_requested' value='0'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/fan/run/medium" />
+            <newEvent type="internal" source="to_ui/general/ventilation/boost" >
+                <other_data val="0"/>
+            </newEvent>
+            <newState name="boost_running" value="0"/>
+        </compound>
+        
+        <compound>
+            <params>
+                <testEq name='boost_stop' value='1'/>
+                <testEq name='ventilation_enabled' value='1'/>
+                <testEq name='target_fan_speed' value='3'/>
+                <testEq name='boost_running' value='1'/>
+                <testEq name='boost_requested' value='0'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/fan/run/high" />
+            <newEvent type="internal" source="to_ui/general/ventilation/boost" >
+                <other_data val="0"/>
+            </newEvent>
+            <newState name="boost_running" value="0"/>
+        </compound>
+        
+        
+        <!-- PIRS -->
+        
+        <compound>
+            <params>
+                <testEq name='pir_1_enabled' value='On'/>
+                <testEq name='pir_1_triggered' value='1'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/requestBoost" />
+        </compound>
+        
+        <compound>
+            <params>
+                <testEq name='pir_2_enabled' value='On'/>
+                <testEq name='pir_2_triggered' value='1'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/requestBoost" />
+        </compound>
+        
+        <compound>
+            <params>
+                <testEq name='pir_3_enabled' value='On'/>
+                <testEq name='pir_3_triggered' value='1'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/requestBoost" />
+        </compound>
+        
+        <compound>
+            <params>
+                <testEq name='pir_4_enabled' value='On'/>
+                <testEq name='pir_4_triggered' value='1'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/requestBoost" />
+        </compound>
+        
+        
+        <!-- Humidity Sensors -->
+        
+        <compound>
+            <params>
+                <testGt name='hum_1_current' type='float' param2='hum_1_threshold'/>
+                <testEq name='check_minute' value='1'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/requestBoost" />
+        </compound>
+        
+        <compound>
+            <params>
+                <testGt name='hum_2_current' type='float' param2='hum_2_threshold'/>
+                <testEq name='check_minute' value='1'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/requestBoost" />
+        </compound>
+        
+        <compound>
+            <params>
+                <testGt name='hum_3_current' type='float' param2='hum_3_threshold'/>
+                <testEq name='check_minute' value='1'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/requestBoost" />
+        </compound>
+        
+        <compound>
+            <params>
+                <testGt name='hum_4_current' type='float' param2='hum_4_threshold'/>
+                <testEq name='check_minute' value='1'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/requestBoost" />
+        </compound>
+        
+        
+        <!-- Set Both Fan Speed Displays -->
+        <compound>
+            <params>
+                <testEq name='actual_fan_speed_is_low' value='0'/>
+                <testEq name='actual_fan_speed_is_medium' value='0'/>
+                <testEq name='actual_fan_speed_is_high' value='0'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/fan/fresh/speed">
+                <other_data val='0'/>
+            </newEvent>
+            <newEvent type="internal" source="general/ventilation/fan/stale/speed">
+                <other_data val='0'/>
+            </newEvent>
+        </compound>
+        
+        
+        <!-- Set Fresh Fan Speed Display -->
+        <compound>
+            <params>
+                <testEq name='actual_fan_speed_is_low' value='1'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/fan/fresh/speed">
+                <other_data val='33'/>
+            </newEvent>
+        </compound>
+        
+        <compound>
+            <params>
+                <testEq name='actual_fan_speed_is_medium' value='1'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/fan/fresh/speed">
+                <other_data val='66'/>
+            </newEvent>
+        </compound>
+        
+        <compound>
+            <params>
+                <testEq name='actual_fan_speed_is_high' value='1'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/fan/fresh/speed">
+                <other_data val='100'/>
+            </newEvent>
+        </compound>
+        
+        
+        
+        
+        <!-- Set Stale Fan Speed Display -->
+        <compound>
+            <params>
+                <testEq name='stale_fan_enabled' value='0'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/fan/stale/speed">
+                <other_data val='0'/>
+            </newEvent>
+        </compound>
+        
+        <compound>
+            <params>
+                <testEq name='stale_fan_enabled' value='1'/>
+                <testEq name='actual_fan_speed_is_low' value='1'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/fan/stale/speed">
+                <other_data val='33'/>
+            </newEvent>
+        </compound>
+        
+        <compound>
+            <params>
+                <testEq name='stale_fan_enabled' value='1'/>
+                <testEq name='actual_fan_speed_is_medium' value='1'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/fan/stale/speed">
+                <other_data val='66'/>
+            </newEvent>
+        </compound>
+        
+        <compound>
+            <params>
+                <testEq name='stale_fan_enabled' value='1'/>
+                <testEq name='actual_fan_speed_is_high' value='1'/>
+            </params>
+            <newEvent type="internal" source="general/ventilation/fan/stale/speed">
+                <other_data val='100'/>
+            </newEvent>
+        </compound>
+   
+    </eventInterface> 
+    
+    
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+        <eventtype type='internal'>
+            <eventsource source='general/ventilation/doBoost'>
+                <event>
+                    <newEvent type='internal' source='general/ventilation/fan/run/high' />
+                    <newEvent type='internal' source='general/ventilation/delay/stopBoost' >
+                        <copy_other_data delay="delay" />
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+    
+    <eventInterface module='EventHandlers.DelayedEvent' name='DelayedEvent'>
+        <eventtype type='internal'>
+            <eventsource source='general/ventilation/delay/stopBoost'>
+                <event>
+                    <params>
+                        <testLe name='delay' value='60'/> 
+                    </params>
+                    <delay delaySeconds="30">
+                        <newEvent type='internal' source='general/ventilation/clearRequestBoost' />
+                    </delay>
+                    <delay delaySeconds="60">
+                        <newEvent type='internal' source='general/ventilation/stopBoost' />
+                    </delay>
+                </event>
+                <event>
+                    <params>
+                        <testGt name='delay' value='60'/> 
+                        <testLe name='delay' value='120'/> 
+                    </params>
+                    <delay delaySeconds="60">
+                        <newEvent type='internal' source='general/ventilation/clearRequestBoost' />
+                    </delay>
+                    <delay delaySeconds="120">
+                        <newEvent type='internal' source='general/ventilation/stopBoost' />
+                    </delay>
+                </event>
+                <event>
+                    <params>
+                        <testGt name='delay' value='120'/> 
+                        <testLe name='delay' value='300'/> 
+                    </params>
+                    <delay delaySeconds="150">
+                        <newEvent type='internal' source='general/ventilation/clearRequestBoost' />
+                    </delay>
+                    <delay delaySeconds="300">
+                        <newEvent type='internal' source='general/ventilation/stopBoost' />
+                    </delay>
+                </event>
+                <event>
+                    <params>
+                        <testGt name='delay' value='300'/> 
+                        <testLe name='delay' value='600'/>
+                    </params>
+                    <delay delaySeconds="300">
+                        <newEvent type='internal' source='general/ventilation/clearRequestBoost' />
+                    </delay>
+                    <delay delaySeconds="600">
+                        <newEvent type='internal' source='general/ventilation/stopBoost' />
+                    </delay>
+                </event>
+                <event>
+                    <params>
+                        <testGt name='delay' value='600'/> 
+                    </params>
+                    <delay delaySeconds="600">
+                        <newEvent type='internal' source='general/ventilation/clearRequestBoost' />
+                    </delay>
+                    <delay delaySeconds="900">
+                        <newEvent type='internal' source='general/ventilation/stopBoost' />
+                    </delay>
+                </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+
+</eventInterfaces>

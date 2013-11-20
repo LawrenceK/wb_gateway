@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>TimeEventGenerator</title>
+</head>
+
+<body>
+
+    <h1>TimeEventGenerator</h1>
+
+        <p>This is an event generator.</p>
+
+    <h2>Description</h2>
+        <p>This event handler generates time related events that other handlers can use for there time based actions.</p>
+
+
+    <h2>Configuration</h2>
+        <pre>
+    &lt;eventInterface module='EventHandlers.TimeEventGenerator' name='TimeEventGenerator' latitude='51.5086' longitude='-0.1264' interval='seconds'&gt;
+    &lt;/eventInterface&gt;
+        </pre>
+        <ul>
+        <li>latitude - used in working out sunset and sunrise</li>
+        <li>longitude - used in working out sunset and sunrise</li>
+        <li>interval- either seconds or minutes</li>
+        </ul>
+        if latitude and longitude are not given default to London England. If you have no time based actions 
+        requring second intervals then you can reduce the load on the WebBrick Gateway 
+        computer by using minutes as the interval.
+
+</body>
+
+</html>

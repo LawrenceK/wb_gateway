@@ -1,0 +1,326 @@
+Index: /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/device/xml_gen.py
+===================================================================
+--- /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/device/xml_gen.py	(.../https://garage.maemo.org/svn/brisa/trunk/python-brisa/brisa)	(revision 1624)
++++ /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/device/xml_gen.py	(.../home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa)	(working copy)
+@@ -12,9 +12,10 @@
+ 
+ class DeviceXMLBuilder(object):
+ 
+-    def __init__(self, device):
++    def __init__(self, device, extra_elts=[]):
+         self.device = device
+         self.url_base = device.location
++        self.extra_elts = extra_elts
+ 
+     def get_element(self):
+         # <root>
+@@ -33,7 +34,7 @@
+             element.text = self.url_base
+ 
+         # <device>
+-        elt.append(DeviceXMLGenerator(self.device).generate())
++        elt.append(DeviceXMLGenerator(self.device, self.extra_elts).generate())
+         return elt
+ 
+     def generate_to_file(self, filepath):
+@@ -45,8 +46,9 @@
+ 
+ class DeviceXMLGenerator(object):
+ 
+-    def __init__(self, device):
++    def __init__(self, device, extra_elts=[]):
+         self.device = device
++        self.extra_elts = extra_elts
+ 
+     def generate(self):
+         self.device_element = Element("device")
+@@ -57,14 +59,9 @@
+         return self.device_element
+ 
+     def _create_device(self):
+-        element = SubElement(self.device_element, 'dlna:X_DLNADOC')
+-        element.attrib['xmlns:dlna'] = 'urn:schemas-dlna-org:device-1-0'
+-        element.text = 'DMS-1.50'
++        for elt in self.extra_elts:
++            self.device_element.append(elt)
+ 
+-        element = SubElement(self.device_element, 'dlna:X_DLNACAP')
+-        element.attrib['xmlns:dlna'] = 'urn:schemas-dlna-org:device-1-0'
+-        element.text = 'av-upload,image-upload,audio-upload'
+-
+         element = SubElement(self.device_element, "deviceType")
+         element.text = self.device.device_type
+ 
+@@ -155,11 +152,11 @@
+             if len(embedded_devices) > 0:
+                 device_list_element = SubElement(self.device_element,
+                                                  "deviceList")
+-                for embedded_device in embedded_devices:
++                for embedded_device in embedded_devices.values():
+                     embedded_device_description = DeviceXMLGenerator(
+                                                             embedded_device)
+                     device_list_element.append(embedded_device_description.
+-                                               create_description())
++                                               generate())
+ 
+ 
+ class ServiceXMLBuilder(object):
+Index: /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/device/device.py
+===================================================================
+--- /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/device/device.py	(.../https://garage.maemo.org/svn/brisa/trunk/python-brisa/brisa)	(revision 1624)
++++ /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/device/device.py	(.../home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa)	(working copy)
+@@ -80,7 +80,17 @@
+             self._create_webserver(force_listen_url)
+         self._event_reload_time = None
+         self._force_event_reload = None
++        self.extra_elts = []
+ 
++    def add_extra_elts(self, elts):
++        """ Append extra elements to the device description, such as DLNA
++        descriptive elements. Extra elements must be added before start().
++
++        @param elts: list of Element objects
++        @type elts: list
++        """
++        self.extra_elts = elts[:]
++
+     def add_service(self, service):
+         """ Adds a service to the device.
+         """
+@@ -136,7 +146,8 @@
+                                            'device.webserver was not set'\
+                                            'manually as it should.'
+         log.info('Publishing device %s' % self.friendly_name)
+-        DeviceXMLBuilder(self).generate_to_file(self._xml_filepath)
++        DeviceXMLBuilder(self,
++                         self.extra_elts).generate_to_file(self._xml_filepath)
+         self.webserver.add_static_file(webserver.StaticFile(self.xml_filename,
+                                                             self._xml_filepath))
+ 
+Index: /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/base_device.py
+===================================================================
+--- /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/base_device.py	(.../https://garage.maemo.org/svn/brisa/trunk/python-brisa/brisa)	(revision 1624)
++++ /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/base_device.py	(.../home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa)	(working copy)
+@@ -108,7 +108,7 @@
+             name = None
+             while not name:
+                 name = '%s%d' % (device.friendly_name, d)
+-                if name not in [d.friendly_name for d in self.devices if \
++                if name not in [d.friendly_name for d in self.devices.values() if \
+                                 device.friendly_name in d.friendly_name]:
+                     break
+                 else:
+Index: /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/ssdp.py
+===================================================================
+--- /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/ssdp.py	(.../https://garage.maemo.org/svn/brisa/trunk/python-brisa/brisa)	(revision 1624)
++++ /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/ssdp.py	(.../home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa)	(working copy)
+@@ -167,7 +167,7 @@
+         """
+         self._register_device(device)
+         if device.is_root_device():
+-            [self._register_device(d) for d in device.devices]
++            [self._register_device(d) for d in device.devices.values()]
+ 
+     # Messaging
+ 
+Index: /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/control_point/__init__.py
+===================================================================
+--- /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/control_point/__init__.py	(.../https://garage.maemo.org/svn/brisa/trunk/python-brisa/brisa)	(revision 1624)
++++ /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/control_point/__init__.py	(.../home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa)	(working copy)
+@@ -5,9 +5,9 @@
+ """ Provides a UPnP control point API.
+ """
+ 
++from brisa.upnp.control_point.service import Service
++from brisa.upnp.control_point.device import Device, DeviceIcon
++from brisa.upnp.control_point.msearch import MSearch
++from brisa.upnp.control_point.event import EventListener, EventListenerServer
+ from brisa.upnp.control_point.control_point import ControlPoint
+ from brisa.upnp.control_point.control_point_av import ControlPointAV
+-from brisa.upnp.control_point.event import EventListener, EventListenerServer
+-from brisa.upnp.control_point.service import Service
+-from brisa.upnp.control_point.device import Device
+-from brisa.upnp.control_point.msearch import MSearch
+Index: /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/control_point/device.py
+===================================================================
+--- /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/control_point/device.py	(.../https://garage.maemo.org/svn/brisa/trunk/python-brisa/brisa)	(revision 1624)
++++ /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/control_point/device.py	(.../home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa)	(working copy)
+@@ -27,6 +27,10 @@
+ from brisa.upnp.upnp_defaults import UPnPDefaults
+ 
+ 
++class DeviceIcon(BaseDeviceIcon):
++    pass
++
++
+ class Device(BaseDevice):
+     """ Represents an UPnP device.
+ 
+@@ -43,6 +47,9 @@
+         # Auto generate soap service
+         self._generate_soap_services_for_device(device)
+ 
++    def add_icon(self, mimetype, width, height, depth, url):
++        self.icons.append(DeviceIcon(mimetype, width, height, depth, url))
++
+     def generate_soap_services(self):
+         """ Generates soap services for services and devices contained this
+         device.
+Index: /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/control_point/msearch.py
+===================================================================
+--- /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/control_point/msearch.py	(.../https://garage.maemo.org/svn/brisa/trunk/python-brisa/brisa)	(revision 1624)
++++ /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/control_point/msearch.py	(.../home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa)	(working copy)
+@@ -49,7 +49,6 @@
+         self.ssdp = ssdp
+         self.ssdp_addr = ssdp_addr
+         self.ssdp_port = ssdp_port
+-        self.search_type = DEFAULT_SEARCH_TYPE
+         self.udp_transport = UDPTransport()
+         self.listen_udp = UDPListener(ssdp_addr, ssdp_port,
+                                       data_callback=self._datagram_received,
+@@ -77,8 +76,8 @@
+         @type search_type: string
+         """
+         if not self.is_running():
+-            self.search_type = search_type
+             self.listen_udp.start()
++            self.loopcall._args = (search_type, )
+             self.loopcall.start(interval, now=True)
+             log.debug('MSearch started')
+         else:
+@@ -107,6 +106,7 @@
+         """ Sends a MSearch imediatelly. Each call to this method will yield a
+         MSearch message, that is, it won't repeat automatically.
+         """
++        log.info("Doing double discover for %s", search_type)
+         self.discover(search_type)
+         self.discover(search_type)
+ 
+Index: /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/control_point/device_builder.py
+===================================================================
+--- /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/control_point/device_builder.py	(.../https://garage.maemo.org/svn/brisa/trunk/python-brisa/brisa)	(revision 1624)
++++ /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/control_point/device_builder.py	(.../home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa)	(working copy)
+@@ -11,7 +11,7 @@
+ from brisa.core.network import url_fetch
+ from brisa.core.threaded_call import run_async_call
+ 
+-from brisa.upnp.control_point.service import Service
++from brisa.upnp.control_point import Service
+ from brisa.upnp.upnp_defaults import UPnPDefaults
+ 
+ import brisa
+@@ -58,7 +58,12 @@
+                                  findtext('.//{%s}presentationURL' % self.ns)
+ 
+     def _parse_services(self):
+-        for xml_service_element in self.tree.\
++        services = self.tree.find('.//{%s}serviceList' % self.ns)
++
++        if not services:
++            return
++
++        for xml_service_element in services.\
+                                     findall('.//{%s}service' % self.ns):
+             service_type = xml_service_element.\
+                                     findtext('{%s}serviceType' % self.ns)
+@@ -78,17 +83,15 @@
+             self.device.add_service(service)
+ 
+     def _parse_icons(self):
+-        if self.tree.findtext('.//{%s}IconList' % self.ns) != None:
++        if self.tree.findtext('.//{%s}iconList' % self.ns) != None:
+             for xml_icon_element in self.tree.findall('.//{%s}icon' % self.ns):
+                 mimetype = xml_icon_element.findtext('{%s}mimetype' % self.ns)
+                 width = xml_icon_element.findtext('{%s}width' % self.ns)
+                 height = xml_icon_element.findtext('{%s}height' % self.ns)
+                 depth = xml_icon_element.findtext('{%s}depth' % self.ns)
+                 url = xml_icon_element.findtext('{%s}url' % self.ns)
++                self.device.add_icon(mimetype, width, height, depth, url)
+ 
+-                icon = DeviceIcon(mimetype, width, height, depth, url)
+-                self.device.icons.append(icon)
+-
+     def _parse_embedded_devices(self):
+         device_list = self.tree.find('.//{%s}deviceList' % self.ns)
+         if device_list != None:
+@@ -143,7 +146,7 @@
+             self.mount_device_async_gotdata(self, open(self.filename))
+ 
+     def mount_device_async_error(self, cargo, error):
+-        log.debug("Error fetching %s - Error: %s" % (self.location,
++        log.error("Error fetching %s - Error: %s" % (self.location,
+                                                      str(error)))
+         self.callback(self.cargo, None)
+         return True
+@@ -153,7 +156,7 @@
+             log.debug('to object async got data getting tree')
+             tree = ElementTree(file=fd).getroot()
+         except Exception, e:
+-            log.debug("Bad device XML %s" % e.message)
++            log.error("Bad device XML %s" % e.message)
+             self.callback(self.cargo, None)
+             return
+ 
+@@ -162,16 +165,25 @@
+             self.callback(self.cargo, self.device)
+         else:
+             log.debug("Fetching device services")
+-            self.pending_services = len(self.device.services)
++            log.debug("embedded devices: %s" % str(self.device.devices))
++            embedded_services = []
++            for d in self.device.devices.values():
++                embedded_services.extend(d.services.items())
++
++            log.debug("Embedded devices services are %s" % str(embedded_services))
++            self.pending_services = len(self.device.services) + \
++                                    len(embedded_services)
+             for service_name, service_object in \
+                      self.device.services.items():
+                 service_object._build_async(self.service_has_been_built)
++            for s_name, s_obj in embedded_services:
++                s_obj._build_async(self.service_has_been_built)
+ 
+     def service_has_been_built(self, built_ok):
+         log.debug("Service fetched, %d left, result %s", \
+                 self.pending_services - 1, built_ok)
+         if not built_ok and not brisa.__tolerate_service_parse_failure__:
+-            log.debug("Device killed")
++            log.warning("Device killed")
+             self.device = None
+         self.pending_services -= 1
+ 
+Index: /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/core/reactors/_ecore.py
+===================================================================
+--- /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/core/reactors/_ecore.py	(.../https://garage.maemo.org/svn/brisa/trunk/python-brisa/brisa)	(revision 1624)
++++ /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/core/reactors/_ecore.py	(.../home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa)	(working copy)
+@@ -58,7 +58,7 @@
+                 self.callback = callback
+ 
+             def __call__(self, ecore_handler):
+-                self.callback(ecore_handler.fd_get(),
++                return self.callback(ecore_handler.fd_get(),
+                               self.get_condition(ecore_handler))
+ 
+             def get_condition(self, ecore_handler):
+@@ -69,7 +69,6 @@
+                 if flags & ecore.ECORE_FD_ERROR: cond |= EVENT_TYPE_EXCEPTION
+                 return cond
+ 
+-
+         return ecore.fd_handler_add(fd,
+                                     condition,
+                                     CallbackWrapper(event_callback))
+Index: /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/core/threaded_call.py
+===================================================================
+--- /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/core/threaded_call.py	(.../https://garage.maemo.org/svn/brisa/trunk/python-brisa/brisa)	(revision 1624)
++++ /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/core/threaded_call.py	(.../home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa)	(working copy)
+@@ -138,7 +138,7 @@
+             self.set_completed()
+ 
+         except Exception, e:
+-            log.debug('exception happened (%s), forwarding...'
++            log.error('exception happened (%s), forwarding...'
+                       % e.message)
+             # Storing exception for handling
+             self.result = e
+

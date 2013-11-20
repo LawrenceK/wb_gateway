@@ -1,0 +1,28 @@
+<!-- ! Need to add comments before submitting -->
+
+<eventInterfaces>
+
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+        <eventtype type=''>
+
+            <eventsource source='time/second'>
+                <event>
+                    <params>
+                        <testEq name="second" value='31'/>
+                    </params>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=SW;200:' address='10.100.100.81'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=SW;200:' address='10.100.100.82'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=SW;200:' address='10.100.100.83'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=SW;200:' address='10.100.100.84'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=SW;200:' address='10.100.100.85'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=SW;200:' address='10.100.100.86'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=SW;200:' address='10.100.100.87'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=SW;200:' address='10.100.100.88'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=SW;200:' address='10.100.100.89'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=SW;200:' address='10.100.100.90'/>
+                </event>
+            </eventsource>
+
+        </eventtype>
+    </eventInterface>
+</eventInterfaces>

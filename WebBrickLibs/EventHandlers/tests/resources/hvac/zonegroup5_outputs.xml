@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!-- 
+NOTE: 
+
+THIS COPY IS FOR TESTING ONLY, NEVER DEPLOY IN A REAL SYSTEM! 
+-->
+
+    <!-- Run and stop events are directly mapped feedback events, picked up by the inputs -->
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+   
+        <eventtype type='http://id.webbrick.co.uk/zones/zonegroup'>
+            <eventsource source='zonegroup/5/run'>
+                <event>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/DO" source="webbrick/905/DO/1">
+                        <other_data state="1" />
+                    </newEvent>
+                </event>
+            </eventsource>
+            <eventsource source='zonegroup/5/stop'>
+                <event>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/DO" source="webbrick/905/DO/1">
+                        <other_data state="0" />
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+    </eventInterface>
+
+</eventInterfaces>

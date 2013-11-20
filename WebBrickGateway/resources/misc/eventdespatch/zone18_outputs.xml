@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!-- Zone 18 Outputs-->
+<!-- !
+    TODO 
+    1.  If the zone has a zone actuator that has to be controlled, then replace SampleWb with the webbrick 
+        name of the correct webbrick and modify the uri to target the intended channel on that webbrick. 
+        run shoudl provoke an On command and stop an Off command.
+    
+    OR
+    
+    1.  If the zone has no zone actuator that needs to be controlled, then it is vital to provide direct
+        feedback to the heating control logic. This is done by uncommenting the event mapper section in 
+        this file.  
+-->
+
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+        <eventtype type='http://id.webbrick.co.uk/zones/zone'>
+            <eventsource source='zone18/run'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;0;N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zone18/stop'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;0;F:' address='SampleWb'/>
+                </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+    
+    
+    <!-- ! Only uncomment if direct feedback is required -->
+    <!-- !
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+        <eventtype type='http://id.webbrick.co.uk/zones/zone'>
+            <eventsource source='zone18/run'>
+                <event>
+                    <newEvent type="http://id.webbrick.co.uk/zones/zone" source="zone18/running">
+                    </newEvent>
+                </event>
+            </eventsource>
+            <eventsource source='zone18/stop'>
+                <event>
+                    <newEvent type="http://id.webbrick.co.uk/zones/zone" source="zone18/stopped">
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>  
+    -->
+
+</eventInterfaces>

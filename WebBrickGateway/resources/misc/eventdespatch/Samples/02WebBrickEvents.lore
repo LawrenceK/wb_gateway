@@ -1,0 +1,68 @@
+<html>
+<head><title>Simple WebBrick to WebBrick event</title></head>
+<body>
+	<h1>Simple WebBrick to WebBrick event</h1>
+
+	<p>In this example we listen for an event generated on one WebBrick and from this issue an action to
+	another WebBrick.
+	</p>
+
+	<p>
+	As shipped the example is designed to work on a single WebBrick, with only the following configuration changes
+	</p>
+
+	<p>Nodename: bench</p>
+	<p>Nodenumber: 101</p>
+
+	<p>This configuration is kept away from a new unconfigured WebBrick to avoid any confusion when bringing WebBricks up
+	for the first time.</p>
+
+	<p>Note that all the internal events begin with '02'.  This is so that they are mot confused with other similar events
+	that might be generated buy having more than one WebBrick to WebBrick event sampple file in the EventDespatch directory.
+	</p>
+
+	<h2>Behaviour</h2>
+
+	<p>In this example, Digital Input 0 will trigger Digital Input 7</p>
+
+	<h2>What Happens</h2>
+
+	<p>
+	The EventMapper section subscribes to 'Td' and 'TD' events from the SOURCE WebBrick.  When these events are
+	received, new '02sample' events are raised.
+	</p>
+
+	<p>
+	The HttpAction section subscribes to the '02sample' events, when received, this section calls the
+	URI for the TARGET WebBrick with the required ACTION.
+	</p>
+
+	<h2>File Sections</h2>
+
+	<p>There are two main sections in this file:</p>
+	<ul>
+	<li>
+	'EventHandlers.HttpAction' name='HttpAction'
+	</li>
+	<li>
+	'EventHandlers.EventMapper' name='EventMapper'
+	</li>
+	</ul>
+
+	<h3>HttpAction</h3>
+
+	<p> This section deals with the TARGET WebBricks and the actions that will be called </p>
+
+	<h3>EvMapper</h3>
+
+	<p> This section deals with mapping events that arrive from:
+	<ul>
+
+		<li> URI calls </li>
+		<li> WebBrick Web Interfaces </li>
+		<li> WebBrick Physical Interfaces </li>
+	</ul>
+	</p>
+
+</body>
+</html>

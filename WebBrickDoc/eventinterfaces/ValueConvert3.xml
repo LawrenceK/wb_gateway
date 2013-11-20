@@ -1,0 +1,18 @@
+<eventInterface module='EventHandlers.ValueConvert' name='ValueConvert'>
+    <eventtype type='http://id.webbrick.co.uk/events/webbrick/AI'>
+        <eventsource source='webbrick/102/AI/0'>
+            <params>
+                <testGt name='val' type="float" value='10.0'/>
+            </params>
+            <event>
+                <newEvent type='internal/hvac/pressure'
+                    source='pressure/current'
+                    preoffset='10'
+                    postoffset='0'
+                    multiplier='0.066'> 
+                    <copy_other_data val="newVal"/>
+                </newEvent>
+            </event>
+        </eventsource>
+    </eventtype>
+</eventInterface>

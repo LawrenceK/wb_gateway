@@ -1,0 +1,52 @@
+LGpassword:
+# ----------------------------------------------------------------------
+#  Bedroom configuration
+# ----------------------------------------------------------------------
+#
+#   This is part of the demo for John
+#
+#
+# 
+#  Note that the first line needs to be a disable commands to avoid unnecessary coms between SP and PIC
+#
+#
+SS1:
+NNMBedroom:
+SN1:
+SR0;8:
+#
+#  Input State Engine
+#
+#  Ensuite
+#  
+#
+ND0;En.L:
+CD0;A0;2;4;0;1;0:
+ND2;Mb.L:
+CD2;D1;0;4;0;1;0:
+ND3;HFlr:
+CD3;D2;0;6;3;1;0:
+ND4;CHDw:
+CD4;D0;0;5;3;1;0:
+#
+#  Hot Water
+#
+ND1;HW.T:
+CD1;D1;0;4;0;1;0:
+#
+# Output Names
+#
+NO0;CH;:
+NO1;HW;:
+#
+# Dwells
+#
+CW0;30;:
+CW1;2;:
+CW2;60;:
+CW3;4200;:
+#
+SS2:
+#
+# End of file
+#

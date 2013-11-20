@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!-- !Zone zone_key Inputs -->
+<!-- !
+    TODO  
+    1.  Change the webbrick node and channel number in the temperature sensor section to provie the 
+        correct zone temperature to the control logic.  
+    2.  Change the webbrick node and channel number in the actuator feedback section to allow the right 
+        actuator state to be picked up by the heating control logic. If a zone does not have an actuator 
+        this step does not need completing, but direct feedback has to be provided in the outputs file.
+-->
+
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+    
+        <!-- Zone Temperature Sensor  -->
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/CT'>
+            <eventsource source='webbrick/zone_key_900/CT/0'>
+                <event>
+        		    <params>
+                        <testNe name='val' value='0.0'/>
+        		    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/sensor" source="zone_key/sensor">
+                        <copy_other_data val="val" />
+                        <other_data id="1" name="Temp zone_key"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+    	<!-- Actuator State Feedback -->
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/DO'>
+            <eventsource source='webbrick/zone_key_900/DO/0'>
+                <event>
+                    <params>
+                        <testEq name="state" value="0" />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/zone" source="zone_key/stopped" />
+                </event>
+                <event>
+                    <params>
+                        <testEq name="state" value="1" />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/zone" source="zone_key/running" />
+                </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+
+</eventInterfaces>

@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!-- 
+TODO 
+update Xurl to url and enter correct webbrick command, this version is using the Mimics to control zone valves.
+If using real outputs then remove the event mapper section and update the inputs file to get feedback. There is no feedback from Mimics.
+-->
+
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+        <!-- we are not using digital outputs for this so we need to create running events, switch to delay the event later -->
+        <eventtype type='http://id.webbrick.co.uk/zones/zone'>
+            <eventsource source='zone6/run'>
+                <event>
+                    <newEvent type="http://id.webbrick.co.uk/zones/zone" source="zone6/running">
+                    </newEvent>
+                </event>
+            </eventsource>
+            <eventsource source='zone6/stop'>
+                <event>
+                    <newEvent type="http://id.webbrick.co.uk/zones/zone" source="zone6/stopped">
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+    </eventInterface>
+
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+        
+        <eventtype type='http://id.webbrick.co.uk/zones/zone'>
+            <eventsource source='zone6/run'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DM4;63:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zone6/stop'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DM4;0:' address='SampleWb'/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+    </eventInterface>
+
+</eventInterfaces>

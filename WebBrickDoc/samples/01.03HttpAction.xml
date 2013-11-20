@@ -1,0 +1,26 @@
+<eventInterfaces>
+
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+    
+        <eventtype type="internal">
+        
+            <eventsource source="lights/garage/on" >
+                <event>
+                	<!-- Trigger Digital In 7 -->
+                    <url address="10.100.100.101" uri="/hid.spi?COM=DO7N:" cmd="GET" />
+                </event>
+            </eventsource>
+        
+            <eventsource source="lights/garage/off" >
+                <event>
+                	<!-- Trigger Digital In 7 -->
+                    <url address="10.100.100.101" uri="/hid.spi?COM=DO7F:" cmd="GET" />
+                </event>
+            </eventsource>
+             
+        </eventtype>
+        
+    </eventInterface>
+    
+</eventInterfaces>
++

@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>EventMapper</title>
+</head>
+
+<body>
+
+    <h1>EventMapper</h1>
+
+        <p>Translate any event into one or more new events.</p>
+
+    <h2>Description</h2>
+        <p>This event handler is typically used to map from one event name to a more user friendly event name, i.e. convert WebBrick
+        UDP events from WebBrick and channel numbers to location and device connected.</p>
+
+
+    <h2>Configuration</h2>
+    <p>The handler specific element in this case is called newEvent, this has two attributes for the new event type and source.
+    There may be an other_data element and a copy_other_data element, the other_data contains attributes to be attached to the event,
+    the copy_other_data specifies attributes to be copied from the originating event. The newEvent element may be repeated.</p>
+
+    <h2>Example</h2>
+    <a href="EventMapper.xml" class="html-listing" />
+
+    <p>This example creates boiler/IsOn and bolier/IsOff events from WebBrick digital outputs.</p>
+
+</body>
+
+</html>

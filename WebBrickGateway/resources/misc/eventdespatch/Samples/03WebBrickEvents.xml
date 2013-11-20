@@ -1,0 +1,173 @@
+<eventInterfaces>
+
+<!--
+==============================================================================================
+						WebBrick to WebBrick Event mapping
+==============================================================================================
+
+This file shows some examples of mapping events from one WebBrick to another.
+
+In this case, WebBrick events are mapped to 'internal' events that then trigger WebBricks.
+
+For simplicity this is based on one WebBrick and source and target events are clearly marked.
+
+This example uses a WebBrick called 'bench' on node 101.  Note that all events start with '03'
+This is to avoid confusion with other sample files that may be in the EventDespatch directory
+at the same time.
+
+Andy Harris H2M8 July 2007
+
+==============================================================================================
+-->
+
+
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+
+        <!-- 
+        =======================================================================================
+						        Internal routing events 
+        
+			These are the events that cause actions on the TARGET WebBricks        
+        =======================================================================================        
+        -->
+        <eventtype type="internal">
+             <eventsource source="03firstExampleEvent" >
+                <event>
+                	<!-- Trigger Digital In 7 -->
+                    <url address="bench" uri="/hid.spi?COM=DI7:" cmd="GET" />
+                </event>
+            </eventsource>
+             <eventsource source="03secondExampleEvent" >
+                <event>
+                	<!-- Trigger Digital In 6 -->
+                    <url address="bench" uri="/hid.spi?COM=DI6:" cmd="GET" />
+                </event>
+            </eventsource>
+             <eventsource source="03thirdExampleEvent" >
+                <event>
+                	<!-- Trigger Digital In 5 -->
+                    <url address="bench" uri="/hid.spi?COM=DI5:" cmd="GET" />
+                </event>
+            </eventsource>
+             <eventsource source="03delayedExampleEvent" >
+                <event>
+                	<!-- Trigger Digital In 4 -->
+                    <url address="bench" uri="/hid.spi?COM=DI4:" cmd="GET" />
+                </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+
+	<!--
+	==============================================================================
+							DELAYED EVENTS
+
+		Here is an example of a delayed event
+	==============================================================================
+	-->
+
+	<eventInterface module='EventHandlers.DelayedEvent' name='DelayedEvent'>
+
+        <eventtype type="internal">
+           <eventsource source="03secondExampleEvent" >
+               <event>
+                   <delay delaySeconds="5">
+                       <!-- After the timer a new event is sent -->
+					   <newEvent type="internal" source="03delayedExampleEvent" />
+                   </delay>
+               </event>
+           </eventsource>
+       </eventtype>
+    </eventInterface> 
+
+
+
+        	
+	<!--
+	===========================================================================
+								TRIGGER EVENTS
+
+		There are two types of event here:
+
+				URI:  So that you can see what happens using sendevent
+				WebBrick: These are the trigger events from the Source WebBrick
+
+	===========================================================================
+	-->    
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+
+		<!-- The URI Events -->
+
+        <eventtype type="http://id.webbrick.co.uk/events/uri">
+        	<eventsource source="03firstExampleEvent">
+        		<event>
+                    <newEvent type="internal" source="03firstExampleEvent" />        		
+        		</event>
+        	</eventsource>
+        	
+        	<eventsource source="03secondExampleEvent">
+        		<event>
+                    <newEvent type="internal" source="03secondExampleEvent" />        		
+        		</event>
+        	</eventsource>
+        	
+        	<eventsource source="03thirdExampleEvent">
+        		<event>
+                    <newEvent type="internal" source="03thirdExampleEvent" />        		
+        		</event>
+        	</eventsource>
+		</eventtype>
+		
+		<!-- 
+		=========================================================================		
+					SOURCE WEBBRICK EVENTS		
+		 
+		WebBricks generate many types of events, in this case we look for Td 
+		and TD.  The difference between these is that Td is created by triggering
+		the WebBrick at the Web Interface and TD is created by triggering at the 
+		physical input
+		
+		=========================================================================		
+		-->
+
+		<!-- soft events -->
+        <eventtype type="http://id.webbrick.co.uk/events/webbrick/Td">
+            <eventsource source="webbrick/101/Td/0" >
+                <event>
+                    <newEvent type="internal" source="03firstExampleEvent" />        		
+                </event>
+            </eventsource>
+            <eventsource source="webbrick/101/Td/1" >
+                <event>
+                    <newEvent type="internal" source="03secondExampleEvent" />        		
+                </event>
+            </eventsource>
+            <eventsource source="webbrick/101/Td/2" >
+                <event>
+                    <newEvent type="internal" source="03thirdExampleEvent" />        		
+                </event>
+            </eventsource>
+        </eventtype>
+
+		<!-- hard events -->		
+        <eventtype type="http://id.webbrick.co.uk/events/webbrick/TD">
+            <eventsource source="webbrick/101/TD/0" >
+                <event>
+                    <newEvent type="internal" source="03firstExampleEvent" />        		
+                </event>
+            </eventsource>
+            <eventsource source="webbrick/101/TD/1" >
+                <event>
+                    <newEvent type="internal" source="03secondExampleEvent" />        		
+                </event>
+            </eventsource>
+            <eventsource source="webbrick/101/TD/2" >
+                <event>
+                    <newEvent type="internal" source="03thirdExampleEvent" />        		
+                </event>
+            </eventsource>
+        </eventtype>
+			
+    </eventInterface>
+    
+</eventInterfaces>

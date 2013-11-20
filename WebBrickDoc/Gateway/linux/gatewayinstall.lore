@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>WebBrick Gateway Linux Installation.</title>
+</head>
+
+<body>
+    <h1>WebBrick Gateway Linux Installation.</h1>
+
+    Due to the nature of there being many distributions of linux with different package management tools we are 
+    providing manual instructions for installation on Linux. It is assumed that you are capable of performing installation
+    of linux packages using your platform management tools.
+    
+    <ul>
+        <li><a href="./prerequsites.xhtml">Prerequisites for gateway install.</a></li>
+        <li><a href="./gateway.xhtml">Gateway install</a></li>
+        <li><a href="./deamon.xhtml">Gateway as daemon.</a></li>
+    </ul>
+
+</body>
+
+</html>

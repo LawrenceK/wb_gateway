@@ -1,0 +1,355 @@
+<eventInterfaces>
+    <!--
+
+    This is the generic weather compensation file.  Its a bit crude at the moment because the RSS feeds are not hooked in
+    It is based on three sets of compensation, each of which can have different parameters and all generate events with the
+    following state values:
+    
+    The aim in here is to hold off the heating based on whether external temperature is rising or falling. If the current outside temperature
+    is greater than a configured threshold then hold off otherwise run the heating. There are different thresholds for external rising and
+    external falling. There are 3 sets so that different thresholds can be used for different purposes.
+    
+      state:
+      
+           attr=state   attr=istate
+            Run - initial state         istate='1'
+            HoldOff                     istate='0'
+
+      trend:
+            attr=trend
+            this is the trend of the outside temperature
+            Down -  falling      
+             '' -  not known       
+            Up - rising           
+    
+        tstate is used to show the global state of the weather
+        tstate:
+        
+            0 = Down        temp falling
+            1 = Level       same as previous
+            2 = Up          temp rising
+    -->
+
+
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+                
+        <!--  ====================================================================
+                          INITIAL STATES FOR STARTUP
+              ====================================================================
+        -->
+        
+        <eventtype type="">
+            <eventsource source="time/runtime" >
+                <event>
+                    <params>
+                        <testEq name="elapsed" value='10'/>
+                    </params>
+                    <!-- create some initial states -->
+                    <newEvent type="http://id.webbrick.co.uk/zones/weather" source="weather/0">
+                        <other_data state='Run' trend='' istate='1'/>
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/zones/weather" source="weather/1">
+                        <other_data state='Run' trend='' istate='1'/>
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/zones/weather" source="weather/2">
+                        <other_data state='Run' trend='' istate='1'/>
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/zones/weather" source="weather/3">
+                        <other_data state='Run' trend='' istate='1'/>
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+                
+    </eventInterface>
+
+
+        
+    <eventInterface module='EventHandlers.Compound' name='Compound'>
+
+        <!--  
+        =================================================================================
+                        Build the information
+        =================================================================================
+        -->
+
+        <eventtype type='http://id.webbrick.co.uk/zones/weather'>
+            <eventsource source="weather/outsideTemp">
+                <event>
+                    <action name="outsideTemp" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="weather/previous">
+                <event>
+                    <action name="previousTemp" key="previousTemp"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <!--  ====================================================================
+                          Periodic "Clock"
+                This is used to determine weather values are rising or falling
+              ====================================================================
+        -->
+        <eventtype type="http://id.webbrick.co.uk/events/time/minute">
+            <eventsource source="time/minute">
+                <event>
+                    <params>
+                        <testEq name='minute'>
+                            <value>0</value>
+                            <value>10</value>
+                            <value>20</value>
+                            <value>30</value>
+                            <value>40</value>
+                            <value>50</value>
+                        </testEq>
+                    </params>
+                    <action name="doTrend" value="1" transient="true"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <!--  Set One configs ================================================ -->
+        <eventtype type="http://id.webbrick.co.uk/events/config/get">
+            <eventsource source="weather/1/rising/outsideThreshold">
+                <event>
+                    <action name="1/risingThres" key="val"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <eventtype type="http://id.webbrick.co.uk/events/config/get">
+            <eventsource source="weather/1/falling/outsideThreshold">
+                <event>
+                    <action name="1/fallingThres" key="val"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <!--  Set Two configs ================================================ -->
+        <eventtype type="http://id.webbrick.co.uk/events/config/get">
+            <eventsource source="weather/2/rising/outsideThreshold">
+                <event>
+                    <action name="2/risingThres" key="val"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <eventtype type="http://id.webbrick.co.uk/events/config/get">
+            <eventsource source="weather/2/falling/outsideThreshold">
+                <event>
+                    <action name="2/fallingThres" key="val"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <!--  Set Three configs ================================================ -->
+        <eventtype type="http://id.webbrick.co.uk/events/config/get">
+            <eventsource source="weather/3/rising/outsideThreshold">
+                <event>
+                    <action name="3/risingThres" key="val"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <eventtype type="http://id.webbrick.co.uk/events/config/get">
+            <eventsource source="weather/3/falling/outsideThreshold">
+                <event>
+                    <action name="3/fallingThres" key="val"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <!-- ========================================================================
+        
+                Now determine the trends and actions
+        
+            ========================================================================== -->
+    
+
+        <!--  Set One ===================================================================== -->
+        <compound>
+            <params>
+                <testEq name="doTrend" value='1'/>
+                <testGt type="float" name="outsideTemp" param2="previousTemp"/>
+                <testGt type="float" name="outsideTemp" param2="1/risingThres"/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/zones/weather' source="weather/1" >
+                <other_data state='HoldOff' trend="Up" istate='0'/>
+            </newEvent>
+        </compound>
+
+        <compound>
+            <params>
+                <!-- Using greater than or equal to -->
+                <testEq name="doTrend" value='1'/>
+                <testLe type="float" name="outsideTemp" param2="previousTemp"/>
+                <testGe type="float" name="outsideTemp" param2="1/fallingThres"/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/zones/weather' source="weather/1" >
+                <other_data state="HoldOff" trend="Down" istate='0'/>
+            </newEvent>
+        </compound>
+
+        <compound>
+            <params>
+                <testEq name="doTrend" value='1'/>
+                <testGt type="float" name="outsideTemp" param2="previousTemp"/>
+                <testLt type="float" name="outsideTemp" param2="1/risingThres"/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/zones/weather' source="weather/1" >
+                <other_data state="Run" trend="Up" istate='1'/>
+            </newEvent>
+        </compound>
+
+        <compound>
+            <params>
+                <testEq name="doTrend" value='1'/>
+                <testLe type="float" name="outsideTemp" param2="previousTemp"/>
+                <testLt type="float" name="outsideTemp" param2="1/fallingThres"/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/zones/weather' source="weather/1" >
+                <other_data state="Run" trend="Down" istate='1' />
+            </newEvent>
+        </compound>
+
+        <!--  Set Two ================================================ -->
+
+        <compound>
+            <params>
+                <testEq name="doTrend" value='1'/>
+                <testGt type="float" name="outsideTemp" param2="previousTemp"/>
+                <testGe type="float" name="outsideTemp" param2="2/risingThres"/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/zones/weather' source="weather/2" >
+                <other_data state='HoldOff' trend="Up" istate='0'/>
+            </newEvent>
+        </compound>
+
+        <compound>
+            <params>
+                <!-- Using greater than or equal to -->
+                <testEq name="doTrend" value='1'/>
+                <testLe type="float" name="outsideTemp" param2="previousTemp"/>
+                <testGe type="float" name="outsideTemp" param2="2/fallingThres"/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/zones/weather' source="weather/2" >
+                <other_data state="HoldOff" trend="Down" istate='0'/>
+            </newEvent>
+        </compound>
+
+        <compound>
+            <params>
+                <testEq name="doTrend" value='1'/>
+                <testGt type="float" name="outsideTemp" param2="previousTemp"/>
+                <testLt type="float" name="outsideTemp" param2="2/risingThres"/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/zones/weather' source="weather/2" >
+                <other_data state="Run" trend="Up" istate='1' />
+            </newEvent>
+        </compound>
+
+        <compound>
+            <params>
+                <testEq name="doTrend" value='1'/>
+                <testLe type="float" name="outsideTemp" param2="previousTemp"/>
+                <testLt type="float" name="outsideTemp" param2="2/fallingThres"/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/zones/weather' source="weather/2" >
+                <other_data state="Run" trend="Down" istate='1' />
+            </newEvent>
+        </compound>
+
+        <!--  Set Three (leaves previousTemp alone ================================================ -->
+
+        <compound>
+            <params>
+                <testEq name="doTrend" value='1'/>
+                <testGt type="float" name="outsideTemp" param2="previousTemp"/>
+                <testGt type="float" name="outsideTemp" param2="3/risingThres"/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/zones/weather' source="weather/3" >
+                <other_data state='HoldOff' trend="Up" istate='0'/>
+            </newEvent>
+        </compound>
+
+        <compound>
+            <params>
+                <!-- Using greater than or equal to -->
+                <testEq name="doTrend" value='1'/>
+                <testLe type="float" name="outsideTemp" param2="previousTemp"/>
+                <testGe type="float" name="outsideTemp" param2="3/fallingThres"/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/zones/weather' source="weather/3" >
+                <other_data state="HoldOff" trend="Down" istate='0'/>
+            </newEvent>
+        </compound>
+
+        <compound>
+            <params>
+                <testEq name="doTrend" value='1'/>
+                <testGt type="float" name="outsideTemp" param2="previousTemp"/>
+                <testLt type="float" name="outsideTemp" param2="3/risingThres"/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/zones/weather' source="weather/3" >
+                <other_data state="Run" trend="Up"  istate='1'/>
+            </newEvent>
+        </compound>
+
+        <compound>
+            <params>
+                <testEq name="doTrend" value='1'/>
+                <testLe type="float" name="outsideTemp" param2="previousTemp"/>
+                <testLt type="float" name="outsideTemp" param2="3/fallingThres"/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/zones/weather' source="weather/3" >
+                <other_data state="Run" trend="Down"  istate='1'/>
+            </newEvent>
+        </compound>
+
+        <!-- saves old temperature and calculates the global trend -->
+
+        <compound>
+            <params>
+                <testEq name="doTrend" value='1'/>
+                <testLt type="float" name="outsideTemp" param2="previousTemp"/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/zones/weather' source="weather/global" >
+                <other_data trend="Down" tstate="0"/>
+            </newEvent>
+        </compound>
+
+        <compound>
+            <params>
+                <testEq name="doTrend" value='1'/>
+                <testEq type="float" name="outsideTemp" param2="previousTemp"/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/zones/weather' source="weather/global" >
+                <other_data trend="Level" tstate="1"/>
+            </newEvent>
+        </compound>
+
+        <compound>
+            <params>
+                <testEq name="doTrend" value='1'/>
+                <testGt type="float" name="outsideTemp" param2="previousTemp"/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/zones/weather' source="weather/global" >
+                <other_data trend="Up" tstate="2" />
+            </newEvent>
+        </compound>
+
+
+        <compound>
+            <params>
+                <testEq name="doTrend" value='1'/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/zones/weather' source="weather/previous" >
+                <copy_other_data previousTemp="outsideTemp"/>
+            </newEvent>
+        </compound>
+
+    </eventInterface>
+
+    
+</eventInterfaces>

@@ -1,0 +1,42 @@
+/* CSS Document */
+
+#newsourcebox {
+	position:absolute;
+	top:57px;
+	left:42px;
+}	
+
+#newsourcebox table.rect8pxboxwtitle {
+	width:242px;
+}
+
+#globalzonecontrols {
+	position:absolute;
+	top:300px;
+	left:302px;
+}	
+
+#globalzonecontrols table.rect8pxboxwtitle {
+	width:458px;
+	height:172px;
+}
+
+/* Set this as the area in which the zonegroups tile themselves */
+#zonegroupscontainer {
+	position:absolute;
+	top:57px;
+	left:302px;
+	height:220px;
+	overflow:hidden;
+}
+
+div.zonegroup {
+	position:relative;
+	margin-right:16px;
+	margin-bottom:16px;
+	float:left;
+}
+
+div.zonegroup table.rect8pxboxwtitle {
+	width:250px; 
+}

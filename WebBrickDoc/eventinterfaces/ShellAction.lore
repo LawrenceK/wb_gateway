@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>ShellAction</title>
+</head>
+
+<body>
+
+    <h1>ShellAction</h1>
+
+        <p>run any arbitrary local system command.</p>
+
+    <h2>Description</h2>
+        <p>This event handler can be configured to run an arbitrary local system command subject to local security restrictions. 
+        This is one of the ways to connect events to external activity. It is not expected for it to be used for any activity that
+        is run very frequently, i.e. less than once every 5 minutes.</p>
+
+
+    <h2>Configuration</h2>
+    <pre>
+    &lt;eventInterface module='EventHandlers.ShellAction' name='ShellAction'&gt;
+        &lt;eventtype type="http://id.webbrick.co.uk/events/webbrick/TD"&gt;
+            &lt;eventsource source="webbrick/100/TD/0" &gt;
+	        &lt;event&gt;
+		    &lt;command cmd='cmd.exe' params=' echo response string1&gt; TestShellAction.txt' /&gt;
+	        &lt;/event&gt;
+            &lt;/eventsource&gt;
+        &lt;/eventtype&gt;
+    &lt;/eventInterface&gt;
+    </pre>
+
+    <h3>Environment</h3>
+    
+    <p>The attribute <i>cmd</i> is not actually used, it is the section in params that is passed to the command processor</p>
+    <p>For the Gateway Appliance this is the /bin/bash shell. For a Windows environment this is cmd.exe</p>
+    
+    <h3>Linux Example</h3>
+
+    <pre>
+    &lt;eventInterface module='EventHandlers.ShellAction' name='ShellAction'&gt;
+        &lt;eventtype type="phones"&gt;
+            &lt;eventsource source="doorbell" &gt;
+	        &lt;event&gt;
+		    &lt;command cmd='bash' params=' python pushchime --ip ext210 doorbell2.raw' /&gt;
+	        &lt;/event&gt;
+            &lt;/eventsource&gt;
+        &lt;/eventtype&gt;
+    &lt;/eventInterface&gt;
+    </pre>
+
+    <h3>From build number 3043</h3>
+    <p> The facility to make string substitutions for the attributes within events was added. 
+    </p>
+    <p>Example:</p>
+    <pre>
+    &lt;command cmd='bash' params=' python pushchime.py --ip %(adr)s --sound %(sound)s' /&gt;
+    </pre>
+    
+</body>
+
+</html>

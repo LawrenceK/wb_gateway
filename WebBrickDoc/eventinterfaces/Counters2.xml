@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eventInterfaces>
+    <eventInterface module='EventHandlers.Counters' name='Counters'>
+        <!-- All counters must be declared -->
+        <counter name="powerUse" type="float"/>
+
+        <eventtype type="http://id.webbrick.co.uk/events/webbrick/TD">
+            <eventsource source="webbrick/21/TD/1" >
+                <event>
+                    <increment name="powerUse" by="0.5"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <eventtype type="http://id.webbrick.co.uk/events/time/minute">
+            <eventsource source="time/minute" >
+                <event>
+                    <reset name="powerUse">
+                        <newEvent type="test/power/this/minute" source="test/power/this/minute">
+                            <copy_other_data val="powerUse" />
+                        </newEvent>
+                    </reset>
+                </event>
+            </eventsource>
+        </eventtype>
+
+    </eventInterface>
+</eventInterfaces>

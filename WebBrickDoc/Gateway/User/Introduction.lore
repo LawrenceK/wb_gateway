@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Introduction</title>
+  </head>
+  <body>
+
+  <h1>Introduction</h1>
+
+     <div class="center">
+         <img src="../../Images/RoundWelcome1.png" alt="Diagram of typical home page" width="60%" />
+     </div>
+
+      <p>
+     
+          The WebBrick&nbsp;Gateway provides a centralized management and control interface
+          to an automated home. The system design avoids there being a single point of failure which 
+          leaves the user with no control over the home by devolving most control down to the 
+          individual WebBrick Controllers. The WebBrick&nbsp;Gateway is used to make the control of the home richer by providing 
+          access to the home over a wider range of User Interfaces (UIs) and a wider range of 
+          communication channels, e.g. web browser at work.
+      </p>
+
+      <p>
+          Our two primary design criteria are:
+          <table class="list" >
+            <tr class="listentry" >
+              <td>Local Control.</td>
+              <td>You should not need a central controller to manage most facilities in a room.</td>
+            </tr>
+            <tr class="listentry" >
+              <td>Missing is not Broken </td>
+              <td >A failure or physical removal of any single component of the automation system 
+                  should not affect control of anything other than those connected to the failed component.
+              </td>
+            </tr>
+          </table>
+      </p>
+
+      <h2>Features</h2>
+        <div class="center">
+                <img src="../../Images/GatewaySimpleArchitecture.png" alt="WebBrick&nbsp;Gateway Simple Architecture" width="60%" />
+        </div>
+        <p>
+          The above diagram shows a basic WebBrick home automation setup: 
+          <ul>
+            <li> It uses WebBrick&nbsp;Controllers to take input and commands
+                  from the real world, e.g. switches and infra red controllers.
+            </li>
+            <li> It uses WebBrick&nbsp;Controllers to control the real world, e.g. 
+                  lights and curtains.
+            </li>
+            <li> It has a WebBrick&nbsp;Gateway to provide richer user interfaces and a house wide scheduling system, e.g. central
+                  heating for the whole house.
+            </li>
+            <li> It has a Touch screen web browser from which a user can directly control devices and
+                  update scheduled activities, they can also look at the output from security cameras.
+            </li>
+            <li> The WebBrick&nbsp;Gateway also connects to a
+                  broadband Internet connection through which the user can remotely control and monitor the house.
+            </li>
+          </ul>
+        </p>
+          
+        <p>
+          Our WebBrick&nbsp;Gateway provides the following features:
+          <ul>
+            <li><b>User interfaces (UI):</b> 
+                  <p>
+                      This is used to create consolidated user interfaces for a collection
+                      of configured WebBrick&nbsp;Controllers and other functions such as media control.  These interfaces can be web, XML or 
+                      SMS based.
+                      Web interfaces can be used on touch panels, PC and Mac based browsers as well as PDAs and smart phones.  
+                      XML based interfaces are used for menu schemes found typically on VOIP phones. 
+                      SMS covers the world with a simple interface you are likely to have near you at all times - the mobile phone.
+                  </p>
+
+                  <p>
+                      The WebBrick&nbsp;Gateway is also capable of changing the UI displays dependant on time of day or any other state that may occur,
+                      i.e. The background may be different during night and day. At night the home page may be simpler, so that lights are
+                      easy to operate when half asleep.
+                  </p>
+
+                  <p>
+                      This is all tailorable to suit the end user environment.
+                  </p>
+            </li>
+            <li><b>Scheduling:</b>  
+                  <p>
+                      WebBrick&nbsp;Controllers handle local events, for example a heated floor has reached
+                      a comfortable temperature and the power to it should be reduced.  A WebBrick&nbsp;Controller <em>can</em> be used to schedule the floor itself,
+                      however it does not know about the intentions of its users.  These users could be on holiday or having an early start to the day.
+                      It is the WebBrick&nbsp;Gateway that holds the global schedule for the home and can pull in information from other sources, i.e. calendaring or weather 
+                      forecast.
+                  </p>
+            </li>
+            <li><b>Macros, Jobs:</b>  
+                  <p>
+                      Some requests should set off a cascade of actions, perhaps over a 
+                      selection of WebBrick&nbsp;Controllers or across other devices.  For example a courtesy job for guests leaving might involve lighting around the home, the driveway and
+                      gate control.  It is a function of the WebBrick&nbsp;Gateway to receive the request for a courtesy job and dispatch the relevant commands to WebBrick&nbsp;Controllers
+                      and other devices.
+                  </p>
+                  <p>
+                      Requests may be dependant on other information, i.e. security lights are only required at night and this information is gathered 
+                      in the WebBrick&nbsp;Gateway.
+                  </p>
+            </li>
+            <li><b>User Notification:</b>
+                  <div class="center">
+                      <img src="../../Images/EggNunciatorSmall.jpg" alt="Eggnunciator picture" width="20%" />
+                  </div>
+                  <p>
+                      The home owner may not want to manually inspect for issues requiring attention themselves but
+                      to be actively notified. The WebBrick&nbsp;Gateway is capable of providing notification using a mixture of methods e.g. email or by text message 
+                      to a mobile. The WebBrick&nbsp;Gateway can put messages on the web interfaces for those environments are using always on browser displays. It may 
+                      also make announcements on dedicated equipment such as the EggNunciator, which when the system is happy looks just like modern
+                      mood lighting but when something important in its operating environment i.e. Garage doors open after dark, it changes its 
+                      illumination pattern.
+                  </p>
+            </li>
+            <li><b>Integration:</b>  
+                  <p>
+                      The WebBrick&nbsp;Gateway allows for integration with the homes other systems, at present anything that can respond to 
+                      HTTP requests or can generate HTTP requests can be integrated with the WebBrick&nbsp;Gateway. The interface for this integration allows bespoke 
+                      additions to be easily accommodated. For example when the phone rings the home owner may wish to have details of the call displayed on 
+                      their user interface, then if the phone is answered for the audio in the room he is in to be muted automatically. 
+                  </p>
+                  <p>
+                      An action can also execute any available command on the host platform through the use of a command shell interface, this allows 
+                      for integration with anything that has a command line interface.
+                  </p>
+            </li>
+            <li><b>Configuration management:</b>  
+                  <p>
+                      To ease installation there are additional facilities that enable the management
+                      of WebBrick configurations. The configuration for each WebBrick can be downloaded and uploaded to the central server
+                      for backup. When a collection of WebBrick&nbsp;Controllers is first installed
+                      each WebBrick will have the same default delivery address, the WebBrick&nbsp;Gateway can be used to discover WebBrick&nbsp;Controllers and to give each 
+                      WebBrick a different addresses. From here example and template configurations can then be
+                      downloaded to WebBrick&nbsp;Controllers.  Once the specific configuration for a WebBrick is complete its configuration can be 
+                      uploaded to the WebBrick&nbsp;Gateway for either backup or for use as a template in further configurations. This also enables an installer to
+                      prepare for commissioning offsite.
+                  </p>
+            </li>
+            <li><b>WebBrick Time:</b>  
+                  <p>
+                      The WebBrick&nbsp;Gateway monitors for WebBrick&nbsp;Controllers whose real time clock needs setting and will set the
+                      WebBrick time to the WebBrick&nbsp;Gateway time.
+                  </p>
+            </li>
+            <li><b>Event logging:</b>  
+                  <p>
+                      The WebBrick&nbsp;Gateway can be configured to log some or all events happening within the system for later 
+                      investigation. This requires an WebBrick&nbsp;Gateway with a hard disk as storage requirements can build up very fast.
+                  </p>
+            </li>
+          </ul>
+        </p>
+
+        <p>
+              Since we have <em>"Missing is not Broken"</em> it is quite possible for a collection of WebBrick&nbsp;Controllers to function without a 
+              WebBrick&nbsp;Gateway present.  The corollary of this is that it is possible (with some configuration caveats) to operate with 
+              <em>more than one</em> WebBrick&nbsp;Gateway. This provides a backup of the central functions in the case of WebBrick&nbsp;Gateway failure, e.g. the WebBrick&nbsp;Gateway is 
+              the system providing remote access so loss of the WebBrick&nbsp;Gateway in a single WebBrick&nbsp;Gateway setup would result in loss of remote control
+              and remote monitoring. The failure of the WebBrick&nbsp;Gateway would still leave the home owner with control, he may not have access to some
+              of the extended control.
+        </p>
+
+      <h2>Browser Support</h2>
+          <p>
+              The WebBrick&nbsp;Gateway will support any standards compliant browser and handle some of the quirks of browsers that do not
+              fully comply. The user interface can be configured by browser family to avoid some features, e.g. Javascript.
+          </p>
+  </body>
+</html>

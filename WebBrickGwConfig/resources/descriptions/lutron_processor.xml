@@ -1,0 +1,27 @@
+<device>
+    <type val="Lutron"> 
+        <subtype val="SitePlayerTelnet" />
+    </type>
+    <ip val="" />
+    <id val="" />
+    <location val=""/>
+    <serial>
+        <driver val = "Lutron"/>
+        <protocol val= "Lutron"/>
+        <baud val = "115200"/>        
+    </serial>
+    <name val="New Lutron Processor" />
+    <confstatus val="not configured" />
+    <keypads> <!-- These are keypads -->
+    </keypads>
+    <commands>
+        <togglelight>
+            <conditional type = "Lutron/Lighting/Update" source = "Lutron/Device/Id/%(id)s/Processor_%(processor)s/Link_%(link)s/Keypad_%(keypad)s/Light_%(light)s" attr = "val" val = "%(conditional)s" else = "skip"/>
+            <send type = "lutron/action" source = "lutron/send/action">
+                <payload cmd = 'send' id = "%(id)s" action = "togglelight" processor = "%(processor)s" link = "%(link)s" keypad = "%(keypad)s" light = "%(light)s"/>
+            </send>
+            <complete type = "Lutron/Lighting/Update" source = "Lutron/Device/Id/%(id)s/Processor_%(processor)s/Link_%(link)s/Keypad_%(keypad)s/Light_%(light)s" attr = "val" val = "%(state)s"/>
+            <requiredparams id = "DEVICE_ID" processor = "01" link = "04" keypad = "01" light ='01' conditional = '0' completestate = '1'/>
+        </togglelight>
+    </commands>
+</device>

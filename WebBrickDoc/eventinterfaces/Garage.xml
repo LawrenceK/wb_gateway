@@ -1,0 +1,63 @@
+<eventInterfaces>
+
+    <eventInterface module='EventHandlers.Compound' name='Compound'>
+
+        <eventtype type="http://id.webbrick.co.uk/events/webbrick/DI">
+            <!-- Pick up webbrick events for inputs connected to the garage door -->
+            <eventsource source="webbrick/1/DI/10" >
+                <event>
+                    <action name="GarageDoorIsClosed" key="state"/>
+                </event>
+            </eventsource>
+            <eventsource source="webbrick/1/DI/11" >
+          <event>
+        <action name="GarageDoorIsOpen" key="state"/>
+          </event>
+            </eventsource>
+        </eventtype>
+
+        <initialState name='GarageDoorIsClosed' value='0'/>
+        <initialState name='GarageDoorIsOpen' value='0'/>
+
+        <!-- the next four rules generate the event type http://id.webbrick.co.uk/events/state which
+            is cached by the Gateway web server for delivery to the browser based user interface -->
+        <compound>
+            <params>
+		<testEq name="GarageDoorIsClosed" value="0"/>
+                <testEq name="GarageDoorIsOpen" value="0"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/state" source="Garage/Door/1">
+                <other_data val='0'/>
+            </newEvent>
+        </compound>
+
+        <compound>
+            <params>
+		<testEq name="GarageDoorIsClosed" value="0"/>
+                <testEq name="GarageDoorIsOpen" value="1"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/state" source="Garage/Door/1">
+                <other_data val='1'/>
+            </newEvent>
+        </compound>
+
+        <compound>
+            <params>
+		<testEq name="GarageDoorIsClosed" value="1"/>
+                <testEq name="GarageDoorIsOpen" value="0"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/state" source="Garage/Door/1">
+                <other_data val='2'/>
+            </newEvent>
+        </compound>
+        <compound>
+            <params>
+		<testEq name="GarageDoorIsClosed" value="1"/>
+                <testEq name="GarageDoorIsOpen" value="1"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/state" source="Garage/Door/1">
+                <other_data val='3'/>
+            </newEvent>
+        </compound>
+    </eventInterface>   
+</eventInterfaces>

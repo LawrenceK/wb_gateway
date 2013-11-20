@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+        <eventtype type=''>
+            <eventsource source='time/runtime'>
+                <event>
+                    <params>
+                        <testEq name="elapsed" value='5'/>
+                    </params>
+					<!-- dont understand what the bit above this does - can i remove it? -->
+                    <url cmd='GET' uri='/hid.spi?COM=CR2;7:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+			<!-- We are sending CGI commands to the sky controller 'sittingroom' -->
+            <eventsource source='sky/1/sky'>
+                <event>
+                    <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=sky' address='sittingroom'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='sky/1/off'>
+                <event>
+                    <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=power' address='sittingroom'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='sky/1/tvguide'>
+                <event>
+                    <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=tv%20guide' address='sittingroom'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='sky/1/boxoffice'>
+                <event>
+                    <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=box%20office' address='sittingroom'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='sky/1/services'>
+                <event>
+                    <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=services' address='sittingroom'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='sky/1/interactive'>
+                <event>
+                    <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=interactive' address='sittingroom'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='sky/1/ch+'>
+                <event>
+                    <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=ch+' address='sittingroom'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='sky/1/ch-'>
+                <event>
+                    <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=ch-' address='sittingroom'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='sky/1/mute'>
+                <event>
+                    <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=mute' address='sittingroom'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='sky/1/up'>
+                <event>
+                    <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=up' address='sittingroom'/>
+                </event>
+            </eventsource>
+            
+            <eventsource source='sky/1/down'>
+	        <event>
+	           <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=down' address='sittingroom'/>
+	       </event>
+            </eventsource>
+
+            <eventsource source='sky/1/select'>
+                <event>
+                    <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=select' address='sittingroom'/>
+                </event>
+            </eventsource>			
+
+            <eventsource source='sky/1/left'>
+                <event>
+                    <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=left' address='sittingroom'/>
+                </event>
+            </eventsource>
+
+            <eventsource source='sky/1/right'>
+                <event>
+                    <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=right' address='sittingroom'/>
+                </event>
+            </eventsource>
+
+            <eventsource source='sky/1/backup'>
+                <event>
+                    <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=back%20up' address='sittingroom'/>
+                </event>
+            </eventsource>    
+
+            <eventsource source='sky/1/text'>
+                <event>
+                    <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=text' address='sittingroom'/>
+                </event>
+            </eventsource>  
+
+            <eventsource source='sky/1/help'>
+                <event>
+                    <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=help' address='sittingroom'/>
+                </event>
+            </eventsource>  
+
+            <eventsource source='sky/1/info'>
+                <event>
+                    <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=info' address='sittingroom'/>
+                </event>
+            </eventsource>  
+
+            <eventsource source='sky/1/rewind'>
+                <event>
+                    <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=rewind' address='sittingroom'/>
+                </event>
+            </eventsource>              
+
+            <eventsource source='sky/1/fastforward'>
+                <event>
+                    <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=fast%20forward' address='sittingroom'/>
+                </event>
+            </eventsource>  
+            
+            <eventsource source='sky/1/stop'>
+                <event>
+                    <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=stop' address='sittingroom'/>
+                </event>
+            </eventsource>  
+            
+            <eventsource source='sky/1/record'>
+                <event>
+                    <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=record' address='sittingroom'/>
+                </event>
+            </eventsource>  
+            
+            <eventsource source='sky/1/pause'>
+                <event>
+                    <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=pause' address='sittingroom'/>
+                </event>
+            </eventsource>              
+
+            <eventsource source='sky/1/play'>
+                <event>
+                    <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=play' address='sittingroom'/>
+                </event>
+            </eventsource>  
+            
+            <eventsource source='sky/1/red'>
+                <event>
+                    <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=red' address='sittingroom'/>
+                </event>
+            </eventsource>  
+            
+            <eventsource source='sky/1/green'>
+                <event>
+                    <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=green' address='sittingroom'/>
+                </event>
+            </eventsource>  
+            
+            <eventsource source='sky/1/yellow'>
+                <event>
+                    <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=yellow' address='sittingroom'/>
+                </event>
+            </eventsource>  
+            
+            <eventsource source='sky/1/blue'>
+                <event>
+                    <url cmd='GET' uri='/cgi-bin/controls.cgi?cmd=blue' address='sittingroom'/>
+                </event>
+            </eventsource>              
+
+        </eventtype>
+    </eventInterface>
+
+</eventInterfaces>
+

@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>zones/zone</title>
+</head>
+
+<body>
+    <h1>zones/zone</h1>
+
+        <p>These events are to do with the control/feedback of the zone.</p>
+
+    <h2>General</h2>
+
+        <p>A zone is responsible for control of anything that is used by a single zone.</p> 
+
+    <h2>http://id.webbrick.co.uk/zones/zone</h2>
+        <p>This is the event type for all events to do with the zone.</p>
+
+    <h3>zone/n/run</h3>
+        <p>This event source indicates a requirement to run any devices required by the zone n.</p>
+
+    <h3>zone/n/stop</h3>
+        <p>This event source indicates there is now no requirement to run any devices required by the zone n.</p>
+
+    <h3>zone/n/running</h3>
+        <p>This event source indicates that the zone n is running.</p>
+
+    <h3>zone/n/stopped</h3>
+        <p>This event source indicates the zone n has stopped.</p>
+
+    <h2>http://id.webbrick.co.uk/zones/zone/sensor</h2>
+        <p>Temperature sensor input.</p>
+
+    <h2>http://id.webbrick.co.uk/zones/zone/name</h2>
+        <p>Zone name.</p>
+
+    <h2>zone/n/state</h2>
+        <p>This event has a number of attributes which describe the state of a zone</p>
+        <ul>
+            <li>status:  a text description of status</li>
+            <li>actuatorstate:  the state of the associated actuator:</li>
+                <ul>
+                    <li>0: Unknown</li>
+                    <li>1: Idle</li>
+                    <li>2: Operated</li>
+                </ul>
+            <li>targetsetpoint: The set-point the zone is actually using</li>
+            <li>manualsetpoint:  If available, the manual set point</li>
+            <li>schedulesetpoint: If available the scheduled set-point</li>
+            <li>zoneTemp:  If available, actual temperature of the zone</li>
+            <li>weather1:  The current status of weather compensation channel 1</li>
+            <li>weather2:  The current status of weather compensation channel 2</li>
+            <li>weather3:  The current status of weather compensation channel 3</li>
+            <li>wcselect:  0:not used 1-3 weather compensation in use for this zone</li>
+            <li>weathercompensation:  the status of the currently selected weather compensation channel</li>
+            <li>cmdsource: The source of the current target set-point</li>
+            <li>zonesource: If available the name of the heatsource that is supplying the zone</li>
+            <li>minzonetemp: The lowest allowed temperature when the zone is disabled (through occupancy etc)</li>
+            <li>occupied: The state zone will consider if it is following occupancy</li>
+            <li>followoccupancy: 0:do not follow, 1: follow</li>
+            <li>zoneenabled: 0:disabled, 1: enabled</li>
+        </ul>
+
+</body>
+
+</html>

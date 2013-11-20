@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>HttpAction</title>
+</head>
+
+<body>
+
+    <h1>HttpAction</h1>
+
+        <p>Perform an HTTP request.</p>
+
+    <h2>Description</h2>
+        <p>This event handler performs an HTTP request on receipt of a triggering event. This HTTP request will typically cause some
+        action at the target for example this could be a command to a webbrick. This may also be an HTTP request to any arbitrary device 
+        that is on the network, it could be easily be hardware not provided by WebBrickSystems as long as you have the details for
+        the required HTTP uri required.</p>
+
+
+    <h2>Configuration</h2>
+        <p>The handler specific configuration for this expects one or more url elements within the event element. 
+        This contains the folllowing attributes</p>
+
+        <ul>
+        <li>address - IP address or DNS/Hostfile name</li>
+        <li>uri - URI to be sent</li>
+        <li>cmd - HTTP command verb</li>
+        </ul>
+
+        <p>The url element may be repeated to get multiple requests isssued on a single trigger.
+        </p>
+        <p>The uri attribute may contain items that are substituted from the triggering event, this is achieved by enclosing the name
+        of a value in the events other data in %()s, e.g. above %(val)s. both the leading % and the trailing s are required.
+        </p>
+    <h2>Example</h2>
+
+    <pre>
+    &lt;eventInterface module='EventHandlers.HttpAction' name='HttpAction'&gt;
+        &lt;eventtype type="internal"&gt;
+            &lt;eventsource source="garagea/fore/30Sec" &gt;
+                &lt;event&gt;
+                    &lt;url address="garagea" uri="/hid.spi?COM=DT;A0;6;5;1;0;0::" cmd="GET" /&gt;
+                    &lt;url cmd='GET' uri='/hid.spi?COM=TT1;B;%(val)s:' address='10.100.100.100'/&gt;
+                &lt;/event&gt;
+            &lt;/eventsource&gt;
+        &lt;/eventtype&gt;
+
+    &lt;/eventInterface&gt;
+    </pre>
+
+    <p>This example issues a command to the webbrick whose address is garagea, the command is 'DT;A0;6;5;1;0;0', 
+    see webbrick manual for the valid commands.</p>
+
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>zones/heatsource</title>
+</head>
+
+<body>
+    <h1>zones/heatsource</h1>
+
+        <p>These events are to do with the control/feedback of a single heatsource.</p>
+
+    <h2>General</h2>
+
+        <p>A heatsource is responsible for control of a single heat source.</p> 
+
+    <h3>http://id.webbrick.co.uk/zones/heatsource</h3>
+        <p>This is the event type for all events to do with the heatsource.</p>
+
+    <h3>heatsource/n/run</h3>
+        <p>This event source indicates a requirement to run any devices required by to 
+        generate heat from this source. The run command may include a request to generate Low or High 
+        grade heat.</p>
+
+    <h3>heatsource/n/dorun</h3>
+        <p>This event is issued to get the heat source running, it will periodically be re-issued.</p>
+
+    <h3>heatsource/n/stop</h3>
+        <p>This event source indicates there is now no requirement to run any devices required to generate heat from this source.</p>
+
+    <h3>heatsource/n/dostop</h3>
+        <p>This event is issued to stop the heat source. Some heat sources will be run using dwells
+        on the dorun request such that the heat source will stop themselves, 
+        this is so that minimum run times are obeyed. Some heat sources will be explicitly stopped.</p>
+
+    <h3>heatsource/n/running</h3>
+        <p>This event source indicates that the heatsource n is running.</p>
+
+    <h3>heatsource/n/m/dorun</h3>
+        <p>Where a heat source consists of multiple units that work together then
+        they are referred to by adding a sub component name for the heat source.</p>
+
+    <h3>heatsource/n/m/dostop</h3>
+        <p>Where a heat source consists of multiple units that work together then
+        they are referred to by adding a sub component name for the heat source.</p>
+
+    <h3>heatsource/n/stopped</h3>
+        <p>This event source indicates the zone heatsource n has stopped.</p>
+
+    <h3>heatsource/n/availability</h3>
+        <p>This event source indicates the zone heatsource n has some availability, this 
+        may be None (0), Low (1), High (2). Low grade can be used to drive some heating zones or a 
+        buffer tank but is not capable of driving hot water or radiator systems. 
+        Some systems can be told to enter a specific state, i.e. ground source can 
+        generate low level heat for under floor.</p>
+
+    <h3>heatsource/n/inmaintainance</h3>
+        <p>Indicates heatsource n is being maintained and for our purposes is unavailable.</p>
+
+    <h3>heatsource/n/nomaintainance</h3>
+        <p>Indicates heatsource n is no longer being maintained and is available.</p>
+
+    <h3>heatsource/n/m/inmaintainance</h3>
+        <p>Indicates heatsource n subcomponent m is being maintained and for our purposes is unavailable.</p>
+
+    <h3>heatsource/n/m/nomaintainance</h3>
+        <p>Indicates heatsource n subcomponent m is no longer being maintained and is available.</p>
+</body>
+
+</html>

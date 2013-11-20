@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Introduction</title>
+  </head>
+  <body>
+    <h1>Introduction</h1>
+    
+    <p>
+		The core philosophy by which we develop:
+		
+      <ul>
+			<li><b><i>"Local Control - Global Intelligence"</i></b></li> 
+			<li><b><i>"Missing is not Broken"</i></b></li>
+			<li><b><i>"Open standards first"</i></b></li>
+      </ul>
+	  </p>
+
+    <p>
+		  This document provides information on configuring the WebBrick Gateway.
+    </p>
+    
+    <p>
+	    The WebBrick Gateway consists of three main components:
+		<ul>
+			<li> The user interface generation </li>
+			<li> The global intelligence to integrate all devices involved</li>
+			<li> WebBrick configuration management </li>
+		</ul>
+		
+      in the system. Their is some interaction between these as events being received from devices are used to update data used
+      for the user interface generation.
+    </p>
+
+    <p>
+        The user interfaces may involve dynamic updates with data being delivered to the browser display from the WebBrick Gateway without needing 
+        to use browser refresh.
+    </p>
+
+    <p>
+      Because the local control is not dependant on the central WebBrick Gateway there is no catastrophic failure mode in which you have no control
+      over your environment at all because a single system has failed.
+    </p>
+    
+    <p>
+        Please refer to the WebBrick Gateway user manual for features and user interface details. There are also documentation resources installed on the
+        WebBrick Gateway, on the Appliance these can be accessed by pointing your web browser at the WebBrick Gateway from a 
+        computer connected to the internal network. If on the Gateway system try the command webbrick_doc.py.
+    </p>
+
+  </body>
+</html>

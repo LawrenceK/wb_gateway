@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eventInterfaces>
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/DO'>
+            <eventsource source='webbrick/100/DO/5'>
+                <event>
+                    <params>
+			<testEq type='int' name='state'> 
+			    <value>0<value/>
+			</testEq>
+                    </params>
+                    <newEvent source='boiler/IsOff' type='internal'>
+                    </newEvent>
+                </event>
+                <event>
+                    <params>
+			<testEq name='state'> 
+			    <value>1<value/>
+			</testEq>
+                    </params>
+                    <newEvent source='boiler/IsOn' type='internal'>
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+</eventInterfaces>

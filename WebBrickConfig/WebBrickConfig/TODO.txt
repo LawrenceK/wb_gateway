@@ -1,0 +1,8 @@
+Update SVN with this log message
+
+[[
+Add WebBrickConfig server start file and configuration to allow server to be run from a CD.
+Directory for WebBrick configuration files is supplied on command line.
+Logging to files is disables.
+Use relative paths for accessing all server resources.
+]]

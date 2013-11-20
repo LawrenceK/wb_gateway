@@ -1,0 +1,25 @@
+<eventInterfaces>
+
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+        <eventtype type=''>
+
+            <eventsource source='time/runtime'>
+                <event>
+                    <params>
+                        <testEq name="elapsed" value='5'/>
+                    </params>
+                    <!-- 37 is DigOut, Temp, AnOut -->
+                    <url cmd='GET' uri='/hid.spi?COM=LGpassword:SO1;37:' address='SampleWb'/>
+                    <url cmd='GET' uri='/hid.spi?COM=LGpassword:SO1;37:' address='SampleWb'/>
+                    <url cmd='GET' uri='/hid.spi?COM=LGpassword:SO1;37:' address='SampleWb'/>
+                    <url cmd='GET' uri='/hid.spi?COM=LGpassword:SO1;37:' address='SampleWb'/>
+                    <url cmd='GET' uri='/hid.spi?COM=LGpassword:SO1;37:' address='SampleWb'/>
+                    <url cmd='GET' uri='/hid.spi?COM=LGpassword:SO1;37:' address='SampleWb'/>
+                    <url cmd='GET' uri='/hid.spi?COM=LGpassword:SO1;37:' address='SampleWb'/>
+                    <url cmd='GET' uri='/hid.spi?COM=LGpassword:SO1;37:' address='SampleWb'/>
+                </event>
+            </eventsource>
+
+        </eventtype>
+    </eventInterface>
+</eventInterfaces>

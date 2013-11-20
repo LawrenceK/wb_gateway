@@ -1,0 +1,129 @@
+/* CSS Document */
+
+#zonegroupbox {
+	position:absolute;
+	top:57px;
+	left:42px;
+}	
+
+#zonegroupboxtable {
+	width:242px;
+	height:405px;
+}
+
+#zonegrouptitle {
+	position:relative;
+}
+
+#zonegrouptitle .titlerightbutton {
+	position:absolute;
+	width:48px;
+	top:7px;
+	right:0px;
+}
+
+.activezoneicon {
+	background-color:#aedcc9;
+	vertical-align:middle;
+	margin-right:5px;
+}
+
+.inactivezoneicon {
+	background-color:#999999;
+	vertical-align:middle;
+	margin-right:5px;
+}
+
+.minusbutton img, .plusbutton img {
+	position:absolute;
+	right:0px;
+	vertical-align:middle;
+}
+
+.transicon {
+	width:66px;
+	height:65px;
+	background-color:#aedcc9;
+}
+
+a:hover .transicon, .transicon img:hover, .muteicon img:hover{
+	background-color:#caffe9;
+}
+
+.transOff,
+.transOn,
+.transPending,
+.muteOff,
+.muteOn,
+.mutePending,
+#volumecontrolcontainer
+{
+	float:left;
+	vertical-align:middle;
+}
+
+.transitem {
+	float:left;
+	margin-left:9px;
+	margin-right:9px;
+}
+.transitem  span{
+	float:left;
+}
+
+.transitemover {
+	float:left;
+	margin-right:5px;
+}
+
+.translabel {
+	text-align:center;
+}
+
+#nowplayingtracktitle h1 {
+	margin-top:0px;
+	margin-bottom:16px;
+}
+
+#albumartbox {
+	float: left;
+	position:relative;
+	width:123px;
+	height:123px;
+	overflow:hidden;
+	margin-right:14px;
+}
+
+#albumartframe {
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:123px;
+	height:123px;
+	background-image:url(../images/mediaplayer/albumartframe.png);
+	background-repeat:no-repeat;
+}
+
+#comingsoon h2 {
+	margin:0;
+	margin-top:5px;
+	margin-bottom:5px;
+	padding:0;
+	font-size:14px;
+}
+
+#comingsoon li {
+	position:relative;
+	padding:2px 0;
+	list-style:none;
+	border-bottom:none;
+}
+
+#comingsoon li:first-child {
+	padding-top:2px;
+}
+
+#volcontrolcontainer {
+	margin-top:20px;
+	margin-left:60px;
+}

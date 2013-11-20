@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Electrical Acceptance testing with WebBrick Triacs</title>
+</head>
+
+<body>
+    <h1>Electrical Acceptance testing with WebBrick Triacs</h1>
+    
+    <h2>Introduction</h2>
+    <p>
+      When testing an electrical circuit end to end a simple switch provides a low impedance path for both AC and DC.
+      A Triac will only event present a low impedance path to AC when it is triggered.  
+      When idle the Triac will present a high impedance path to the load, with some bleed in the AC domain. 
+      <br/>
+      WebBricks make fairly extensive use of Triacs to control a variety of equipment such as lighting, pumps valves etc.
+      This may provide a challenge at the testing phase since the tester may have no knowledge of the control state of the system.
+      This note outlines the connections and how they can be tested.
+    </p>
+    
+    <h2>Circuit Arrangement</h2>
+    <p>
+    Live is presented to each of the four Triacs in a WebBrick, The load side of the Triacs are presented to the 0,1,2,3 connections respectively.
+        <img width="65%" src="../Images/WBTriacs.png"  alt="WB Triac Arrangements"/>
+    </p>
+
+    <h2>Testing</h2>
+    <p>
+    It is a simple matter to make up a connector with flying leads (9-G-5,08, Camden part number CTB9358-9).  This connector is the same one used in the WebBricks.  This means that you can disconnect the outbound connection and the WebBrick and connect this rig to the outbound plug.
+    <br/>
+    You can now test each circuit between connections 1,2,3,4 and Neutral.  Note that connection 5 will be live unless you've switched off the supply locally or at the breaker.
+    </p>
+
+</body>
+
+</html>

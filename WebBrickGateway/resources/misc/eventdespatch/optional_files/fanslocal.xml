@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+
+<!--  Fan Control for cases where fans are on the same webbrick as the PIR or Humidity sensor that controls them-->
+<!-- TODO change Xurl to url and change SampleWb to target correct webbrick -->
+
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+        <!--This responds to events and does an HTTP request(s) as the action.-->
+        <!-- Internal routing events, triggered by PIR or Humidity sensor-->
+        <eventtype type="http://id.webbrick.co.uk/events/config/get">   
+            <eventsource source="fans/ensuite/dwDuration" >
+                <event>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=LG;installer:" cmd="GET"/>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=CW;7;%(val)s:" cmd="GET"/>
+                </event>
+            </eventsource>
+            <eventsource source="hum/ensuite/threshold" >
+                <event>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=LG;installer:" cmd="GET"/>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=CI0;H;%(val)s;D4;6;5;7;1:" cmd="GET"/>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+        <eventtype type="http://id.webbrick.co.uk/events/uri">   
+            <eventsource source="fans/ensuite/10Min" >
+                <event>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=DT;D4;6;5;600;0;0;0;0:" cmd="GET" />
+                </event>
+            </eventsource>
+        </eventtype>
+        
+        <eventtype type="internal">   
+            <eventsource source="ensuite/pir/disable" >
+                <event>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=LG;installer:" cmd="GET"/>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=CD9;D2;6;0;7;1;0;0;1:" cmd="GET"/>
+                </event>
+            </eventsource>
+            <eventsource source="ensuite/pir/enable" >
+                <event>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=LG;installer:" cmd="GET"/>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=CD9;D2;6;5;7;1;0;0;1:" cmd="GET"/>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+    </eventInterface> 
+    
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+             <!--we are not using digital outputs for this so we need to create running events, switch to delay the event later -->
+            <eventtype type='http://id.webbrick.co.uk/events/config/get'>
+                <eventsource source='fans/ensuite/PIRenabled'>
+                    <event>
+                        <params>
+                            <testEq type='int' name='val'> 
+                                <value>0</value>
+                            </testEq>
+                        </params>
+                        <newEvent type="internal" source="ensuite/pir/disable">
+                        </newEvent>
+                    </event>
+                    <event>
+                        <params>
+                            <testEq type='int' name='val'> 
+                                <value>1</value>
+                            </testEq>
+                        </params>
+                        <newEvent type="internal" source="ensuite/pir/enable">
+                        </newEvent>
+                    </event>
+                </eventsource>
+                
+            </eventtype>
+    </eventInterface>
+    
+    
+    
+    
+</eventInterfaces>

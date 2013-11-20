@@ -1,0 +1,79 @@
+<eventInterfaces>
+
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+    
+        <eventtype type="http://id.webbrick.co.uk/events/time/dayphaseext">
+        
+            <eventsource source="time/dayphaseext" >
+                <event>
+                    <params>
+                        <!-- Unknown -->
+                        <testEq name='dayphase' value='0' />
+                    </params>
+                    <!-- SM command takes Off Level, On Level, Fade Rate, 5V/12V -->
+                    <url address="10.100.100.100" uri="/hid.spi?COM=SM16;63:" cmd="GET" />
+                </event>
+                <event>
+                    <params>
+                        <!-- Night:Dark -->
+                        <testEq name='dayphase' value='1' />
+                    </params>
+                    <url address="10.100.100.100" uri="/hid.spi?COM=SM1;8:" cmd="GET" />
+                </event>
+                <event>
+                    <params>
+                        <!-- Night:Light -->
+                        <testEq name='dayphase' value='2' />
+                    </params>
+                    <url address="10.100.100.100" uri="/hid.spi?COM=SM4;16:" cmd="GET" />
+                </event>
+                <event>
+                    <params>
+                        <!-- Morning:Dark -->
+                        <testEq name='dayphase' value='3' />
+                    </params>
+                    <url address="10.100.100.100" uri="/hid.spi?COM=SM4;16:" cmd="GET" />
+                </event>
+                <event>
+                    <params>
+                        <!-- Morning:Light -->
+                        <testEq name='dayphase' value='4' />
+                    </params>
+                    <url address="10.100.100.100" uri="/hid.spi?COM=SM8;32:" cmd="GET" />
+                </event>
+                <event>
+                    <params>
+                        <!-- Day:Dark -->
+                        <testEq name='dayphase' value='5' />
+                    </params>
+                    <url address="10.100.100.100" uri="/hid.spi?COM=SM4;16:" cmd="GET" />
+                </event>
+                <event>
+                    <params>
+                        <!-- Day:Light -->
+                        <testEq name='dayphase' value='6' />
+                    </params>
+                    <url address="10.100.100.100" uri="/hid.spi?COM=SM16;63:" cmd="GET" />
+                </event>
+                <event>
+                    <params>
+                        <!-- Evening:Dark -->
+                        <testEq name='dayphase' value='7' />
+                    </params>
+                    <url address="10.100.100.100" uri="/hid.spi?COM=SM4;16:" cmd="GET" />
+                </event>
+                <event>
+                    <params>
+                        <!-- Evening:Light -->
+                        <testEq name='dayphase' value='8' />
+                    </params>
+                    <url address="10.100.100.100" uri="/hid.spi?COM=SM8;32:" cmd="GET" />
+                </event>
+            </eventsource>
+        
+        </eventtype>
+        
+    </eventInterface>
+    
+</eventInterfaces>
++

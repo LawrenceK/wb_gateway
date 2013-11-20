@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Styling</title>
+  </head>
+  <body>
+      <h1>Styling</h1>
+ 
+<p>
+        The WebBrick Gateway uses CSS (Cascading Style Sheets) extensively to style the user interface. In this way
+        the user interface pages can be made to look completly different without having to change the
+        content of the pages, e.g. change colours, backgrounds, fonts etc. It is possible this way to 
+        produce styling for an WebBrick Gateway that tailors it for a specific installer or customer.
+</p>
+
+     <h3>General</h3>
+		<p>
+		The main CSS source file is panel.css others may exist for bespoke developments, for bespoke copies these will be pointed to by /static/css in the configuration file.
+		</p>
+
+		<p>Other CSS files and their functions are listed here</p>
+		<ul>
+			<li>media.css, contains extra definitions for interactions with A/V systems</li>
+			<li>form.css, contains definitions for form elements, typically optimised for touch screen presentation</li>
+			<li>diag.css, contains the simplest possible definitions for the diagnostics pages, designed to reduce overheads</li>
+			<li>graph.css, contains extra definitions required for the monitoring and graphing module</li>
+			<li>mobile.css, contains definitions optimised for mobile devices</li>
+		</ul>
+		
+     <h3>Display Elements</h3>
+
+<p>
+A number of the user interface elements use distinct css class names and the user should refer to the
+section on display elements for the CSS class names.
+</p>
+<p>
+Each of these classes can be modified to change the overall look and feel of the element. 
+</p>
+<p>
+E.g. for a button.
+
+<pre>
+  td.buttonOn
+    { 
+      background-image : url("/static/images/on.png") ;
+      background-repeat : no-repeat ;
+      background-position: 96%;
+      text-align: left ;
+      border-style : outset ;
+      border-width: thin ;
+      padding: 1% 5% 1% 1%;
+      border-color: rgb(50%,50%,0%) ;		
+    }
+
+
+</pre>
+</p>
+<p>
+Refer to a good book on CSS for the possibilities, e.g:
+<ul>
+ <li>Cascading Style Sheets, Meyer, Pub: OReilly.</li>
+ <li>Integrated Html and CSS, Virginia Debolt, Sybex.</li>
+</ul>
+ 
+</p>
+</body>
+</html>

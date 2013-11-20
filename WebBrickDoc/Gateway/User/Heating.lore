@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Basic Guide to Heating controls</title>
+</head>
+
+<body>
+    <h1>Heating Controls</h1>
+    <h2>Overview</h2>
+
+    <p>Buildings are divided into <b>zones</b>, these are logical areas based on walls and air flow. So a bedroom or enclosed office
+    is logically a <b>zone</b>.  Larger areas are often subdivided into further <b>zones</b>, an open plan office or kitchen-dining area are examples of sub-divided <b>zones</b>.  <b>Zones</b> need to get their heating or cooling from a <b>zonegroup</b> this is usually the manifolds and valve work associated with distributing heat energy from a <b>heatsource</b>.  <b>Heatsource</b> refers to plant that either sources or sinks heat, i.e. provides heating or cooling.
+    </p>
+
+    <p><b>WebBricks</b> are connected to the plant, sensors and valves that make up the heating scheme for a building.  The <b>WebBricks</b> are connected to an Ethernet backbone for communication.  There is a <b>Gateway</b> that co-ordinates actions between all the <b>WebBricks</b>.
+    </p>
+    
+    <p>
+    The <b>WebBricks</b> and <b>Gateway</b> communicate using the HTTP protocol with the data transferred in a XML format.
+    </p>
+    
+    <h2>Flow of actions</h2>
+    <p> The <b>Gateway</b> maintains a series of schedules that define which target temperature should be applied to each <b>zone</b>.  This also takes into account the <b><i>occupancy</i></b> of the building and applies <b><i>weather compensation</i></b>.  When a <b>zone</b> is below its target it will go into demand.  The <b>Gateway</b> will then co-ordinate the <b>zonegroup</b> that feeds that <b>zone</b>.  A <b>heatsource</b> is then chosen on the basis of its cost and availability.
+    </p>
+    <p>
+    The heat then flows from the <b>heatsource</b> through the <b>zonegroups</b> to the <b>zones</b>.
+    </p>
+
+    <h2>Role of the Room Controller</h2>
+    <p>Some zones may have a <b>Room Controller</b> this is an input device that lets the occupants tell the system that they want to be warmer or cooler.  It does this by adjusting the target temperature of the <b>zone</b>. <br/>
+    The Room Controller will not create a change if the <b>zone</b> is disabled.  This may happen for the following reasons:
+        <ul>
+            <li>The <b>zone</b> has been disabled</li>
+            <li>The <b>zone</b> is set to follow occupancy and the home is in the vacation state</li>
+        </ul>
+    </p>
+
+    <p>
+         <div class="center">
+         <img src="../../Images/RoomController.png" alt="Room Controller" width="240px" />
+         </div>
+    </p>
+
+
+
+    <h2>Cooling and Chilled air considerations</h2>
+    <p>
+    Depending on the overall design of the HVAC plant there is the possibility that cooling or chilled air is supplied on a global basis. Here are two common examples:
+        <ul>
+            <li>An Air Source Heat Pump is used to provide either heating or cooling depending on the ambient conditions.  So either warm or chilled water flows around the <b>zonegroup</b> circuits. Note that an ASHP cannot change modes quickly or be cycled between modes.  A 2 hour rest period is used as a buffer between mode changes.</li>
+            <li>Circulation is chilled.</li>
+        </ul>
+    </p>
+    <p>
+        So on a global basis, <b>zones</b> fed from this sources are either all heated or all cooled.
+    </p>
+    <p>
+    The <b>Gateway</b> takes ambient conditions and weather into account, then determines whether a <b>heatsource</b> goes into a heating or cooling mode.  This is generally arranged so that if the outside temperature is expected to be above a threshold (say 26&ordm;C) for 2 hours the cooling mode is selected.
+    </p>
+
+    <h2>Accessing the heating controls</h2>
+    <p>
+    The actual navigation and graphics will depend on the 'skin' that has been provisioned with the <b>Gateway</b>.  However the underlying systems all work the same way.  Here is an example of a heating overview page:
+    </p>
+    <p>
+         <div class="center">
+         <img src="../../Images/Heating.png" alt="Heating overview" width="60%" />
+         </div>
+    </p>
+    <p>
+    In this example you can see that the target temperature is above the actual temperature and therefore this <b>zone</b> is 'Idle'.  Further, you can set that the source of the target was a manual entry.  
+    
+    Two settings for 'Early Start' are shown, a checkbox to set if this zone is part of early start and a target temperature.  These are typically used where a package of actions is defined for a one off event that is not part of the normal schedule.
+    
+    Looking further you can see options for 'Configuration' and 'Edit Schedule'.  Taking the 'Configuration' option gives:
+    </p>
+
+    <p>
+         <div class="center">
+         <img src="../../Images/HeatingConfig.png" alt="Heating config" width="583px" />
+         </div>
+    </p>
+
+    <p>
+    From the overview page you can select the 'Edit Schedule' option which gives a page like:
+    </p>
+
+    <p>
+         <div class="center">
+         <img src="../../Images/HeatingSchedule.png" alt="Heating schedule" width="577px" />
+         </div>
+    </p>
+    <p>
+    This is the progression of target temperatures for the week. The user can click anywhere on the row to edit an entry.  Sometimes the schedule will be shown in an alternative presentation, for example:
+    </p>
+    <p>
+         <div class="center">
+         <img src="../../Images/HeatingSchedAlt.png" alt="Heating schedule alternative version" width="794px" />
+         </div>
+    </p>
+
+</body>
+
+</html>

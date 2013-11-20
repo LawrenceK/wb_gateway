@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!-- !  This file contains the reboot function that is provoked, when the reboot button on the 
+        gateway userinterface is pressed. Related Files:
+            reboot_settings_overview.kid -->
+            
+    <eventInterface module='EventHandlers.ShellAction' name='ShellAction'>
+        <eventtype type="http://id.webbrick.co.uk/events/uri">
+            <eventsource source="from_ui/command/gateway/reboot" >
+                <event>
+					<command cmd='reboot' params='' />
+                </event>
+           </eventsource>
+        </eventtype>
+    </eventInterface>
+</eventInterfaces>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>WebBrick Gateway TouchScreen.</title>
+</head>
+<body><h1>WebBrick Gateway TouchScreen.</h1>
+    <p>
+        The WebBrick Gateway TouchScreen is a standalone display and control centre for the WebBrick Gateway.
+    </p>
+    <p>
+        The default configuration of the WebBrick Gateway TouchScreen is to use DHCP to get an IP address 
+        and to expect the WebBrick Gateway on 192.168.1.5:8080,
+        no changes should be neccessary unless you are running your WebBrick Gateway on another address. 
+    </p>
+</body>
+</html>

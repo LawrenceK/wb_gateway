@@ -1,0 +1,107 @@
+<html>
+<head><title>Event Mapping</title></head>
+<body>
+    <h1>Event Mapping</h1>
+
+    <p>As we have seen the raw event source's are not easily understood to be read by human eye as they
+    have a lot of internal structure. One of the primary use of EventMapper is to map one event to another,
+    in this example we give a more meaningfull name to an event.
+    </p>
+
+    <p>
+    So first the Xml.
+    <a href="01.02EventMapper.xml" class="html-listing" />
+    And a discussion of each part.
+    </p>
+
+    <h2>element: &lt;eventInterfaces&gt;</h2>
+	<p>
+    Each event despatch control file has a single top level container element called eventInterfaces, inside
+    of which are 1 or more eventInterface elements.
+    </p>
+   
+    <h2>element: &lt;eventInterface&gt;</h2>
+    <p>
+    An eventInterface element configures one instance of a named eventInterface, the configuration of
+    an instance is private to itself. Most of the event interfaces can be loaded multiple times in the same 
+    configuration files or across multiple configuration files. A few can only be loaded once as they use 
+    dedicated resources or there is no point loading multiple times - these are typically listed in 
+    BaseHandlers.xml.
+    </p>
+
+    <p>
+    An event interface element lists two attributes that are used to dynamically load the event interface, these
+    will be documented for each event interface. The dynamic loading means that it is possible to develop
+    bespoke event interfaces and deploy without rebuilding the complete gateway.
+    
+    Each event interface element typically has one or more eventType elements, this may not always be true
+    as it is possible to have event interfaces that handle the configuration differently.
+    </p>
+    <p>
+    The sample above loads the event interface EventMapper, this event interface generates one or more new 
+    events on recipt of a configured event.
+    </p>
+
+    <h2>element: &lt;eventtype&gt;</h2>
+    <p>
+    Most event interface then lists one or more event types that it is interested in, this may be blank if it wants to 
+    see all event types and filter on the other things. The event log is an example of an event interface that
+    listend to all events from all event sources (see BaseHandlers.xml).
+    </p>
+    <p>
+    The sample above listens for the event type http://id.webbrick.co.uk/events/webbrick/TD - the definition of the 
+    event types we define can be found at
+    <a href="http://id.webbrick.co.uk/events/index.html">http://id.webbrick.co.uk/events</a>
+    The TD event is sent by a webbrick when it 
+    sees a digital input activated, a Td (lower case d) is sent when the same event is generated from
+    the webbricks own home page.
+    </p>
+    
+    <h2>element: &lt;eventsource&gt;</h2>
+    <p>
+    Within the event type element the event interface lists one or more eventsource entries,
+    these are the event source's that the interface it is interested in. 
+    It is possible again to put the empty string in here which means listen to all events of the named type.
+    </p>
+    <p>
+    The sample listens for webbrick/101/TD/0. This is an event from a webbrick, webbrick node number 101, type is
+    TD and channel is 0. This is the naming convention for events sent by webbricks.
+    </p>
+
+    <h2>element: &lt;event&gt;</h2>
+
+    <p>The elements contained within the eventsource element tend to be more
+    event interface dependant and reference should be made to the event interface documentation at.
+    <a href="http://docs.webbrick.co.uk/eventinterfaces/EventInterfaces.html">http://docs.webbrick.co.uk/eventinterfaces/EventInterfaces.html</a>
+    </p>
+
+    <p>In the case of the EventMapper each event source element contains one event element, within
+    each of these is one or more newEvent elements.
+    </p>
+
+    <h2>element: &lt;newEvent&gt;</h2>
+
+    <p>Each newEvent element has 2 attributes and some optional elements. These are type and source. 
+    The type is the event type for the new event and the source is the event source for the new event.
+    The optional elements other_data and copy_other_data may exist see 
+    <a href="http://docs.webbrick.co.uk/eventinterfaces/EventMapper.html">
+    http://docs.webbrick.co.uk/eventinterfaces/EventMapper.html for details.</a>
+    </p>
+    <p>
+    In the sample we are going to generate a new event with type "internal" and source "light/garage/switch"
+    which may mean that the light switch in the garage has been operated.
+    </p>
+
+    <h2>Summary</h2>
+
+    <p>The new events can then be picked up by further event interfaces to perform some action. The advantage is
+    if you move the light switch you change the mpping in one place but every where else it still looks
+    for the light/switch/garage event.
+    </p>
+
+    <p>going overboard you coukld create a config file containing an event mapper setup for every single webbrick
+    in the setup.
+    </p>
+
+</body>
+</html>

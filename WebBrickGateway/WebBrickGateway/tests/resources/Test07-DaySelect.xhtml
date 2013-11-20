@@ -1,0 +1,111 @@
+<!--
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML, 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1-strict-dtd">
+<?xml version="1.0" encoding="utf-8"?>
+ +  $Id: Test07-DaySelect.xhtml 1457 2008-05-23 01:34:46Z webbrick $
+ +
+ +  WebBrick home gateway panel definition for a simple light switch.
+ +  Shower (pull-to-toggle) light switch emulation.
+ +
+ -->
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" >
+
+<head>
+  <title>Test Day select select Widget</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  <script src="/static/javascript/MochiKit.js"></script>
+  <script src="/static/javascript/WebBrick.js"></script>
+  <script src="/static/javascript/WbDayEntry.js"></script>
+  <script src="/static/javascript/debug.js"></script>
+  <style type="text/css">
+    body {
+        height:400px;
+        width:400px;
+        border: 1px solid #000;
+        }
+    table {
+        height:100%;
+        width:100%;
+        border: 1px solid #F00;
+        }
+    tr {
+        border: 1px solid #0F0;
+        }
+    td {
+        height:10%;
+        width:10%;
+        border: 1px solid #00F;
+        }
+    #WbOnOffEntry
+        {
+        background-color:#888;
+        }
+    #WbOnOffEntry table
+        {
+        background-color:#888;
+        }
+    #WbOnOffEntry tr
+        {
+        background-color:#888;
+        }
+    #WbOnOffEntry td
+        {
+        background-color:#888;
+        }
+  </style>
+</head>
+
+<body>
+
+<script>
+    function testCallBack( elm, txt )
+    {
+        logDebug("testCallBack: txt ", txt, "elm ", elm );
+        elm.textValue = txt;
+        if (txt || (txt == 0) )
+        {
+            replaceChildNodes(elm, txt);
+        }
+    }
+</script>
+
+<table>
+  <tr>
+    <td id="textText1" onclick="WbDayEntry_popup( this, partial( testCallBack, this ) )" textValue="SMTWtFs" >Click</td>
+    <td id="textText2" onclick="WbDayEntry_popup( this, partial( testCallBack, this ) )" textValue="-MTWtFs" >Click</td>
+    <td id="textText3" onclick="WbDayEntry_popup( this, partial( testCallBack, this ) )" textValue="S-TWtFs" >Click</td>
+    <td id="textText4" onclick="WbDayEntry_popup( this, partial( testCallBack, this ) )" textValue="SM-WtFs" >Click</td>
+    <td id="textText5" onclick="WbDayEntry_popup( this, partial( testCallBack, this ) )" textValue="SMT-tFs" >Click</td>
+  </tr>
+  <tr>
+    <td id="textText1" onclick="WbDayEntry_popup( this, partial( testCallBack, this ) )" textValue="SMTW-Fs" >Click</td>
+    <td id="textText2" onclick="WbDayEntry_popup( this, partial( testCallBack, this ) )" textValue="SMTWt-s" >Click</td>
+    <td id="textText3" onclick="WbDayEntry_popup( this, partial( testCallBack, this ) )" textValue="SMTWtF-" >Click</td>
+    <td id="textText4" onclick="WbDayEntry_popup( this, partial( testCallBack, this ) )" textValue="--TWtFs" >Click</td>
+    <td id="textText5" onclick="WbDayEntry_popup( this, partial( testCallBack, this ) )" textValue="SM--tFs" >Click</td>
+  </tr>
+  <tr>
+    <td id="textText1" onclick="WbDayEntry_popup( this, partial( testCallBack, this ) )" textValue="SMTW--s" >Click</td>
+    <td id="textText2" onclick="WbDayEntry_popup( this, partial( testCallBack, this ) )" textValue="-MTWtF-" >Click</td>
+    <td id="textText3" onclick="WbDayEntry_popup( this, partial( testCallBack, this ) )" textValue="S--WtFs" >Click</td>
+    <td id="textText4" onclick="WbDayEntry_popup( this, partial( testCallBack, this ) )" textValue="SMT--Fs" >Click</td>
+    <td id="textText5" onclick="WbDayEntry_popup( this, partial( testCallBack, this ) )" textValue="SMTWt--" >Click</td>
+  </tr>
+  <tr>
+    <td id="textText1" onclick="WbDayEntry_popup( this, partial( testCallBack, this ) )" textValue="---WtFs" >Click</td>
+    <td id="textText2" onclick="WbDayEntry_popup( this, partial( testCallBack, this ) )" textValue="SMT---s" >Click</td>
+    <td id="textText3" onclick="WbDayEntry_popup( this, partial( testCallBack, this ) )" textValue="--TWtF-" >Click</td>
+    <td id="textText4" onclick="WbDayEntry_popup( this, partial( testCallBack, this ) )" textValue="SM---Fs" >Click</td>
+    <td id="textText5" onclick="WbDayEntry_popup( this, partial( testCallBack, this ) )" textValue="-MTWt--" >Click</td>
+  </tr>
+  <tr>
+    <td id="textText1" onclick="WbDayEntry_popup( this, partial( testCallBack, this ) )" textValue="S---tFs" >Click</td>
+    <td id="textText2" onclick="WbDayEntry_popup( this, partial( testCallBack, this ) )" textValue="SMTW---" >Click</td>
+    <td id="textText3" onclick="WbDayEntry_popup( this, partial( testCallBack, this ) )" textValue="----tFs" >Click</td>
+    <td id="textText4" onclick="WbDayEntry_popup( this, partial( testCallBack, this ) )" textValue="-MTW---" >Click</td>
+    <td id="textText5" onclick="WbDayEntry_popup( this, partial( testCallBack, this ) )" textValue="S----Fs" >Click</td>
+  </tr>
+</table>
+
+</body>
+
+</html>

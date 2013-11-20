@@ -1,0 +1,86 @@
+<eventInterfaces>
+    <eventInterface module='EventHandlers.WebBrickMonitor' name='WebBrickMonitor' 
+            webReset='2'  clockReset='3' resetOnDefault='0' noDefaultReset='0' clockMaxError=''>
+        <!-- This responds to SS events from webbricks, and monitors them, correcting clock times etc. -->
+        <!-- resetOnDefault='1' will reset siteplayers on 10.100.100.100 -->
+    </eventInterface>
+    
+    <eventInterface module='EventHandlers.WebbrickUdpEventReceiver' name='WebbrickUdpEventReceiver' listenPort='2552'>
+        <!-- receive UDP events and turn into events with the type prefix http://id.webbrick.co.uk/events/webbrick/. -->
+    </eventInterface>
+
+    <eventInterface module='EventHandlers.WebbrickStatusQuery' name='WebbrickStatusQuery'>
+        <eventtype type="">
+            <eventsource source="time/second" >
+                <event>
+                    <params>
+                        <!-- every 5 seconds, long term should back this off to every minute -->
+                        <testEq name='second'><value>4</value><value>14</value><value>24</value><value>34</value><value>44</value><value>54</value></testEq>
+                    </params>
+                    <scan/>
+                </event>
+                <event>
+                    <params>
+                        <!-- every minute but nor on the minute -->
+                        <testEq name='second' value='56' />
+                    </params>
+                    <recover>Go and see whether missing webbricks have returned.</recover>
+                </event>
+            </eventsource>
+
+            <eventsource source="time/runtime" >
+                <event>
+                    <params>
+                        <testEq name='elapsed' value='5' />
+                    </params>
+                </event>
+            </eventsource>
+
+            <eventsource source="time/minute" >
+                <event>
+                    <!-- go and perform discovery on the 10 network, change if customer is on some other network -->
+        <Xdiscover address="10.255.255.255"/>
+                </event>
+            </eventsource>
+
+        </eventtype>
+
+        <!-- listen for webbricks, part of discovery. -->
+        <eventtype type="http://id.webbrick.co.uk/events/webbrick/AA">
+            <eventsource source="" >
+                <event>
+                    <discoverFound />
+                </event>
+            </eventsource>
+        </eventtype>
+        <eventtype type="http://id.webbrick.co.uk/events/webbrick/AT">
+            <eventsource source="" >
+                <event>
+                    <discoverFound />
+                </event>
+            </eventsource>
+        </eventtype>
+        <eventtype type="http://id.webbrick.co.uk/events/webbrick/NN">
+            <eventsource source="" >
+                <event>
+                    <discoverFound />
+                </event>
+            </eventsource>
+        </eventtype>
+        <eventtype type="http://id.webbrick.co.uk/events/webbrick/SS">
+            <eventsource source="" >
+                <event>
+                    <discoverFound />
+                </event>
+            </eventsource>
+        </eventtype>
+        <eventtype type="http://id.webbrick.co.uk/events/webbrick/ST">
+            <eventsource source="" >
+                <event>
+                    <discoverFound />
+                </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+
+</eventInterfaces>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><title>H2M8 Documentation Simple WebBrick to WebBrick event</title><link href="./css/h2m8.css" type="text/css" rel="stylesheet" /><link href="../css/h2m8.css" type="text/css" rel="stylesheet" /><link href="../../css/h2m8.css" type="text/css" rel="stylesheet" /></head><body bgcolor="white"><h1 class="title">Simple WebBrick to WebBrick event</h1><div class="toc"><ol><li><a href="#auto0">Behaviour</a></li><li><a href="#auto1">What Happens</a></li><li><a href="#auto2">File Sections</a></li><ul><li><a href="#auto3">HttpAction</a></li><li><a href="#auto4">EvMapper</a></li></ul></ol></div><div class="content"><span></span><p>In this example we listen for an event generated on one WebBrick and from this issue an action to
+	another WebBrick.
+	</p><p>
+	As shipped the example is designed to work on a single WebBrick, with only the following configuration changes
+	</p><p>Nodename: bench</p><p>Nodenumber: 101</p><p>This configuration is kept away from a new unconfigured WebBrick to avoid any confusion when bringing WebBricks up
+	for the first time.</p><p>Note that all the internal events begin with '02'.  This is so that they are mot confused with other similar events
+	that might be generated buy having more than one WebBrick to WebBrick event sampple file in the EventDespatch directory.
+	</p><h2>Behaviour<a name="auto0"></a></h2><p>In this example, Digital Input 0 will trigger Digital Input 7</p><h2>What Happens<a name="auto1"></a></h2><p>
+	The EventMapper section subscribes to 'Td' and 'TD' events from the SOURCE WebBrick.  When these events are
+	received, new '02sample' events are raised.
+	</p><p>
+	The HttpAction section subscribes to the '02sample' events, when received, this section calls the
+	URI for the TARGET WebBrick with the required ACTION.
+	</p><h2>File Sections<a name="auto2"></a></h2><p>There are two main sections in this file:</p><ul><li>
+	'EventHandlers.HttpAction' name='HttpAction'
+	</li><li>
+	'EventHandlers.EventMapper' name='EventMapper'
+	</li></ul><h3>HttpAction<a name="auto3"></a></h3><p> This section deals with the TARGET WebBricks and the actions that will be called </p><h3>EvMapper<a name="auto4"></a></h3><p> This section deals with mapping events that arrive from:
+	<ul><li> URI calls </li><li> WebBrick Web Interfaces </li><li> WebBrick Physical Interfaces </li></ul></p></div><p><a href="index.html">Index</a></p><span class="version">Version: </span></body></html>

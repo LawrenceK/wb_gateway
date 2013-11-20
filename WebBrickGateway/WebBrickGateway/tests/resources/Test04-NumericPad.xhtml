@@ -1,0 +1,108 @@
+<!--
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML, 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1-strict-dtd">
+<?xml version="1.0" encoding="utf-8"?>
+ +  $Id: Test04-NumericPad.xhtml 1457 2008-05-23 01:34:46Z webbrick $
+ +
+ +  WebBrick home gateway panel definition for a simple light switch.
+ +  Shower (pull-to-toggle) light switch emulation.
+ +
+ -->
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" >
+
+<head>
+  <title>Test Numeric Keypad</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  <script src="/static/javascript/MochiKit.js"></script>
+  <script src="/static/javascript/WebBrick.js"></script>
+  <script src="/static/javascript/KeyCheck.js"></script>
+  <script src="/static/javascript/NumericPad.js"></script>
+  <script src="/static/javascript/debug.js"></script>
+  <style type="text/css">
+    body {
+        height:400px;
+        width:400px;
+        border: 1px solid #000;
+        }
+    table {
+        height:100%;
+        width:100%;
+        border: 1px solid #F00;
+        }
+    tr {
+        border: 1px solid #0F0;
+        }
+    td {
+        height:10%;
+        width:10%;
+        border: 1px solid #00F;
+        }
+    #numberpad
+        {
+        background-color:#888;
+        }
+    #numberpad table
+        {
+        background-color:#888;
+        }
+    #numberpad tr
+        {
+        background-color:#888;
+        }
+    #numberpad td
+        {
+        background-color:#888;
+        }
+  </style>
+</head>
+
+<body>
+
+<script>
+    function testCallBack( elm, txt )
+    {
+        logDebug("testCallBack: txt ", txt, "elm ", elm );
+        replaceChildNodes(elm, txt);
+    }
+</script>
+
+<table>
+  <tr>
+    <td id="textText1" onclick="PopUpNumericEntry( this, partial( testCallBack, this ) )">Click</td>
+    <td id="textText2" onclick="PopUpNumericEntry( this, partial( testCallBack, this ) )">Click</td>
+    <td id="textText3" onclick="PopUpNumericEntry( this, partial( testCallBack, this ) )">Click</td>
+    <td id="textText4" onclick="PopUpNumericEntry( this, partial( testCallBack, this ) )">Click</td>
+    <td id="textText5" onclick="PopUpNumericEntry( this, partial( testCallBack, this ) )">Click</td>
+  </tr>
+  <tr>
+    <td id="textText1" onclick="PopUpNumericEntry( this, partial( testCallBack, this ) )">Click</td>
+    <td id="textText2" onclick="PopUpNumericEntry( this, partial( testCallBack, this ) )">Click</td>
+    <td id="textText3" onclick="PopUpNumericEntry( this, partial( testCallBack, this ) )">Click</td>
+    <td id="textText4" onclick="PopUpNumericEntry( this, partial( testCallBack, this ) )">Click</td>
+    <td id="textText5" onclick="PopUpNumericEntry( this, partial( testCallBack, this ) )">Click</td>
+  </tr>
+  <tr>
+    <td id="textText1" onclick="PopUpNumericEntry( this, partial( testCallBack, this ) )">Click</td>
+    <td id="textText2" onclick="PopUpNumericEntry( this, partial( testCallBack, this ) )">Click</td>
+    <td id="textText3" onclick="PopUpNumericEntry( this, partial( testCallBack, this ) )">Click</td>
+    <td id="textText4" onclick="PopUpNumericEntry( this, partial( testCallBack, this ) )">Click</td>
+    <td id="textText5" onclick="PopUpNumericEntry( this, partial( testCallBack, this ) )">Click</td>
+  </tr>
+  <tr>
+    <td id="textText1" onclick="PopUpNumericEntry( this, partial( testCallBack, this ) )">Click</td>
+    <td id="textText2" onclick="PopUpNumericEntry( this, partial( testCallBack, this ) )">Click</td>
+    <td id="textText3" onclick="PopUpNumericEntry( this, partial( testCallBack, this ) )">Click</td>
+    <td id="textText4" onclick="PopUpNumericEntry( this, partial( testCallBack, this ) )">Click</td>
+    <td id="textText5" onclick="PopUpNumericEntry( this, partial( testCallBack, this ) )">Click</td>
+  </tr>
+  <tr>
+    <td id="textText1" onclick="PopUpNumericEntry( this, partial( testCallBack, this ) )">Click</td>
+    <td id="textText2" onclick="PopUpNumericEntry( this, partial( testCallBack, this ) )">Click</td>
+    <td id="textText3" onclick="PopUpNumericEntry( this, partial( testCallBack, this ) )">Click</td>
+    <td id="textText4" onclick="PopUpNumericEntry( this, partial( testCallBack, this ) )">Click</td>
+    <td id="textText5" onclick="PopUpNumericEntry( this, partial( testCallBack, this ) )">Click</td>
+  </tr>
+</table>
+
+</body>
+
+</html>

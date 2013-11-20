@@ -1,0 +1,175 @@
+<?xml version="1.0" ?>
+<userprofiles>
+  <useragent client="opera">
+    User-Agent String
+  </useragent>
+  <useragent client="firefox">
+    mozilla/5.0 (windows; u; windows nt 5.1; en-us; rv:1.8.1.6) gecko/20070725 firefox/2.0.0.6
+  </useragent>
+  <useragent client="firefox">
+    mozilla/5.0 (windows; u; windows nt 5.1; en-us; rv:1.8.1.7) gecko/20070914 firefox/2.0.0.7
+  </useragent>
+  <useragent client="firefox">
+    mozilla/5.0 (windows; u; windows nt 5.1; en-us; rv:1.8.1.8) gecko/20071008 firefox/2.0.0.8
+  </useragent>
+  <useragent client="msie">
+    mozilla/4.0 (compatible; msie 7.0; windows nt 5.1; .net clr 1.0.3705; .net clr 1.1.4322; media center pc 4.0; .net clr 2.0.50727)
+  </useragent>
+  <useragent client="firefox">
+    mozilla/5.0 (windows; u; windows nt 5.1; en-us; rv:1.8.1.9) gecko/20071025 firefox/2.0.0.9
+  </useragent>
+  <useragent client="firefox">
+    mozilla/5.0 (windows; u; windows nt 5.1; en-us; rv:1.8.1.10) gecko/20071115 firefox/2.0.0.10
+  </useragent>
+  <useragent client="firefox">
+    mozilla/5.0 (windows; u; windows nt 5.1; en-us; rv:1.8.1.11) gecko/20071127 firefox/2.0.0.11
+  </useragent>
+  <useragent client="firefox">
+    mozilla/5.0 (x11; u; linux i686; en-us; rv:1.8.0.12) gecko/20070719 centos/1.5.0.12-3.el5.centos firefox/1.5.0.12
+  </useragent>
+  <useragent client="firefox">
+    mozilla/5.0 (windows; u; windows nt 5.1; en-us; rv:1.8.1.12) gecko/20080201 firefox/2.0.0.12
+  </useragent>
+  <useragent client="firefox">
+    mozilla/5.0 (windows; u; windows nt 6.0; en-us; rv:1.8.1.11) gecko/20071127 firefox/2.0.0.11
+  </useragent>
+  <useragent client="firefox">
+    mozilla/5.0 (windows; u; windows nt 5.1; en-us; rv:1.8.1.13) gecko/20080311 firefox/2.0.0.13
+  </useragent>
+  <useragent client="windowsce">
+    mozilla/4.0 (compatible; msie 6.0; windows ce)
+  </useragent>
+  <useragent client="firefox">
+    mozilla/5.0 (windows; u; windows nt 5.1; en-us; rv:1.8.1.14) gecko/20080404 firefox/2.0.0.14
+  </useragent>
+  <useragent client="firefox">
+    mozilla/5.0 (x11; u; linux i686; en-us; rv:1.8.1.12) gecko/20080208 fedora/2.0.0.12-1.fc8 firefox/2.0.0.12
+  </useragent>
+  <useragent client="firefox">
+    mozilla/5.0 (x11; u; linux i686; en-us; rv:1.8.1.14) gecko/20080416 fedora/2.0.0.14-1.fc8 firefox/2.0.0.14
+  </useragent>
+  <useragent client="unknown">
+    wget/1.10.2
+  </useragent>
+  <useragent client="firefox">
+    mozilla/5.0 (windows; u; windows nt 5.1; en-us; rv:1.8.1.15) gecko/20080623 firefox/2.0.0.15
+  </useragent>
+  <useragent client="unknown"/>
+  <useragent client="unknown">
+    wget/1.9+cvs-stable (red hat modified)
+  </useragent>
+  <useragent client="msie">
+    mozilla/4.0 (compatible; msie 7.0; windows nt 6.0; slcc1; .net clr 2.0.50727; .net clr 3.0.04506; .net clr 1.1.4322; infopath.2; officeliveconnector.1.1)
+  </useragent>
+  <useragent client="firefox">
+    firefox
+  </useragent>
+  <useragent client="msie">
+    mozilla/4.0 (compatible; msie 7.0; windows nt 5.1; .net clr 1.0.3705; .net clr 1.1.4322; media center pc 4.0; .net clr 2.0.50727; .net clr 3.0.04506.30)
+  </useragent>
+  <useragent client="opera">
+    opera/9.10 (windows nt 5.1; u; en)
+  </useragent>
+  <useragent client="firefox">
+    mozilla/5.0 (windows; u; windows nt 5.1; en-us; rv:1.8.1.16) gecko/20080702 firefox/2.0.0.16
+  </useragent>
+  <useragent client="firefox">
+    mozilla/5.0 (windows; u; windows nt 6.0; en-gb; rv:1.9.0.1) gecko/2008070208 firefox/3.0.1
+  </useragent>
+  <useragent client="firefox">
+    mozilla/5.0 (windows; u; windows nt 5.1; en-gb; rv:1.9.0.1) gecko/2008070208 firefox/3.0.1
+  </useragent>
+  <useragent client="msie">
+    mozilla/4.0 (compatible; msie 7.0; windows nt 6.0; slcc1; .net clr 2.0.50727; media center pc 5.0; .net clr 3.0.04506; tablet pc 2.0; .net clr 1.1.4322; .net clr 3.5.21022; infopath.2; officeliveconnector.1.1)
+  </useragent>
+  <useragent client="ipod">
+    mozilla/5.0 (ipod; u; cpu like mac os x; en) applewebkit/420.1 (khtml, like gecko) version/3.0 mobile/4a102 safari/419.3
+  </useragent>
+  <useragent client="chrome">
+    mozilla/5.0 (windows; u; windows nt 6.0; en-us) applewebkit/525.13 (khtml, like gecko) chrome/0.2.149.29 safari/525.13
+  </useragent>
+  <useragent client="msie">
+    mozilla/4.0 (compatible; msie 7.0; windows nt 6.0; slcc1; .net clr 2.0.50727; media center pc 5.0; .net clr 3.0.04506; wwtclient2)
+  </useragent>
+  <useragent client="safari">
+    mozilla/5.0 (iphone; u; cpu iphone os 2_1 like mac os x; en-us) applewebkit/525.18.1 (khtml, like gecko) version/3.1.1 mobile/5f136 safari/525.20
+  </useragent>
+  <useragent client="firefox">
+    mozilla/5.0 (x11; u; linux i686; en-us; rv:1.8.1.14) gecko/20080418 iceweasel/2.0.0.14 (zenwalk gnu linux)
+  </useragent>
+  <useragent client="firefox">
+    mozilla/5.0 (windows; u; windows nt 5.1; en-us; rv:1.8.1.17) gecko/20080829 firefox/2.0.0.17
+  </useragent>
+  <useragent client="firefox">
+    mozilla/5.0 (windows; u; windows nt 6.0; en-gb; rv:1.9.0.2) gecko/2008091620 firefox/3.0.2
+  </useragent>
+  <useragent client="msie">
+    mozilla/4.0 (compatible; msie 7.0; windows nt 6.0; slcc1; .net clr 2.0.50727; .net clr 3.0.04506; infopath.2; .net clr 3.5.21022)
+  </useragent>
+  <useragent client="msie">
+    mozilla/4.0 (compatible; msie 7.0; windows nt 6.0; sv1; slcc1; .net clr 2.0.50727; .net clr 3.0.04506; infopath.2)
+  </useragent>
+  <useragent client="msie">
+    mozilla/4.0 (compatible; msie 7.0; windows nt 6.0; slcc1; .net clr 2.0.50727; media center pc 5.0; .net clr 3.0.04506)
+  </useragent>
+  <useragent client="msie">
+    mozilla/4.0 (compatible; msie 7.0; windows nt 6.0; slcc1; .net clr 2.0.50727; media center pc 5.0; .net clr 3.0.04506; infopath.2)
+  </useragent>
+  <useragent client="firefox">
+    mozilla/5.0 (windows; u; windows nt 5.1; en-us; rv:1.9.0.2) gecko/2008091620 firefox/3.0.2
+  </useragent>
+  <useragent client="firefox">
+    mozilla/5.0 (windows; u; windows nt 5.1; en-us; rv:1.9.0.3) gecko/2008092417 firefox/3.0.3
+  </useragent>
+  <useragent client="firefox">
+    mozilla/5.0 (windows; u; windows nt 6.0; en-gb; rv:1.9.0.3) gecko/2008092417 firefox/3.0.3
+  </useragent>
+  <client name="default">
+    <default alinksonly="no" flash="no" javascript="yes" templateModule="templates" tg_format="xhtml"/>
+  </client>
+  <client name="unknown">
+    <default alinksonly="no" flash="no" javascript="yes" templateModule="templates" tg_format="xhtml"/>
+  </client>
+  <client name="operamini">
+    <default alinksonly="no" flash="no" javascript="no" templateModule="templates.simple" tg_format="xhtml"/>
+  </client>
+  <client name="windowsce">
+    <default alinksonly="no" flash="no" javascript="no" templateModule="templates.simple" tg_format="xhtml"/>
+  </client>
+  <client name="minimo">
+    <default alinksonly="no" flash="no" javascript="yes" templateModule="templates.simple"/>
+  </client>
+  <client name="windowsmc">
+    <default alinksonly="yes" flash="no" javascript="no" templateModule="templates" tg_format="xhtml"/>
+  </client>
+  <client name="phonesnom">
+    <default alinksonly="no" flash="no" javascript="no" templateModule="templates.snom" tg_format="xml"/>
+  </client>
+  <client name="phonecisco">
+    <default alinksonly="no" flash="no" javascript="no" templateModule="templates.cisco" tg_format="xml"/>
+  </client>
+  <client name="phoneastra">
+    <default alinksonly="no" flash="no" javascript="no" templateModule="templates.aastra" tg_format="xml"/>
+  </client>
+  <client name="firefox">
+    <default alinksonly="no" flash="yes" javascript="yes" templateModule="templates" tg_format="xhtml"/>
+  </client>
+  <client name="nevo">
+    <default alinksonly="no" flash="yes" javascript="yes" templateModule="templates" tg_format="xhtml"/>
+  </client>
+  <client name="chrome">
+    <default alinksonly="no" flash="yes" javascript="yes" templateModule="templates" tg_format="xhtml"/>
+  </client>
+  <client name="msie">
+    <default alinksonly="no" flash="yes" javascript="yes"/>
+  </client>
+  <client name="opera">
+    <default/>
+  </client>
+  <client name="safari">
+    <default templateModule="templates.notd"/>
+  </client>
+  <client name="ipod">
+    <default javascript="yes" templateModule="templates"/>
+  </client>
+</userprofiles>

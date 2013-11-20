@@ -1,0 +1,86 @@
+<?xml version="1.0" ?>
+<!-- Test perisist file for schedule processor -->
+<persist>
+  <entry source="schedule/test">
+    <!-- Futures, the schedules will be dynamically defined -->
+    <value name="enable">
+      yes
+    </value>
+    <value name="onoff">
+      boiler
+    </value>
+    <value name="value">
+      zone1
+    </value>
+    <value name="timepoints">
+      4
+    </value>
+  </entry>
+  <entry source="schedule/test/0">
+    <value name="time">
+      05:30:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/test/1">
+    <value name="time">
+      08:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/test/2">
+    <value name="time">
+      16:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/test/3">
+    <value name="time">
+      22:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+
+  <entry source="schedule/test/0/boiler">
+    <value name="onoff">
+      On
+    </value>
+  </entry>
+  <entry source="schedule/test/0/zone1">
+    <value name="val">
+      21.0
+    </value>
+  </entry>
+
+  <entry source="schedule/test/1/zone1">
+    <value name="val">
+      18.0
+    </value>
+  </entry>
+
+  <entry source="schedule/test/2/boiler">
+    <value name="onoff">
+      Off
+    </value>
+  </entry>
+
+  <entry source="schedule/test/3/boiler">
+    <value name="onoff">
+      On
+    </value>
+  </entry>
+  <entry source="schedule/test/3/zone1">
+    <value name="val">
+      21.0
+    </value>
+  </entry>
+
+</persist>

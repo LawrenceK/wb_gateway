@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>zones/zonegroup</title>
+</head>
+
+<body>
+    <h1>zones/zonegroup</h1>
+
+        <p>These events are to do with the control/feedback of a zone group.</p>
+
+    <h2>General</h2>
+
+        <p>A zone group is responsible for control of anything that is used by multiple zones.</p> 
+
+    <h3>http://id.webbrick.co.uk/zones/zonegroup</h3>
+        <p>This is the event type for all events to do with the zone group.</p>
+
+    <h3>zonegroup/n/run</h3>
+        <p>This event source indicates a requirement to run any devices required by the zone group n.</p>
+
+    <h3>zonegroup/n/stop</h3>
+        <p>This event source indicates there is now no requirement to run any devices required by the zone group n.</p>
+
+    <h3>zonegroup/n/running</h3>
+        <p>This event source indicates that the zone group n is running.</p>
+
+    <h3>zonegroup/n/stopped</h3>
+        <p>This event source indicates the zone group n has stopped.</p>
+</body>
+
+</html>

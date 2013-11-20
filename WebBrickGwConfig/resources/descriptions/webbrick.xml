@@ -1,0 +1,16 @@
+<device>
+    <type val="WebBrick"> 
+        <subtype val="IP" />
+    </type>
+    <ip val="10.100.100.100" />
+    <id val="" />
+    <number val=""/>
+    <location val=""/>
+    <name val="New Webbrick" />
+    <confstatus val="not configured" />
+    <keypads> <!-- These are keypads -->
+    </keypads>
+    <commands>
+        
+    </commands>
+</device>

@@ -1,0 +1,58 @@
+/* $Id: panel.css 2213 2008-05-11 12:57:45Z lawrence $
+ *
+ * CSS definitions for very simple diagnostics panels
+ *
+ *  ASH 13-Jan-2009 : Initial implemetation
+ *         
+ *
+ */
+
+body    { /*background-image : url("/static/images/FF99FF.png")*/ ;  
+          font-family: Helvetica, Verdana, Arial, sans-serif; 
+          font-size: medium;
+		  -moz-user-select:none;
+		  color: #444444 ;
+		  background-color: #BBFFBB ;
+		  margin: 0% 0% 0% 1% ;
+		  padding: 6px 6px 6px 6px ;
+        }
+
+
+table, .navTable   { 
+		  margin-left: 1% ;
+          width : 98% ;
+          border-collapse: separate ;
+          border-spacing: 2pt 2pt ;
+        }
+				
+.infoTable  {
+            position: absolute ;
+            bottom: 3px ;
+            }
+
+p		{
+          font-weight: normal;
+		}
+
+
+td,th      { 
+	color: #444444 ;
+    text-align: left;
+    padding: 4px 4px 4px 4px ;
+    margin: 4px 4px 4px 4px ;
+    }
+	
+a	{
+        text-align: left;
+		text-decoration: none ;
+        font-weight: bolder;
+		border-style : solid ;
+		border-width: thin ;
+        border-color: rgb(50%,50%,50%) ;		
+		vertical-align: middle ;
+		position: relative ;
+		z-index: 0 ;
+		color: #444444 ;
+        padding: 4px 4px 4px 4px ;
+	}
+

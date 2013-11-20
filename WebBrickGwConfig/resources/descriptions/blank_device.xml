@@ -1,0 +1,41 @@
+<device>
+    <type val=""> 
+        <subtype val="" />
+    </type>
+    <ip val="" />
+    <id val="" />
+    <location val=""/>
+    <name val="" />
+    <connections>
+        <connection>
+            <sources>
+                <source>
+                    <type val="" />
+                    <focus val="" />
+                    <name val="" />
+                    <connectedto device="" sink=""/>
+                </source>
+                <source>
+                    <type val="" />
+                    <focus val="" />
+                    <name val="" />
+                    <connectedto device="" sink=""/>
+                </source>
+            </sources>
+            <sinks>
+                <sink>
+                    <type val="" />
+                    <focus val="" />
+                    <name val="" />
+                    <connectedto device="" sink=""/>
+                </sink>
+                <sink>
+                    <type val="" />
+                    <focus val="" />
+                    <name val="" />
+                    <connectedto device="" sink=""/>
+                </sink>
+            </sinks>    
+         </connection>
+    </connections>
+</device>

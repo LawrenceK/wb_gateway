@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta name="author" content="Lawrence Klyne" />
+  <title>WebBrick event URIs</title>
+  <style type="text/css">
+  .body { margin-left: 40px; }
+  .code { font-family: monospace; }
+  .param { font-style: italic;  }
+  .strong { font-weight: bold; }
+  </style>
+</head>
+
+<body>
+
+<h2>Alert (AA) Event.</h2>
+
+This event is sent if by a webbrick after a do alert (DA) command is sent. This command could be broadcast 
+to webbricks.
+
+Type=http://id.webbrick.co.uk/events/webbrick/AA
+Source=webbrick/fromNode/AT
+
+ipAdr=dotted ip address
+udpType=G
+pktType=AA
+fromNode=webbrick node number
+macAdr=ethernet MAC address
+
+</body>
+
+</html>

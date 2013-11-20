@@ -1,0 +1,4 @@
+<eventInterfaces>
+    <eventInterface module='EventHandlers.PersistFile' name='PersistFile' persistFile='webbrickgateway'>
+    </eventInterface>
+</eventInterfaces>

@@ -1,0 +1,225 @@
+<eventInterfaces>
+    <!--
+    ============================================================================================
+                                    Off/On Timers
+    ============================================================================================
+
+    A reasonably generic set of timers for counting down to 'off' actions.  
+    
+        Used for switching off lighting in areas where there is no movement.
+        Used for switching on lighting in areas where the lighting is off and movement is detected
+    
+    Andy Harris  22nd March 2008
+	
+    Updated 15th August 2010 added functions to bring lights on as well as a config value
+                             to enable and disable functions
+    
+    -->
+
+   <eventInterface module='EventHandlers.Counters' name='Counters'>
+            <!-- All counters must be declared -->
+        <counter name="offcount0" maximum="5" minimum="0" resetvalue="5"/>
+        <counter name="offcount1" maximum="5" minimum="0" resetvalue="5"/>
+        <counter name="offcount2" maximum="5" minimum="0" resetvalue="5"/>
+        <counter name="offcount3" maximum="5" minimum="0" resetvalue="5"/>
+
+        <eventtype type="http://id.webbrick.co.uk/events/time/minute">
+            <eventsource source="" >
+                    <event>
+                        <decrement name="offcount0" />
+                        <decrement name="offcount1" />
+                        <decrement name="offcount2" />
+                        <decrement name="offcount3" />
+                        <newEvent type="offTimer" source="offcount0">
+                            <copy_other_data val="offcount0" />
+                        </newEvent>
+                        <newEvent type="offTimer" source="offcount1">
+                            <copy_other_data val="offcount1" />
+                        </newEvent>
+                        <newEvent type="offTimer" source="offcount2">
+                            <copy_other_data val="offcount2" />
+                        </newEvent>
+                        <newEvent type="offTimer" source="offcount3">
+                            <copy_other_data val="offcount3" />
+                        </newEvent>
+                    </event>
+                </eventsource>
+            </eventtype>
+
+        <!-- PIR Driven Example -->
+        <eventtype type="http://id.webbrick.co.uk/events/webbrick/TD">
+            <eventsource source="webbrick/34/TD/8" >
+                <event>
+                    <reset name="offcount0" />
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <!-- Presence driven Example -->
+        <eventtype type="http://id.webbrick.co.uk/events/webbrick/DO">
+            <eventsource source="webbrick/34/DO/4" >
+                <event>
+                    <param>
+                        <testEq name='state' value='1' />
+                    </param>
+                    <reset name="offcount0"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+    </eventInterface>    
+
+
+
+
+    <eventInterface module='EventHandlers.Compound' name='Compound'>
+
+        <!--  
+        =================================================================================
+                        Build the information
+        =================================================================================
+        -->
+
+        <!-- Triggers -->
+        <eventtype type="offTimer">
+            <eventsource source="offcount0" >
+                <event>
+                    <action name="offcount0" key="val" transient="true"/>
+                </event>
+            </eventsource>
+            <eventsource source="offcount1" >
+                <event>
+                    <action name="offcount1" key="val" transient="true"/>
+                </event>
+            </eventsource>
+            <eventsource source="offcount2" >
+                <event>
+                    <action name="offcount2" key="val" transient="true"/>
+                </event>
+            </eventsource>
+            <eventsource source="offcount3" >
+                <event>
+                    <action name="offcount3" key="val" transient="true"/>
+                </event>
+            </eventsource>
+		</eventtype>
+
+        <!-- Configurations -->
+
+        <eventtype type="http://id.webbrick.co.uk/events/config/get">
+            <eventsource source="off_timer_doff0" >
+                <event>
+                    <action name="off_timer_doff0" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="off_timer_don0" >
+                <event>
+                    <action name="off_timer_don0" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="off_timer_doff1" >
+                <event>
+                    <action name="off_timer_doff1" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="off_timer_don1" >
+                <event>
+                    <action name="off_timer_don1" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="off_timer_doff2" >
+                <event>
+                    <action name="off_timer_doff2" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="off_timer_don2" >
+                <event>
+                    <action name="off_timer_don2" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="off_timer_doff3" >
+                <event>
+                    <action name="off_timer_doff3" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="off_timer_don3" >
+                <event>
+                    <action name="off_timer_don3" key="val"/>
+                </event>
+            </eventsource>
+		</eventtype>
+
+    <!-- Assume all functions are configured -->
+
+    <initialState name="off_timer_doff0" value="1" /> 
+    <initialState name="off_timer_doff1" value="1" /> 
+    <initialState name="off_timer_doff2" value="1" /> 
+    <initialState name="off_timer_doff3" value="1" /> 
+    <initialState name="off_timer_don0" value="1" /> 
+    <initialState name="off_timer_don1" value="1" /> 
+    <initialState name="off_timer_don2" value="1" /> 
+    <initialState name="off_timer_don3" value="1" /> 
+
+
+        <!-- States -->
+
+        <eventtype type="http://id.webbrick.co.uk/events/time/isDark">
+            <eventsource source='time/isDark'>
+                <event>
+                    <action name="isDark" key="state" />
+                </event>
+            </eventsource>
+        </eventtype>
+
+
+		<eventtype type="http://id.webbrick.co.uk/events/webbrick/DO">
+			<eventsource source="webbrick/34/DO/4" >				
+				<event>
+                    <action name="presence_state0" key="state" />
+				</event>
+			</eventsource>
+			<eventsource source="webbrick/34/DO/4" >				
+				<event>
+                    <action name="presence_change0" key="state" transient="true" />
+				</event>
+			</eventsource>
+			<eventsource source="webbrick/34/DO/6" >				
+				<event>
+                    <action name="hold_state0" key="state"/>
+				</event>
+			</eventsource>
+		</eventtype>
+
+        <!--  
+        =================================================================================
+                        Here is the decision zone
+                        
+            There are two decisions here, the first to switch off the second to switch on
+        =================================================================================       
+        -->
+        
+        <compound>
+            <params>
+                <testEq name='offcount0' value='0'/>
+                <testEq name='presence_state0' value='0'/>
+                <testEq name='hold_state0' value='1'/>
+                <testEq name='off_timer_doff0' value='1'/>
+            </params>            
+            <newEvent type="internal" source="kitchen/lights/off" />
+        </compound>
+
+        <compound>
+            <params>
+                <testEq name='isDark' value='1'/>
+                <testEq name='presence_change0' value='1'/>
+                <testEq name='hold_state0' value='0'/>
+                <testEq name='off_timer_don0' value='1'/>
+            </params>            
+            <newEvent type="internal" source="kitchen/lights/on" />
+        </compound>
+
+		
+    </eventInterface>
+
+	
+</eventInterfaces>

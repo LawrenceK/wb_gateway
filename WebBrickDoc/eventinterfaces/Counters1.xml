@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eventInterfaces>
+    <eventInterface module='EventHandlers.Counters' name='Counters'>
+        <!-- All counters must be declared -->
+        <counter name="entryCount"/>
+
+        <eventtype type="http://id.webbrick.co.uk/events/webbrick/TD">
+            <eventsource source="webbrick/21/TD/0" >
+                <event>
+                    <increment name="entryCount" />
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <eventtype type="http://id.webbrick.co.uk/events/time/hour">
+            <eventsource source="time/hour" >
+                <event>
+
+                    <reset name="entryCount">
+                        <newEvent type="test/entryCount" source="test/entryCount">
+                            <copy_other_data val="entryCount" />
+                        </newEvent>
+                    </reset>
+                </event>
+            </eventsource>
+        </eventtype>
+
+    </eventInterface>
+</eventInterfaces>

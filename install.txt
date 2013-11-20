@@ -1,0 +1,13 @@
+This installer installs:
+
+Python 2.52
+Python WIN32 extensions for python 2.52
+MFC7 redistributables required for the Python WIN32 extensions, these are kept local to Python for now.
+Turbogears framework
+Webbrick Gateway application.
+
+It will set the Webbrick Gateway up as a service if required and auto start the service at boot time.
+
+In the event of problems restart the installer setup.exe with the additional parameter to generate a log file.
+ /LOG=gatewayinstall.log
+ 

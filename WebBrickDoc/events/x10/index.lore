@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>X10 events.</title>
+</head>
+
+<body>
+
+<h2>X10 events.</h2>
+
+
+This event indicates that an X10 command has been received from a remote device.
+
+Type=http://id.webbrick.co.uk/events/X10
+Source=X10/<em>house</em>/<em>device</em>
+
+house=house coede for command one of the letters A-P.
+device=X10 device number, a number between 1 and 16.
+
+<h3>associated data</h3>
+<p>
+command=received function or command code. In the range 0 to 15, see X10 documents for further details. The main commands
+of interest are X10_SWITCH_ON, X10_SWITCH_OFF, X10_ALL_OFF, X10_ALL_ON and X10_ALL_LIGHTS_OFF.
+</p>
+
+<table>
+<tr><th>number</th><th>command</th><th>description</th></tr>
+<tr><td>0</td><td>X10_ALL_OFF</td></tr>
+<tr><td>1</td><td>X10_ALL_ON</td></tr>
+<tr><td>2</td><td>X10_SWITCH_ON</td></tr>
+<tr><td>3</td><td>X10_SWITCH_OFF</td></tr>
+<tr><td>4</td><td>X10_DIM</td></tr>
+<tr><td>5</td><td>X10_BRIGHT</td></tr>
+<tr><td>6</td><td>X10_ALL_LIGHTS_OFF</td></tr>
+<tr><td>7</td><td>X10_EXTENDED_CODE</td></tr>
+<tr><td>8</td><td>X10_HAIL_REQUEST</td></tr>
+<tr><td>9</td><td>X10_HAIL_ACK</td></tr>
+<tr><td>10</td><td>X10_PRESET_DIM_1</td></tr>
+<tr><td>11</td><td>X10_PRESET_DIM_2</td></tr>
+<tr><td>12</td><td>X10_EXT_DATA_TRANSFER</td></tr>
+<tr><td>13</td><td>X10_STATUS_ON</td></tr>
+<tr><td>14</td><td>X10_STATUS_OFF</td></tr>
+<tr><td>15</td><td>X10_STATUS_REQUEST</td></tr>
+</table>
+
+</body>
+
+</html>

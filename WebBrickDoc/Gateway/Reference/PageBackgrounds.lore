@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Page Backgrounds</title>
+  </head>
+  <body>
+    <h1>Page Backgrounds</h1>
+<p>
+    Within the WebBrick Gateway it is possible to create context sensitive backgrounds.  This would be done for a number of reasons:
+    
+<ul><li><b>Visual Comfort</b> A user could operate a touch screen display at any time of day or night.  The energy saving features
+	    in our touch screens mean that for the majority of their operating time the actual viewing screen will be powered down.
+	    When awoken the touch screen will typically display the last used page.  With eyes accustomed to darkness, starting a bright
+	    screen could be unpleasant.  Therefore you can configure the WebBrick Gateway to have a different background between sunset and sunrise.
+
+</li><li><b>Alarm Indication</b> It is quite possible to configure different backgrounds for differing conditions around a home.
+	    For example the WebBrick Gateway could have a particular background set whilst ground floor doors and windows are open.  This would remind
+	    the home users of this state, which is not necessarily an alarm condition.
+</li><li><b>Decorative</b> It is a fairly simple matter to load images onto the WebBrick Gateway that match the decor or underlying themes of 
+	    a home.
+</li></ul>
+</p>
+
+<p>
+    Background images can be found at the directory specified for /static/images/background in the configuration file.
+</p>
+
+<p>
+    This is supported by the boilerplate page template as the body type has a widget type (wbType) of Background and a uri
+    that provides the name of the current background image. So periodically the page will request the background uri from
+    the WebBrick Gateway and update the page. It is possible to setup dynamic backgrounds for different page elements other than the body
+    which corresponds to the whole browser display.
+</p>
+     <h3>Configuration Example</h3>
+
+<p>
+	Here's a example configuration that changes the background every 15 minutes.
+
+    <a href="BackGround.xml" class="html-listing" />
+
+</p>
+</body>
+</html>

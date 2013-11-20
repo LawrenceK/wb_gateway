@@ -1,0 +1,72 @@
+#!/bin/bash
+#
+#	/etc/rc.d/init.d/<servicename>
+#
+#	<description of the *service*>
+#	<any general comments about this init script>
+#
+# chkconfig: 345 20 80
+# description: webbrick gateway
+# processname start-WebBrickGateway.py
+
+# Source function library.
+. /etc/init.d/functions
+
+PROG_NAME=webbrick
+PROG_EXE=start-WebBrickGateway.py
+PROG_PATH=/usr/local/bin/$PROG_EXE
+PROG_DIR=/opt/webbrick/site
+PROG_CFG=$PROG_DIR/prod.cfg
+
+start() {
+	echo -n "Starting <servicename>: "
+	cd $PROG_DIR
+	daemon	$PROG_PATH $PROG_CFG &
+	touch /var/lock/subsys/$PROG_NAME
+	return
+}	
+
+stop() {
+	echo -n "Shutting down <servicename>: "
+	killproc $PROG_EXE
+	rm -f /var/lock/subsys/$PROG_NAME
+	return
+}
+
+debug() {
+    echo "PROG_NAME " PROG_NAME
+    echo "PROG_EXE " PROG_EXE
+    echo "PROG_PATH " PROG_PATH
+    echo "PROG_DIR " PROG_DIR
+    echo "PROG_CFG " PROG_CFG
+}
+
+case "$1" in
+    start)
+	start
+	;;
+    stop)
+	stop
+	;;
+    status)
+	;;
+    restart)
+    	stop
+	start
+	;;
+    reload)
+	;;
+    condrestart)
+	[ -f /var/lock/subsys/<service> ] && restart || :
+	;;
+    probe)
+	;;
+    debug)
+	debug
+	;;
+    *)
+	echo "Usage: <servicename> {start|stop|status|reload|restart[|probe]"
+	exit 1
+	;;
+esac
+exit $?

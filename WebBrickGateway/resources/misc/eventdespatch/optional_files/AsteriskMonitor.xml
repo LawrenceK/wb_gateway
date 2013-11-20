@@ -1,0 +1,4 @@
+<eventInterfaces>
+    <eventInterface module='EventHandlers.Asterisk' name='Asterisk' listenPort="4573">
+    </eventInterface>
+</eventInterfaces>

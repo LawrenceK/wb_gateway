@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<persist>
+  <entry source="dayphase/weekday/morning">
+    <value name="time">
+      04:30:00
+    </value>
+  </entry>
+  <entry source="dayphase/weekday/day">
+    <value name="time">
+      09:00:00
+    </value>
+  </entry>
+  <entry source="dayphase/weekday/evening">
+    <value name="time">
+      16:30:00
+    </value>
+  </entry>
+  <entry source="dayphase/weekday/night">
+    <value name="time">
+      22:00:00
+    </value>
+  </entry>
+  <entry source="dayphase/weekend/morning">
+    <value name="time">
+      07:00:00
+    </value>
+  </entry>
+  <entry source="dayphase/weekend/day">
+    <value name="time">
+      10:00:00
+    </value>
+  </entry>
+  <entry source="dayphase/weekend/evening">
+    <value name="time">
+      15:00:00
+    </value>
+  </entry>
+  <entry source="dayphase/weekend/night">
+    <value name="time">
+      22:30:00
+    </value>
+  </entry>
+</persist>

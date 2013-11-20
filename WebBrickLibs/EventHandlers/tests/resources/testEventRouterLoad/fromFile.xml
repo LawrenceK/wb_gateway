@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eventInterfaces>
+    <eventInterface module='EventHandlers.tests.TestEventLogger' name='TestEventLogger'>
+        <!-- This saves all events -->
+        <eventtype type="">
+            <eventsource source="" >
+	        <event>
+                    <!-- interested in all events -->
+	        </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+        <eventtype type="http://id.webbrick.co.uk/events/webbrick/DO">
+            <eventsource source="webbrick/100/DO/0" >
+                <!-- all events from a single source -->
+	        <event>
+                    <newEvent type="local/url" source="local/BoilerOn" />
+                    Test
+	        </event>
+            </eventsource>
+            <eventsource source="webbrick/100/DO/1" >
+	        <event>
+                    <params>
+                        <testEq name="state" value="1" />
+                    </params>
+                    <newEvent type="local/url" source="local/HwOn">
+                    </newEvent>
+	        </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+</eventInterfaces>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eventInterfaces>
+    <eventInterface module='EventHandlers.TwistedReactor' name='TwistedReactor' reactor="" debug="yes" />
+</eventInterfaces>

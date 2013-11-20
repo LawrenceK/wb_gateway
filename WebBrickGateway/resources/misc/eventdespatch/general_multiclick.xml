@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!-- !  This file has templates that show how multiple clicks (i.e. double and tripple clicks) can be picked up
+        by the gateway and how these can then issue other events.
+
+        TODO:
+            
+            Outputs to WebBricks: 
+            
+                1.  Replace Xurl with url, if http request are to be issued.
+
+                2.  Replace SampleWb with the correct webbrick names
+                
+                3.  Change the channel in the AO/DO command to taget the correct
+                    channel on the webbrick. (number following the "A" or the "D").
+                
+            Inputs form WebBricks:
+                
+                1.  Change the node number from 901/902/... to the WebBricks node number.
+                
+                2.  Change the channel number to the correct channel to pick up the right button.
+
+
+
+-->
+    
+    <!--
+    ==================================================================================================================
+        Outputs to Webbricks
+    ==================================================================================================================
+    -->                
+        
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+        <!--This responds to events and does an HTTP request(s) as the action.-->
+
+        <!-- This event will be created if front PIRs are enabled (see general_dayphase.xml) and any of the front 
+             PIRs is triggered -->
+        <eventtype type="internal">   
+            <eventsource source="general/multiclick/sleephouse" >
+                <event>
+                    <!-- trigger a scene -->
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=SC:0:" cmd="GET" />
+                    <!-- set an analogue channel to 0% -->
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=AA;0;0:" cmd="GET" />
+                    <!-- Set a digital channel to off -->
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=DO;1;F:" cmd="GET" />
+                </event>
+            </eventsource>
+        </eventtype>
+        
+        <!-- This event will be created if the other outside PIRs are enabled (see general_dayphase.xml) and any of the them
+             are triggered -->
+        <eventtype type="internal">   
+            <eventsource source="general/multiclick/panic" >
+                <event>
+                    <!-- trigger a scene -->
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=SC;7:" cmd="GET" />
+                    <!-- set an analogue channel to 100% -->
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=AA;0;100:" cmd="GET" />
+                    <!-- Set a digital channel to on -->
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=DO;1;N:" cmd="GET" />
+                </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+
+
+
+    <!--
+    ==================================================================================================================
+        Inputs from WebBricks
+    ==================================================================================================================
+    --> 
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+        <eventtype type="http://id.webbrick.co.uk/events/webbrick/TD">
+            <!-- Picks up a double click and sends out sleep house event -->  
+            <eventsource source="webbrick/901/TD/1" >
+                <event>
+                    <params>
+                        <testEq name="val" value="2" />
+                    </params>
+                        <newEvent type="internal" source="general/multiclick/sleephouse" />
+                </event>
+            </eventsource>
+            
+            <!-- Picks up a tripple click and sends out panic event -->  
+            <eventsource source="webbrick/901/TD/1" >
+                <event>
+                    <params>
+                        <testEq name="val" value="3" />
+                    </params>
+                        <newEvent type="internal" source="general/multiclick/panic" />
+                </event>
+            </eventsource>
+
+        </eventtype>
+    </eventInterface>
+
+</eventInterfaces>

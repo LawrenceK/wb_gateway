@@ -1,0 +1,61 @@
+<eventInterfaces>
+    <eventInterface module='EventHandlers.Dataset' name='Dataset' columns="8">
+        <eventtype type="energy">
+            <eventsource source='energy1ave'>
+                <event>
+                        <data column="3" name="e-server_room" attr="val"/>
+                </event>
+            </eventsource>
+            <eventsource source='energy2ave'>
+                <event>
+                        <data column="4" name="e-kitchen_lights" attr="val"/>
+                </event>
+            </eventsource>
+            <eventsource source='energy3ave'>
+                <event>
+                        <data column="5" name="e-kitchen_apps" attr="val"/>
+                </event>
+            </eventsource>
+            <eventsource source='energy4ave'>
+                <event>
+                        <data column="6" name="e-family_lights" attr="val"/>
+                </event>
+            </eventsource>
+            <eventsource source='energy5ave'>
+                <event>
+                        <data column="7" name="e-klargester" attr="val"/>
+                </event>
+            </eventsource>
+            <eventsource source='energy6ave'>
+                <event>
+                        <data column="8" name="e-automation" attr="val"/>
+                </event>
+            </eventsource>
+        </eventtype>
+         <eventtype type="http://id.webbrick.co.uk/events/time/minute">
+            <eventsource source="time/minute" >
+				<event>
+					<params>
+                        <testEq name='minute'>
+							<value>0</value>
+							<value>6</value>
+							<value>12</value>
+							<value>18</value>
+							<value>24</value>
+							<value>30</value>
+							<value>36</value>
+							<value>42</value>
+							<value>48</value>
+							<value>54</value>
+						</testEq>
+					</params>
+                    <data column="1" name="date" attr="datestr"/>
+                    <data column="2" name="time" attr="timestr"/>
+                    <action action="xml" logstream="EnergyXMLDataset"/>
+				</event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+
+
+</eventInterfaces>

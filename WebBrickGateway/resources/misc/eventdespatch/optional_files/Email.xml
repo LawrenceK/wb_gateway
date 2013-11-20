@@ -1,0 +1,33 @@
+<eventInterfaces>
+
+    <eventInterface module='EventHandlers.EmailAction' name='EmailAction' smartHost='10.0.0.9' smartPort='25'>
+        This responds to events to send events.
+        <eventtype type="internal">
+        
+            <eventsource source="alarm">
+                <event>
+                    <email>
+                        <to>owner@house.null</to>
+                        <from>owner@house.null</from>
+                        <body>The burglar alarm has been triggered</body>
+                        <subject>burglar alarm</subject>
+                    </email>
+                </event>
+            </eventsource>
+        
+            <eventsource source="sms/alarm">
+                <!-- setup email to SMS -->
+                <event>
+                    <email>
+                        <to>owner@house.null</to>
+                        <from>owner@house.null</from>
+                        <body>The burglar alarm has been triggered</body>
+                        <subject>burglar alarm</subject>
+                    </email>
+                </event>
+            </eventsource>
+
+        </eventtype>
+    </eventInterface>
+   
+</eventInterfaces>

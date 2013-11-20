@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!-- 
+NOTE: 
+
+THIS COPY IS FOR TESTING ONLY, NEVER DEPLOY IN A REAL SYSTEM! 
+-->
+
+    <!-- Run and stop events are directly mapped feedback events, picked up by the inputs -->
+
+</eventInterfaces>

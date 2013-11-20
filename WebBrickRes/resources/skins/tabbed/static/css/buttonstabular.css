@@ -1,0 +1,783 @@
+/* 
+ *   Buttons Tabular to implement standard buttons in the tabbed interface        
+ *
+ */
+
+
+
+.navTable   { 
+		  margin-left: 1% ;
+          width : 98% ;
+          border-collapse: separate ;
+          border-spacing: 10px 10px ;
+        }
+
+.infoTable  {
+            position: absolute ;
+            bottom: 3px ;
+            }
+
+
+.NumericBar{ 
+		padding: 0px 0px 0px 0px; 
+        margin: 0px 0px 0px 0px; 
+        border-style: none ;
+		border-collapse: collapse ;
+		line-height: 0.4 ; 
+        }
+
+div.NumericBar{ padding: 0%; 
+        margin: 0%; 
+        }
+
+img.NumericBar{ padding: 0; 
+        margin: 0%; 
+        }
+
+img,.img   
+	  { padding: 0px 0px 0px 0px; 
+        margin: 0px 0px 0px 0px; 
+        border-style: none ;
+        vertical-align: middle;
+        /* appears not to work for images in firefox */
+        -moz-border-radius: 10px / 10px; 
+        -webkit-border-radius: 10px 10px;
+
+        }
+
+.objCenter	{
+		text-align: center ;
+		padding: 0px!important;
+		}
+
+
+td[wbtype="Indicator"]
+        { border: 1px solid #8F8F8F;
+		  padding: 0px 64px 0px 15px ;
+          background-color: #F6F6F6 ;
+          /* font-size: large; */
+          font-size: 17px;
+          text-align: left;
+	  	  height: 64px;   /* 40px is good for 800x600 touchscreens */
+		  border-collapse: collapse ;
+		  background-repeat : no-repeat ;
+		  background-position: center right;
+		  vertical-align: middle ;
+		  position: relative ;
+		  z-index: 0 ;
+		  color: #444444 ;
+		  opacity : 0.9 ;
+		  -moz-border-radius: 20px / 20px; 
+          -webkit-border-radius: 20px 20px;
+          box-shadow: 5px 5px 5px #888;
+          -webkit-box-shadow: 5px 5px 5px #888;
+          -moz-box-shadow: 5px 5px 5px #888;
+        }
+
+td[wbtype="PushButton"], td[wbtype="SimpleLink"], span[wbtype="SimpleLink"], .navBar
+        { border: 1px solid #8F8F8F;
+		  padding: 0px 64px 0px 15px ;
+          background-color: #F6F6F6 ;
+          /* font-size: large; */
+          font-size: 17px;
+          text-align: left;
+	  	  height: 64px;   /* 40px is good for 800x600 touchscreens */
+		  border-collapse: collapse ;
+		  background-repeat : no-repeat ;
+		  background-position: center right;
+		  vertical-align: middle ;
+		  position: relative ;
+		  z-index: 0 ;
+		  color: #444444 ;
+		  display: table-cell;
+		  opacity : 0.9 ;
+		  -moz-border-radius: 20px / 20px; 
+          -webkit-border-radius: 20px 20px;
+          box-shadow: 5px 5px 5px #888;
+          -webkit-box-shadow: 5px 5px 5px #888;
+          -moz-box-shadow: 5px 5px 5px #888;
+
+        }
+
+td[wbtype="TestButton"]      {
+          background: url("/static/images/Marker.png") no-repeat center right ;
+		  padding: 0px 64px 0px 15px ;
+          font-size: large;
+        }
+
+
+td[wbtype="PushButton"]:hover, td[wbtype="simpleLink"]:hover, .navBar:hover, .navBarSmall:hover
+        { 
+          background-color: #D4D4D4 ;
+          /*text-shadow: 
+            0 0 4px rgba(0,0,0,0.2),
+            0 0 8px rgba(0,0,0,0.2), 
+            0 0 16px rgba(0,0,0,0.2); 
+         -webkit-transition: all 0.2s linear;
+         */
+          -moz-transform: scale(1.02); 
+          -webkit-transform: scale(1.02);
+          z-index: 2 ; 
+        }
+
+/*
+ *  Testing Child Selector
+ */
+td.buttonOn>div
+        { 
+          color: green ;
+          opacity: 1.0 ;
+          background-color: transparent ;
+        }
+
+td.buttonOff>div
+        { 
+          color: gray ;
+          opacity: 1.0 ;
+          background-color: transparent ;
+        }
+
+span[wbtype="SimpleLink"]
+        { border: 1px solid #8F8F8F;
+		  padding: 2px 2px 2px 2px ;
+          background-color: #F6F6F6 ;
+          /* font-size: large; */
+          font-size: 17px ;
+          text-align: center;
+	  	  height: 36px;   /* 40px is good for 800x600 touchscreens */
+	  	  padding: 16px 0px 0px 0px ; /* interacts with above - would be good to fix sometime*/
+		  border-collapse: collapse ;
+		  vertical-align: middle ;
+		  position: relative ;
+		  color: #444444 ;
+		  display: inline-block;
+		  width: 100% ;
+		  opacity : 0.9 ;
+		  -moz-border-radius: 20px / 20px; 
+          -webkit-border-radius: 20px 20px;
+          box-shadow: 5px 5px 5px #888;
+          -moz-box-shadow: 5px 5px 5px #888;
+
+        }
+div[wbtype="SimpleLink"]>div {
+    /* display: table-cell; */
+}
+
+
+td[wbtype="PushButton"]:active, 
+	.navBar:active, 
+	.navBarSmall:active,
+	.playButton:active, 
+	.pauseButton:active, 
+	.stopButton:active, 
+	.forwardButton:active, 
+	.backButton:active, 
+	.nextTrackButton:active, 
+	.prevTrackButton:active 
+        { 
+          border-style : inset ;		  
+          border-color: inherit ;
+		  background-repeat : repeat ;
+		  background-position: center;
+          background-image : url("/static/images/blue.png") ;
+        }
+
+td.buttonAbsent   
+        { 
+          background-image : url("/static/images/absent.png") ;
+          border-style : groove ;
+          border-color: rgb(24%,24%,40%) ;
+          color: gray ;
+		}
+
+td.buttonPending  
+        { 
+          background-image : url("/static/images/waiting.png") ;
+        }
+
+td.buttonDormant
+        { 
+          background-image : url("/static/images/go.png") ;
+		  border-style : solid ;		  		
+        }
+
+td.buttonSelected
+        { background-image : url("/static/images/green.png") ;
+		  background-repeat : repeat ;
+		  background-position: center;
+          border-style : outset ;
+          border-color: rgb(0%,40%,80%) ;
+          color: white ;
+        }
+    
+
+
+td.buttonCurtainsOpen  
+        { 
+          background-image : url("/static/images/curtainsOpen.png") ;          		
+        }
+
+
+td.buttonCurtainsClosed  
+        { 
+          background-image : url("/static/images/curtainsClosed.png") ;
+        }
+
+td.buttonCooling
+        { 
+          background-image : url("/static/images/snowflake.png") ;
+        }
+
+
+td.buttonRecycle
+        { 
+          background-image : url("/static/images/recycle.png") ;
+        }
+
+
+td.indicatorAlert, td.doorError       
+        { 
+          background-image : url("/static/images/alert.png") ;
+        }
+
+td.indicatorAlarm       
+        { 
+          background-image : url("/static/images/alarm.png") ;
+        }
+
+td.indicatorBlank  
+        { 
+          background-image : url("/static/images/blank.png") ;
+        }
+
+td.indicatorClear, td.indicatorOK  
+        { 
+          background-image : url("/static/images/ok.png") ;
+        }
+
+td.indicatorDay  
+        { 
+          background-image : url("/static/images/light.png") ;
+        }
+td.indicatorNight 
+        { 
+          background-image : url("/static/images/dark.png") ;
+        }
+
+
+td.indicatorOff  
+        { 
+          background-image : url("/static/images/off.png") ;
+        }
+
+td.indicatorOn  
+        { 
+          background-image : url("/static/images/on.png") ;
+        }
+
+td.treeOn  
+        { 
+          background-image : url("/static/images/TreeOn.png") ;
+        }
+td.treeOff  
+        { 
+          background-image : url("/static/images/TreeOff.png") ;
+        }
+		
+		
+
+td.indicatorLocked
+        { 
+          background-image : url("/static/images/locked.png") ;
+        }
+
+
+td.indicatorNotReady  
+        { 
+          background-image : url("/static/images/notReady.png") ;
+        }
+        
+td.indicatorAway  
+        { 
+         background-image : url("/static/images/vacation.png") ;
+        }
+
+td.indicatorHome  
+        { 
+         background-image : url("/static/images/atHome.png") ;
+		}
+
+td.indicatorWillRun  
+        { 
+         background-image : url("/static/images/heatWillRun.png") ;
+        }
+
+td.indicatorSuppress  
+        { 
+         background-image : url("/static/images/heatWillNotRun.png") ;
+        }
+
+td.indicatorIdle  
+        { 
+         background-image : url("/static/images/heatIdle.png") ;
+        }
+
+td.indicatorVacation
+        { 
+         background-image : url("/static/images/heatVacation.png") ;
+        }
+
+
+td[wbtype="Status"],div[wbtype="Status"]
+		{
+		 background-repeat : no-repeat ;
+		 background-position: center right;
+		 padding: 0px 0px 0px 0px ;
+	     width: 64px ;
+	     height: 64px ;
+	     border-style: none ;
+		}
+
+span[wbtype="Status"]
+		{
+		 position: relative ;
+		 left: 85%;
+		 z-index: 2;
+		 background-repeat : no-repeat ;
+		 background-position: center;
+		 padding: 0px 0px 0px 0px ;
+	     height: 64px ;
+	     border-style: none ;
+		}
+
+.statusAway  
+	{ 
+	 background-image : url("/static/images/vacation.png") ;         
+	     /*font-size: 48px;*/
+	}
+
+.statusHome  
+	{ 
+	 background-image : url("/static/images/atHome.png") ;
+	     /*font-size: 48px;*/
+	}
+
+.statusWillRun  
+     { 
+     background-image : url("/static/images/heatWillRun.png") ;
+     }
+
+.statusSuppress  
+     { 
+     background-image : url("/static/images/heatWillNotRun.png") ;
+     }
+        
+.statusIdle  
+     { 
+     background-image : url("/static/images/heatIdle.png") ;
+     }
+
+.statusVacation  
+     { 
+     background-image : url("/static/images/heatVacation.png") ;
+     }
+
+.statusLocked  
+     { 
+     background-image : url("/static/images/heatLocked.png") ;
+     }
+
+.statusBlank, .statusAbsent  
+     {
+     visibility: collapse;
+     width : 0px ;
+	 font-size: 0px;
+     }
+
+
+.statusBird  
+     {
+     background-image : url("/static/images/earlyBird.png") ;
+	     font-size: 48px;
+     }
+        
+
+td.doorOpen
+        { 
+          background-image : url("/static/images/open.png") ;
+        }
+
+td.doorClosed
+        { 
+          background-image : url("/static/images/closed.png") ;
+        }
+
+td.doorAjar
+        { 
+          background-image : url("/static/images/ajar.png") ;
+        }
+
+td.doorPending
+        { 
+          background-image : url("/static/images/doorPending.png") ;
+        }
+
+
+td.gateOpen
+        { 
+          background-image : url("/static/images/gateOpen.png") ;
+        }
+
+td.gateClosed
+        { 
+          background-image : url("/static/images/gateClosed.png") ;
+        }
+
+td.gateAjar
+        { 
+          background-image : url("/static/images/gateAjar.png") ;
+        }
+
+td.gatePending
+        { 
+          background-image : url("/static/images/gatePending.png") ;
+        }
+
+
+td.buttonOn
+        { 
+          background-image : url("/static/images/on.png") ;
+        }
+
+td.buttonOff
+        { 
+          background-image : url("/static/images/off.png") ;
+        }
+
+td.buttonLocked
+        { 
+		  background-image : url("/static/images/locked.png") ;
+        }
+
+
+
+td[wbtype="WbEnableEntry"],td[wbtype="WbNumericEntry"],td[wbtype="WbDayEntry"],td[wbtype="WbDayEntry"],td[wbtype="WbTimeEntry"],td[wbtype="WbDropDown"]
+		{
+          background-image : url("/static/images/infoTab.png") ;
+          background-repeat : no-repeat;
+		  background-position: bottom right;		  
+		  background-color: #FF9966;
+		  padding: 0px 64px 0px 15px;
+		  -moz-border-radius: 20px / 20px; 
+          -webkit-border-radius: 20px 20px;
+          box-shadow: 5px 5px 5px #888;
+          -webkit-box-shadow: 5px 5px 5px #888;
+          -moz-box-shadow: 5px 5px 5px #888;
+		}
+
+td.entryAbsent
+        { 
+		  background-image : url("/static/images/absent.png") ;
+        }
+
+td.entryOff
+        { 
+		  background-image : url("/static/images/off.png") ;
+        }
+
+
+td.entryBlank
+        { 
+		  background-image : url("/static/images/blank.png") ;
+        }
+
+td.entryOK
+        { 
+		  background-image : url("/static/images/ok.png") ;
+        }
+
+td.entryLocked
+        { 
+		  background-image : url("/static/images/locked.png") ;
+        }
+
+
+
+.selectPending
+        { 
+          color: #FFFFFF ;
+        }
+
+.selectAbsent
+        { background-image : url("/static/images/grey.png") ;
+          color: #AAAAAA ;
+        }
+
+td.compositeWidget
+        { border: none ;
+          margin:0%;
+          padding:0%;
+        }
+
+.compositeWidget
+        { 
+          border-style: none ;
+		  border: none ;
+          border-color: #888888;
+          border-width: 0px ;
+		  border-spacing: 0px ; 
+		  padding: 0%;
+		  margin: 0%;
+        }
+
+				
+td.textPending, td.numericPending
+        { 
+          background-image : url("/static/images/pending.png") ;
+		  background-repeat : repeat ;
+		  background-position: center;
+          color: #FFFFFF ;
+        }
+
+td.textAbsent, td.numericAbsent, td.indicatorAbsent
+        { 
+		  border: 2px solid #8F8F8F;
+          color: gray ;
+        }
+
+td.textPresent, td.numericPresent
+        {
+          background-color: #F6F6F6 ;
+		  border: 2px solid #8F8F8F;
+        }
+
+td.textInfo, td.numericInfo, td.WbOnOffEntryOff
+        {
+		  background-color: #FF9966 ;
+          background-image : url("/static/images/infoTab.png") ;
+          background-repeat : no-repeat;
+		  background-position: bottom right;		  
+		  border-style: solid;
+          font-size: medium; 
+          text-align: CENTER; 
+		  height: 30px;
+		  -moz-border-radius: 20px / 20px; 
+          -webkit-border-radius: 20px 20px;
+          box-shadow: 5px 5px 5px #888;
+          -moz-box-shadow: 5px 5px 5px #888;
+        }
+
+td.WbOnOffEntryOn, td.WbNumericEntry
+        {
+		  background-color: #FF9966 ;
+          background-image : url("/static/images/infoTab.png") ;
+          background-repeat : no-repeat;
+		  background-position: bottom right;		  
+		  border-style: solid;
+          font-size: medium; 
+          text-align: CENTER; 
+		  padding: 0.25% ;
+		  -moz-border-radius: 20px / 20px; 
+          -webkit-border-radius: 20px 20px;
+          box-shadow: 5px 5px 5px #888;
+          -moz-box-shadow: 5px 5px 5px #888;
+        }
+
+td.WbOnOffEntryIgnore, td.WbOnOffEntry
+        {
+		  background-color: #FF9966 ;
+          font-size: medium; 
+		  color : gray ;
+        }
+
+
+td[wbtype="Percentage"], td[wbtype="Numeric"], td[wbtype="Text"]
+        { 
+          display: table-cell;
+          text-align: CENTER; 
+          font-size: medium; 
+		  -moz-border-radius: 20px / 20px; 
+          -webkit-border-radius: 20px 20px;
+          box-shadow: 5px 5px 5px #888;
+          -moz-box-shadow: 5px 5px 5px #888;
+        }
+
+.dataEntry div {
+    width:200px;
+    height:200px;
+    border:0px;
+    margin:0px;
+    padding:0px;
+}
+
+.dataEntry table {
+    width:100%;
+    height:100%;
+    border:8px solid #FFFFFF;
+    margin:0px;
+    padding:0px;
+    background-image : url("/static/images/greyTrans.png") ; 
+}
+
+.dataEntry td {
+    height:72px;
+    width:72px;
+    border:0px;
+    margin:0px;
+    padding:0px;
+    text-align:center;
+    color:#FFFFFF;
+}
+
+.dataEntry input{
+  font-size: larger; 
+}
+
+.WbEventsTrue {
+          background-color: #FF2222;
+}
+
+.WbEventsFalse {
+}
+
+td.WbEnableEntry0,td.WbEnableEntryOff
+        { 
+          background-image : url("/static/images/off.png") ;
+        }
+
+td.WbEnableEntry1,td.WbEnableEntryOn
+        { 
+          background-image : url("/static/images/on.png") ;
+        }
+
+td.guff {
+         background-image : url("/static/images/pointer.svg") ;
+ }
+
+
+/*
+ *  Taken from buttons
+ */
+
+.button {
+    padding:20px;
+    height:58px;
+    float:left;
+}
+
+
+div[wbtype="PushButton"] .left  {
+    background-image:url(../images/buttons/gButtonLeft.png);
+    height:58px;
+    width:11px;
+    float:left;
+
+}
+
+div[wbtype="PushButton"] .center {
+    background-image:url(../images/buttons/gButtonCenter.png);
+    height:52px;
+    width:116px;
+    float:left;
+    text-align:center;
+    font-size:16px;
+    padding-top: 6px!important;
+}
+
+
+.centerwide {
+    background-image:url(../images/buttons/gButtonCenter.png);
+    height:52px;
+    width:156px;
+    float:left;
+    text-align:center;
+    font-size:16px;
+    padding-top: 6px!important;
+}
+
+.textwide {
+    margin-top:2px;
+    height:44px;
+    display: table-cell;
+    vertical-align: middle;
+    width: inherit;
+}
+
+div[wbtype="PushButton"] .center .text {
+    margin-top:2px;
+    height:44px;
+    display: table-cell;
+    vertical-align: middle;
+    width: inherit;
+}
+
+.buttonPending .center .text {
+    color: red;
+}
+
+div[wbtype="PushButton"] .right {
+    background-image:url(../images/buttons/gButtonRight.png);
+    height:58px;
+    width:12px;
+    float:left;
+
+}
+
+div[wbtype="PushButton"] .right_box {
+    background-image:url(../images/buttons/gButtonBoxRight.png);
+    height:48px;
+    width:53px;
+    float:left;
+    font-size:14px;
+    padding-top:10px;
+
+}
+
+
+.button .left {
+    background-image:url(../images/buttons/gButtonLeft.png);
+    height:58px;
+    width:11px;
+    float:left;
+
+}
+
+.button .center {
+    background-image:url(../images/buttons/gButtonCenter.png);
+    height:58px;
+    width:116px;
+    float:left;
+    text-align:center;
+    font-size:16px;
+    padding-top:6px;
+}
+
+.button .center .text {
+    margin-top:2px;
+    height:44px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.button .right {
+    background-image:url(../images/buttons/gButtonRight.png);
+    height:58px;
+    width:12px;
+    float:left;
+
+}
+
+.button .right_box {
+    background-image:url(../images/buttons/gButtonBoxRight.png);
+    height:48px;
+    width:53px;
+    float:left;
+    font-size:14px;
+    padding-top:10px;
+
+}
+
+.button .right_box .temp {
+    margin-top:2px;
+    margin-left:12px;
+}

@@ -1,0 +1,12 @@
+<eventInterfaces>
+    <eventInterface module='EventHandlers.LogEvents' name='LogEvents' fileBaseName='./eventLog'>
+        <!-- This saves all events -->
+        <eventtype type="">
+            <eventsource source="" >
+          <event>
+                    <!-- interested in all events -->
+          </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+</eventInterfaces>

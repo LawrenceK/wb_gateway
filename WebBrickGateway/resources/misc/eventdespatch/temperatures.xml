@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!-- Map miscellenaneus temp sensors -->
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+    
+        <!-- change to correct sensor location -->
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/CT'>
+            <eventsource source='webbrick/0/CT/0'>
+                <event>
+		    <params>
+			<testNe name='val' value='0.0'/>
+		    </params>
+                    <newEvent type="temperature" source="temperature/outside">
+                        <copy_other_data val="val" />
+                        <other_data name="Outside"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+
+</eventInterfaces>

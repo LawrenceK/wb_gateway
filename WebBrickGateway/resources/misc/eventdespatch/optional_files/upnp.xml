@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eventInterfaces>
+    <eventInterface module='EventHandlers.UPNP' name='UPNP'>
+
+	<!-- these are made visible if the string is in the modelName from the device description, overrides exclude -->
+	<includedevice>
+	    <modelName>Sonos</modelName>
+	</includedevice>
+
+	<!-- these are not made visible if the string is in the modelName from the device description-->
+	<excludedevice>
+	    <modelName>TwonkyMedia</modelName>
+	    <modelName>DMA</modelName>
+	    <modelName>Roku</modelName>
+	    <modelName>Media Player</modelName>
+	    <modelName>Nero</modelName>
+	    <modelName>MediaHome</modelName>
+	    <modelName>TeraStation</modelName>
+	</excludedevice>
+
+    <webserver serverport='0' interface=''/>
+    
+    <mediaserver type="Sonos">
+        <rootcontainer>
+            <!-- the id is the UPNP server internal Ids -->
+            <container id='A:ARTIST'>Artists</container>
+            <container id='A:ALBUM'>Albums</container>
+            <container id='A:COMPOSER'>Composers</container>
+            <container id='A:GENRE'>Genres</container>
+            <container id='A:TRACKS'>Tracks</container>
+            <container id='Q:'>Sonos Playlists</container>
+            <container id='S:'>Folders</container>
+            <container id='R:'>Internet Radio</container>
+            <container id='AI:'>Line In</container>
+        </rootcontainer>
+    </mediaserver>
+    
+    <mediaserver type="Twonky">
+        <rootcontainer>
+            <!-- the id is the UPNP server internal Ids -->
+            <container id='1$12'>Artist</container>
+            <container id='1$14'>Albums</container>
+            <container id='1$13'>Genre</container>
+            <container id='1$11'>Playlists</container>
+            <container id='1$15'>Folders</container>
+            <container id='2'>Photos</container>
+            <container id='3'>Video</container>
+        </rootcontainer>
+    </mediaserver>
+    <Xplugins>
+        <MediaStore medialocation='C:\Music' mediadb='C:\Music\MediaStore.db' name='Coherence MediaStore'>
+            <icon mimetype='image/png' height='48' width='48' depth='24' url='/static/images/coherence/elisa.png' />
+        </MediaStore>
+        <IRadioStore name='iRadio'>
+        </IRadioStore>
+    </Xplugins>
+
+    </eventInterface>
+</eventInterfaces>

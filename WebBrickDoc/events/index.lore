@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Event URIs</title>
+</head>
+
+<body>
+    <h1>Event URIs</h1>
+
+        <p>This file is a collection of information about Event Type URIs within the Webbrick home automation system.</p>
+
+        <p>Note: some of the links to specific events are work in progress or may not exist</p>
+        
+    <h2>General</h2>
+
+        <p>An Event has a 'type' a 'source' and other data.</p> 
+
+    <h3>Event Type</h3>
+        <p>The event type identifies
+        The type of event and the defintion of the event will identify what other data may be in the event. This 
+        event type specifies a contract on what data will be included within the event, it is permissible for
+        other sources to create and use these event types but they must commit to the contract specified
+        by the event type. Most event types are absolute URIs, relative URIs may be used for user defined event 
+        types that are internal to this event routing node, typically the event type for this will be 
+        the string 'internal'.</p>
+
+    <h3>Event Source</h3>
+        <p>The event source identifies
+        Where the event came from. This will be a URI and may be relative, this may need mapping when it passes
+        event boundaries, i.e. out of the house. Further details of the event source follows.</p>
+
+    <ul>
+        <li><a href="./asterisk/index.xhtml" >Asterisk interface Events</a></li>
+
+        <li><a href="./av/index.xhtml" >AV Events, i.e. UPNP</a></li>
+        
+        <li><a href="./config/index.xhtml" >Persistant Configuration events.</a></li>
+        
+        <li><a href="./diagnostic/index.xhtml" >Diagnostic events.</a></li>
+
+        <li><a href="./heating/index.xhtml" >heating events (Obsolete)</a></li>
+
+        <li><a href="./schedule/index.xhtml" >schedule events</a></li>
+
+        <li><a href="./state/state.xhtml" >state passing events</a></li>
+
+        <li><a href="./subscribe/index.xhtml" >Subcribe request generated Event Types</a></li>
+
+        <li><a href="./switchplate/index.xhtml" >RS485 switch plate events.</a></li>
+
+        <li><a href="./time/index.xhtml" >Time Event Types</a></li>
+
+        <li><a href="./uri/index.xhtml" >URI generated Event Types</a></li>
+
+        <li><a href="./webbrick/index.xhtml" >WebBrick Event URIs</a></li>
+
+        <li><a href="./x10/index.xhtml" >X10 events.</a></li>
+
+        <li><a href="./zones/index.xhtml" >Zone heating events.</a></li>
+    </ul>
+</body>
+
+</html>

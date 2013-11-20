@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!-- 
+TODO 
+
+    1. Update Xurl to url and enter correct webbrick command.
+    2. Replace hs_key with the key of the heatsource defined in hvac.xml file
+-->
+
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+        <eventtype type='http://id.webbrick.co.uk/zones/heatsource'>
+        
+        <!-- Actuators common to all sets of panels, i.e. a main circulation pump -->
+            <eventsource source='heatsource/hs_key/dorun'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;4;N:' address='WB903'/>
+                </event>
+            </eventsource>
+            <eventsource source='heatsource/hs_key/dostop'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;4;F:' address='WB903'/>
+                </event>
+            </eventsource>
+            
+        <!-- Actuators for east facing panels, i.e. a sub circulation pump and/or valves -->   
+            <eventsource source='heatsource/hs_key/east/dorun'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;5;N:' address='WB903'/>
+                </event>
+            </eventsource>
+            <eventsource source='heatsource/hs_key/east/dostop'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;5;F:' address='WB903'/>
+                </event>
+            </eventsource>
+        
+        <!-- Actuators for south facing panels, i.e. a sub circulation pump and/or valves -->  
+            <eventsource source='heatsource/hs_key/south/dorun'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;6;N:' address='WB903'/>
+                </event>
+            </eventsource>
+            <eventsource source='heatsource/hs_key/south/dostop'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;6;F:' address='WB903'/>
+                </event>
+            </eventsource>
+            
+            
+        <!-- Actuators for west facing panels, i.e. a sub circulation pump and/or valves -->  
+            <eventsource source='heatsource/hs_key/west/dorun'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;7;N:' address='WB903'/>
+                </event>
+            </eventsource>
+            <eventsource source='heatsource/hs_key/west/dostop'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;7;F:' address='WB903'/>
+                </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+
+</eventInterfaces>

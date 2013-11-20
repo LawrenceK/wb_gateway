@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Principles</title>
+  </head>
+  <body>
+      <h1>Principles</h1>
+
+      <p>
+        This section lays out the fundamentals of operation of the WebBrick Gateway and how it interacts with other subsystems.
+      </p>
+      
+      <h1>Communicating with WebBricks</h1>
+        <p>
+          WebBricks use both HTTP and UDP protocols.  The WebBrick Gateway mostly uses HTTP to get and set WebBrick information
+          and UDP to acquire WebBrick events.  The simple reason for this is that UDP packets will be received by all
+          WebBrick Gateway's on an Intranet and that HTTP is a session based point to point protocol.
+        </p>
+        <p>
+          The WebBrick Gateway has pages that display automated systems parameters and controls.  Once a client browser
+          opens a page it starts running a client-side JavaScript process to keep the page dynamically updated. The Gateway is capable of 
+          delivering static pages to devices that do not have the resources for dynamic updates.
+        </p>
+        <p>
+          The WebBrick Gateway receives requests for updates to displayed pages, validates the request and then collects 
+          data from the WebBricks, from local sources (including cached values) or remote resources.
+        </p>
+        <p>
+          In retrieving this data the WebBrick Gateway and the browser javascript make decisions on the state of the device
+          and therefore how to update the display. The device states may be one of those in the following table 
+          of generic states or may be totally unique.
+
+          <ul><li><b>Device is ON:</b>  
+              i.e. the circuit to that object is either ON in the case of Digital, or has some
+              non-zero value in the case of Analogue.
+            </li><li><b>Device is OFF:</b> 
+              i.e. the circuit to that object is either OFF in the case of Digital, or has a
+              zero value in the case of Analogue.
+            </li><li><b>Pending:</b> 
+              The WebBrick Gateway doesn't know the state of the object yet but is waiting to find out.  This can occur
+              on first access to a device and immediately after a command has been issue to an object.
+            </li><li><b>Locked:</b> 
+              The device is there, but the device that supports it is in a locked state therefore it cannot be
+              commanded.
+            </li><li><b>Missing:</b> 
+              The device could not be found.  The WebBrick Gateway will run through a timeout and then attempt to 
+              find the device again.
+            </li><li><b>Error:</b> 
+              There is an error condition at the device, the device can be found but the state
+              is not valid.  The WebBrick Gateway will run through a timeout and then attempt to 
+              check the device again.
+            </li>
+            <li>Unique state: Or Device specific state. An example of this would be a garage door that is currently ajar, neither open or closed.</li>
+         </ul>
+      </p>
+  </body>
+</html>

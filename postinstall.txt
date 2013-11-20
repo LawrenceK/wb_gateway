@@ -1,0 +1,22 @@
+Now please read the manual.
+
+From a command prompt webbrick_doc will start a webbrowser with the documentation.
+
+If you chose not to install the gateway as a service the command start-WebBrickGateway.py will start the
+gateway.
+
+Your Webbrick Gateway can be access from Start/Programs/Webbrick Gateway/My WebBrick Gateway or
+localhost:8080 in a browser address bar, from other systems you will need to replace
+localhost by the address or name of the server.python
+
+
+Log files will be in:
+XP - \Documents And Settings\All Users\Application Data\Webbrick\Gateway\logs
+Vista - \PROGRAM DATA\Webbrick\Gateway\logs
+
+For now use registry editor to access:
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WebBrick Gateway\Parameters]
+And change 
+"ConfigurationFile"="/path/to/mysite/prod.cfg"
+
+Then stop and restart the Webbrick gateway service.

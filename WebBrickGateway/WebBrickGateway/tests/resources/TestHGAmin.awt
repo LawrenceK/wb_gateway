@@ -1,0 +1,60 @@
+# $Id: $
+#
+# minimal awt script for testing HGA
+#
+# --------
+#
+# The awt script syntax is based on a subset of twill script commands, 
+# but has  been extended to allow asynchronous completion and overlapped 
+# execution of requests.
+#
+# Basically, a twill command prefixed with a name is performed asynchronously,
+# and the name is used to identify the request context.  When resting a result
+# in a request context, the script is blocked as necessary for the result to 
+# become available.
+#
+# twill commands without a context identifier are perormed synchronously in a
+# "default" context for the running script.
+#
+# [[[Want a way to re-use a group of commands:  create a contrext tree so that
+#    the names are local to the current containing context?  Then re-issuing 
+#    commands in different contextx causes a new set of request contexts to be 
+#    created.  Need to think about synchronization rules.
+# ]]]
+
+
+# Retrieve the home page synchronously
+# (Establishes a base URI)
+
+go    http://localhost:8080/
+code  200
+title ".*HGA demonstration menu"
+
+
+# Retrieve of some control panel pages
+
+#t0.go /test/security.xhtml
+#t1.go /test/heating.xhtml
+#t2.go /test/Test01-LightSwitch.xhtml
+#t3.go /test/Test02-LightSwitch.xhtml
+#t4.go /test/NoSuchPage.xhtml
+
+#t0.code 200
+#t1.code 200
+#t2.code 200
+#t3.code 200
+#t4.code 404
+
+# Now access some WebBrick status values
+
+d00.go /webbrick/status?wbaddr=WebBrick&wbchan=DO0 5
+d00.code 200
+d00.find 'wbChan="DO0"'
+
+d08.go /webbrick/status?wbaddr=WebBrick&wbchan=DO8 5
+d08.code 404
+
+# http://localhost:8080//webbrick/status?wbaddr=WebBrick&wbchan=DO8 5
+
+
+# End.

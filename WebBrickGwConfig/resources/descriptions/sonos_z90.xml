@@ -1,0 +1,69 @@
+<!-- Sonos -->
+
+<device>
+    <type val="Sonos"> 
+        <subtype val="ZP_90" />
+    </type>
+    <ip val="" />
+    <id val="" />
+    <location val=""/>
+    <name val="New Sonos z90" />
+    <udn val="" />
+    <confstatus val="not configured" />
+    <connections>
+        
+        <!-- Media/UPnP Server 1 -->
+        <connection>
+            <sinks>
+                <sink>
+                    <id val=":010" />
+                    <type val="analogue" />
+                    <focus val="local" />
+                    <name val="ANSignal" />
+                    <connectedto val="" />
+                    <status val="no connection" />
+                </sink>
+            </sinks>
+            <sources>
+                <source>
+                    <id val=":001" />
+                    <type val="UPnP" />
+                    <focus val="local" />
+                    <name val="MediaServer1" />
+                    <status val="not required" />
+                    <udn val="" />
+                </source>
+            </sources>
+        </connection>
+        
+        <!-- Output/UPnP Renderer 1 -->
+        <connection>
+            <sinks>
+                <sink>
+                    <id val=":020" />
+                    <type val="UPnP" />
+                    <focus val="local" />
+                    <name val="Sonos Media 1" />
+                    <status val="terminated" />
+                    <ui val = "UPnPRenderer" />
+                    <udn val="" />
+                    <commands>
+                    </commands>
+                </sink>
+            </sinks>
+            <sources>
+                <source>
+                    <id val=":002" />
+                    <type val="analogue" />
+                    <focus val="local" />
+                    <name val="Output1" />
+                    <connectedto val="" />
+                    <status val="no connection" />
+                    <udn val="" />
+                </source>
+            </sources>
+        </connection>
+        
+        
+    </connections>
+</device>

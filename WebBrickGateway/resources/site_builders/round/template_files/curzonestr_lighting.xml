@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!-- !  This file defines the connection between UI & WebBricks and vice versa 
+        for LIGHTING. Correcsponding kid files: 
+            curzonestr_general_overview.kid
+            curzonestr_lighting_overview.kid -->
+            
+            
+            
+            
+    <!-- !  WebBrick to UI
+            Modify type and source to give the correct feedback for UI elements -->        
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+    
+        <!-- !  Feedback from Digital Output (On/Off) -->
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/DO'>
+            <eventsource source='webbrick/999/DO/0'>
+                <event>
+                    <newEvent type="" source="to_ui/curzonestr/lighting/main/state">
+                        <copy_other_data val="state" />
+                        <other_data name=""/>
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+        <!-- !  Feedback from Analogue Output (Analogue) -->
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/AO'>
+            <eventsource source='webbrick/999/AO/0'>
+                <event>
+                    <newEvent type="" source="to_ui/curzonestr/lighting/main/level">
+                        <copy_other_data val="val" />
+                        <other_data name=""/>
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+    </eventInterface>
+    
+        
+    <!-- !  UI to WebBrick
+            Replace 'Xurl' with 'url' and edit address adn uri field issue the correct command-->
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>    
+            
+        <eventtype type="http://id.webbrick.co.uk/events/uri">   
+            
+            <!-- !  Set to Off Scene -->
+            <eventsource source="from_ui/curzonestr/lighting/main/off" >
+                <event>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=SC;0:" cmd="GET" />
+                </event>
+            </eventsource>
+        
+        
+            <!-- !  Set to Low Scene -->
+            <eventsource source="from_ui/curzonestr/lighting/main/low" >
+                <event>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=SC;1:" cmd="GET" />
+                </event>
+            </eventsource>
+
+        
+            <!-- !  Set to Medium Scene -->
+            <eventsource source="from_ui/curzonestr/lighting/main/medium" >
+                <event>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=SC;3:" cmd="GET" />
+                </event>
+            </eventsource>
+      
+        
+            <!-- !  Set to Highest Scene -->
+            <eventsource source="from_ui/curzonestr/lighting/main/high" >
+                <event>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=SC;7:" cmd="GET" />
+                </event>
+            </eventsource>
+        
+        
+            <!-- !  Up one Scene -->
+            <eventsource source="from_ui/curzonestr/lighting/main/scene_up" >
+                <event>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=DI;0:" cmd="GET" />
+                </event>
+            </eventsource>
+       
+        
+            <!-- !  Down one Scene -->
+            <eventsource source="from_ui/curzonestr/lighting/main/scene_down" >
+                <event>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=DI;1:" cmd="GET" />
+                </event>
+            </eventsource>
+            
+            <!-- !  Dimmer Control (Analogue) -->
+            <eventsource source="from_ui/curzonestr/lighting/main/level" >
+                <event>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=AA;0;%(val)s:" cmd="GET" />
+                </event>
+            </eventsource>
+        </eventtype>
+    
+    </eventInterface>
+</eventInterfaces>
+
+

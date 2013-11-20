@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Start-up</title>
+  </head>
+  <body>
+    <h1>Start-up</h1>
+
+      <p>
+        Your WebBrick Gateway should automatically start on power-up of the operating platform, if this is not the case then your
+        installer should have shown you how to start the WebBrick Gateway. Depending on the version of hardware this may take up to 5 minutes.
+      </p>
+
+      <p>
+        The appliance version will shut down when the front panel power switch is pushed briefly.
+      </p>
+
+      <p>
+        Even though the WebBrick Gateway has started, it can take up a further two minutes for the WebBrick Gateway to <em>discover</em> the WebBricks
+        on your network and for all user displays to be complete.
+      </p>
+    
+    <h2>Footnotes:</h2>
+      <p>
+      </p>
+  </body>
+</html>

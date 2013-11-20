@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>switchplate events.</title>
+</head>
+
+<body>
+
+<h2>switchplate events.</h2>
+
+
+This event indicates that a switch on the RS485 switch plate has been triggered.
+
+Type=http://id.webbrick.co.uk/events/switchplate/DI
+Source=switchplate/<em>address</em>/DI/<em>channel</em>
+
+address=switch address
+channel=switch number
+
+<h3>associated data</h3>
+state=0 or 1 for off or on.
+count=nn
+
+</body>
+
+</html>

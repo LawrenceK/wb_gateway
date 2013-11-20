@@ -1,0 +1,201 @@
+/* $Id: panel.css 1636 2007-05-28 15:19:43Z andy $
+ *
+ * CSS definitions for Webbrick documentation
+ *
+ ***********    PLEASE REMEMBER THIS IS USED BY ALL DOCUMENTS   ******************
+ */
+
+
+
+body
+  {
+		background-repeat : repeat-x;
+		background-image : url("../images/93CE9E_FadetoTop.png") ;  
+		background-color : #93CE9E;
+		font-family: Verdana, Arial, Helvetica, sans-serif; 
+		color: #404040 ;
+  }
+
+
+
+
+
+p
+  {
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+
+li
+  {
+  padding: 3px ;
+  }
+
+.center
+  {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+
+
+
+
+.wide
+  {
+    margin-left: 2%;
+    margin-right: 2%;
+    width : 96% ;
+    border-collapse: separate ;
+    border-spacing: 4pt 2pt ;
+  }
+
+
+p img
+{
+  float: left;
+  margin: 2%;
+}
+
+p:after
+{
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+
+tr
+  {
+		border: inherit;
+  }
+  
+
+td
+  {
+    padding: 1% ;
+	margin: 0% ;
+    line-height: 1.05 ; 
+	vertical-align: middle ;
+	z-index: 0 ;
+	border: inherit;
+
+  }
+
+
+.list
+  {
+  // A table being used to show a list of columns
+    border:1px solid #000000;
+
+    border-style : solid ;
+    border-color: #000000 ;
+    border-width: 1px ;
+    border-collapse: collapse ;
+  }
+
+.listentry
+  {
+  // A table being used to show a list of columns
+    border:1px solid #000000;
+
+    border-style : solid ;
+    border-color: #000000 ;
+    border-width: 1px ;
+    border-collapse: collapse ;
+  }
+  
+
+.tabular      { 
+          padding: 1% ;
+		  margin: 0% ;
+		  border-width: thin ;
+		  border-spacing : 0% ;
+		  border-collapse: collapse ;
+		  line-height: 1.05 ; 
+		  vertical-align: middle ;
+		  position: relative ;
+		  z-index: 0 ;
+        }
+
+/*
+ *    Headings  -- .home is used on the title bar
+ *
+ */
+ 
+
+.header
+  {
+    border-bottom: 4px solid rgb(40%,80%,40%);
+    width : 96% ;
+ }
+ 
+
+.footer
+  {
+    border-top: 4px solid rgb(40%,80%,40%);
+    width : 96% ;
+  }
+ 
+ .home
+
+         { width : "20%" ;
+          text-align: center; 
+          font-size: xx-large; 
+          font-weight: bolder;
+ 		  border-width: thin ;
+          border-style : solid ;
+          border-color: rgb(40%,80%,40%) ;
+          border-width: 4px ;
+ 		  padding: 1% 1% 1% 1%;
+        }
+
+ 
+
+ 
+
+ h1
+         { text-align: center; 
+           font-size: xx-large; 
+           font-weight: bolder;
+// 		   border-width: thin ;
+ //          border-style : solid ;
+//           border-color: rgb(40%,80%,40%) ;
+//           border-width: 4px ;
+// 		   padding: 1% 1% 1% 1%;
+        }
+
+        
+
+ h2
+         { text-align: left; 
+           font-size: x-large; 
+           font-weight: bolder;
+ 		   padding: 1% 5% 1% 1%;
+        }        
+  
+
+ h3
+         { text-align: left; 
+          font-size: large; 
+          font-weight: normal;
+ 		      padding: 1% 5% 1% 1%;
+        }
+
+/*
+ * button definition
+ */
+ 
+ button {
+	height: 40px ;
+ }
+ 
+ /*
+  *  Clear formating
+  */
+  
+.clear {
+    border: none ;
+}  

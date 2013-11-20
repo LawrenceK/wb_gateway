@@ -1,0 +1,60 @@
+/* CSS Document */
+
+#leftboxcontent {
+/*	
+    min-height:373px; 
+*/
+	min-height:398px;
+}
+
+#topboxcontent {
+/*	
+	min-height:198px;
+*/
+}
+
+#botboxcontent {
+/*	
+	min-height:113px;
+*/
+}
+
+#zonegroupboxcontent {
+/*	
+	min-height:330px;
+*/
+}
+
+#zonegrouptitle {
+/*	
+	min-height:59px;
+*/
+}
+
+.rect8pxboxwtitle h1 {
+/*	
+	top:13px;
+	white-space:nowrap;
+*/    
+}
+
+#globalzonecontrols .tablecontent {
+/*	
+	min-height:96px;
+*/
+}
+
+#content {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.rect8pxboxwtitle .tl {
+	height: 57px;
+}
+.rect8pxboxwtitle .t {
+	height: 57px;
+}
+.rect8pxboxwtitle .tr {
+	height: 57px;
+}

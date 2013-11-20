@@ -1,0 +1,20 @@
+<eventInterfaces>
+
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+    
+        <eventtype type="http://id.webbrick.co.uk/events/webbrick/TD">
+        
+            <eventsource source="webbrick/100/TD/0" >
+            
+                <event>
+                	<!-- Trigger Digital In 7 -->
+                    <url address="10.100.100.101" uri="/hid.spi?COM=DO7T:" cmd="GET" />
+                </event>
+                
+            </eventsource>
+             
+        </eventtype>
+        
+    </eventInterface>
+    
+</eventInterfaces>

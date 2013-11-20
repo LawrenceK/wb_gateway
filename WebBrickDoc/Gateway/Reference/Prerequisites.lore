@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Prerequisites</title>
+  </head>
+  <body>
+    <h1>Prerequisites</h1>
+    <h2>Appliance</h2>
+ 
+      <p>
+        In this case the software will be all ready installed with all prerequisites. 
+      </p>
+      
+    <h2>Windows Software only install</h2>
+      <p>In this case a single setup program will install all pre requisites and the WebBrickSystems WebBrick Gateway.</p>
+      
+    <h2>Linux Software only install</h2>
+   
+      <p>
+        The WebBrickSystems WebBrick Gateway software requires a number of packages and libraries to be in place, these are:
+        
+        <table>
+          <tr><td>Python:</td><td>Currently 2.4 is recommended because Turbogears does not yet support Python 2.5.(http://www.python.org/download/)</td></tr>
+          <tr><td>Turbogears</td><td>Version 1.0b1 or later, it is recommended that you install using tgsetup.py as this will install all the turbogears prerequisites. (http://www.turbogears.org/download/)</td></tr>
+          <tr><td>PySerial</td><td>Support for serial based interface handlers, e.g. Heatmiser.</td></tr>
+        </table>
+        
+        Depending on your Linux distribution these may already be installed or accessible for install through the package manager, e.g. RPM, for your distribution.
+      </p>
+
+      <p>
+        Some packages will be on the install media but these may not be preferred approach for your distribution..
+      </p>
+
+</body>
+</html>

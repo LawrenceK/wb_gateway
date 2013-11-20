@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML, 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1-strict-dtd">
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+ +  $Id: Test01-LightSwitch.xhtml 582 2006-02-17 00:20:10Z graham $
+ +
+ +  WebBrick home gateway panel definition for a simple light switch.
+ +  Shower (pull-to-toggle) light switch emulation.
+ +
+ -->
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" >
+
+<head>
+  <title>iTunes Control</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  <link href="/static/css/panel.css" rel="stylesheet" />
+  <script src="/static/javascript/MochiKit.js"></script>
+  <script src="/static/javascript/WebBrick.js"></script>
+</head>
+
+<body>
+
+	<table class="navTable">
+	  <tr>
+		<td class="navBar" onClick="window.location='/'">Home</td>
+		<td class="buttonAbsent" id="backButton">Back</td>
+		<td class="buttonAbsent" id="moreButton">More</td>
+		<td class="navBar" id="menuTitle">iTunes Menu</td>
+	  </tr>
+	</table>
+	
+	<table class="rule"><tr><td class="ruleBar">&nbsp;</td></tr></table>
+
+
+<table>
+  <tr>
+    <td colspan="2" wbType="Caption" wbLoad="loadCaption()">iTunes</td>
+  </tr>
+  <tr>	
+     <td wbType="PushButton" wbLoad="loadButton()" 
+        wbTarget="10.100.100.100:DI0" wbSource="10.100.100.100:DO0">Play-Pause</td>
+	 <td wbType="PushButton" wbLoad="loadButton()" 
+        wbTarget="10.100.100.100:DI4" wbSource="10.100.100.100:DO4">Next Track</td>
+	 <td wbType="PushButton" wbLoad="loadButton()" 
+        wbTarget="10.100.100.100:DI3" wbSource="10.100.100.100:DO3">Previous Track</td>
+	 <td wbType="PushButton" wbLoad="loadButton()" 
+        wbTarget="10.100.100.100:DI1" wbSource="10.100.100.100:DO1">Volume Up</td>
+	 <td wbType="PushButton" wbLoad="loadButton()" 
+        wbTarget="10.100.100.100:DI2" wbSource="10.100.100.100:DO2">Volume Down</td>
+  </tr>
+  
+</table>
+
+
+	<table class="infoTable">
+	  <tr>
+		<td wbType="Text" wbLoad='loadTextDisplay("","")'
+        itSource="10.0.0.117:8081:track">(track text here)</td>		
+		<td wbType="Text" wbLoad='loadTextDisplay("Vol:","")'
+        itSource="10.0.0.117:8081:vol">(vol text here)</td>		
+    	<td wbType="Numeric" wbLoad='loadNumericDisplay("House: ","##.#","C")' 
+        wbSource="10.100.100.19:Tmp0">(AO1 value here)
+		
+	  </tr>
+	</table>
+
+</body>
+
+</html>

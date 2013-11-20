@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>EventDespatch</title>
+  </head>
+  <body>
+ <h1>EventDespatch</h1>
+<p>
+  One of the main tasks of the Gaetway is event distribution, the configuration of what to do with these events is handled by the EventDespatch configuration
+  files, the location of these is specified in the gateway configuration file.
+</p>
+<p>
+        The configuration for event distribution is handled through XML control files. Generally these are all in one place and 
+        split by functionality required. There are some files that are provided as base files and are not expected to be edited
+        by the installer, these cause loading of base event ineterfaces. It is up to the installer to use some form of logical structure
+        to these files so that maintainance is simplified, i.e. garage.xml could be everything to do with the garage.
+</p>
+<p>
+        In configuring event distribution you are configuring software elements to respond to events and perform actions or create
+        new events that are then delivered.
+</p>
+<p>
+        The software elements are documented in subsequent sections:
+       
+</p>
+
+</body>
+</html>

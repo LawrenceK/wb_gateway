@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Triac Dimmers</title>
+</head>
+
+<body>
+
+    <h1>Triac Dimmers</h1>
+
+    <p>
+    These are the most conventional type of dimmer found on the market.  They were traditionally used with filamemt lamps.  As these lamps are deprecated and therefore disappearing from the market new lamp technologies attempt to fill their space.  Here are some notes
+    </p>
+
+    <h2>Dimmable low energy lamps</h2>
+    
+    <p>
+    There are many lamps on the market that claim to be dimmable.  Mostly they work when between 1-4 are connected to a dimmer.  With higher numbers strangeness may occur.  This is generally to do with the RFI/EMC circuits that the lamps need to pass CE approval.  If you need to use 12 on a circuit please make a bench test first
+    </p>
+    
+    <h2>I<sup>2</sup>T and fusing</h2>
+    
+    <p>
+    Most dimmers on the market use similar Triacs.  Although these can control very high current loads they can fail under short circuit conditions.  These conditions exist when a filament or halogen bulb blows.  For a fraction of a section the metal in suspension behaves as a gas short circuit.  This is why one oftens sees a bright flash when a bulb of this type fails.
+    </p>
+    
+    <p>
+    During a short circuit current flows at fault level until the fuse blows.  Fuses are rated in two ways:
+      <ul>
+        <li> Rated Current </li>
+        <li> I<sup>2</sup>T </li>
+      </ul>
+    The first is a measure of when the blowing process will start and the second is a measure of how much energy will pass from the start of the blowing process until no more current flows.
+    </p>
+    
+    <p>
+    Typically Triacs have an I<sup>2</sup>T of 36 so any fuse protecting a Triac should have a value significantly less than this.
+    </p>
+
+</body>
+
+</html>

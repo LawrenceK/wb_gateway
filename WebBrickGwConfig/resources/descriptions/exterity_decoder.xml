@@ -1,0 +1,65 @@
+<device>
+    <type val="Exterity_Decoder"> 
+        <subtype val="Decoder" />
+    </type>
+    <commands>    
+        <selectStream>
+            <send type = "armour/exterity/seturl" source = "set/streamurl">
+                <payload streamUrl = '%(streamUrl)s' ip = "%(ip)s"/>
+            </send>
+            <requiredparams streamUrl = "test" />
+        </selectStream>
+        <selectWeb>
+            <send type = "armour/exterity/select/web" source = "select/web">
+                <payload webUrl = '%(webUrl)s' ip = "%(ip)s"/>
+            </send>            
+            <requiredparams streamUrl = "test" />
+        </selectWeb>
+    </commands>
+    <ip val="" />
+    <id val="" />
+    <location val=""/>
+    <name val="New Exterity Decoder" />
+    <connections>
+        <connection>
+            <sinks>
+                <sink>
+                    <id val=":001" />
+                    <type val="ExterityIP" />
+                    <focus val="global" />
+                    <name val="IPStream" />
+                    <status val="no connecting required" />
+                    <commands>
+                        <command name ="selectStream">
+                            <params/>
+                        </command>
+                    </commands>
+                </sink>
+                <sink>
+                    <id val = ":002" />
+                    <type val="ExterityWeb"/>
+                    <focus val="local"/>
+                    <name val="TV UI"/>
+                    <ui val = "ExterityWeb"/>
+                    <status val = "terminated"/>
+                    <commands>
+                        <command name = "selectWeb">
+                            <params webUrl = "http://%(webUrl)s:8080/ant/%(location)s_exterity.html" ip = "%(ip)s"/>
+                        </command>
+                    </commands>
+                </sink>
+            </sinks>
+            <sources>
+                <source>
+                    <id val=":003" />
+                    <type val="analogue" />
+                    <focus val="local" />
+                    <name val="Output" />
+                    <connectedto val="" />
+                    <status val="not connected" />
+                </source>
+            </sources>
+        </connection>    
+    </connections>
+    <confstatus val="not confirgured" />
+</device>

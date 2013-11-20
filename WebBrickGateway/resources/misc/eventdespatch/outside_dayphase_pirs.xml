@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+    <!-- !  TODO: If dimmable outside lights are used use the DT;A... command to target the
+            analogue channels. If the outside lights are not dimmable use DT;D... commands.
+            
+                Outputs to WebBricks: 
+                
+                    1.  Replace Xurl with url, if http request are to be issued.
+
+                    2.  Replace SampleWb1/SampleWb2 with the correct webbrick names
+                    
+                    3.  Change the channel in the A/D command to taget the correct
+                        channel on the webbrick. (number following the "A" or the "D").
+                    
+                    4.  Dwells are by default set to 300 seconds (i.e. 5 minutes) and can be changed.
+                    
+                Inputs form WebBricks:
+                    
+                    1.  Change the node number from 901/902/... to the WebBricks node number.
+                    
+                    2.  Change the channel number to the correct channel to pick up the PIR state.
+    -->
+    
+    
+    
+    <!--
+    ==================================================================================================================
+        Outputs to Webbricks
+    ==================================================================================================================
+    -->                
+        
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+        <!--This responds to events and does an HTTP request(s) as the action.-->
+
+        <!-- This event will be created if front PIRs are enabled (see general_dayphase.xml) and any of the front 
+             PIRs is triggered -->
+        <eventtype type="internal">   
+            <eventsource source="outside/lighting/front/dwell" >
+                <event>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=DT;A2;6;5;300;0;0;0;0:" cmd="GET" />
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=DT;D3;6;18;300;0;0;0;0:" cmd="GET" />
+                </event>
+            </eventsource>
+        </eventtype>
+        
+        <!-- This event will be created if the other outside PIRs are enabled (see general_dayphase.xml) and any of the them
+             are triggered -->
+        <eventtype type="internal">   
+            <eventsource source="outside/lighting/other/dwell" >
+                <event>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=DT;A2;6;5;300;0;0;0;0:" cmd="GET" />
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=DT;D3;6;18;300;0;0;0;0:" cmd="GET" />
+                </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+
+    
+    <!--
+    ==================================================================================================================
+        Inputs from WebBricks
+    ==================================================================================================================
+    --> 
+    
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+        
+        <!-- Pick up what PIRs are triggered -->
+        <eventtype type="http://id.webbrick.co.uk/events/webbrick/TD">
+            
+            <!-- PIRs for the Front of the House -->
+            <eventsource source="webbrick/901/TD/1" >
+                <event>
+                    <newEvent type="internal" source="outside/pirs/front/triggered">
+                    </newEvent>
+                </event>
+            </eventsource>
+            
+            <eventsource source="webbrick/902/TD/1" >
+                <event>
+                    <newEvent type="internal" source="outside/pirs/front/triggered">
+                    </newEvent>
+                </event>
+            </eventsource>
+            
+            <!-- pirs for other areas around the House -->
+            <eventsource source="webbrick/903/TD/1" >
+                <event>
+                    <newEvent type="internal" source="outside/pirs/other/triggered">
+                    </newEvent>
+                </event>
+            </eventsource>
+            
+            <eventsource source="webbrick/904/TD/1" >
+                <event>
+                    <newEvent type="internal" source="outside/pirs/other/triggered">
+                    </newEvent>
+                </event>
+            </eventsource>
+            
+        </eventtype>
+    </eventInterface>
+    
+    <!--
+    ==================================================================================================================
+        Functional Section DO NOT MODIFY
+    ==================================================================================================================
+    -->
+        
+    <eventInterface module='EventHandlers.Compound' name='Compound'>
+        
+
+        
+        <!-- Build conditionals to handle pirs triggering in courtyard -->
+        <eventtype type="internal">
+            
+            <!-- Pick up enable/disable for front pirs-->
+            <eventsource source="outside/pirs/front/enable" >
+                <event>
+                    <action name="FrontPIREnabled" value="1"/>
+                </event>
+            </eventsource>
+            <eventsource source="outside/pirs/front/disabled" >
+                <event>
+                    <action name="FrontPIREnabled" value="0"/>
+                </event>
+            </eventsource>
+            
+            <!-- Pick up enable/disable for other PIR-->
+            <eventsource source="outside/pirs/other/enable" >
+                <event>
+                    <action name="OtherPIREnabled" value="1"/>
+                </event>
+            </eventsource>
+            <eventsource source="outside/pirs/other/disabled" >
+                <event>
+                    <action name="OtherPIREnabled" value="0"/>
+                </event>
+            </eventsource>
+            
+            <!-- PIRs for the Front of the House -->
+            <eventsource source="outside/pirs/front/triggered" >
+                <event>
+                    <action name="FrontPIRTriggered" value="1" transient="true" />
+                </event>
+            </eventsource>
+            
+            <!-- PIRs for other areas around the House -->
+            <eventsource source="outside/pirs/other/triggered" >
+                <event>
+                    <action name="OtherPIRTriggered" value="1" transient="true" />
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <compound>
+            <params>
+                <testEq name='FrontPIREnabled' value='1'/>
+                <testEq name='FrontPIRTriggered' value='1'/>
+            </params>
+            <newEvent type="internal" source="outside/lighting/front/dwell" />
+        </compound>
+
+        <compound>
+            <params>
+                <testEq name='OtherPIREnabled' value='1'/>
+                <testEq name='OtherPIRTriggered' value='1'/>
+            </params>
+            <newEvent type="internal" source="outside/lighting/other/dwell" />
+        </compound>
+
+    </eventInterface> 
+</eventInterfaces>

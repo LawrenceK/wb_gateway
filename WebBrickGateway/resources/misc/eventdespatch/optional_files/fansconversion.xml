@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!--
+All value conversions are implemnted in this file. This includes: 
+    - Humidity Sensors 
+        - Downstairs WC Humidity 
+        - Upstairs WC Humidity 
+-->
+
+<!-- TODO change 999 for webbrick node number and target correct webbrick -->
+
+    <eventInterface module='EventHandlers.ValueConvert' name='ValueConvert'>
+        <eventtype type=''>
+            
+            <!-- Do a conversion on the Humidity Sensors -->
+            
+            <!-- Downstairs WC Humidity Sensor -->
+            <eventsource source='webbrick/999/AI/0'>
+                <event>
+                    <newEvent type='internal' source='HumDownWC' preoffset='16' multiplier='1.54'>
+                        <copy_other_data val="newVal"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+            
+             <!-- Upstairs WC Humidity Sensor -->
+            <eventsource source='webbrick/999/AI/1'>
+                <event>
+                    <newEvent type='internal' source='HumUpWC' preoffset='16' multiplier='1.54'>
+                        <copy_other_data val="newVal"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+            
+            <!-- Ensuite Humidity Sensor -->
+            <eventsource source='webbrick/999/AI/2'>
+                <event>
+                    <newEvent type='internal' source='HumEnSuite' preoffset='16' multiplier='1.54'>
+                        <copy_other_data val="newVal"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+        
+        </eventtype>
+    </eventInterface> 
+    
+    
+    <!-- For mapping an incomming digital output on off (the is controlling a fan) to the value 0 for off and 100 for on to be displayed neatly on the flash dials -->
+    
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+            <eventtype type='http://id.webbrick.co.uk/events/webbrick/DO'>
+            <eventsource source='webbrick/999/DO/0'>
+                <event>
+                    <params>
+                        <testEq name="state" value="0" />
+                    </params>
+                    <newEvent type="internal" source="fans/ensuite/speed">
+                        <other_data val="0"/>
+                    </newEvent>
+                </event>
+                <event>
+                    <params>
+                        <testEq name="state" value="1" />
+                    </params>
+                    <newEvent type="internal" source="fans/ensuite/speed">
+                        <other_data val="100"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+    
+</eventInterfaces>

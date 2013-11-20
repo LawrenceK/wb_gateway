@@ -1,0 +1,97 @@
+{
+
+  "title":{
+    "text":  "Unset Title",
+    "style": "{font-size: 18px; color:#444444; font-family: Verdana; text-align: center; font-weight:bold;}"
+  },
+ 
+  "y_legend":{
+    "text": "Temperature",
+    "style": "{color: #444444; font-size: 12px;}"
+  },
+ 
+  "elements":[
+    {
+      "type":      "line",
+      "alpha":     0.5,
+      "colour":    "#9933CC",
+      "text":      "",
+      "font-size": 14
+    },
+    {
+      "type":      "line",
+      "alpha":     0.5,
+      "colour":    "#CC9933",
+      "text":      "",
+      "font-size": 14
+    },
+    {
+      "type":      "line",
+      "alpha":     0.5,
+      "colour":    "#3333FF",
+      "text":      "",
+      "font-size": 14
+    },
+    {
+      "type":      "line",
+      "alpha":     0.5,
+      "colour":    "#444444",
+      "text":      "",
+      "font-size": 14
+    },
+    {
+      "type":      "line",
+      "alpha":     0.5,
+      "colour":    "#FF4444",
+      "text":      "",
+      "font-size": 14
+    },
+	{
+      "type":      "line",
+      "alpha":     0.5,
+      "colour":    "#44FF44",
+      "text":      "",
+      "font-size": 14
+    },
+	{
+      "type":      "line",
+      "alpha":     0.5,
+      "colour":    "#4444FF",
+      "text":      "",
+      "font-size": 14
+    },
+	{
+      "type":      "line",
+      "alpha":     0.5,
+      "colour":    "#0000FF",
+      "text":      "",
+      "font-size": 14
+    }
+  ],
+ 
+  "x_axis":{
+    "stroke":2,
+	"steps":10,
+    "tick_height":10,
+    "colour":"#9966cc",
+    "grid_colour":"#00ff00",
+	    "labels": {
+			"steps":10,
+			"labels": ["unset"]
+		}
+   },
+ 
+  "y_axis":{
+    "stroke":      2,
+	"steps":	   5,
+    "tick_length": 3,
+    "colour":      "#9966cc",
+    "grid_colour": "#00ff00",
+    "offset":      0,
+    "max":         55,
+	"min":		   -5
+  },
+  
+  "bg_colour": "#F2F2F2"
+
+}

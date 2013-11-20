@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<devices>
+
+    <device>
+        <type> SitePlayerTelnet, WebBrick, ExterityEncoder, ExterityDecoder, UPnP 
+            <subtype>Lutron, Sky, NAD</subtype>
+        </type>
+        <ip></ip>
+        <id></id>
+        
+        <name></name>
+        <connections>
+            <sources>
+                <source>
+                    <type>
+                    <name>
+                </source>
+            <sinks>
+                <sink>
+                    <type>
+                    <name>
+                </sink>    
+    <device>
+
+</devices>    
+    
+    <!--
+    ==================================================================================================================
+    
+        Towel Rail Schedule Control (with occupancy)
+        
+        This 
+        
+       
+        TODO: 
+            - Replace SampelWb with WebBrick name 
+            - Change Xurl to url 
+            - Change the node and channel number for inputs
+            - Replace schedule_device_name withthe name of the name you are using in prod.cfg for this schedule
+    ==================================================================================================================
+    -->
+               
+    <!--
+    ==================================================================================================================
+        Outputs to Webbricks
+    ==================================================================================================================
+    -->                
+                
+    <!-- Outputs to WebBricks  -->
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+        <!--This responds to events and does an HTTP request(s) as the action.-->
+
+        <!-- Picks up the events that are issued from the compound section and switches 
+             physical output for towelrails -->
+        <eventtype type="internal/heating">   
+            <eventsource source="curzonestr/heating/towelrail/run" >
+                <event>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=DO;4;N:" cmd="GET" />
+                </event>
+            </eventsource>
+            <eventsource source="curzonestr/heating/towelrail/stop" >
+                <event>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=DO;4;F:" cmd="GET" />
+                </event>
+            </eventsource>
+        </eventtype>
+        
+    </eventInterface>
+
+    
+    
+    <!--
+    ==================================================================================================================
+        Inputs from WebBricks
+    ==================================================================================================================
+    --> 
+    
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+        
+        
+        
+        <!-- State of the Towel Rails for feedback to the UI -->
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/DO'>
+            <eventsource source='webbrick/999/DO/4'>
+                <event>
+                    <newEvent type="internal/heating" source="to_ui/curzonestr/heating/towelrail/state">
+                        <copy_other_data val="state"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+    </eventInterface> 
+    
+
+    
+    
+    
+    <!--
+    ==================================================================================================================
+        Functional Section DO NOT MODIFY
+    ==================================================================================================================
+    -->
+
+    <eventInterface module='EventHandlers.Compound' name='Compound'>
+        
+        <!-- Gather Data from Schedule On/Off events-->
+        <eventtype type="http://id.webbrick.co.uk/events/schedule/control">
+            <eventsource source="schedule_device_name/On" >
+                <event>
+                    <action name="request_state" value="1"/>
+                </event>
+            </eventsource>
+            <eventsource source="schedule_device_name/Off" >
+                <event>
+                    <action name="request_state" value="0"/>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+        
+        <!-- Gather Data to get occupancy state -->
+        <eventtype type="http://id.webbrick.co.uk/events/config/get">
+            <eventsource source="occupants/home" >
+                <event>
+                    <action name="occupancy" key="val"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        
+        
+        <!-- Run Towel Rail if run requested and occupants are home -->
+        <compound>
+            <params>
+                <testEq name='occupancy' value='1'/>
+                <testEq name='request_state' value='1'/>
+            </params>
+            <newEvent type="internal/heating" source="curzonestr/heating/towelrail/run" />
+        </compound>
+       
+        <!-- Stop Towel Rail if stop requested independant of occupany state -->
+        <compound>
+            <params>
+                <testEq name='request_state' value='0'/>
+            </params>
+            <newEvent type="internal/heating" source="curzonestr/heating/towelrail/stop" />
+        </compound>
+        
+
+    </eventInterface> 
+    
+</eventInterfaces>

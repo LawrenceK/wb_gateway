@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<WebbrickConfig Ver="^SwVerMajor.^SwVerMinor.^SwVerBuild">
+	<NN>^NodeName</NN>
+	<SN>^NodeNumber</SN>
+	<SRs>
+	    <SR id="0" Value="^Rot0Step"/>
+	    <SR id="1" Value="^Rot1Step"/>
+	</SRs>
+	<SF>^FadeRate</SF>
+
+	<CDs>
+		<CD id = "0" Name="^Dig0Name">
+			<Trg B1="^Dig0CfgB1" B2="^Dig0CfgB2" B3="^Dig0CfgB3" />
+		</CD>
+		<CD id = "1" Name="^Dig1Name">
+			<Trg B1="^Dig1CfgB1" B2="^Dig1CfgB2" B3="^Dig1CfgB3" />
+		</CD>
+		<CD id = "2" Name="^Dig2Name">
+			<Trg B1="^Dig2CfgB1" B2="^Dig2CfgB2" B3="^Dig2CfgB3" />
+		</CD>
+		<CD id = "3" Name="^Dig3Name">
+			<Trg B1="^Dig3CfgB1" B2="^Dig3CfgB2" B3="^Dig3CfgB3" />
+		</CD>
+		<CD id = "4" Name="^Dig4Name">
+			<Trg B1="^Dig4CfgB1" B2="^Dig4CfgB2" B3="^Dig4CfgB3" />
+		</CD>
+		<CD id = "5" Name="^Dig5Name">
+			<Trg B1="^Dig5CfgB1" B2="^Dig5CfgB2" B3="^Dig5CfgB3" />
+		</CD>
+		<CD id = "6" Name="^Dig6Name">
+			<Trg B1="^Dig6CfgB1" B2="^Dig6CfgB2" B3="^Dig6CfgB3" />
+		</CD>
+		<CD id = "7" Name="^Dig7Name">
+			<Trg B1="^Dig7CfgB1" B2="^Dig7CfgB2" B3="^Dig7CfgB3" />
+		</CD>
+	</CDs>
+	
+	<CWs>
+		<CW id="0">^Dw0</CW>
+		<CW id="1">^Dw1</CW>
+		<CW id="2">^Dw2</CW>
+		<CW id="3">^Dw3</CW>
+	</CWs>
+	
+	<CSs>
+		<CS id="0">^Sp0</CS>
+		<CS id="1">^Sp1</CS>
+		<CS id="2">^Sp2</CS>
+		<CS id="3">^Sp3</CS>
+		<CS id="4">^Sp4</CS>
+		<CS id="5">^Sp5</CS>
+		<CS id="6">^Sp6</CS>
+		<CS id="7">^Sp7</CS>
+	</CSs>
+	
+	<CTs>
+		<CT id="0" Name="^Temp0Name">
+			<TrgL Val="^Temp0Low" B1="^Temp0LowB1" B2="^Temp0LowB2" B3="^Temp0LowB3" />
+			<TrgH Val="^Temp0Hi" B1="^Temp0HiB1" B2="^Temp0HiB2" B3="^Temp0HiB3" />
+		</CT>
+		<CT id="1" Name="^Temp1Name">
+			<TrgL Val="^Temp1Low" B1="^Temp1LowB1" B2="^Temp1LowB2" B3="^Temp1LowB3" />
+			<TrgH Val="^Temp1Hi" B1="^Temp1HiB1" B2="^Temp1HiB2" B3="^Temp1HiB3" />
+		</CT>
+		<CT id="2" Name="^Temp2Name">
+			<TrgL Val="^Temp2Low" B1="^Temp2LowB1" B2="^Temp2LowB2" B3="^Temp2LowB3" />
+			<TrgH Val="^Temp2Hi" B1="^Temp2HiB1" B2="^Temp2HiB2" B3="^Temp2HiB3" />
+		</CT>
+		<CT id="3" Name="^Temp3Name">
+			<TrgL Val="^Temp3Low" B1="^Temp3LowB1" B2="^Temp3LowB2" B3="^Temp3LowB3" />
+			<TrgH Val="^Temp3Hi" B1="^Temp3HiB1" B2="^Temp3HiB2" B3="^Temp3HiB3" />
+		</CT>
+		<CT id="4" Name="^Temp4Name">
+			<TrgL Val="^Temp4Low" B1="^Temp4LowB1" B2="^Temp4LowB2" B3="^Temp4LowB3" />
+			<TrgH Val="^Temp4Hi" B1="^Temp4HiB1" B2="^Temp4HiB2" B3="^Temp4HiB3" />
+		</CT>
+	</CTs>
+	
+	<CIs>
+		<CI id="0" Name="^AnIn0Name">
+			<TrgL Val="^AnIn0Low" B1="^AnIn0LowB1" B2="^AnIn0LowB2" B3="^AnIn0LowB3" />
+			<TrgH Val="^AnIn0Hi" B1="^AnIn0HiB1" B2="^AnIn0HiB2" B3="^AnIn0HiB3" />
+		</CI>
+		<CI id="1" Name="^AnIn1Name">
+			<TrgL Val="^AnIn1Low" B1="^AnIn1LowB1" B2="^AnIn1LowB2" B3="^AnIn1LowB3" />
+			<TrgH Val="^AnIn1Hi" B1="^AnIn1HiB1" B2="^AnIn1HiB2" B3="^AnIn1HiB3" />
+		</CI>
+		<CI id="2" Name="^AnIn2Name">
+			<TrgL Val="^AnIn2Low" B1="^AnIn2LowB1" B2="^AnIn2LowB2" B3="^AnIn2LowB3" />
+			<TrgH Val="^AnIn2Hi" B1="^AnIn2HiB1" B2="^AnIn2HiB2" B3="^AnIn2HiB3" />
+		</CI>
+		<CI id="3" Name="^AnIn3Name">
+			<TrgL Val="^AnIn3Low" B1="^AnIn3LowB1" B2="^AnIn3LowB2" B3="^AnIn3LowB3" />
+			<TrgH Val="^AnIn3Hi" B1="^AnIn3HiB1" B2="^AnIn3HiB2" B3="^AnIn3HiB3" />
+		</CI>
+	</CIs>
+	
+	<CEs>
+		<CE id="0" Days="^Sch0Days" Hrs="Sch0Hrs" Mins="Sch0Mins" >
+			<Trg B1="^Sch0CfgB1" B2="^Sch0CfgB2" B3="^Sch0CfgB3" />
+		</CE>
+		<CE id="1" Days="^Sch1Days" Hrs="Sch1Hrs" Mins="Sch1Mins" >
+			<Trg B1="^Sch1CfgB1" B2="^Sch1CfgB2" B3="^Sch1CfgB3" />
+		</CE>
+		<CE id="2" Days="^Sch2Days" Hrs="Sch2Hrs" Mins="Sch2Mins" >
+			<Trg B1="^Sch2CfgB1" B2="^Sch2CfgB2" B3="^Sch2CfgB3" />
+		</CE>
+		<CE id="3" Days="^Sch3Days" Hrs="Sch3Hrs" Mins="Sch3Mins" >
+			<Trg B1="^Sch3CfgB1" B2="^Sch3CfgB2" B3="^Sch3CfgB3" />
+		</CE>
+		<CE id="4" Days="^Sch4Days" Hrs="Sch4Hrs" Mins="Sch4Mins" >
+			<Trg B1="^Sch4CfgB1" B2="^Sch4CfgB2" B3="^Sch4CfgB3" />
+		</CE>
+		<CE id="5" Days="^Sch5Days" Hrs="Sch5Hrs" Mins="Sch5Mins" >
+			<Trg B1="^Sch5CfgB1" B2="^Sch5CfgB2" B3="^Sch5CfgB3" />
+		</CE>
+		<CE id="6" Days="^Sch6Days" Hrs="Sch6Hrs" Mins="Sch6Mins" >
+			<Trg B1="^Sch6CfgB1" B2="^Sch6CfgB2" B3="^Sch6CfgB3" />
+		</CE>
+		<CE id="7" Days="^Sch7Days" Hrs="Sch7Hrs" Mins="Sch7Mins" >
+			<Trg B1="^Sch7CfgB1" B2="^Sch7CfgB2" B3="^Sch7CfgB3" />
+		</CE>
+		<CE id="8" Days="^Sch8Days" Hrs="Sch8Hrs" Mins="Sch8Mins" >
+			<Trg B1="^Sch8CfgB1" B2="^Sch8CfgB2" B3="^Sch8CfgB3" />
+		</CE>
+		<CE id="9" Days="^Sch9Days" Hrs="Sch9Hrs" Mins="Sch9Mins" >
+			<Trg B1="^Sch9CfgB1" B2="^Sch9CfgB2" B3="^Sch9CfgB3" />
+		</CE>
+		<CE id="10" Days="^Sch10Days" Hrs="Sch10Hrs" Mins="Sch10Mins" >
+			<Trg B1="^Sch10CfgB1" B2="^Sch10CfgB2" B3="^Sch10CfgB3" />
+		</CE>
+		<CE id="11" Days="^Sch11Days" Hrs="Sch11Hrs" Mins="Sch11Mins" >
+			<Trg B1="^Sch11CfgB1" B2="^Sch11CfgB2" B3="^Sch11CfgB3" />
+		</CE>
+		<CE id="12" Days="^Sch12Days" Hrs="Sch12Hrs" Mins="Sch12Mins" >
+			<Trg B1="^Sch12CfgB1" B2="^Sch12CfgB2" B3="^Sch12CfgB3" />
+		</CE>
+		<CE id="13" Days="^Sch13Days" Hrs="Sch13Hrs" Mins="Sch13Mins" >
+			<Trg B1="^Sch13CfgB1" B2="^Sch13CfgB2" B3="^Sch13CfgB3" />
+		</CE>
+		<CE id="14" Days="^Sch14Days" Hrs="Sch14Hrs" Mins="Sch14Mins" >
+			<Trg B1="^Sch14CfgB1" B2="^Sch14CfgB2" B3="^Sch14CfgB3" />
+		</CE>
+		<CE id="15" Days="^Sch15Days" Hrs="Sch15Hrs" Mins="Sch15Mins" >
+			<Trg B1="^Sch15CfgB1" B2="^Sch15CfgB2" B3="^Sch15CfgB3" />
+		</CE>
+	</CEs>
+	
+	<NOs>
+		<NO id="0" Name="^DigOut0Name" />
+		<NO id="1" Name="^DigOut1Name" />
+		<NO id="2" Name="^DigOut2Name" />
+		<NO id="3" Name="^DigOut3Name" />
+		<NO id="4" Name="^DigOut4Name" />
+		<NO id="5" Name="^DigOut5Name" />
+		<NO id="6" Name="^DigOut6Name" />
+		<NO id="7" Name="^DigOut7Name" />
+	</NOs>
+	
+	<NMs>
+		<NM id="0" Name="^MonIn0" />
+		<NM id="1" Name="^MonIn1" />
+		<NM id="2" Name="^MonIn2" />
+		<NM id="3" Name="^MonIn3" />
+	</NMs>
+	
+	<NAs>
+		<NA id="0" Name="^AnOut0Name"/>
+		<NA id="1" Name="^AnOut1Name"/>
+		<NA id="2" Name="^AnOut2Name"/>
+		<NA id="3" Name="^AnOut3Name"/>
+	</NAs>
+</WebbrickConfig>

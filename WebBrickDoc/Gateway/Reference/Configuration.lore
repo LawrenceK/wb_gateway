@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Configuration</title>
+  </head>
+  <body>
+    <h1>Configuration</h1>
+
+    <p>
+        Currently the WebBrick Gateway is configured by editing text files containing either XML configuration data
+        or xhtml/XML page templates (kid files). There are also some application configuration files that
+        are used to configure the operating environment for the WebBrick Gateway.
+    </p>
+
+    <p>
+        The location of these files may move but on the Linux platform the user editable files are typically installed under /opt/webbrick. To support multiple configurations
+        there is normally a site dependant sub directory off of this location.
+    </p>
+    
+    <h2>System configuration</h2>
+    
+      <p>
+        The defaults for system configuration can be overidden by entries in an environment specific configuration file, this will typically be stored as prod.cfg in the 
+        site directory. This name and location of this file is passed as a parameter to the startup of the gateway or is expected to be in the current working directory.
+      </p>
+      <p>
+        Refer to the contents of the default gateway.cfg and in gateway.example.cfg for the entries that may be modified.
+      </p>
+
+      <p>The main entries of interest are:
+        <table>
+          <tr><th>Entry</th><th>Section</th><th>Purpose</th></tr>
+          <tr><td>configDirectory</td><td>[gateway]</td><td></td></tr>
+          <tr><td>despatchConfig</td><td>[gateway]</td><td>Location of event despatch XML files.</td></tr>
+          <tr><td>mediaAccessConfig</td><td>[gateway]</td><td>Location of media access control file.</td></tr>
+          <tr><td>heatingConfig</td><td>[gateway]</td><td>Schedule/heating control file, must be in the Event Despatch directory.</td></tr>
+          <tr><td>templateDir</td><td>[gateway]</td><td>Alternate location for page templates (KID files)</td></tr>
+
+          <tr><td>webbrickDirectory</td><td>[wbcnf]</td><td>Where to store saved webbrick configurations.</td></tr>
+          <tr><td>network</td><td>[wbcnf]</td><td>Webbrick network address and subnet mask.</td></tr>
+
+          <tr><td></td><td>[redirect]</td>
+              <td>This section provides URLs for information that is sourced from elsewhere on the network and embedded in user
+                interface pages. These are typically accessed as /redirect/camera1etc. in a web browser IFrame.</td></tr>
+
+
+          <tr><td>static_filter.root</td><td>[global]</td><td>Chnage to move most of the static files to a new location, copy the existing ones first.</td></tr>
+          <tr><td>static_filter.dir</td><td>[/static/css]</td><td>Change to relocate just the css files. Note the directory is not absolute then static_filter.root is prepended</td></tr>
+          <tr><td>static_filter.dir</td><td>[/static/images]</td><td>Change to relocate just the image files. Note the directory is not absolute then static_filter.root is prepended</td></tr>
+          <tr><td>static_filter.dir</td><td>[/static/images/background]</td><td>Change to relocate the background image files. Note the directory is not absolute then static_filter.root is prepended</td></tr>
+          <tr><td>static_filter.dir</td><td>[/static/flash]</td><td>Change to relocate just the flash resource files. Note the directory is not absolute then static_filter.root is prepended</td></tr>
+          <tr><td>static_filter.dir</td><td>[/static/xhtml]</td><td>Change to relocate just the static xhtml files. Note the directory is not absolute then static_filter.root is prepended</td></tr>
+          
+
+        </table>
+      </p>
+    <h2>logging</h2>
+
+      <p>
+        This is not heavily documented here, refer to prod.cfg for possible changes.
+      </p>
+
+    <h2>Event Despatch (XML configuration)</h2>
+    <p>
+        The XML configuration files are primarily in the despatchConfig directory specified in the gateway section.
+        All files whose names end in .xml are used to configure the despatch processing
+        within the WebBrick Gateway, see section on EventDespatch for further details. Any syntax errors in these files will cause a load error and the 
+        WebBrick Gateway will not fully start up. (Note: An easy way to check the syntax is to start Firefox or Internet Explorer and then drag and drop
+        the file you want to test onto the web browser to open it.
+    </p>
+    
+    <p>
+        The file named against heatingConfig should also exist in this directory as it dynamically updated from the browser, but 
+        needs loading as part of the event dispatching.
+    </p>
+    
+    <p>
+        If media integration is being provided then a mediaAccess.xml file will exist, this is used to configure 
+        media server locations and will exist in the location as specified in gateway.cfg file above.
+    </p>
+    
+    <h2>XHTML template configuration, .kid files</h2>
+    <p>
+      This group of files is used to define the user interface pages that the user can access. Location is in templateDir and /static/xhtml
+    </p>
+    
+    <p>
+      A sample of the files that may exist follows, they can be broken into 3 groups:
+      <ul>
+        <li>
+          those that provide generic formatting and display elements, i.e. master.kid
+          <code>
+          master.kid
+          </code>
+        </li>
+        <li> 
+          those that provide pages configured to suit the user, i.e. welcome.kid.
+          <code>
+            garage.kid
+            guide.kid
+            heating.kid
+            lighting.kid
+            mediapanel.kid
+            overview.kid
+            sched_heating.kid
+            security.kid
+            welcome.kid
+          </code>
+        </li>
+
+        <li> 
+          those that provide data formatting for dynamic updates, singleValue.kid
+          <code>
+            singleValue.kid
+            values.kid
+          </code>
+        </li>
+      </ul>
+    </p>
+    
+    <p>
+      Updates to master.kid control the display of standard data on the pages, i.e. the standard header bar and the
+      footer with time and messages in it.
+    </p>
+    
+    <p>
+      The welcome.kid is the home page that is accessed when pointing a browser just at 
+      the WebBrick Gateway, i.e. http://myhome/ .
+    </p>
+    
+    <p>
+      Some of the other pages depend on the WebBrick Gateway providing data to be filled into 
+      the page, i.e. mediapanel.kid and others do not require any data from the WebBrick Gateway.
+    </p>
+    
+    <p>
+      The WebBrick Gateway is built around the Model View Controller (MVC) paradigm, this means that the display control is separated from the business logic (the action
+      of controlling the system). This makes it easier to change the visual presentation of the system without breaking the control logic.
+    </p>
+  </body>
+</html>
+

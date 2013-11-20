@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Persistant Configuration events.</title>
+</head>
+
+<body>
+
+<h2>Persistant Configuration events.</h2>
+
+These events are used deliver persistant configuration to the webbrick gateway and to update the 
+persistaant configuration. The advantages of delivering persistant configuration using the event delivery mechanism
+are:
+<ol>
+<li>Information can be stored in multiple places for redundancy.</li>
+<li>The choice of storage can be chosen to suit the implementation, local disk, remote server.</li>
+<li>We have a single persistent data store.</li>
+<li>The data store could be partioned and distributed.</li>
+</ol>
+
+<ul>
+    <li><a href="set.html" >Update persistent configuration.</a></li>
+    <li><a href="get.html" >Deliver persistent configuration.</a></li>
+</ul>
+    
+</body>
+
+</html>

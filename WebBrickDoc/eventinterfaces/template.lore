@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta name="author" content="Lawrence Klyne" />
+  <title></title>
+  <style type="text/css">
+  .body { margin-left: 40px; }
+  .code { font-family: monospace; }
+  .param { font-style: italic;  }
+  .strong { font-weight: bold; }
+  </style>
+</head>
+
+<body>
+
+    <h1>Overview</h1>
+
+        <p>Respond to events to....</p>
+
+    <h2>Description</h2>
+        <p>This event interface .</p>
+
+
+    <h2>Configuration</h2>
+        <p>The handler specific configuration for this expects one or more 'action' elements within the event elelment. 
+        This contains the folllowing attributes</p>
+
+        <ul>
+        <li>task - one of </li>
+        <li>command - </li>
+        </ul>
+
+        <p>The action element may be repeated to get actions ona single event.
+        </p>
+    <h2>Example</h2>
+    <pre>
+    &lt;eventInterface module='EventHandlers.HttpAction' name='HttpAction'&gt;
+        &lt;eventtype type="internal"&gt;
+            &lt;eventsource source="garagea/fore/30Sec" &gt;
+                &lt;event&gt;
+                    &lt;url address="garagea" uri="/hid.spi?COM=DT;A0;6;5;1;0;0::" cmd="GET" /&gt;
+                    &lt;url cmd='GET' uri='/hid.spi?COM=TT1;B;%(val)s:' address='10.100.100.100'/&gt;
+                &lt;/event&gt;
+            &lt;/eventsource&gt;
+        &lt;/eventtype&gt;
+
+    &lt;/eventInterface&gt;
+    </pre>
+
+</body>
+
+</html>

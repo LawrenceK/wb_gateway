@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <title>Graphing</title>
+  </head>
+
+<body>
+    <h1>Creating and Styling Graphs</h1>
+
+    <p>
+    Within the gateway it is possible to define an XML Dataset that will log eventstates on a periodic basis.  The Dataset will create a file in the <i>siteLogRoot</i> directory.
+    </p>
+    <p>
+    This XML file can be read into KID template page and the data used to create a graph with multiple values.
+    The basic process is:
+        <ul>
+            <li>The kid template calls a 'gatherData' page on the server side that returns the data as a single XML data blob</li>
+            <li>The XML data blob is converted in to a Javascript list object at the client end</li>
+            <li>Styling and layout functions are performed on the list object</li>
+            <li>The list object is passed to the graphing SWF object as a JSON string</li>
+            <li>The SWF graphing object renders the graph in the client browser</li>
+        </ul>
+    More details on the process can be found at the Open Flash Chart 2 link at the end of this section.  Here's an example graph:
+    </p>
+    
+    <br/>
+
+    <p>
+        <center>
+        <img src="../../Images/graphExample.png" />
+        </center>
+    </p>
+    
+    <h2>Graph Styling Functions</h2>
+    <p>
+    In order to control the layout and colour of the various data, the following javascript functions are available:
+    </p>
+    <ul>
+        <li><pre>gTitle("name")</pre>  This is the overall graph title.
+        </li>
+
+        <li><pre>gValues(index,data)</pre>  This loads 'data' into a graphset of 'index', index can be in the range 0-7.
+        </li>
+
+        <li><pre>gYMaxMin(yMax,yMin)</pre>  This sets the values that 'y' can have. yMin is an optional parameter.
+        </li>
+
+        <li><pre>gName(index,name,colour)</pre>  This sets the name of graphset 'index', it can optionally set the colour, in the form "#RRGGBB".
+        </li>
+
+        <li><pre>gLabels(list)</pre>  This uses 'list' to set the labels on the x_axis, by default only the 10th items in the list are used.
+        </li>
+
+        <li><pre>gSetBGColor(colour)</pre>  This is the background colour of the graphing area.
+        </li>
+
+        <li><pre>gSetAxisColor(axisColor, gridColor)</pre>  This sets the colour of the X and Y axis and optionally the grid colour.
+        </li>
+        
+        <li><pre>gSetAxisNames(yName, xName)</pre>  This sets the name of the Y axis.  It can also optionally set the name of the X axis, the default value is "Time".
+        </li>        
+
+        <li><pre>gReload()</pre>  This causes the graph to reload, this is useful if javascript has been used to change the underlying data.
+        </li>        
+
+        <li><pre>writeOpts(sel)</pre>  This writes out a series of html <pre>option</pre> tags for the available datasets.  The 'sel' parameter is used to set the preselected 
+		option.  This routine is used with the html <pre>select</pre> tag to create drop down boxes of selectable datasets for graphing.
+        </li>        
+		
+    </ul>
+    
+    <h2>Python Helper Functions</h2>
+    
+    <p>These are used to assist with the server side data processing, to include these in your kid template use:</p>
+    <pre>
+kid.enable_import()
+from WebBrickGateway.templates.graphutil import getvals, getTimes, getDate
+    </pre>
+
+    <ul>
+        <li><pre>getvals(xmldata,tagname)</pre>  This extracts all the values of 'tagname' into a Python List
+        </li>
+
+        <li><pre>getTimes(xmldata,tagname)</pre>  This extracts all the date and time values of 'tagname', from these, the time portion is extracted and places in a Python list.
+        </li>
+
+        <li><pre>getDate(xmldata,tagname)</pre>  This extracts the <b>first</b> value of 'tagname' and returns the date portion.
+        </li>
+
+        <li><pre>getNames(xmldata,optType)</pre>  This extracts all the tag names of logged values from the first valid entry.  This means all the tag names except 'time' and 'date' which are in
+        all entries by default. optType is an optional 'type' parameter that can be set to 'list', in this case getNames returns a Python list object rather than a 
+		string representation of the list.  The string 'version' is generally used by subsequent Javascript whereas the 'list' version is better for Python code.
+        </li>
+
+        <li><pre>doJSdatasets(lNames,xmlblob)</pre>  This returns a string in javascript format that defines all the datasets that are available in the XML data.
+        </li>
+    </ul>
+
+    <h2>Open Flash Chart 2</h2>
+    <p> Our graphing is implemented using <a href="http://teethgrinder.co.uk/open-flash-chart-2/">OpenFlashChart2</a> which is available under the LGPL license.
+    </p>
+</body>
+</html>

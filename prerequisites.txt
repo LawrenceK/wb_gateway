@@ -1,0 +1,12 @@
+Prerequisites for running Webbrick gateway software and tests
+
+ * Python 2.5 or later - see http://www.python.org/download/
+ * setup tools - easy_install - ez_setup.py script (...)
+ * Turbogears - see http://docs.turbogears.org/1.0/Install
+ * Win32 extensions (on windows) - see http://python.net/crew/mhammond/win32/
+ * twisted - see http://twistedmatrix.com/trac/wiki/Downloads
+ * pyserial - easy_install pyserial
+ * netifaces - easy_install netifaces
+
+These packages should all be installed by the standard WebBrick gateway installation kit.
+

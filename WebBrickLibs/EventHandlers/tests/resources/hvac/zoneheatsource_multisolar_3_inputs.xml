@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+
+
+    <!-- Conversion for PT-1000 Temp sensor-->
+    <eventInterface module='EventHandlers.ValueConvert' name='ValueConvert'>
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/AI'>
+            <eventsource source='webbrick/903/AI/0'>
+                <event>
+                    <newEvent type='http://id.webbrick.co.uk/zones/heatsource/sensor' 
+                        source='heatsource/3/elevation/east' 
+                        preoffset='0' 
+                        postoffset='-50' 
+                        multiplier='2.5'>
+                        <copy_other_data val="newVal"/>
+                        <other_data id="1" name="East Elevation"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/AI'>
+            <eventsource source='webbrick/903/AI/1'>
+                <event>
+                    <newEvent type='http://id.webbrick.co.uk/zones/heatsource/sensor' 
+                        source='heatsource/3/elevation/south' 
+                        preoffset='0' 
+                        postoffset='-50' 
+                        multiplier='2.5'>
+                        <copy_other_data val="newVal"/>
+                        <other_data id="1" name="South Elevation"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/AI'>
+            <eventsource source='webbrick/903/AI/2'>
+                <event>
+                    <newEvent type='http://id.webbrick.co.uk/zones/heatsource/sensor' 
+                        source='heatsource/3/elevation/west' 
+                        preoffset='0' 
+                        postoffset='-50' 
+                        multiplier='2.5'>
+                        <copy_other_data val="newVal"/>
+                        <other_data id="1" name="West Elevation"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface> 
+
+    
+    
+    <!-- map physical heating inputs to logical events that are used by heating display -->
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/CT'>        
+
+        <!--Either use the above conversion if a PT-1000 is used to monitor elevation temperatures  or use the section below for 1-wire bus --> 
+
+            <eventsource source='webbrick/903/CT/1'>
+                <event>
+        		    <params>
+                        <testNe name='val' value='0.0'/>
+        		    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/heatsource/sensor" source="heatsource/3/elevation/east">
+                        <copy_other_data val="val" />
+                        <other_data id="1" name="East Elevation"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+            
+            <eventsource source='webbrick/903/CT/2'>
+                <event>
+        		    <params>
+            			<testNe name='val' value='0.0'/>
+        		    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/heatsource/sensor" source="heatsource/3/elevation/south">
+                        <copy_other_data val="val" />
+                        <other_data id="1" name="South Elevation"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+            
+            <eventsource source='webbrick/903/CT/3'>
+                <event>
+                    <params>
+                        <testNe name='val' value='0.0'/>
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/heatsource/sensor" source="heatsource/3/elevation/west">
+                        <copy_other_data val="val" />
+                        <other_data id="1" name="West Elevation"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+
+        <!-- Temperature sesors of Primary Heat Store, commonly HW --> 
+            
+            <eventsource source='webbrick/903/CT/4'>
+                <event>
+        		    <params>
+                        <testNe name='val' value='0.0'/>
+        		    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/heatsource/sensor" source="heatsource/3/heatextop">
+                        <copy_other_data val="val" />
+                        <other_data id="1" name="Heatstore Top"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+            
+            <eventsource source='webbrick/903/CT/5'>
+                <event>
+                    <params>
+                        <testNe name='val' value='0.0'/>
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/heatsource/sensor" source="heatsource/3/heatexmid">
+                        <copy_other_data val="val" />
+                        <other_data id="1" name="Heatstore Middle"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+            
+            <eventsource source='webbrick/903/CT/6'>
+                <event>
+                    <params>
+                        <testNe name='val' value='0.0'/>
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/heatsource/sensor" source="heatsource/3/heatexbot">
+                        <copy_other_data val="val" />
+                        <other_data id="1" name="Heatstore Bottom"/>
+                    </newEvent>
+                    <!-- The following is the event that the heatsource uses to determine availability if the coil that feeds the heat exchanger is not at the bottom 
+                                                        then the below event shoudl be moved in the appropriate section, i.e. heatex top or mid-->
+                    <newEvent type="http://id.webbrick.co.uk/zones/heatsource/sensor" source="heatsource/3/heatex">
+                        <copy_other_data val="val" />
+                        <other_data id="1" name="Heatstore Bottom"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+
+	<!-- monitor heat source state -->
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/DO'>
+            <eventsource source='webbrick/903/DO/4'>
+                <event>
+                    <params>
+                        <testEq name="state" value="0" />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/heatsource" source="heatsource/3/stopped" />
+                    
+                    <!-- !This is purely for the UI to give User feedback abotu heatsource state -->
+                    <newEvent type="http://id.webbrick.co.uk/events/config/set" source="heatsource/3/state">
+                        <other_data val='0'/>
+                    </newEvent>
+                </event>
+                <event>
+                    <params>
+                        <testEq name="state" value="1" />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/heatsource" source="heatsource/3/running" />
+                    
+                    <!-- !This is purely for the UI to give User feedback abotu heatsource state -->
+                    <newEvent type="http://id.webbrick.co.uk/events/config/set" source="heatsource/3/state">
+                        <other_data val='1'/>
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+    </eventInterface>
+
+</eventInterfaces>

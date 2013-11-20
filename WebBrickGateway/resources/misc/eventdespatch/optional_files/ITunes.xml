@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eventInterfaces>
+    <eventInterface module='EventHandlers.ITunes' name='ITunes' friendlyName="ITunes.Silent">
+    </eventInterface>
+</eventInterfaces>

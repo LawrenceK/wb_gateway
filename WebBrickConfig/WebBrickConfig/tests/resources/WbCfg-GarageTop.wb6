@@ -1,0 +1,76 @@
+LGpassword:
+#
+#  Garage Top configuration
+#
+# 
+#  Note that the first line needs to be a disable commands to avoid unnecessary coms between SP and PIC
+#
+#
+SS1:
+NNGarageU:
+SN20:
+SR0;8:
+#
+#  Input State Engine
+#
+ND0;PIRL:
+CD0;D0;0;1;0;1;0:
+ND1;StrP:
+CD1;D3;0;4;0;1;0:
+ND2;Hall:
+CD2;D2;0;4;0;1;0:
+ND3;Spar:
+CD3;D0;0;4;0;1;0:
+ND4;Conf:
+CD4;D4;0;4;0;1;0:
+ND5;HUpP:
+CD5;D3;0;4;0;1;0:
+ND6;Pb-6:
+CD6;D6;0;4;0;1;0:
+ND7;Pb-7:
+CD7;D7;0;4;0;1;0:
+#
+# Output Names
+#
+NO0;Out0;:
+NO1;Out1;:
+NO2;Hall;:
+NO3;Off;:
+NO4;Conf;:
+NO5;Spr;:
+NO6;Out6;:
+NO7;Out7;:
+#
+#Analogue Names
+#
+NA0;AnOut0;:
+NA1;AnOut1;:
+#
+# Monitor Names
+#
+#NM0;Fire;:
+#NM1;FFlt;:
+#NM2;AunA;:
+#NM3;Intr;:
+#
+# Dwells
+#
+CW0;30;:
+CW1;2;:
+CW2;60;:
+CW3;4200;:
+#
+# Set Points
+#
+CS0;0:
+CS1;12:
+CS2;25:
+CS3;35:
+CS4;50:
+CS5;75:
+CS6;99:
+#
+SS2:
+#
+# End of file
+#

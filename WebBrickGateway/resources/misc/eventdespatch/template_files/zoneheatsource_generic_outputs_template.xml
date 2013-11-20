@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!-- 
+TODO 
+
+    1. Update Xurl to url and enter correct webbrick command.
+    2. Replace hs_key with the key of the heatsource defined in hvac.xml file
+-->
+
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+        <eventtype type='http://id.webbrick.co.uk/zones/heatsource'>
+            <!-- This pair is for using a single generic heatsource setup setup -->
+            <eventsource source='heatsource/hs_key/dorun'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;4;N:' address='WB906'/>
+                </event>
+            </eventsource>
+            <eventsource source='heatsource/hs_key/dostop'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;4;F:' address='WB906'/>
+                </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+
+</eventInterfaces>

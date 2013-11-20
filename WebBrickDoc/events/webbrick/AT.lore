@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta name="author" content="Lawrence Klyne" />
+  <title>WebBrick event URIs</title>
+  <style type="text/css">
+  .body { margin-left: 40px; }
+  .code { font-family: monospace; }
+  .param { font-style: italic;  }
+  .strong { font-weight: bold; }
+  </style>
+</head>
+
+<body>
+
+<h2>Attention (AT) Event.</h2>
+
+This event is sent if the factory reset button is pressed on a webbrick after it has started up. This
+event is sent once a second for a period of time and is intended for uses such as letting a user
+identify a webbrick manually and then the software interface being able to identify hardware wise.
+
+Type=http://id.webbrick.co.uk/events/webbrick/AT
+Source=webbrick/fromNode/AT
+
+ipAdr=dotted ip address
+udpType=G
+pktType=AT
+fromNode=webbrick node number
+macAdr=ethernet MAC address
+
+</body>
+
+</html>

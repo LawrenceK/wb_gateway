@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>WebBrick Data Output (DI) Event.</title>
+</head>
+
+<body>
+
+<h2>WebBrick Data Output (DI) Event.</h2>
+
+
+This event indicates the current state of a digital input.
+
+Type=http://id.webbrick.co.uk/events/webbrick/DI
+Source=webbrick/<em>fromNode</em>/DI/<em>srcChannel</em>
+
+ipAdr=dotted ip address
+fromNode=webbrick node number
+srcChannel=input channel number.
+state=0 or 1 for off or on.
+
+
+</body>
+
+</html>

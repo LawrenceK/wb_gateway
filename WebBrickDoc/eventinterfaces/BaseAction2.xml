@@ -1,0 +1,14 @@
+<eventInterface module='EventHandlers.EventMapper' name='EventMapper' category='debug'>
+    <eventtype type="">
+        <eventsource source="time/minute" >
+            <event>
+                <param>
+                    <testEq name='minute' value='5' />
+                </param>
+                <newEvent type="http://id.webbrick.co.uk/events/state" source="background">
+                    <other_data val='/static/images/backgrounds/day.png' val2='22.0'/>
+                </newEvent>
+            </event>
+        </eventsource>
+    </eventtype>
+<eventInterface>

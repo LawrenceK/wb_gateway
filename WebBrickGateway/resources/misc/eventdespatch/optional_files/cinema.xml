@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+
+		<!-- a nice simple macro, all commands defined elsewhere -->
+
+        <eventtype type=''>
+            <eventsource source='cinema/sky/hdon'>
+                <event>
+                    <newEvent type="lexicon" source="lexicon/1/power/on" />
+                    <newEvent type="lexicon" source="lexicon/1/select/main/sat" />
+                    <newEvent type="plasma" source="plasma/1/power/on" />
+                    <newEvent type="screen" source="screen/1/lower" />
+                </event>
+            </eventsource>
+        </eventtype>
+		
+        <eventtype type=''>
+            <eventsource source='cinema/start/film'>
+                <event>
+                    <newEvent type="lexicon" source="lexicon/1/power/on" />
+                    <newEvent type="lexicon" source="lexicon/1/select/main/dvd" />
+                    <newEvent type="plasma" source="plasma/1/power/on" />
+                    <newEvent type="screen" source="screen/1/lower" />
+                    <newEvent type="dvd" source="dvd/1/start" />
+                </event>
+            </eventsource>
+        </eventtype>
+		
+        <eventtype type=''>
+            <eventsource source='cinema/start/music'>
+                <event>
+                    <newEvent type="lexicon" source="lexicon/1/power/on" />
+                    <newEvent type="lexicon" source="lexicon/1/select/main/cd" />
+                    <newEvent type="plasma" source="plasma/1/power/off" />
+                    <newEvent type="screen" source="screen/1/raise" />
+                    <newEvent type="dvd" source="cd/1/start" />
+                </event>
+            </eventsource>
+        </eventtype>
+		
+        <eventtype type=''>
+            <eventsource source='cinema/shutdown'>
+                <event>
+                    <newEvent type="lexicon" source="lexicon/1/power/off" />
+                    <newEvent type="plasma" source="plasma/1/power/off" />
+                    <newEvent type="screen" source="screen/1/raise" />
+                    <newEvent type="dvd" source="dvd/1/stop" />
+                </event>
+            </eventsource>
+        </eventtype>
+        
+    </eventInterface>
+
+</eventInterfaces>

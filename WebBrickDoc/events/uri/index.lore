@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta name="author" content="Graham Klyne" />
+  <title>WebBrick event URIs</title>
+  <style type="text/css">
+  .body { margin-left: 40px; }
+  .code { font-family: monospace; }
+  .param { font-style: italic;  }
+  .strong { font-weight: bold; }
+  </style>
+</head>
+
+<body>
+
+<h2>URI Event Types.</h2>
+<p>
+Each of these events is caused by an http request to a minimal web server, these are genarally used to generate
+actions from user interfaces. This web server will normallt be running on a non standard http port so that the main
+web server can still function.
+</p>
+
+<p>
+The event type is <span>http://id.webbrick.co.uk/events/uri</span>
+</p>
+<p>
+The event source will be the requested object from the http request. i.e. if the uri is typed into a browser
+as http://localhost:8085/home/courtesy then the event source will be '/home/courtesy'.
+</p>
+<p>
+The other data is gleaned from the parameters passed as part of the generating request.
+</p>
+</body>
+
+</html>

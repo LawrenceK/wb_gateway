@@ -1,0 +1,17 @@
+﻿<eventInterfaces>
+
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+    
+        <eventtype type="http://id.webbrick.co.uk/events/uri">
+        
+            <eventsource source="command/stop" >
+                <event>
+					  <command cmd='cmd.exe' params='net stop "WebBrick Gateway"' />
+                </event>
+           </eventsource>
+        
+        </eventtype>
+        
+    </eventInterface>
+    
+</eventInterfaces>

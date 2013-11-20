@@ -1,0 +1,83 @@
+#tabbar {
+	height:75px;
+	width:100%;
+}
+
+#tabbar table {
+	width:100%;
+	height:100%;
+	border-collapse:collapse;
+	margin:0px;
+	padding:0px;
+}
+
+#tabbar table td {
+	padding:0px;
+	margin:0px;
+}
+
+.tabtermla {
+	background-image:url(../images/tabbar/tabtermla.png);
+	width:15px;
+	height:100%;
+}
+
+.tabtermli {
+	background-image:url(../images/tabbar/tabtermli.png);
+	width:15px;
+	height:100%;
+}
+
+.tabtermra {
+	background-image:url(../images/tabbar/tabtermra.png);
+	width:15px;
+	height:100%;
+}
+
+.tabtermri {
+	background-image:url(../images/tabbar/tabtermri.png);
+	width:15px;
+	height:100%;
+}
+
+.tabmida {
+	background-image:url(../images/tabbar/tabmida.png);
+	height:100%;
+}
+
+.tabmidi {
+	background-image:url(../images/tabbar/tabmidi.png);
+	height:100%;
+}
+
+.tabmida a, .tabmidi a {
+	font-size:19px;
+	display:block;
+	padding-top: 11px;
+	width:100%;
+	text-align:center;
+}
+
+.tabinterlii {
+	background-image:url(../images/tabbar/tabinterlii.png);
+	width:23px;
+	height:100%;
+}
+
+.tabinterrii {
+	background-image:url(../images/tabbar/tabinterrii.png);
+	width:23px;
+	height:100%;
+}
+
+.tabinterlia {
+	background-image:url(../images/tabbar/tabinterlia.png);
+	width:23px;
+	height:100%;
+}
+
+.tabinterrai {
+	background-image:url(../images/tabbar/tabinterrai.png);
+	width:23px;
+	height:100%;
+}

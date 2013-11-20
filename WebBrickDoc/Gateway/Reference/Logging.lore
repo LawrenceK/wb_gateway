@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Logging</title>
+  </head>
+  <body>
+    <h1>Logging</h1>
+
+<p>
+	The WebBrick Gateway can provide a range of logging from minimal to comprehensive.  The level chosen is often dependent on the
+	hardware platform.  Systems with limited flash memory should have minimal logging to memory while systems with hard disks can use
+	logging up to debug level and retain the files for weeks. (Logging is based on the Python logging framework which is in itself based
+        on the Log for Java package).
+</p>
+         <h2>Overview</h2>
+
+<p>
+        The basic philosophy is that at logging levels below INFO there will be 1 line of logging for every significant event, 
+        similar to an email system where you get a single log message for each email message processed. This level of logging is 
+        the default on minimal systems without a hard disk. Unlike an email system there are two sources of significant activity 
+        in the WebBrick Gateway, these are HTTP requests and new events. The HTTP events are logged to the access stream and new events are logged 
+        to the EventLog stream. All data to these two streams will also be written to the debug stream.
+</p>
+<p>
+        To enable setup of a system and debug of the system the logging level may be increased to INFO or DEBUG, 
+        these levels generate additional output to the debug stream. INFO is the default on disk based WebBrick Gateway systems. 
+        At INFO level a message will be generated to the debug stream for significant internal processing steps, at 
+        DEBUG level log messages will be generated for minor internal processing steps.
+</p>
+<p>
+        As all log configuration is handled in the WebBrick Gateway configuration files it is quite possible to create further 
+        logging streams targetted by named loggers and possible to pollute the existing log streams with information that 
+        is irrelevant. For example the EventLog stream is intended to only have entries for new events in it, it is expected 
+        that at some point this stream will be read by WebBrick Gateway code to provide different views of the data - e.g. graphing temperatures 
+        by reading saved events. Any pollution of this stream makes this re reading of the data prone to error and/or impossible.
+</p>
+<p>
+        The stream not yet mentioned in the above is the error stream, this is expected to receive log messages of fundamental problems, 
+        i.e. stack traces.
+</p>
+         <h2>Configuration</h2>
+<p>
+        Logging is configured primarily in a system log.cfg. If you wish to override install defaults
+        it is suggested you override in prod.cfg. This contains some commented out samples for you to tinker with.
+</p>
+<p>
+         <h2>logging streams/handlers</h2>
+        There are five main log streams (in python terms these are logging handlers) in use, these are Access, 
+        Error, EventLog, Debug and screen. Most of these streams is directed to write there output to disk file, the screen 
+        stream writes to the console.
+</p>
+<p>
+        Each of the streams writing to disk will rotate its log files on a configured basis, the number of old versions
+        kept is dependant on the platform and resources available. On the appliance WebBrick Gateway the files are stored in memory
+        and therefore the level of logging is very limited.
+</p>
+<p>
+        The default location for log files is dependant on the platform, under Linux it will be /var/log/webbrick, under Windows it will be to the application common data directory.
+</p>
+<p>
+        The purpose of these streams is as follows:
+</p>
+          <h3>Access</h3>
+
+<p>
+        The access log contains a single line for each HTTP access request made to the WebBrick Gateway. The base name for this file is 'access',
+        appended to this will be a date stamp. These files are normally rolled at midnight and will be retained for 7 days.
+</p>
+          <h3>EventLog</h3>
+
+<p>
+        The EventLog contains one line for each event that is created in the WebBrick Gateway event distribution network, this entry is written
+        before the event is distributed around the system.
+</p>
+<p>
+        The base name for this file is 'EventLog',
+        appended to this will be a sequence number. These files are rolled over when the size of them would excede 1MB, the default 
+        configuration retains 5 history files.
+</p>
+          <h3>Error</h3>
+
+<p>
+        The error log contains information on fundamental errors within the operation of the software.
+</p>
+<p>
+        The base name for this file is 'error',
+        appended to this will be a date stamp. These files are normally rolled at midnight and will be retained for 7 days.
+</p>
+
+          <h3>Debug</h3>
+
+<p>
+        The debug log contains information on the internal operation of the WebBrick Gateway, it will collect the data written to
+        all the other log streams as well. Depending on the platform resources the logging level in here can be adjusted
+        to assist in configuring an WebBrick Gateway (try INFO level) or to assist software fault finding (DEBUG level). At INFO
+        level the log file should receive a single entry for each fundamental change in the internal state of the 
+        event distribtion components, at DEBUG level the stream wll receive information on minor changes in the 
+        internal operation of the log streams.
+</p>
+<p>
+        The base name for this file is 'debug',
+        appended to this will be a sequence number. These files are rolled over when the size of them would excede 1MB, the default 
+        configuration retains 5 history files.
+</p>
+          <h3>Screen</h3>
+
+<p>
+
+	This stream is used to display basic startup and stop messages only.
+</p>
+
+		          <h3>Log file rotation</h3>
+<p>
+            Log files are rotated, some may be rotated on a timed basis and some on size alone.  
+</p>
+<p>
+            When a file is rotated based on size then the newest file is <em>.log</em> and the 
+            next oldest file is <em>.log.1</em> and so on. Old log files are renamed when the log file is changed to 
+            keep this scheme consistent, i.e. .log.2 becoms .log.3. The debug and EventLog are rotated based on size.
+</p>
+<p>
+            When a file is rotated based on time then the newest file is <em>.log</em> and the 
+            older files are <em>.log.timeStamp</em>. The access and error log are rotated on time.
+</p>
+<p>
+			
+            On the compact flash based Appliance the log files are held in RAM and limited to circa 100M in size, these
+            files are lost on reboot. In the case of a disk based WebBrick Gateway the log files are retained across a reboot and 
+            can be much larger and typically 48 hours worth of debug logs are kept and 14 days of all other log files.
+</p>
+
+         <h2>loggers</h2>
+
+<p>
+
+        Each component uses its own named logger to write its log records, this name may be output in the log file. 
+        These enable finer control over the level of 
+        logging performed for each component and to which logging streams these records are written to. In normal use 
+        no change should be made to the loggers in the configuration files, any changes should only be made under advice 
+        of WebBrickSystems. This may be done to track down an intermittant problem in a single compoent of the 
+	WebBrick Gateway where long term
+        monitoring is required. The names are hierachical with each part of the name separated from a decendant by a full stop.
+</p>
+
+          <h3>names</h3>
+<p>
+        The following loggers are used in the WebBrick Gateway.
+</p>
+<p>
+            
+  <table>
+    <tr><td>name</td><td>Description</td></tr>
+    <tr><td>WebBrickGateway</td><td>root of all the main WebBrick Gateway components</td></tr>
+    <tr><td>WebBrickGateway.WbDiscover</td><td></td></tr>
+    <tr><td>WebBrickGateway.WbDiscoverCheck</td><td></td></tr>
+    <tr><td>WebBrickGateway.Heating</td><td></td></tr>
+    <tr><td>WebBrickGateway.HeatingHandler</td><td></td></tr>
+    <tr><td>WebBrickGateway.LocalData</td><td></td></tr>
+    <tr><td>WebBrickGateway.LocalState</td><td></td></tr>
+    <tr><td>WebBrickGateway.MediaAccess</td><td></td></tr>
+    <tr><td>WebBrickGateway.SendEvent</td><td></td></tr>
+    <tr><td>WebBrickGateway.SendEventLocal</td><td></td></tr>
+    <tr><td>WebBrickGateway.WebbrickNodeNameCache</td><td></td></tr>
+    <tr><td>WebBrickGateway.Webbrickcommand</td><td></td></tr>
+    <tr><td>WebBrickGateway.WebbrickStatusCache</td><td></td></tr>
+    <tr><td>WebBrickGateway.root</td><td></td></tr>
+    <tr><td>WebBrickGateway.TaskRunner</td><td></td></tr>
+    <tr><td>WbConfig</td><td>root of the webbrick configuration manager</td></tr>
+    <tr><td>WebBrickLibs</td><td>shared library loggers</td></tr>
+    <tr><td>WebBrickLibs.MediaServer.HttpAccess</td><td></td></tr>
+    <tr><td>WebBrickLibs.MediaServer.ITunesAccess</td><td></td></tr>
+    <tr><td>WebBrickLibs.MediaServer.MediaOverHttp</td><td></td></tr>
+    <tr><td>WebBrickLibs.MediaServer.MediaSet</td><td></td></tr>
+    <tr><td>WebBrickLibs.MediaServer.VlcAccess</td><td></td></tr>
+    <tr><td>WebBrickLibs.WbConfigBase</td><td></td></tr>
+    <tr><td>EventDespatch</td><td>Root for the event despatcher of the WebBrick Gateway. Each event handler has its own logger created by appending the handler name to this root.</td></tr>
+    <tr><td>EventDespatch.loadDespatchTask</td><td></td></tr>
+    <tr><td>EventHandlers.Compound</td><td></td></tr>
+    <tr><td>EventHandlers.Conditional</td><td></td></tr>
+    <tr><td>EventHandlers.DelayedEvent</td><td></td></tr>
+    <tr><td>EventHandlers.DeltaTimeAction</td><td></td></tr>
+    <tr><td>EventHandlers.EmailAction</td><td></td></tr>
+    <tr><td>EventHandlers.HttpAction</td><td></td></tr>
+    <tr><td>EventHandlers.HttpEvent</td><td></td></tr>
+    <tr><td>EventHandlers.Mapper</td><td></td></tr>
+    <tr><td>EventHandlers.SetTime</td><td></td></tr>
+    <tr><td>EventHandlers.ShellAction</td><td></td></tr>
+    <tr><td>EventHandlers.ValueConvert</td><td></td></tr>
+    <tr><td>EventHandlers.WbStatusQuery</td><td></td></tr>
+    <tr><td>EventHandlers.WebbrickCommand</td><td></td></tr>
+    <tr><td>EventDespatch.TimeEventGenerator</td><td></td></tr>
+    <tr><td>EventDespatch.WebbrickUdpEventReceiver</td><td></td></tr>
+    <tr><td>EventHandlers.LogEvents</td><td>The event handler that is the event logger, this is used to suppress double logging or events.</td></tr>
+    <tr><td>EventHandlers.LogEvents</td><td>The event handler that is the event logger, this is used to suppress double logging or events.</td></tr>
+    <tr><td>EventLog</td><td>Used by the event logger, descendant names are created by appending the event type to these having stripped off the common prefix.</td></tr>
+    <tr><td>EventLog.time.second</td><td>Used to suppress the second tick from the event log.</td></tr>
+    <tr><td>wsgi</td><td></td></tr>
+    <tr><td>cherrypy</td><td></td></tr>
+    <tr><td>turbogears</td><td></td></tr>
+    <tr><td>turbogears.access</td><td>The logger name used by teh web server to log HTTP requests.</td></tr>
+  </table>
+</p>
+
+         <h2>Logging References</h2>
+
+<ul><li> http://docs.python.org/tut/node13.html section on logging
+
+</li><li> http://docs.python.org/lib/module-logging.html
+</li></ul>
+</body>
+</html>

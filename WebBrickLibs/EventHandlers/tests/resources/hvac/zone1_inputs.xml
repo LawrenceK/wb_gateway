@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!-- Hot Water -->
+<!-- 
+TODO 
+Chnage temp sensor to be correct and zone valve feedbcak
+-->
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+    
+        <!-- map physical heating inputs to logical events that are used by heating display -->
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/CT'>
+            <eventsource source='webbrick/1/CT/0'>
+                <event>
+		    <params>
+			<testNe name='val' value='0.0'/>
+		    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/sensor" source="zone1/sensor">
+                        <copy_other_data val="val" />
+                        <other_data id="1" name="Hot Water"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+	<!-- monitor hot water state -->
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/DO'>
+            <eventsource source='webbrick/8/DO/3'>
+                <event>
+                    <params>
+                        <testEq name="state" value="0" />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/zone" source="zone1/stopped" />
+                </event>
+                <event>
+                    <params>
+                        <testEq name="state" value="1" />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/zone" source="zone1/running" />
+                </event>
+            </eventsource>
+        </eventtype>
+        
+    </eventInterface>
+
+</eventInterfaces>

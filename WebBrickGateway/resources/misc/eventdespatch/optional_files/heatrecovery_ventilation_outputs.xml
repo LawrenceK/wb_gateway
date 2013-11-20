@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!-- ! HRV Outputs -->
+<!--    
+    This file is an essential part of the HRV configuration, please follow the TODO section
+    
+    TODO: 
+        1.  Replace Xurl with url 
+        2.  Replace SampleWb with the webbrick name as in the hosts file
+        3.  Ensure that the commands in the uri target the correct channels (oN and oFf) are setup correctly 
+        
+    NOTE: 
+        Pay attention to comments throughout the code, when configuring output channels. 
+-->
+    
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+        <!--This responds to events and does an HTTP request(s) as the action.-->
+
+        <!-- Run at Low Speed-->
+        <eventtype type="internal">   
+            
+            <!-- Stop the HRV unit -->
+            <eventsource source='general/ventilation/fan/stop'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;0;F:' address='SampelWb'/> <!-- Low speed triac/relay  -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;1;F:' address='SampelWb'/> <!-- Medium speed triac/relay  -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;2;F:' address='SampelWb'/> <!-- High speed triac/relay  -->
+                </event>
+            </eventsource>
+            
+            <!-- Run at Low Speed-->
+            <eventsource source='general/ventilation/fan/run/low'>
+                <event>
+                    <!-- NOTE: To prevent damage always issue offs before on -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;1;F:' address='SampelWb'/> <!-- Medium speed triac/relay  -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;2;F:' address='SampelWb'/> <!-- High speed triac/relay  -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;0;N:' address='SampelWb'/> <!-- Low speed triac/relay  -->
+                </event>
+            </eventsource>
+            
+            <!-- Run at Medium Speed-->
+            <eventsource source='general/ventilation/fan/run/medium'>
+                <event>
+                    <!-- NOTE: To prevent damage always issue offs before on -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;0;F:' address='SampelWb'/> <!-- Low speed triac/relay  -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;2;F:' address='SampelWb'/> <!-- High speed triac/relay  -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;1;N:' address='SampelWb'/> <!-- Medium speed triac/relay  -->
+                </event>
+            </eventsource>
+            
+            <!-- Run at High Speed-->
+            <eventsource source='general/ventilation/fan/run/high'>
+                <event>
+                    <!-- NOTE: To prevent damage always issue offs before on -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;0;F:' address='SampelWb'/> <!-- Low speed triac/relay  -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;1;F:' address='SampelWb'/> <!-- Medium speed triac/relay  -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;2;N:' address='SampelWb'/> <!-- High speed triac/relay  -->
+                </event>
+            </eventsource>
+            
+            <!-- Stop the Stale Air Fan from Running -->
+            <eventsource source='general/ventilation/fan/stale/disable'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;3;F:' address='SampelWb'/> <!-- Stale Air Fan triac/relay  -->
+                </event>
+            </eventsource>
+            
+            <!-- Let the Stale Air Fan  Run at the set speed -->
+            <eventsource source='general/ventilation/fan/stale/enable'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;3;N:' address='SampelWb'/>
+                </event>
+            </eventsource>
+            
+        </eventtype>
+        
+        
+    </eventInterface>
+</eventInterfaces>

@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<persist>
+
+  <entry source="zone6/enabled">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone6/occupancy">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone6/wcselect">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zone6/matStat">
+    <value name="val">
+      5.2
+    </value>
+  </entry>
+
+</persist>

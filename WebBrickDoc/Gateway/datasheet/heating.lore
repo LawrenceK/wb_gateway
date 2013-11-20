@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Heating functions</title>
+</head>
+
+<body>
+
+    <h1>Heating functions</h1>
+
+	<h2>Introduction</h2>
+
+	<p>The product provides a number of control functions for a range of heating systems.
+	There can be more than type of heating for a home and several strategies can be employed
+	for scheduling heating from different sources.</p>
+
+	<p>Here are some of the basic control schemes</p>
+
+	<h3>Master Heating Schedule</h3>
+
+		<p>This function provides a 'matrix' style schedule with heating functions across the top axis and
+		times along the side axis</p>
+
+		<p>Each cell of the matrix is a control input which may be one of:</p>
+
+		<ul>
+			<li>ON: i.e. the function should be switched on, or called for</li>
+			<li>OFF: i.e. the fuction should be switched off, of cancelled</li>
+			<li>Ignore: i.e. no control input issued at this time</li>
+			<li>SetPoint: This is the new SetPoint for the heating function</li>
+		</ul>
+
+		<p>Example</p>
+		<table class="data">
+			<tr>
+				<td class="tabular">Time</td>
+				<td class="tabular">Central Heating</td>
+				<td class="tabular">Zone 1</td>
+				<td class="tabular">Zone 2</td>
+				<td class="tabular">Zone 3</td>
+			</tr>
+			<tr>
+				<td class="tabular">05:00</td>
+				<td class="tabular">On</td>
+				<td class="tabular">20.5&ordm;C</td>
+				<td class="tabular">19.5&ordm;C</td>
+				<td class="tabular">19.5&ordm;C</td>
+			</tr>
+			<tr>
+				<td class="tabular">07:00</td>
+				<td class="tabular">On</td>
+				<td class="tabular">21.5&ordm;C</td>
+				<td class="tabular">20.5&ordm;C</td>
+				<td class="tabular">19.5&ordm;C</td>
+			</tr>
+		</table>
+
+	<h3>User Controls</h3>
+
+		<p>A range of user controls are available on the interface that allow the home users to indicate their
+		current preferances for heating, for example they call for heating or change set points.  These changes
+		persist until the next scheduled control for that function</p>
+
+	<h3>Heating Decisions</h3>
+
+		<p>This function takes the control inputs from either the master schedule or home users and decides
+		which heating functions will be operated.</p>
+
+		<p>For example, if at 05:00AM there is a call for central heating, the outside and inside temperatures along with
+		home occupancy are taken
+		into account before the boiler is called.  If the boiler is called and at some point later the outside temperature
+		rises above the set threshold the boiler will be cancelled.</p>
+
+		<p>If there are multiple heat sources available then the decision making can be more complex, for example in
+		mild weather conditions there may be a preference to use electrically heated floors before using a central boiler</p>
+
+	<h3>Interaction with Occupancy and Sleep</h3>
+
+		<p>One of the key ways of saving energy is not to use it when you don't need it.  Therefore the heating functions
+		interact with the Occupancy and Sleep states to modify controls and setpoints to minimise energy use but key the
+		fabric of the home safe.  In the case of setting Vacation, scheduled calls are not issued but the home is heated
+		should temperatures fall near to the 'frost' settings.  For Sleep, the setpoints are moved to cooler
+		levels that save energy but allow the home to be returned to comfort levels quickly.
+		</p>
+
+</body>
+
+</html>

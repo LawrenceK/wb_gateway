@@ -1,0 +1,127 @@
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" >
+
+<head>
+  <title>Server Room</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  <link href="/static/css/gwent.css" rel="stylesheet" />
+  <script src="/static/javascript/MochiKit.js"></script>
+  <script src="/static/javascript/WebBrick.js"></script>
+    <script src="/static/javascript/WbButton.js"></script>
+    <script src="/static/javascript/WbNumericDisplay.js"></script>
+    <script src="/static/javascript/WbTimeDisplay.js"></script>
+    <script src="/static/javascript/WbTextDisplay.js"></script>
+</head>
+
+<body class="corporate">
+<table>
+    <tr>
+		<td align="left">
+			<img src="/static/images/gwent/GwentHeaderL.png" alt="Gwent's header">
+		</td>
+		<td>
+			<table class="infoTable">
+			<tr>
+				<td width='18%' wbType="Text" wbLoad='loadTextDisplay("","")'
+            	wbSource='/local/time'>Time
+				</td>
+			</tr>
+			<tr><td class="infoBar">Hub 02</td></tr>
+			</table>
+		</td>
+		<td rowspan="2" align="right">
+			<img src="/static/images/gwent/GwentHeaderR.png" alt="Gwent's header">
+		</td>
+    </tr>
+</table>
+
+
+<table>
+	<tr>
+		<td>
+				<table>
+					<colgroup span="3"></colgroup>
+				  <tr>
+					<td class="gTitle" align="left" >Key</td>
+					<td class="gTitle" align="center">Temperature</td>
+					<td class="gTitle" align="right">Alarm</td>
+				  </tr>
+				  <tr>
+						<td class="cyan">Rack</td>
+						<td wbType="Numeric" wbLoad='loadNumericDisplay("","##.#","&ordm;C")'
+							wbSource='/wbsts/mainserver/Tmp/2' > 
+						</td>
+						<td class="noAlarm">&nbsp;
+						</td>
+				  </tr>
+				  <tr>
+						<td class="yellow">AC Output</td>
+						<td wbType="Numeric" wbLoad='loadNumericDisplay("","##.#","&ordm;C")'
+							wbSource='/wbsts/mainserver/Tmp/3' > </td>
+						<td class="alarm">&nbsp;	
+						</td>
+				  </tr>
+						<td class="green">AC Discharge</td>
+						<td wbType="Numeric" wbLoad='loadNumericDisplay("","##.#","&ordm;C")'
+							wbSource='/wbsts/mainserver/Tmp/1' > </td>
+						<td class="noAlarm">&nbsp;
+						</td>
+				  </tr>
+				  <tr>
+						<td class="red">Outside</td>
+						<td wbType="Numeric" wbLoad='loadNumericDisplay("","##.#","&ordm;C")'
+							wbSource='/wbsts/publicwb/Tmp/0' > </td>
+						<td class="noAlarm">&nbsp;
+						</td>
+				</table>
+		</td>
+		<td>
+		</td>
+		<td align="right">
+			<img src="/static/images/gwent/RoomPlan.png" alt="room plan">
+		</td>
+	</tr>
+</table>
+
+
+
+<table>
+	<tr>
+		<td></td>
+		<td align="center" valign="middle">
+			<img src="/static/images/gwent/graphEnd.png">
+			<img src="/static/images/gwent/TEMP.png" alt="Real Time graph from server">
+			<img src="/static/images/gwent/graphStart.png">
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td align="center" valign="middle">
+			<img src="/static/images/gwent/graphTime.png">
+		</td>
+		<td></td>
+	</tr>
+</table>
+
+
+
+<table>
+	<colgroup span="3" width="33%"></colgroup>
+  <tr>
+	<td>
+		<iframe src="http://mail.thirtover.com/xml/if_camera2.php" width="320" height="260" frameborder="0" scrolling="no"></iframe>
+	</td>
+	<td align="center">
+		<iframe src="http://mail.thirtover.com/xml/if_camera3.php" width="320" height="260" frameborder="0" scrolling="no"></iframe>
+	</td>
+	<td align="right">
+		<iframe src="http://mail.thirtover.com/xml/if_camera.php" width="320" height="260" frameborder="0" scrolling="no"></iframe>
+	</td>
+  </tr>
+</table>
+
+
+
+</body>
+
+</html>

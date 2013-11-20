@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML, 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1-strict-dtd"> -->
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+ +  $Id: guide.xhtml 1801 2008-05-23 03:01:48Z webbrick $
+ +
+ +  WebBrick home gateway panel definition for a simple light switch.
+ +  Shower (pull-to-toggle) light switch emulation.
+ +
+ + For show target 10.100.100.107
+ +
+ -->
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" >
+
+<head>
+  <title>Help Pages</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  <link href="/static/css/panel.css" rel="stylesheet" />
+  <script src="/static/javascript/MochiKit.js"></script>
+  <script src="/static/javascript/WebBrick.js"></script>
+  <script src="/static/javascript/WbTextDisplay.js"></script>
+  <script src="/static/javascript/WbNumericDisplay.js"></script>
+</head>
+
+<body>
+
+<table class="navTable">
+  <tr>
+    <td class="navBar" onClick="window.location='/'">Home</td>
+    <td class="infoBar" id="menuTitle">Help pages</td>
+    <td class="navBarSmall" onClick="history.back()">Back</td>
+    <td class="navBarSmall" onClick="window.location='/static/xhtml/guide.xhtml'">Help</td>
+  </tr>
+</table>
+
+
+<table>
+ <colgroup span="5" width="15%"></colgroup>
+  <tr>
+    <td colspan="1" wbType="Caption" wbLoad="loadCaption()">Appliances</td>
+  </tr>
+  <tr>
+    <td class="buttonOff">
+     Boiler
+    </td> 
+
+    <td class="buttonOn">
+     Boiler
+    </td> 
+
+    <td class="buttonAbsent">
+     Boiler		
+    </td> 
+
+    <td class="buttonLocked">
+     Boiler
+    </td> 
+
+    <td class="buttonPending">
+     Boiler
+    </td> 
+  </tr>
+  
+  <tr>
+  	<td> This means the item is ON - it is based on the international symbol for 'On'</td>
+  	<td> This means the item is OFF  - it is based on the international symbol for 'Off'</td>
+	<td> This means that the item is ABSENT, the Gateway is searching for this item</td>
+	<td> This means that the item is LOCKED, it is present but cannot be operated from this page</td>
+	<td> This means that the Gateway is WAITING for the item to report its current state</td>
+  </tr>
+  <tr>
+    <td class="indicatorNotReady">Coffee</td>
+    <td class="indicatorAlarm">Intruder</td>
+  </tr>
+  <tr>
+  	<td> This means the item is NOT READY</td>
+  	<td> This means the item has an ALARM state</td>
+ </tr>
+  
+  
+  
+</table>
+
+
+<table>
+ <colgroup span="5" width="15%"></colgroup>
+  <tr>
+    <td colspan="1" wbType="Caption" wbLoad="loadCaption()">Garage Doors</td>
+  </tr>
+  <tr>
+	  <td class="doorOpen">Open</td>
+	  <td class="doorClosed">Closed</td>
+	  <td class="doorAjar">Ajar</td>
+	  <td class="doorError">Error</td>
+	  <td class="doorPending">Pending</td>
+  </tr>
+  	<td>The door is OPEN</td>
+  	<td>The door is CLOSED</td>
+  	<td>The door is AJAR</td>
+  	<td>The door is in a ERROR or UNKNOWN state</td>
+  	<td>The Gateway is waiting for the door to report its state</td>
+  <tr>
+  </tr>
+</table>
+
+
+
+
+<table class="infoTable">
+  <tr>
+    <td width='15%' wbType="Text" wbLoad='loadTextDisplay("","")'
+            wbSource='/local/time'>
+        Left
+    </td>
+    <td wbType="Text" wbLoad='loadTextDisplay("","")'
+            wbSource="/local/messages">
+        Centre
+    </td>
+    <td width="15%" wbType="Numeric" wbLoad='loadNumericDisplay("House: ","##.#","&ordm;C")'
+        wbSource='/wbsts/105/Tmp/0'>
+		Right
+	</td>
+  </tr>
+</table>
+
+</body>
+
+</html>

@@ -1,0 +1,4 @@
+<eventInterfaces>
+    <eventInterface module='EventHandlers.GenerateManifest' name='GenerateManifest' >
+    </eventInterface>
+</eventInterfaces>

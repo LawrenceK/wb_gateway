@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<root xmlns="urn:schemas-upnp-org:device-1-0" xmlns:ms="urn:microsoft-com:wmc-1-0">
+<specVersion>
+<major>1</major>
+<minor>0</minor>
+</specVersion>
+<device ms:X_MS_SupportsWMDRM="true">
+<dlna:X_DLNADOC xmlns:dlna="urn:schemas-dlna-org:device-1-0">DMP-1.00</dlna:X_DLNADOC>
+<deviceType>urn:schemas-upnp-org:device:MediaRenderer:1</deviceType>
+<friendlyName>SoundBridge</friendlyName>
+<manufacturer>Roku</manufacturer>
+<manufacturerURL>http://www.rokulabs.com</manufacturerURL>
+<modelDescription>Roku SoundBridge network music player</modelDescription>
+<modelName>Roku SoundBridge M400</modelName>
+<modelNumber>M400</modelNumber>
+<modelURL>http://www.rokulabs.com/products/soundbridge</modelURL>
+<serialNumber></serialNumber>
+<UDN>uuid:526F6B75-536F-756E-6442-000D4B304910</UDN>
+<UPC></UPC>
+<serviceList>
+<service>
+<serviceType>urn:schemas-upnp-org:service:RenderingControl:1</serviceType>
+<serviceId>urn:upnp-org:serviceId:RenderingControl</serviceId>
+<SCPDURL>/RenderCtl.xml</SCPDURL>
+<controlURL>/UD/?0</controlURL>
+<eventSubURL>/?0</eventSubURL>
+</service>
+<service>
+<serviceType>urn:schemas-upnp-org:service:ConnectionManager:1</serviceType>
+<serviceId>urn:upnp-org:serviceId:ConnectionManager</serviceId>
+<SCPDURL>/ConnMgr.xml</SCPDURL>
+<controlURL>/UD/?1</controlURL>
+<eventSubURL>/?1</eventSubURL>
+</service>
+<service>
+<serviceType>urn:schemas-upnp-org:service:AVTransport:1</serviceType>
+<serviceId>urn:upnp-org:serviceId:AVTransport</serviceId>
+<SCPDURL>/AvTransport.xml</SCPDURL>
+<controlURL>/UD/?2</controlURL>
+<eventSubURL>/?2</eventSubURL>
+</service>
+</serviceList>
+<presentationURL>/SoundBridge.html</presentationURL>
+<X_Rhapsody-Extension xmlns="http://www.real.com/rhapsody/xmlns/upnp-1-0">
+<deviceID>urn:rhapsody-real-com:device-id-1-0:roku_m1000_m2000:00-0D-4B-30-49-10</deviceID>
+<deviceCapabilities>
+<interactionPattern type="real-rhapsody-upnp-1-0"/>
+</deviceCapabilities>
+</X_Rhapsody-Extension>
+<iconList>
+<icon>
+<mimetype>image/gif</mimetype>
+<width>48</width>
+<height>48</height>
+<depth>8</depth>
+<url>/M400icon.gif</url>
+</icon>
+</iconList>
+</device>
+</root>

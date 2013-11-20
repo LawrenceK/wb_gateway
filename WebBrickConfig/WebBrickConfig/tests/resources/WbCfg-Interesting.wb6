@@ -1,0 +1,121 @@
+LGpassword:
+#
+#  An Interesting configuratopm
+#
+# 
+#  Note that the first line needs to be a disable commands to avoid unnecessary coms between SP and PIC
+#
+#
+SS1:
+NNBuild2:
+SN23:
+SR0;8:
+SF4:
+#
+# Config mimics
+#
+SM4;63;2:
+CMD0;0:
+CMD1;1:
+CMD2;2:
+CMD3;3:
+CMD4;4:
+CMD5;5:
+CMD6;6:
+CMD7;7:
+CMA0;0:
+CMA1;1:
+CMA2;2:
+CMA3;3:
+#
+#  Input State Engine
+#
+ND0;Pb-0:
+CD0;D0;0;4;0;1;0:
+ND1;Pb-1:
+CD1;D1;0;2;2;3;0:
+ND2;Pb-2:
+CD2;D2;0;5;0;1;0:
+ND3;Pb-3:
+CD3;D1;0;1;2;3;0:
+ND4;Pb-4:
+CD4;D5;0;3;3;1;0:
+ND5;Pb-5:
+CD5;D5;0;6;0;1;0:
+ND6;AnOn:
+CD6;A0;5;2;0;0;0:
+ND7;AnOf:
+CD7;A0;0;1;0;0;0:
+#
+# Output Names
+#
+NO0;Main;:
+NO1;Out1;:
+NO2;Heat;:
+NO3;Out3;:
+NO4;Out4;:
+NO5;Out5;:
+NO6;Out6;:
+NO7;Tst7;:
+#
+#Analogue Names
+#
+NA0;Lights;:
+NA1;Floor;:
+#
+# Monitor Names
+#
+#NM0;Door;:
+#NM1;Wndw;:
+#NM2;GDr1;:
+#NM3;Mon3;:
+#
+# Dwells
+#
+CW0;30;:
+CW1;5;:
+CW2;60;:
+CW3;4200;:
+#
+# Set Points
+#
+CS0;0:
+CS1;12:
+CS2;25:
+CS3;35:
+CS4;50:
+CS5;75:
+CS6;99:
+#
+#  Temperature Actions  --- Action Chan 2 below 24 deg C
+#
+#?Unknown: CL5;24;28;106;:
+#
+#  Analogue Input Actions
+#
+#?Unknown: CI6;256;7;812;:
+#
+#
+# Schedules
+#
+CE0;;Sch0Hrs;Sch0Mins;D0;0;0;0;3;0:
+CE1;;Sch1Hrs;Sch1Mins;D0;0;0;0;3;0:
+CE2;;Sch2Hrs;Sch2Mins;D0;0;0;0;3;0:
+CE3;;Sch3Hrs;Sch3Mins;D0;0;0;0;3;0:
+CE4;;Sch4Hrs;Sch4Mins;D0;0;0;0;3;0:
+CE5;;Sch5Hrs;Sch5Mins;D0;0;0;0;3;0:
+CE6;;Sch6Hrs;Sch6Mins;D0;0;0;0;3;0:
+CE7;;Sch7Hrs;Sch7Mins;D0;0;0;0;3;0:
+CE8;;Sch8Hrs;Sch8Mins;D0;0;0;0;3;0:
+CE9;;Sch9Hrs;Sch9Mins;D0;0;0;0;3;0:
+CE10;;Sch10Hrs;Sch10Mins;D0;0;0;0;3;0:
+CE11;;Sch11Hrs;Sch11Mins;D0;0;0;0;3;0:
+CE12;01234;Sch12Hrs;Sch12Mins;D0;0;0;0;3;0:
+CE13;0123456;Sch13Hrs;Sch13Mins;D0;0;0;0;3;0:
+CE14;12345;Sch14Hrs;Sch14Mins;D0;0;0;0;3;0:
+CE15;06;Sch15Hrs;Sch15Mins;D0;0;0;0;3;0:
+#
+SS2:
+#
+# End of file
+#

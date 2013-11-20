@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eventInterfaces>
+
+        <!-- *** for lunix try /dev/ttyUSB0 for serial portname -->
+    <eventInterface module='EventHandlers.Heatmiser' name='HeatmiserHandler' serialPort='15'>
+
+        <heatmiser adr="2" devkey="zone2" schname="zone2" />
+
+<!-- DO NOT TOUCH BEYOND HERE -->
+
+        <eventtype type="">
+            <eventsource source="time/second" >
+                <!-- How often to read configuration from heatmisers -->
+                <event>
+                    <params>
+                        <testEq name="second">
+                            <value>0</value>
+                            <value>15</value>
+                            <value>30</value>
+                            <value>45</value>
+                        </testEq>
+                    </params>
+                </event>
+                <event>
+                    <params>
+                        <testEq name="second">
+                            <value>0</value>
+                            <value>5</value>
+                            <value>10</value>
+                            <value>15</value>
+                            <value>20</value>
+                            <value>25</value>
+                            <value>30</value>
+                            <value>35</value>
+                            <value>40</value>
+                            <value>45</value>
+                            <value>50</value>
+                            <value>55</value>
+                        </testEq>
+                    </params>
+                    <action task="readStatus"/>
+                    <action task="readSchedule"/>
+                </event>
+                <event>
+                    <!-- once an hour in middle of hour -->
+                    <params>
+                        <testEq name="second">
+                            <value>30</value>
+                        </testEq>
+                        <testEq name="minute">
+                            <value>30</value>
+                        </testEq>
+                    </params>
+                    <action task="verifyClock"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+    </eventInterface>
+</eventInterfaces>
+

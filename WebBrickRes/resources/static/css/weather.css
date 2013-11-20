@@ -1,0 +1,23 @@
+/* $Id: panel.css 2456 2008-06-20 16:14:18Z andy $
+ *
+ * CSS definitions for WebBrick HGA weather compensation panel
+ *
+ *  ASH 22-July-2008:  Reworked for new graphics
+ *         
+ *
+ */
+
+td.indicatorFalling  
+        { 
+          background-image : url("/static/images/falling.png") ;
+        }
+
+td.indicatorStatic  
+        { 
+          background-image : url("/static/images/static.png") ;
+        }
+
+td.indicatorRising  
+        { 
+          background-image : url("/static/images/rising.png") ;
+        }

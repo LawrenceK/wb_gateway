@@ -1,0 +1,34 @@
+<eventInterfaces>
+    <eventInterface module='EventHandlers.X10' name='X10' serialPort='com1'>
+        <eventtype type="">
+            <eventsource source="time/second" >
+                <event>
+                    <params>
+                        <testEq name='second' value='0'/>
+                    </params>
+                    <channelOn house="A" device="1"/>
+                </event>
+                <event>
+                    <params>
+                        <testEq name='second' value='30'/>
+                    </params>
+                    <channelOff house="A" device="1"/>
+                </event>
+                <event>
+                    <params>
+                        <testEq name='second' value='15'/>
+                    </params>
+                    <channelDim house="A" device="2" level="22" up="yes"/>
+                </event>
+                <event>
+                    <params>
+                        <testEq name='second' value='45'/>
+                    </params>
+                    <channelDim house="A" device="2" level="22"/>
+                </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+
+</eventInterfaces>
+

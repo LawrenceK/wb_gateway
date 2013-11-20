@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+	<!-- this is a crude fiddle around dicsovery not working -->
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+        <eventtype type=''>
+            <eventsource source='time/runtime'>
+                <event>
+                    <params>
+                        <testEq name="elapsed" value='10'/>
+                    </params>
+<!--					
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/AT" source="webbrick/51/AT">
+						<other_data version="6.0" ipAdr="192.168.1.51" />
+					</newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/AT" source="webbrick/52/AT">
+						<other_data version="6.0" ipAdr="192.168.1.52" />
+					</newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/AT" source="webbrick/53/AT">
+						<other_data version="6.0" ipAdr="192.168.1.53" />
+					</newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/AT" source="webbrick/54/AT">
+						<other_data version="6.0" ipAdr="192.168.1.54" />
+					</newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/AT" source="webbrick/55/AT">
+						<other_data version="6.0" ipAdr="192.168.1.55" />
+					</newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/AT" source="webbrick/56/AT">
+						<other_data version="6.0" ipAdr="192.168.1.56" />
+					</newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/AT" source="webbrick/57/AT">
+						<other_data version="6.0" ipAdr="192.168.1.57" />
+					</newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/AT" source="webbrick/58/AT">
+						<other_data version="6.0" ipAdr="192.168.1.58" />
+					</newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/AT" source="webbrick/59/AT">
+						<other_data version="6.0" ipAdr="192.168.1.59" />
+					</newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/AT" source="webbrick/60/AT">
+						<other_data version="6.0" ipAdr="192.168.1.60" />
+					</newEvent>
+-->					
+                </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+
+</eventInterfaces>
+

@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>WebBrick Event Types.</title>
+</head>
+
+<body>
+
+<h2>WebBrick Event Types.</h2>
+<ul>
+<li>http://id.webbrick.co.uk/events/webbrick/TD</li>
+<li>http://id.webbrick.co.uk/events/webbrick/Td</li>
+<li>http://id.webbrick.co.uk/events/webbrick/TA</li>
+<li>http://id.webbrick.co.uk/events/webbrick/Ta</li>
+<li>http://id.webbrick.co.uk/events/webbrick/TT</li>
+<li>http://id.webbrick.co.uk/events/webbrick/Tt</li>
+<li>http://id.webbrick.co.uk/events/webbrick/TS</li>
+<li>http://id.webbrick.co.uk/events/webbrick/AI</li>
+<li>http://id.webbrick.co.uk/events/webbrick/AO</li>
+<li>http://id.webbrick.co.uk/events/webbrick/CT</li>
+<li><a href="DO.html">http://id.webbrick.co.uk/events/webbrick/DO</a></li>
+<li><a href="DI.html">http://id.webbrick.co.uk/events/webbrick/DI</a></li>
+<li><a href="AT.html">http://id.webbrick.co.uk/events/webbrick/NN</a></li>
+<li><a href="AT.html">http://id.webbrick.co.uk/events/webbrick/SS</a></li>
+<li><a href="AT.html">http://id.webbrick.co.uk/events/webbrick/AA</a></li>
+<li><a href="AT.html">http://id.webbrick.co.uk/events/webbrick/AT</a></li>
+<li><a href="AT.html">http://id.webbrick.co.uk/events/webbrick/nodename</a></li>
+<li><a href="ST.html">http://id.webbrick.co.uk/events/webbrick/ST</a></li>
+<li>http://id.webbrick.co.uk/events/webbrick/CC</li>
+<li>http://id.webbrick.co.uk/events/webbrick/RR</li>
+<li>http://id.webbrick.co.uk/events/webbrick/IR</li>
+</ul>
+
+<h2>WebBrick Event Source.</h2>
+
+<p>Events that come from a webbrick have an event source URI of the form 
+webbrick/nodeNumber/channelType/channelNumber.
+</p>
+
+
+<h2>WebBrick Event Other data.</h2>
+
+All webbrick events have the following other data.
+<ul>
+<li>ipAdr</li>
+<li>udpType</li>
+<li>pktType</li>
+</ul>
+
+<h4>http://id.webbrick.co.uk/events/webbrick/RR</h4>
+<p>
+Real time clock event.
+</p>
+<p>
+Additional other data.
+<ul>
+<li>rtc</li>
+<li>fromNode</li>
+</ul>
+</p>
+
+<h4>http://id.webbrick.co.uk/events/webbrick/AO</h4>
+<p>
+Analogue output value event.
+</p>
+<p>
+Additional other data.
+<ul>
+<li>fromNode</li>
+<li>srcChannel</li>
+<li>val</li>
+</ul>
+</p>
+
+<h4>http://id.webbrick.co.uk/events/webbrick/AI</h4>
+<p>
+Analogue inut value event.
+</p>
+<p>
+Additional other data.
+<ul>
+<li>fromNode</li>
+<li>srcChannel</li>
+<li>val</li>
+</ul>
+</p>
+
+<h4>http://id.webbrick.co.uk/events/webbrick/T*</h4>
+
+<p class="body">
+Trigger events all have the following other data.
+</p>
+<p>
+Additional other data.
+<ul>
+<li>fromNode</li>
+<li>srcChannel</li>
+<li>tgtChannel</li>
+<li>action</li>
+<li>dwell</li>
+<li>setPoint</li>
+</ul>
+
+</p>
+
+<h4>http://id.webbrick.co.uk/events/webbrick/TD</h4>
+<p>
+Digital input event.
+</p>
+<p>
+Additional other data.
+<ul>
+<li>val</li>
+</ul>
+</p>
+
+<h4>http://id.webbrick.co.uk/events/webbrick/TR</h4>
+<p>
+Remote trigger event. Targeted to remote events,
+</p>
+<p>
+Additional other data.
+<ul>
+<li>toNode</li>
+</ul>
+</p>
+
+<h4>http://id.webbrick.co.uk/events/webbrick/IR</h4>
+<p>
+Infra red command event.
+Event source is webbrick/fromNode/IR/irAddress/irChannel
+</p>
+<p>
+Additional other data.
+<ul>
+<li>fromNode</li>
+<li>irAddress</li>
+<li>irChannel</li>
+</ul>
+</p>
+
+<h4>http://id.webbrick.co.uk/events/webbrick/CT</h4>
+<p>
+Current temperature event.
+</p>
+<p>
+Additional other data.
+<ul>
+<li>fromNode</li>
+<li>srcChannel</li>
+<li>val</li>
+</ul>
+</p>
+
+</body>
+
+</html>

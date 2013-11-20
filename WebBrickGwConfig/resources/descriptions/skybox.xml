@@ -1,0 +1,94 @@
+
+
+
+<device>
+    <type val="Skybox"> 
+        <subtype val="Serial over Ip" />
+    </type>
+    <txname val=""/>
+    <txid val="" />
+    <txip val=""/>
+    
+    <rxname val=""/>
+    <rxid val=""/>
+    <rxip val=""/>
+    <serial>
+        <driver val = "Skybox"/>
+        <protocol val= "Skybox"/>
+        <baud val = "115200"/>        
+    </serial>
+    <id val="" />
+    <location val=""/>
+    <name val="New Skybox" />
+    <confstatus val = "not configured"/>
+    <connections>
+        <connection>
+            <sources>
+                <source>
+                    <id val=":002" />
+                    <type val="analogue" />
+                    <focus val="local" />
+                    <name val="SCART Out" />
+                    <connectedto val="" />
+                    <status val="not connected" />
+                </source>
+            </sources>
+            <sinks>
+                <sink>
+                    <id val=":003" />
+                    <type val="Sky" />
+                    <focus val="local" />
+                    <name val="Sky TV" />
+                    <connectedto val="" />
+                    <status val="terminated" />
+                    <commands>
+                        <command name = "on">
+                            <params txid = "%(txid)s" rxid = "%(rxid)s"/>
+                        </command>
+                    </commands>
+                    <ui val="Skybox"/>                
+                </sink>
+            </sinks>
+        </connection>    
+    </connections>
+    <commands>
+        <on>
+            <send type = "serial/action" source = "serial/send/action">
+                <payload cmd = 'send' id = "%(txid)s" action = "on" />
+            </send>
+            <complete type = "Sky/Device/Update" source = "Sky/Device/Id/%(rxid)s/PowerState" attr = "val" val = "1"/>
+            <requiredparams txid = "TXDEVICE_ID" rxid = "RXDEVICE_ID" />
+        </on>
+        <off>
+            <send type = "serial/action" source = "serial/send/action">
+                <payload cmd = 'send' id = "%(txid)s" action = "off" />
+            </send>
+            <complete type = "Sky/Device/Update" source = "Sky/Device/Id/%(rxid)s/PowerState" attr = "val" val = "0"/>
+            <requiredparams txid = "TXDEVICE_ID" rxid = "RXDEVICE_ID" />
+        </off>
+        <setchannel>
+            <send type = "serial/action" source = "serial/send/action">
+                <payload cmd = 'send' id = "%(txid)s" action = "setchannel" channel = "%(channel)s" />
+            </send>
+            <complete type = "Sky/Device/Update" source = "Sky/Device/Id/%(rxid)s/ChannelNumber" attr = "val" val = "%(channel)s"/>
+            <requiredparams txid = "TXDEVICE_ID" rxid = "RXDEVICE_ID" channel = "101" />
+        </setchannel>
+        <channelup>
+            <send type = "serial/action" source = "serial/send/action">
+                <payload cmd = 'send' id = "%(txid)s" action = "channelup" channel = "%(channel)s" />
+            </send>
+            <complete type = "Sky/Device/Update" source = "Sky/Device/Id/%(rxid)s/ChannelNumber"/>
+            <requiredparams txid = "DEVICE_ID" channel = "101" />
+        </channelup>
+        <channeldown>
+            <send type = "serial/action" source = "serial/send/action">
+                <payload cmd = 'send' id = "%(txid)s" action = "channeldown" channel = "%(channel)s" />
+            </send>
+            <complete type = "Sky/Device/Update" source = "Sky/Device/Id/%(rxid)s/ChannelNumber"/>
+            <requiredparams txid = "DEVICE_ID" rxid = "RXDEVICE_ID" channel = "101" />
+        </channeldown>
+    </commands>
+</device>
+
+
+

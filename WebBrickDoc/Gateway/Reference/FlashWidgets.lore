@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Flash Widgets</title>
+  </head>
+  <body>
+    <h1>Flash Widgets</h1>
+
+    <p>
+    The gateway user interface can be made richer using flash based widgets. These are small flash
+    movies that are provided with dynamic information by gateway using javascript to provide the interface.
+    The flash widgets can provide various interface concepts. Analogue displays, Digital displays,
+    Analogue control and digital control. The javacsript and gateway interfacing code is common to each
+    of the four classes, the only changes are in the flash movie, therefore any one can create new flash widgets, as
+    long as they all handle the interface. 
+    </p>
+
+    <p>
+    See the section on widgets to see the page defintion details, this section is mainly around developing flash
+    assets.
+    </p>
+
+    <p>
+    Background colour. Firefox/Linux have issues with transparency so we pass in the background colour for the
+    element. The movie should use this to change its background colour. Note it does not work if you choose to
+    use background images instead of background colours.
+    </p>
+
+    <h2>Overview</h2>
+
+    <p>
+    Flash assets are loaded by javascript in the browser, this javascript handles retrieving state updates
+    and passing them to the flash movie. The javascript then runs the first frame at the root of the movie,
+    this is then responsible for changing the flash movie visuals to match changes to the state. The flashMovie 
+    to be loaded is part of the 
+    </p>
+
+    <p>
+        Common attributes passed in.
+        <ul>
+            <li>state - state of the element.</li>
+            <li>ptitle - title for the element.</li>
+            <li>backGroundColour - background colour for the element,to work around transparency issues on linux/firefox.</li>
+        </ul>
+    </p>
+
+    <h2>Digital display</h2>
+    <p>
+        A digital display element, i.e. indicator, only has a single interface variable a state number. This is delivered
+        by specification using the wbSource attribute in the KID template.
+
+        <ul>
+            <li>state - state of the indicator.</li>
+            <li>ptitle - title for the indicator.</li>
+            <li>backGroundColour - background colour for the element,to work around transparency issues on linux/firefox.</li>
+        </ul>
+    </p>
+
+    <h2>Analogue display</h2>
+    <p>
+        An analogue display element, i.e. meter, has an interface variable that controls. This is delivered
+        by specification using the wbSource attribute in the KID template.
+
+        Note the value retrieved is scaled to be between 0 and 100 so that the flash code does not have to
+        do scaling of currentPosition, setPointLow, setPointHigh. This uses meterMin and meterMax, these are
+        provided for information and alternate generation of labels.
+
+        <ul>
+            <li>state - state of the indicator.</li>
+            <li>ptitle - title for the indicator.</li>
+            <li>meterMin - minimum value for the meter.</li>
+            <li>meterMax - maximum value for the meter.</li>
+            <li>currentPosition - current position of meter.</li>
+            <li>setPointLow - position of low set point.</li>
+            <li>setPointHigh - position of high set point.</li>
+            <li>labels - comma separated set of labels for meter.</li>
+            <li>displayText - value formatted as text.</li>
+            <li>backGroundColour - background colour for the element,to work around transparency issues on linux/firefox.</li>
+        </ul>
+    </p>
+
+
+    <h2>Digital control</h2>
+    <p>
+        A digital display element, i.e. indicator, only has a single interface variable a state number. This is delivered
+        by specification using the wbSource attribute in the KID template.
+
+        <ul>
+            <li>state - state of the control.</li>
+            <li>ptitle - title for the control.</li>
+            <li>callBack - target URL to action when control triggered.</li>
+            <li>backGroundColour - background colour for the element,to work around transparency issues on linux/firefox.</li>
+        </ul>
+    </p>
+
+    <h2>Analogue control</h2>
+    <p>
+        An analogue control element, i.e. volume control, has an interface variable that controls. This is delivered
+        by specification using the wbSource attribute in the KID template.
+
+        Note the value retrieved is scaled to be between 0 and 100andy so that the flash code does not have to
+        do scaling of currentPosition, setPointLow, setPointHigh. This uses meterMin and meterMax, these are
+        provided for information and alternate generation of labels. The control should pass a value between
+        0 and 100 back to the javascript and it will scale as appropriate.
+
+        <ul>
+            <li>state - state of the indicator.</li>
+            <li>ptitle - title for the indicator.</li>
+            <li>meterMin - minimum value for the control.</li>
+            <li>meterMax - maximum value for the control.</li>
+            <li>currentPosition - current position of control.</li>
+            <li>setPointLow - position of low set point.</li>
+            <li>setPointHigh - position of high set point.</li>
+            <li>labels - comma separated set of labels for control.</li>
+            <li>displayText - value formatted as text.</li>
+            <li>callBack - target URL to send new value to.</li>
+            <li>backGroundColour - background colour for the element,to work around transparency issues on linux/firefox.</li>
+        </ul>
+    </p>
+
+  </body>
+</html>
+

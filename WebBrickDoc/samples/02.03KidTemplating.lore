@@ -1,0 +1,67 @@
+<html>
+<head><title> Kid Templating</title></head>
+<body>
+    <h1>Kid Templating</h1>
+
+    <p>
+    The WebBrick Gateway uses Kid templates to produce the UI which the user can access via their browser. Kid is 
+    a simple template language for XML based vocabularies written in Python and can easily be understood by most 
+    users that have some experiance with html. For more gerneral information about Kid-Templating please visit: 
+    <a href="http://kid-templating.org/">kid-templating.org</a>
+    </p>
+
+    <p>
+    This sample will introduce the common structure employed in every Kid template to give the WebBrick Gateway UI
+    its general look and feel. So firstly the Kid File: 
+    <a href="02.03KidTemplating.kid" class="html-listing" />
+    And a discussion of each part.
+    </p>
+
+    <h2>element: &lt;DOCTYPE ...&gt;</h2>
+	<p> 
+    To be completed soon.
+    </p>
+    
+    <h2>element: &lt;?python ...&gt;</h2>
+    <p>
+    To be completed soon. 
+    </p>
+
+    <h2>element: &lt;html ...&gt;</h2>
+    <p>
+    To be completed soon.
+    </p>
+
+    
+    <h2>element: &lt;body&gt;</h2>
+    <p>
+    Any thing between the body tags will be part of the actual page body, alike to plain html. Any page content
+    should be added here.
+    </p>
+    
+
+    <h2>element: ${output_nav("...")}</h2>
+    <p>
+    This is a python function that will load the approritate kid code to produce the default WebBrick Gateway header. 
+    The text between the quotes will be displayed centered in the header. 
+    </p>
+
+
+    <h2>element: ${output_site_info_bar()}</h2>
+
+    <p>
+    This is a python function that will load the approritate kid code to produce the default WebBrick Gateway footer.
+    </p>
+    
+
+    <h2>Summary</h2>
+
+    <p>
+    To ensure consistency accross all UI pages we advice that every page contains the header and footer elements. 
+    </p>
+
+    <p>Last Updated: 23/09/2008
+    </p>
+
+</body>
+</html>

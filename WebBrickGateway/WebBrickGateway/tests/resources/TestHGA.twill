@@ -1,0 +1,66 @@
+# $Id: TestHGA.twill 1457 2008-05-23 01:34:46Z webbrick $
+#
+# Twill script for testing HGA
+# Basic WebBrick access tests
+#
+# Having installed twill, this script can be run from the command line with:
+#   twill-sh TestHGA.twill
+#
+# In due course, it should also be possible to use the script in a 
+# pyunit unit test environment.
+
+go http://localhost:8080/
+title "HGA demonstration menu"
+
+# go test/security.xhtml
+go /static/heating.xhtml
+code 200
+go /test/Test01-LightSwitch.xhtml
+code 200
+go /test/Test02-LightSwitch.xhtml
+code 200
+
+go /webbrick/status?wbaddr=WebBrick&wbchan=DO0
+code 200
+find 'wbChan="DO0"'
+go /webbrick/status?wbaddr=WebBrick&wbchan=DO1
+code 200
+find 'wbChan="DO1"'
+go /webbrick/status?wbaddr=WebBrick&wbchan=DO2
+code 200
+find 'wbChan="DO2"'
+go /webbrick/status?wbaddr=WebBrick&wbchan=DO3
+code 200
+find 'wbChan="DO3"'
+go /webbrick/status?wbaddr=WebBrick&wbchan=DO4
+code 200
+find 'wbChan="DO4"'
+go /webbrick/status?wbaddr=WebBrick&wbchan=DO5
+code 200
+find 'wbChan="DO5"'
+go /webbrick/status?wbaddr=WebBrick&wbchan=DO6
+code 200
+find 'wbChan="DO6"'
+go /webbrick/status?wbaddr=WebBrick&wbchan=DO7
+code 200
+find 'wbChan="DO7"'
+go /webbrick/status?wbaddr=WebBrick&wbchan=DO8
+code 404
+notfind 'wbChan="DO8"'
+
+go /webbrick/status?wbaddr=WebBrick&wbchan=AO0
+code 200
+find 'wbChan="AO0"'
+go /webbrick/status?wbaddr=WebBrick&wbchan=AO1
+code 200
+find 'wbChan="AO1"'
+go /webbrick/status?wbaddr=WebBrick&wbchan=AO2
+code 200
+find 'wbChan="AO2"'
+go /webbrick/status?wbaddr=WebBrick&wbchan=AO3
+code 200
+find 'wbChan="AO3"'
+go /webbrick/status?wbaddr=WebBrick&wbchan=AO4
+code 404
+notfind 'wbChan="AO4"'
+

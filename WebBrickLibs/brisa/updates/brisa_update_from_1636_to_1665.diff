@@ -1,0 +1,194 @@
+Index: /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/device/device.py
+===================================================================
+--- /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/device/device.py	(revision 1636)
++++ /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/device/device.py	(working copy)
+@@ -11,6 +11,7 @@
+ 
+ from brisa.upnp.ssdp import SSDPServer
+ from brisa.upnp.base_device import BaseDevice
++from brisa.upnp.base_service import BaseService
+ from brisa.upnp.device.xml_gen import DeviceXMLBuilder
+ 
+ 
+@@ -122,6 +123,17 @@
+         """
+         self._force_event_reload = force
+ 
++    def __add__(self, obj):
++        if issubclass(obj.__class__, Device):
++            log.debug("Adding device %s as embedded for %s", obj, self)
++            self.add_device(obj)
++        elif issubclass(obj.__class__, BaseService):
++            log.debug("Adding service %s as service for %s", obj, self)
++            self.add_service(obj)
++        else:
++            log.warning("Ignored invalid addition: %s + %s", self, obj)
++        return self
++
+     def _create_webserver(self, force_listen_url=''):
+         if force_listen_url:
+             p = network.parse_url(force_listen_url)
+Index: /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/device/service.py
+===================================================================
+--- /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/device/service.py	(revision 1636)
++++ /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/device/service.py	(working copy)
+@@ -50,9 +50,18 @@
+         return Argument(arg_name, arg_direction, arg_state_var)
+ 
+     def _create_action(self, name, args):
+-        """ Creates an action and sets it run function to soap_ActionName(). """
++        """ Creates an action and sets it run function to ActionName() or
++        soap_ActionName().
++
++        @note soap_ActionName() is deprecated, use ActionName() instead.
++        """
+         action = Action(self.service, name, args)
+-        action.run_function = getattr(self.service, "soap_%s" % name, None)
++        action.run_function = getattr(self.service, "%s" % name, None)
++
++        if not action.run_function:
++            # Try the old API (soap_ActionName())
++            action.run_function = getattr(self.service, "soap_%s" % name, None)
++
+         return action
+ 
+     def _create_state_var(self, name, send_events, multicast,
+Index: /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/control_point/service.py
+===================================================================
+--- /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/control_point/service.py	(revision 1636)
++++ /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/control_point/service.py	(working copy)
+@@ -313,19 +313,19 @@
+         for k, v in dict(http_response.getheaders()).items():
+             if not v:
+                 v = ""
+-            compressed_headers[k.lower()] = v.lower().strip()
+-            if 'sid' in compressed_headers:
+-                sid = compressed_headers['sid']
+-                timeout = 300
+-                if 'timeout' in compressed_headers:
+-                    stimeout = compressed_headers['timeout']
+-                    if stimeout[0:7] == "second-":
+-                        try:
+-                            timeout = int(stimeout[7:])
+-                        except ValueError:
+-                            pass
+-                self.service.event_sid = sid
+-                self.service.event_timeout = timeout
++            compressed_headers[k.lower()] = v.strip()
++        if 'sid' in compressed_headers:
++            sid = compressed_headers['sid']
++            timeout = 300
++            if 'timeout' in compressed_headers:
++                stimeout = compressed_headers['timeout']
++                if stimeout[0:7] == "Second-":
++                    try:
++                        timeout = int(stimeout[7:])
++                    except ValueError:
++                        log.error("value convert of timeout failed using default 300 seconds")
++            self.service.event_sid = sid
++            self.service.event_timeout = timeout
+         if self.service._auto_renew_subs and sid:
+             self.service._auto_renew_subs.start_auto_renew()
+         if self.callback and sid:
+@@ -448,7 +448,7 @@
+ 
+         @rtype: boolean
+         """
+-        log.debug("error", error)
++        log.debug("error %s", error)
+         self.service.event_sid = ""
+         self.service.event_timeout = 0
+         if self.callback:
+@@ -470,19 +470,19 @@
+         for k, v in dict(http_response.getheaders()).items():
+             if not v:
+                 v = ""
+-            compressed_headers[k.lower()] = v.lower().strip()
+-            if 'sid' in compressed_headers:
+-                sid = compressed_headers['sid']
+-                timeout = 300
+-                if 'timeout' in compressed_headers:
+-                    stimeout = compressed_headers['timeout']
+-                    if stimeout[0:7] == "second-":
+-                        try:
+-                            timeout = int(stimeout[7:])
+-                        except ValueError:
+-                            pass
+-                self.service.event_sid = sid
+-                self.service.event_timeout = timeout
++            compressed_headers[k.lower()] = v.strip()
++        if 'sid' in compressed_headers:
++            sid = compressed_headers['sid']
++            timeout = 300
++            if 'timeout' in compressed_headers:
++                stimeout = compressed_headers['timeout']
++                if stimeout[0:7] == "Second-":
++                    try:
++                        timeout = int(stimeout[7:])
++                    except ValueError:
++                        log.error("value convert of timeout failed using default 300 seconds")
++            self.service.event_sid = sid
++            self.service.event_timeout = timeout
+         if self.callback and sid:
+             self.callback(self.cargo, sid, timeout)
+ 
+Index: /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/control_point/event.py
+===================================================================
+--- /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/control_point/event.py	(revision 1636)
++++ /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/control_point/event.py	(working copy)
+@@ -137,7 +137,7 @@
+         for k, service in device.services.items():
+             if service.event_sid == subscription_id:
+                 return service
+-        for k, child_dev in device.devices:
++        for child_dev in device.devices.values():
+             service = self._find_service(child_dev, subscription_id)
+             if service:
+                 return service
+@@ -338,7 +338,7 @@
+         @rtype: Service or None
+         """
+         if device.udn != udn:
+-            for k, child_dev in device.devices:
++            for child_dev in device.devices.values():
+                 service = self._find_service(child_dev, udn, service_type, svcid)
+                 if service:
+                     return service
+Index: /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/control_point/msearch.py
+===================================================================
+--- /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/control_point/msearch.py	(revision 1665)
++++ /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/control_point/msearch.py	(working copy)
+@@ -30,7 +30,7 @@
+     msg_already_stopped = 'tried to stop() MSearch when already stopped'
+ 
+     def __init__(self, ssdp, start=True, interval=DEFAULT_SEARCH_TIME,
+-                 ssdp_addr='239.255.255.250', ssdp_port=1900):
++                 ssdp_addr='239.255.255.250', ssdp_port=0):
+         """ Constructor for the MSearch class.
+ 
+         @param ssdp: ssdp server instance that will receive new device events
+Index: /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/soap.py
+===================================================================
+--- /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/soap.py	(revision 1636)
++++ /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/upnp/soap.py	(working copy)
+@@ -253,6 +253,8 @@
+         addr = parse_url(addr)
+         real_addr = '%s:%d' % (addr.hostname, addr.port)
+         real_path = addr.path
++        if addr.query != '':
++            real_path += '?%s' % addr.query
+ 
+         if addr.scheme == 'https':
+             r = httplib.HTTPS(real_addr)
+Index: /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/core/reactors/_select.py
+===================================================================
+--- /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/core/reactors/_select.py	(revision 1636)
++++ /home/shared/SVN-WBS/HomeGateway2/Trunk/WebBrickLibs/brisa/core/reactors/_select.py	(working copy)
+@@ -106,6 +106,7 @@
+         @param id: unique ID returned by add_timer()
+         @type id: integer
+         """
++        if not id: return
+         try:
+             self._timers.pop(id)
+         except KeyError:

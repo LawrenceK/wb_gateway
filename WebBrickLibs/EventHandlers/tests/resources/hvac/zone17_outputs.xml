@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!-- 
+TODO 
+update Xurl to url and enter correct webbrick command, this version is using the Mimics to control zone valves.
+If using real outputs then remove the event mapper section and update the inputs file to get feedback. There is no feedback from Mimics.
+-->
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+        <!-- we are not using digital outputs for this so we need to create running events, switch to delay the event later -->
+        <eventtype type='http://id.webbrick.co.uk/zones/zone'>
+            <eventsource source='zone17/run'>
+                <event>
+                    <newEvent type="http://id.webbrick.co.uk/zones/zone" source="zone17/running">
+                    </newEvent>
+                </event>
+            </eventsource>
+            <eventsource source='zone17/stop'>
+                <event>
+                    <newEvent type="http://id.webbrick.co.uk/zones/zone" source="zone17/stopped">
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+    </eventInterface>
+
+</eventInterfaces>

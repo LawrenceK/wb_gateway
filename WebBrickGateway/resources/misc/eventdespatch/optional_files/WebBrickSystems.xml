@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+        <eventtype type='http://id.webbrick.co.uk/events/time/runtime'>
+        
+            <eventsource source='time/runtime'>
+                <event>
+                    <params>
+                        <testEq name="elapsed" value='5'/>
+                    </params>
+                    
+                    <url address="localhost:8080" uri="/local/postmessage?msg=Welcome%%20To%%20WebBrickSystems%%20WebBrick%%20Gateway&amp;priority=1&amp;validFor=allways&amp;tag=welcome" cmd="GET" />
+
+                </event>
+            </eventsource>
+         
+        </eventtype>
+    </eventInterface>
+
+</eventInterfaces>

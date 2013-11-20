@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+        <eventtype type=''>
+            <eventsource source='time/runtime'>
+                <event>
+                    <params>
+                        <testEq name="elapsed" value='5'/>
+                    </params>
+					<!-- ensure serial port on 38400 8 N 1 -->
+                    <newEvent type="cinema/plasma" source="cinema/plasma/1/connect" />
+                </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+			
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+        <eventtype type=''>
+			
+			<!-- In the following commnds we need to convert from the hex chars in the documentation to decimal, for the webbrick -->
+            <eventsource source='cinema/plasma/1/connect'>
+                <event>
+					<!-- ensure serial port on 4800 8 N 1 -->
+                    <url cmd='GET' uri='/hid.spi?COM=CR2;4:' address='fujitsuwb'/>
+					<!-- Send @Gcr -->
+                    <url cmd='GET' uri='/hid.spi?COM=RD64;71;13:' address='fujitsuwb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='cinema/plasma/1/disconnect'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD64;81;13:' address='fujitsuwb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='cinema/plasma/1/power/on'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD33;67;82;80;78;13:' address='fujitsuwb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='cinema/plasma/1/power/off'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD33;67;82;80;70;13:' address='fujitsuwb'/>
+                </event>
+            </eventsource>
+			
+        </eventtype>
+    </eventInterface>
+
+</eventInterfaces>
+

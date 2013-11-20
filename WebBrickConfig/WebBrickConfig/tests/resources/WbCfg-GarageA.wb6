@@ -1,0 +1,89 @@
+LGpassword:
+#
+#  Garage A configuration
+#
+# 
+#  Note that the first line needs to be a disable commands to avoid unnecessary coms between SP and PIC
+#
+#
+SS1:
+# Test case overrides node name in XML file
+NNTestNodeNameOverride:
+SN10:
+SR0;8:
+#
+#  Input State Engine
+#
+#
+#   Garage Door 1
+#
+ND0;GD1O:
+CD0;D0;0;5;1;1;0:
+ND1;GD1C:
+CD1;D1;0;5;1;1;0:
+#
+#  Garage Door 2
+#
+ND2;GD2O:
+CD2;D2;0;5;1;1;0:
+ND3;GD2C:
+CD3;D3;0;5;1;1;0:
+#
+#  General Stuff
+#
+ND4;Pb-4:
+CD4;D1;0;1;2;3;0:
+ND5;Pb-5:
+CD5;D5;0;6;0;1;0:
+ND6;An-0:
+CD6;A0;3;5;3;1;0:
+ND7;An-1:
+CD7;A5;3;6;3;1;0:
+#
+# Output Names
+#
+NO0;GD1O;:
+NO1;GD1C;:
+NO2;GD2O;:
+NO3;GD2C;:
+#
+#  General bits
+#
+NO4;Out4;:
+NO5;Out5;:
+NO6;Out6;:
+NO7;Tst7;:
+#
+#Analogue Names
+#
+NA0;Lights;:
+NA1;Floor;:
+#
+# Monitor Names
+#
+#NM0;GD1O;:
+#NM1;GD1C;:
+#NM2;GD2O;:
+#NM3;GD2C;:
+#
+# Dwells
+#
+CW0;30;:
+CW1;2;:
+CW2;60;:
+CW3;4200;:
+#
+# Set Points
+#
+CS0;0:
+CS1;12:
+CS2;25:
+CS3;35:
+CS4;50:
+CS5;75:
+CS6;99:
+#
+SS2:
+#
+# End of file
+#

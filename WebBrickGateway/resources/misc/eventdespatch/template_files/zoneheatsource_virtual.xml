@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!-- Thjis file can be used to create a virtual heat source , i.e. a heatsource, that is not controllign areal output.-->
+<!--  
+TODO 
+    1. Replace hs_key with the key of the heatsource defined in hvac.xml file
+-->
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+        <eventtype type='http://id.webbrick.co.uk/zones/heatsource'>
+            <eventsource source='heatsource/hs_key/dostop'>
+                <event>
+                    <params>
+                        <testEq name="state" value="0" />
+                    </params>
+                    <!-- !This is for the heating logic in HVAC.py -->
+                    <newEvent type="http://id.webbrick.co.uk/zones/heatsource" source="heatsource/hs_key/stopped" />
+                    
+                    <!-- !This is purely for the UI to give User feedback abotu heatsource state -->
+                    <newEvent type="http://id.webbrick.co.uk/events/config/set" source="heatsource/hs_key/state">
+                        <other_data val='0'/>
+                    </newEvent>
+                </event>
+            </eventsource>
+            <eventsource source='heatsource/hs_key/dorun'>
+                <event>
+                    <params>
+                        <testEq name="state" value="1" />
+                    </params>
+                    <!-- !This is for the heating logic in HVAC.py -->
+                    <newEvent type="http://id.webbrick.co.uk/zones/heatsource" source="heatsource/hs_key/running" />
+                    
+                    <!-- !This is purely for the UI to give User feedback abotu heatsource state -->
+                    <newEvent type="http://id.webbrick.co.uk/events/config/set" source="heatsource/hs_key/state">
+                        <other_data val='1'/>
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+    
+    </eventInterface>
+
+</eventInterfaces>

@@ -1,0 +1,20 @@
+/* CSS Document  */
+/*  Contents of this css file are only loaded by Safari , due to the line starting @media ...
+    The styles were made to make pages display properly on an iTouch. */
+
+
+/* Safari Only */ 
+@media screen and (-webkit-min-device-pixel-ratio:0) 
+{
+    #background { 
+        bottom: 0px;
+        background-image:none;
+    } 
+
+    #botbar { 
+        display: none; 
+    }
+    
+} 
+
+    

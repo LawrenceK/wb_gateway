@@ -1,0 +1,38 @@
+$Id: CINotes.txt 2323 2008-06-05 11:43:38Z webbrick.ci $
+
+Continuous Integration framework notes
+--------------------------------------
+
+The key files are used on system webbricksystems-ci, [10,200.0.4] on the 
+Thirtover network are in directory /var/WebBrickCI, also in the subversion /HomeGateway2/Trunk directory:
+  CITests.conf - configures test cases to be run:
+                 succcess is determined by zero exit status of the 
+                 given test commands
+  RunCITests.sh - updates the repository mirrors, updates (or replaces)
+                  a local working copy of code and runs the tests.
+                  Has various options -n try RunCITests.sh ?, or look
+                  at latest source in subversion
+  UpdateCITests.sh - a simple script to pull the latest CI files from
+                     the current repository working copy into the CI 
+                     working directory
+
+Thus:
+  RunCITests.sh
+  UpdateCITests.sh
+  RunCITests.sh
+
+To runs tests using latest CI scripts and config from subversion.
+
+TODO:
+  add more test cases to CITests.conf
+  get Andy to allow notification emails through his relay
+  configure to run routinely, automatically
+  add additional development environment as needed
+  review security setup - the CI system to have read-only access 
+  to the mirror repository?
+
+FUTURE:
+  put repository details in test config file
+  allow multiple test config files (ala Apache conf.d, etc) so that
+  new test suites can be added and maintained independently.
+

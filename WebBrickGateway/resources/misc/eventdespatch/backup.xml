@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eventInterfaces>
+<!-- !Log and Site directory Backup -->
+<!-- !
+    INFO
+        This file is by default configured to backup the webbrick-gateway logs every 6 hours locally and 
+        to delete the backups after after 7 days. The functionality can be extended to backup both the log 
+        fies and the site directory to the WebBrick Systems backup facility, by following steps in the TODO 
+        section.
+
+    TODO  
+    1.  Find all instances of installerName in this file and replace them with the name of the installer as adviced
+        by WebBrick Systems. 
+    2.  Find all instances of customerName in this file and replace them with the name of the customer as adviced
+        by WebBrick Systems.
+    3.  Uncomment the '<value>3</value>' section to enable the backup of log files to WebBrick Systems backup facitity.   
+
+    4.  Uncomment the '<value>4</value>' section to enable the backup of the site directory to WebBrick Systems backup facitity.  
+-->
+
+
+
+    <!-- This Backup routine does the local backup of the -webbrick gateway logs every 6 hours -->
+    <eventInterface module='EventHandlers.Backup' name='BackupHandler'>
+
+        <eventtype type="http://id.webbrick.co.uk/events/time/minute">
+            <eventsource source="time/minute" >
+                <event>
+                    <params>
+                        <testEq name='minute' value='5' />
+                        <testEq name='hour'>
+                            <value>0</value>
+                            <value>6</value>
+                            <value>12</value>
+                            <value>18</value>                          
+                        </testEq>
+                    </params>
+                    <!-- Check for changes to files in backup set -->
+                    <doFull/>
+                </event>
+                
+                <event>
+                    <params>
+                        <testEq name='minute' value='10' />
+                        <testEq name='hour'>
+                            <value>0</value>
+                            <value>6</value>
+                            <value>12</value>
+                            <value>18</value>                          
+                        </testEq>
+                    </params>
+                    <!-- Clean up the local backup directory, i.e. get rid of old files-->
+                    <cleanUp/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <!-- The steps we want -->
+        <fileSet deleteAfter="yes">
+            <file path="/var/log/webbrick/EventLog.log.*" />
+            <file path="/var/log/webbrick/debug.log.*" />
+            <file path="/var/log/webbrick/errors.log.*" />
+            <file path="/var/log/webbrick/upnp.log.*" />
+            <file path="/var/log/webbrick/access.log.*" />
+            <exclude match=".*\.zip.*"/>
+        </fileSet>
+
+        <!-- Where to send backup -->
+        <destination 
+            transport="file" 
+            path="/var/log/webbrick/history/"
+            deleteAfterDays="7"
+            nameTemplate="/var/log/webbrick/history/Logs_%(year)04u%(month)02u%(date)02uT%(hour)02u0000.zip" />
+
+    </eventInterface>
+
+    <!-- This Backup routine handles the transfer of 'new' zipped up logs in history to the webbrick server once a day at 3:10am -->
+    <eventInterface module='EventHandlers.Backup' name='BackupHandler'>
+
+        <eventtype type="http://id.webbrick.co.uk/events/time/minute">
+            <eventsource source="time/minute" >
+                <event>
+                    <params>
+                        <testEq name='minute' value='10' />
+                        <testEq name='hour'>
+<!--                        
+                            <value>3</value>    
+-->                      
+                        </testEq>
+                    </params>
+                    <!-- Check for changes to files in backup set -->
+                    <checkDelta/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <!-- The steps we want -->
+        <fileSet deleteAfter="no">
+            <directory path="/var/log/webbrick/history/" recursive="no"/>
+        </fileSet>
+
+        <!-- Where to send backup -->
+        <destination 
+            transport="ftp" 
+            address="backup.webbrick.co.uk"
+            username="default"
+            password="default"
+            nameTemplate="/wbs/vol1/customers/installerName/customerName/archive/LogsBackup_%(year)04u%(month)02u%(date)02uT%(hour)02u0000.zip" />
+
+    </eventInterface>
+    
+    
+    <!-- This Backup routine handles the transfer of changes to the site directory to the webbrick server once a day at 4:10am -->
+    <eventInterface module='EventHandlers.Backup' name='BackupHandler'>
+
+        <eventtype type="http://id.webbrick.co.uk/events/time/minute">
+            <eventsource source="time/minute" >
+                <event>
+                    <params>
+                        <testEq name='minute' value='10' />
+                        <testEq name='hour'>
+<!--                        
+                            <value>4</value>  
+-->                 
+                        </testEq>
+                    </params>
+                    <!-- Check for changes to files in backup set -->
+                    <checkDelta/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <!-- The steps we want -->
+        <fileSet deleteAfter="no">
+            <directory path="/opt/webbrick/site/" recursive="yes"/>
+            <exclude match="/opt/webbrick/site/webbrickgateway.xml*"/>
+            <exclude match=".*\.zip.*"/>
+            <exclude match=".*\.pyc*"/>
+        </fileSet>
+
+        <!-- Where to send backup -->
+        <destination 
+            transport="ftp" 
+            address="backup.webbrick.co.uk"
+            username="default"
+            password="default"
+            nameTemplate="/wbs/vol1/customers/installerName/customerName/archive/Site_%(year)04u%(month)02u%(date)02uT%(hour)02u0000.zip" />
+        
+
+    </eventInterface>
+    
+</eventInterfaces>

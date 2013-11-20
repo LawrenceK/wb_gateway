@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eventInterfaces>
+    <eventInterface module='EventHandlers.tests.TestEventLogger' name='TestEventLogger'>
+        <!-- This saves all events -->
+        <eventtype type="">
+            <eventsource source="" >
+	        <event>
+                    <!-- interested in all events -->
+	        </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+</eventInterfaces>

@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>ParameterSet Overview</title>
+</head>
+
+<body>
+
+    <h1>ParameterSet Overview</h1>
+
+        <p>A ParameterSet is currently used in two places within the Event despatch configuration, 
+        i) In the event filter selection and 
+        ii) In Compound to select the interface actions. 
+        A ParameterSet consists of 1 or more tests that can be nested. Sample
+        XML configuration is given (note for developers the internal structures are not XML).</p>
+
+    <h2>Basic Tests</h2>
+        <p>Within each test there are two values,  the first is always given by name the second may be given by
+        name or as an absolute value. The second value may be repeated to allow an implicit OR test, i.e.
+        time is 1 minute or 6 minutes. </p>
+        
+        <p>The test parameter types may be stated explicitly as int, float or string or it 
+        may be derived from the parameters. 
+        
+        If the second parameter is provided as an explicit value then: i) if the content of the value is a decimal
+        number then the test will use floating point tests, ii) if the content of the value is an integer string 
+        then the test will use integer tests iii) in all other cases it defaults to string comparison.
+        Note a string test sees 012 and 12 as different whilst integer test will
+        see them as identical.</p>
+
+        <p>Where multiple tests are given at a level then an implicit 'And' is performed. If multiple value elements 
+        are given then an implicit Or is performed</p>
+        
+        <p>The following are examples given in XML notation. Note anything in [] brackets is optional, although
+        at least one of value and param2 must be given.</p>
+
+        <h3>Simplest test</h3>, compare the contents of firstName with someValue or the contents of secondName.
+        <p>
+        <pre>
+            &lt;testName [type='int|float|string'] name='firstName' value='someValue'|param2='secondName' /&gt; 
+        </pre>
+        </p>
+
+        <h3>Alternate compare the contents of firstName with someValue.</h3>
+
+        <pre>
+        &lt;testName [type='int|float|string'] name='firstName'&gt; 
+             &lt;value&gt;someValue/&gt;
+        &lt;/testName&gt;
+        </pre>
+
+        <h3>Alternate compare the contents of firstName with secondName.</h3>
+        <pre>
+        &lt;testName [type='int|float|string'] name='firstName'&gt; 
+             &lt;param2&gt;secondName/&gt;
+        &lt;/testName&gt;
+        </pre>
+
+        <h3>Compare the contents of firstName for match with 1 of a set of values, implicit Or.</h3>
+        <p>
+        <pre>
+        &lt;testName [type='int|float|string'] name='firstName'&gt; 
+             &lt;value&gt;someValue/&gt;
+             &lt;value&gt;someValue/&gt;
+        &lt;/testName&gt;
+        </pre>
+        This could alternately be configured thus.
+        <pre>
+        &lt;testOr&gt;
+            &lt;testName [type='int|float|string'] name='firstName' value='someValue'/&gt; 
+            &lt;testName [type='int|float|string'] name='firstName' value='someValue2'/&gt; 
+        &lt;/testOr&gt;
+        </pre>
+        </p>
+
+        <h3>Compare the contents of firstName for match with 1 of a set of values, implicit Or. In this case one value is 
+        provided explicitly and the other by name</h3>
+        <pre>
+        &lt;testName [type='int|float|string'] name='firstName'&gt; 
+             &lt;value&gt;someValue/&gt;
+             &lt;param2&gt;secondName/&gt;
+        &lt;/testName&gt;
+        </pre>
+
+    <h3>testEq</h3>
+        <p>This tests for equality between two values.</p>
+    <h3>testNe</h3>
+        <p>This tests for in-equality between two values.</p>
+    <h3>testLe</h3>
+        <p>This tests for the first value being less than or equal to the second value.</p>
+    <h3>testLt</h3>
+        <p>This tests for the first value being less than the second value.</p>
+    <h3>testGe</h3>
+        <p>This tests for the first value being greater than or equal to the second value.</p>
+    <h3>testGt</h3>
+        <p>This tests for the first value being greater than the second value.</p>
+    <h3>testDiffGe</h3>
+        <p>This tests for difference between the first and second value being greater than or equal to the diffValue. The test is (value1 - value2) &gt;= diffValue </p>
+    <h3>testDiffLe</h3>
+        <p>This tests for difference between the first and second value being less than or equal to the diffValue. The test is (value1 - value2) &lt;= diffValue </p>
+    <h3>testAbsDiffGe</h3>
+        <p>This tests for the magnitude of the difference between the first and second value being greater than or equal to the diffValue. The test is (value1 - value2) &gt;= diffValue. </p>
+    <h3>testAbsDiffLe</h3>
+        <p>This tests for magnitude of the difference between the first and second value being less than or equal to the diffValue. The test is (value1 - value2) &lt;= diffValue </p>
+
+    <h2>Compound tests</h2>
+    The implicit AND is used when you provide multiple basic tests. The implicit OR is when you provide multiple
+    values to compare against. To provide multiple values you need to specify the values in XML as multiple 
+    nested elements. The following lists explicit compound tests.
+    <h3>testOr</h3>
+        <p>Explicit OR.</p>
+    <h3>testAnd</h3>    
+        <p>Explicit AND.</p>
+
+
+    <h2>Examples</h2>
+        <pre>
+        &lt;eventInterface module='EventHandlers.EventMapper' name='EventMapper' category='debug'&gt;
+            &lt;eventtype type="http://id.webbrick.co.uk/events/time/sunrise"&gt;
+                &lt;eventsource source="" &gt;
+                    &lt;event&gt;
+                        &lt;newEvent type="http://id.webbrick.co.uk/events/state" source="background"&gt;
+                            &lt;other_data val='/static/images/backgrounds/day.png' val2='22.0'/&gt;
+                        &lt;/newEvent&gt;
+                    &lt;/event&gt;
+                &lt;/eventsource&gt;
+            &lt;/eventtype&gt;
+        &lt;eventInterface&gt;
+        </pre>
+
+        This is a sample for the event mapper it picks up the sunrise event and creates a new event when sunrise occurs. (This new 
+        event is used to update some data in the web server for the user interface). This example does not use the params filter.
+        
+        <pre>
+        &lt;eventInterface module='EventHandlers.EventMapper' name='EventMapper' category='debug'&gt;
+            &lt;eventtype type=""&gt;
+                &lt;eventsource source="time/minute" &gt;
+                    &lt;event&gt;
+                        &lt;param&gt;
+                            &lt;testEq name='minute' value='5' /&gt;
+                        &lt;/param&gt;
+                        &lt;newEvent type="http://id.webbrick.co.uk/events/state" source="background"&gt;
+                            &lt;other_data val='/static/images/backgrounds/day.png' val2='22.0'/&gt;
+                        &lt;/newEvent&gt;
+                    &lt;/event&gt;
+                &lt;/eventsource&gt;
+            &lt;/eventtype&gt;
+        &lt;eventInterface&gt;
+        </pre>
+
+        This example looks for the minute event at 5 minutes past the hour.
+        
+        <pre>
+            &lt;params&gt;
+                &lt;testEq name='timeStr' name2='actiontime' /&gt;
+            &lt;/params&gt;
+
+        </pre>
+
+        This example is just the filter set and compares two named values.
+        
+        <pre>
+            &lt;params&gt;
+                &lt;testEq name='timeStr' &gt; &lt;name2 &gt;actiontime &lt;/name2 &gt;
+                &lt;/testEq&gt;
+            &lt;/params&gt;
+
+        </pre>
+
+        This is an alternative that uses the alternate form of the second value.
+
+    <h2>Notes</h2>
+    <ul>
+        <li>Legacy tests: These are no longer supported, all tests use the above operators..</li>
+        <li>EventType/Source filtering: When selecting event types and sources as in the generic event interface you
+        CAN NOT use a second named value as you have no access to a second data set.</li>
+    </ul>
+
+</body>
+
+</html>

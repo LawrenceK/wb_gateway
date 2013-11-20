@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>HttpEvent</title>
+</head>
+
+<body>
+
+    <h1>HttpEvent</h1>
+
+        <p>Enable an external system to create events.</p>
+
+    <h2>Description</h2>
+        <p>This event haandler listens for HTTP requests on a configured port and turns the requested URI into an event that
+        is then posted into the event distribution network. The event type for these events is always 'http://id.webbrick.co.uk/events/uri'. 
+        The event source is requested URI with the leaading / removed.</p>
+
+    <h2>Configuration</h2>
+        <p>The only required attribute on the event handler is listenPort, this defines the TCP port that the handler will listen for HTTP
+        requests on.</p>
+
+    <h2>Example</h2>
+    <pre>
+    &lt;eventInterface module='EventHandlers.HttpEvent' name='HttpEvent' listenPort='20997' &gt;
+    &lt;/eventInterface&gt;
+    </pre>
+    <p>listen on 20997, this can be tested from any webbrowser by entering for example the following into the browser address bar
+    'http://address:20997/an/event' The result will be an event with type=http://id.webbrick.co.uk/events/uri and source=an/event. 
+    If you have the event logger configured you can then look in the event log and see the event listed.</p>
+    
+    <h2>Sample URI</h2>
+    
+    <pre>
+      http://myhome:20997/send/this/event
+    </pre>
+    
+    <h2>Notes</h2>
+
+  <p>
+    You can also insert events by accessing the gateway on the URI /sendevent. In this case all subsequent parts of the URI are used to generate the event source attribute. 
+    The event type defaults to http://id.webbrick.co.uk/events/uri but can be overidden by including a type parameter on the URI, all other parameters on the URI are
+    turned into other data attributes.
+
+    <pre>
+      http://myhome/sendevent/another/new/event?type=internal/val=76
+    </pre>
+    
+    This URI generate an event of type "internal", source is "another/new/event" with a single other data attribute named val.
+  </p>
+  
+</body>
+
+</html>

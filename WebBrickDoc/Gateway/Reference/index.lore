@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>WebBrick Gateway Reference Documentation.</title>
+</head>
+
+<body>
+    <h1>WebBrick Gateway Reference Documentation.</h1>
+    <ul>
+        <li><a href="./Introduction.xhtml">Introduction</a></li>
+        <li><a href="./Architecture.xhtml">Architecture</a></li>
+        <li><a href="./Principles.xhtml">Principles</a></li>
+        <li><a href="./FileSystem.xhtml">File System</a></li>
+        <li><a href="./Prerequisites.xhtml">Prerequisites</a></li>
+        <li><a href="./Configuration.xhtml">Configuration</a></li>
+        <li><a href="./Schedules.xhtml">Schedules</a></li>
+        <li><a href="./wbcnf.xhtml">Webbrick Configuration Management</a></li>
+        <li><a href="./Logging.xhtml">Logging</a></li>
+        <li><a href="./CreatingPages.xhtml">Creating Pages</a></li>
+        <li><a href="./Widgets.xhtml">User Interface Widgets</a></li>
+        <li><a href="./Styling.xhtml">Styling</a></li>
+        <li><a href="./EventDespatch.xhtml">Event configuration</a></li>
+        <li><a href="../../EventInterfaces/EventInterfaces.xhtml">Event Interfaces</a></li>
+        <li><a href="./PageBackgrounds.xhtml">Page Backgrounds</a></li>
+        <li><a href="./Graphing.xhtml">Graphing</a></li>
+        <li><a href="./MultipleGateways.xhtml">Multiple WebBrick Gateway's</a></li>
+        <li><a href="./Appliance.xhtml">Appliance</a></li>
+        <li><a href="./webbrick_util.xhtml">Appliance</a></li>
+    </ul>
+
+</body>
+
+</html>

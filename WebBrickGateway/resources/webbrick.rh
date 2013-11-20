@@ -1,0 +1,76 @@
+#!/bin/sh
+#
+# To add/remove the script with /sbin/chkconfig, there is a line below:   
+# chkconfig: - 65 35
+# description: Webbrick Gateway
+# let's call it sample.sh 
+# 
+# To use source library in the script, uncomment the line below:
+. /etc/init.d/functions
+# To use the parameters defined in  /etc/sysconfig/, uncomment the line below:
+#. /etc/sysconfig/
+#
+# For example, define the current Run Level:
+
+APP_FILE=/usr/local/bin/start-WebBrickGateway.py
+APP_NAME=start-WebBrickGateway.py
+PID_FILE=/opt/webbrick/webbrick.pid
+CFG_FILE=/opt/webbrick/resources/prod.cfg
+
+RETVAL=0
+prog="webbrick"
+
+start() {
+        # Start daemons.
+        echo -n $"Starting $prog: "
+        daemon $APP_FILE $CFG_FILE &
+#       start-stop-daemon --start --exec $APP_FILE  --pidfile $PID_FILE --background --make-pidfile -- $CFG_FILE
+#       nohup $APP_FILE $CFG_FILE &
+        RETVAL=$?
+        echo
+        return $RETVAL
+}
+
+stop() {
+        # Stop daemons.
+        echo -n $"Shutting down $prog: "
+#       killproc $APP_FILE
+        killall $APP_NAME
+#       start-stop-daemon --stop --exec $APP_FILE  --pidfile $PID_FILE --retry timeout
+#       killall $APP_FILE
+        RETVAL=$?
+        echo
+        return $RETVAL
+}
+
+status() {
+# status function
+echo "status sample script at Run Level $runl"
+# .....
+}
+
+restart(){
+        stop
+        start
+        RETVAL=$?
+}
+
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+#  status)
+#        status 
+#        ;;
+  restart)
+        restart
+        ;;
+  *)
+        echo $"Usage: $0 {start|stop|status|restart}"
+        exit 1
+esac
+
+exit $RETVAL

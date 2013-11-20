@@ -1,0 +1,11 @@
+<eventInterface module='EventHandlers.EventMapper' name='EventMapper' category='debug'>
+    <eventtype type="http://id.webbrick.co.uk/events/time/sunrise">
+        <eventsource source="" >
+            <event>
+                <newEvent type="http://id.webbrick.co.uk/events/state" source="background">
+                    <other_data val='/static/images/backgrounds/day.png' val2='22.0'/>
+                </newEvent>
+            </event>
+        </eventsource>
+    </eventtype>
+<eventInterface>

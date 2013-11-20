@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>zone/weather</title>
+</head>
+
+<body>
+    <h1>zone/weather</h1>
+
+        <p>These events are to do with the weather compensation.</p>
+
+    <h2>General</h2>
+
+        <p>weather compensation is used to control the hold off of heating due to weather conditions.</p> 
+
+    <h3>http://id.webbrick.co.uk/zones/weather</h3>
+        <p>This is the event type for all events to do with the master zone.</p>
+
+    <h3>weather/n</h3>
+        <p>This event source is the current status of weather compensation n.</p>
+
+</body>
+
+</html>

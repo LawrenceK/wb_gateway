@@ -1,0 +1,16 @@
+/* $Id: guide.css 2213 2008-05-11 12:57:45Z lawrence $
+ *
+ * CSS definitions for WebBrick HGA panel
+ *
+ *  ASH 23-May-2008:  Reworked to make guide look right
+ *         
+ *
+ */
+
+
+
+td      { 
+		  border: 2px solid #8F8F8F;
+		  padding: 0px 40px 0px 15px ;  
+		 }
+

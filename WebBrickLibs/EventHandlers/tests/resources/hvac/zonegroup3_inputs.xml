@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!-- !ZoneGroup 3 Inputs -->
+<!-- !
+    TODO  
+    1.  Change the webbrick node and channel number in the actuator feedback section to allow the right 
+        actuator state to be picked up by the heating control logic. If a zonegroup does not have an actuator 
+        this step does not need completing, but direct feedback has to be provided in the outputs file.
+-->
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+    
+        <!-- Actuator State Feedback -->
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/DO'>
+            <eventsource source='webbrick/903/DO/1'>
+                <event>
+                    <params>
+                        <testEq name="state" value="0" />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/zonegroup" source="zonegroup/3/stopped">
+                    </newEvent>
+                </event>
+                <event>
+                    <params>
+                        <testEq name="state" value="1" />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/zonegroup" source="zonegroup/3/running">
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+    </eventInterface>
+
+</eventInterfaces>

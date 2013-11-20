@@ -1,0 +1,34 @@
+<eventInterfaces>
+    <!-- The asterisk listener is listed in BaseHandlers. It generates http://id.webbrick.co.uk/events/asterisk events -->
+    <!-- minimal asterisk config -->
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+
+        <eventtype type="http://id.webbrick.co.uk/events/asterisk">
+
+            <eventsource source="">
+                <event>
+                    <url address="127.0.0.1:8080" 
+                            uri="/local/postmessage?msg=Phone%20Ringing %(agi_callerid)s %(agi_calleridname)s&amp;priority=2&amp;validFor=20" 
+                            cmd="GET" />
+                </event>
+            </eventsource>
+
+        </eventtype>
+
+    </eventInterface>
+
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+        
+        <eventtype type="http://id.webbrick.co.uk/events/asterisk">
+
+            <eventsource source="">
+                <event>
+                    <newEvent type="internal" source="ITunesStop" />
+                </event>
+            </eventsource>
+
+        </eventtype>
+
+    </eventInterface>
+    
+</eventInterfaces>

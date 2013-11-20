@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>zone/master</title>
+</head>
+
+<body>
+    <h1>zone/master</h1>
+
+        <p>These events are to do with the control/feedback of the zone master.</p>
+
+    <h2>General</h2>
+
+        <p>A zone master is responsible for control of anything that is used by multiple zone groups.</p> 
+
+    <h3>http://id.webbrick.co.uk/zones/master</h3>
+        <p>This is the event type for all events to do with the master zone.</p>
+
+    <h3>zone/master/run</h3>
+        <p>This event source indicates a requirement to run any devices required by the zone groups.</p>
+
+    <h3>zone/master/stop</h3>
+        <p>This event source indicates there is now no requirement to run any devices required by the zone groups.</p>
+
+    <h3>zone/master/running</h3>
+        <p>This event source indicates that the zone master is running.</p>
+
+    <h3>zone/master/stopped</h3>
+        <p>This event source indicates the zone master has stopped.</p>
+</body>
+
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Time Events</title>
+</head>
+
+<body>
+  <h1>Time Events</h1>
+
+<p>
+Each of these events is caused by a time change. 
+</p>
+
+<h2>Time Event Types.</h2>
+<p>
+<ul>
+<li>http://id.webbrick.co.uk/events/time/second</li>
+<li>http://id.webbrick.co.uk/events/time/minute</li>
+<li>http://id.webbrick.co.uk/events/time/hour</li>
+<li>http://id.webbrick.co.uk/events/time/day</li>
+<li>http://id.webbrick.co.uk/events/time/month</li>
+<li>http://id.webbrick.co.uk/events/time/year</li>
+<li>http://id.webbrick.co.uk/events/time/sunrise</li>
+<li>http://id.webbrick.co.uk/events/time/sunset</li>
+<li>http://id.webbrick.co.uk/events/time/lightingupstart</li>
+<li>http://id.webbrick.co.uk/events/time/lightingupend</li>
+<li>http://id.webbrick.co.uk/events/time/daystart</li>
+<li>http://id.webbrick.co.uk/events/time/dayend</li>
+<li>http://id.webbrick.co.uk/events/time/dayperiod</li>
+<li>http://id.webbrick.co.uk/events/time/runtime</li>
+</ul>
+</p>
+
+<h2>Time Event Sources.</h2>
+<p>
+<ul>
+<li>time/second</li>
+<li>time/minute</li>
+<li>time/hour</li>
+<li>time/day</li>
+<li>time/month</li>
+<li>time/year</li>
+<li>time/sunrise</li>
+<li>time/sunset</li>
+<li>time/runtime</li>
+<li>time/lightingupstart</li>
+<li>time/lightingupend</li>
+<li>time/daystart</li>
+<li>time/dayend</li>
+<li>time/dayperiod</li>
+</ul>
+</p>
+
+NOTE the laast 5 are not yet generated.
+
+<h2>Other data attributes</h2>
+The general other_data in these events is as follows, depending on the event some details may be irrelevcant or ommitted.
+<ul>
+<li>second, in the minute range 0 to 61 - at times one or more leap seconds may be inserted in public time signals, e.g. Rugby</li>
+<li>minute, in the hour range 0 to 59</li>
+<li>hour, this is the hour of the day in 24 hour format. range of values 0 to 23</li>
+<li>day, this is the day of the week range of values 0 to 6, Monday is 1 and sunday is 0.</li>
+<li>date, date within the month in the range 1 to 31</li>
+<li>month, month in year range 1 to 12</li>
+<li>year, year i.e. 2007</li>
+<li>timestr string representation of time</li>
+<li>datetimestr ISO8601 string of date and time</li>
+<li>datestr string of date.</li>
+</ul>
+
+<h3>http://id.webbrick.co.uk/events/time/minute</h3>
+<p>
+Event generated at the start of a minute. The time event generator may be configured to not 
+send events on every minute for performance reasons.
+</p>
+<p>
+The additional data constists of.
+<ul>
+<li>minute</li>
+<li>hour</li>
+<li>day</li>
+<li>date</li>
+<li>month</li>
+<li>year</li>
+</ul>
+</p>
+
+<h3>http://id.webbrick.co.uk/events/time/hour</h3>
+<p>
+Event generated at the start of each hour.
+</p>
+<p>
+The additional data constists of.
+<ul>
+<li>hour</li>
+<li>day</li>
+<li>date</li>
+<li>month</li>
+<li>year</li>
+</ul>
+</p>
+
+<h3>http://id.webbrick.co.uk/events/time/day</h3>
+<p>
+Event generated at the start of each day, i.e. at midnight.
+</p>
+<p>
+The additional data constists of.
+<ul>
+<li>day</li>
+<li>date</li>
+<li>month</li>
+<li>year</li>
+</ul>
+</p>
+
+<h3>http://id.webbrick.co.uk/events/time/month</h3>
+<p>
+Event generated at the start of each month, i.e. at midnight on the first.
+</p>
+<p>
+The additional data constists of.
+<ul>
+<li>month</li>
+<li>year</li>
+</ul>
+</p>
+
+<h3>http://id.webbrick.co.uk/events/time/year</h3>
+<p>
+Event generated at the start of each year, i.e. at midnight on the first of january.
+</p>
+<p>
+The additional data constists of.
+<ul>
+<li>year</li>
+</ul>
+</p>
+
+<h3>http://id.webbrick.co.uk/events/time/sunrise</h3>
+<p>
+Event generated at sunrise, time of day is dependant on the date.
+</p>
+<p>
+Their is no additional data.
+</p>
+
+<h3>http://id.webbrick.co.uk/events/time/sunset</h3>
+<p>
+Event generated at sunset, time of day is dependant on the date.
+</p>
+<p>
+Their is no additional data.
+</p>
+
+<h3>http://id.webbrick.co.uk/events/time/runtime</h3>
+<p>
+Event generated at 5 second intervals for a configured time after WebBrick Gateway start. The intended use is to handle sequencing 
+of actions at restart.
+</p>
+<p>
+The additional data constists of.
+<ul>
+<li>runtime, measured in seconds.</li>
+</ul>
+</p>
+
+<h3>http://id.webbrick.co.uk/events/time/lightingupstart</h3>
+<p>
+Event generated at beginning of lighting up time, time of day is dependant on the date.
+</p>
+<p>
+Their is no additional data.
+</p>
+
+<h3>http://id.webbrick.co.uk/events/time/lightingupend</h3>
+<p>
+Event generated at end of lighting up time, time of day is dependant on the date.
+</p>
+<p>
+Their is no additional data.
+</p>
+
+<h3>http://id.webbrick.co.uk/events/time/dayphase</h3>
+<p>
+Event generated to identify which of the 4 phases of the day is active. These are Night, Morning, Day, Evening. The uses
+of these phases are household dependant.
+</p>
+<p>
+The additional data is:
+<ul>
+<li>dayphase - numberic. 0,1,3,5,7</li>
+<li>dayphasetext - text string. Unknown,Night,Morning,Day,Evening</li>
+</ul>
+</p>
+
+<h3>http://id.webbrick.co.uk/events/time/dayphaseext</h3>
+<p>
+Event generated to identify which of the 8 phases of the day is active. This is an extension of dayphase to identify dark and light phases.
+Note: In some parts of the world it is possible for the night to be light or the day to be dark.
+</p>
+<p>
+The additional data is:
+<ul>
+<li>dayphase - numberic. 0,1,2,3,4,5,6,7,8</li>
+<li>dayphasetext - text string. Unknown,Night:Dark,Night:Light,Morning:Dark,Morning:Light,Day:Dark,Day:Light,Evening:Dark,Evening:Light</li>
+</ul>
+</p>
+
+<h3>http://id.webbrick.co.uk/events/time/daystart</h3>
+<p>
+Event generated at local start of day, locally defined may be day of week dependant.
+</p>
+<p>
+Their is no additional data.
+</p>
+
+<h3>http://id.webbrick.co.uk/events/time/dayend</h3>
+<p>
+Event generated at local end of day, locally defined may be day of week dependant.
+</p>
+<p>
+Their is no additional data.
+</p>
+
+</body>
+
+</html>

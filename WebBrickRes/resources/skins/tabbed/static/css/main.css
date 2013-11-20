@@ -1,0 +1,684 @@
+html, body {
+	padding:0;
+	margin:0;
+	color:#5a5a5a;
+	font-family: arial,sans-serif;
+	font-size: 18px;
+	overflow:hidden;
+	text-transform:uppercase;
+}
+
+
+body {
+	/* background-image:url(../images/background.png); */
+	background-repeat:repeat-x;
+	background-color:#e8e8e8;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;	
+}
+
+h1 {
+	padding-left:24px;
+	font-size:25px;
+	font-weight:normal;
+}
+
+h4 {
+        margin-top:0px;
+        margin-bottom:5px;
+        font-size:16px;
+	font-weight:normal;
+}
+
+h3 {
+	margin-top:5px;
+	margin-bottom:5px;
+	font-size:20px;
+	font-weight:normal;
+	float:left;
+    }
+
+table, .navTable   { 
+		  margin-left: 1% ;
+          width : 98% ;
+          border-collapse: separate ;
+          border-spacing: 2pt 2pt ;
+        }
+
+.center, .objCenter	{
+		text-align: center ;
+		padding: 0px!important;
+		}
+
+td {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;	
+}
+
+
+a,a:hover {
+    outline: 0;
+	color: #5a5a5a !important;
+	text-decoration:none !important;
+}
+
+
+a:active {
+    cursor: wait;
+    outline: 0;
+	color: #5a5a5a !important;
+	text-decoration:none !important;
+}
+
+
+
+/* Blue Box */
+
+table.bluebox {
+	margin:0px;
+	padding:0px;
+	width:100%;
+	height:100%;
+	border-collapse:collapse;
+}
+
+.bluebox td {
+	padding:0px;
+	margin:0px;
+}
+
+.bluebox .tl {
+	height:14px;
+	width:14px;
+	background-image:url(../images/bluebox/blueboxtl.png);
+	background-repeat:no-repeat;
+}
+
+.bluebox .t {
+	background-image:url(../images/bluebox/blueboxt.png);
+	background-repeat:repeat-x;
+}
+
+.bluebox .tr {
+	background-image:url(../images/bluebox/blueboxtr.png);
+	background-repeat:no-repeat;
+	width:14px;
+}
+
+.bluebox .l {
+	background-image:url(../images/bluebox/blueboxl.png);
+	background-repeat:repeat-y;
+}
+
+.bluebox .m {
+	position:relative;
+	background:#bce3e2;
+	color:#000;
+	height:100%
+}
+
+.bluebox .r {
+	background-image:url(../images/bluebox/blueboxr.png);
+	background-repeat:repeat-y;
+}
+
+.bluebox .bl {
+	height:14px;
+	background-image:url(../images/bluebox/blueboxbl.png);
+	background-repeat:no-repeat;
+}
+
+.bluebox .b {
+	background-image:url(../images/bluebox/blueboxb.png);
+	background-repeat:repeat-x;
+}
+
+.bluebox .br {
+	background-image:url(../images/bluebox/blueboxbr.png);
+	background-repeat:no-repeat;
+}
+
+
+.bluereading {
+	background-image:url(../images/bluebox/bluereading.png);
+	background-repeat:no-repeat;
+}
+
+
+
+/* red Box */
+
+table.redbox {
+	margin:0px;
+	padding:0px;
+	width:100%;
+	height:100%;
+	border-collapse:collapse;
+}
+
+.redbox td {
+	padding:0px;
+	margin:0px;
+}
+
+.redbox .tl {
+	height:14px;
+	width:14px;
+	background-image:url(../images/redbox/redboxtl.png);
+	background-repeat:no-repeat;
+}
+
+.redbox .t {
+	background-image:url(../images/redbox/redboxt.png);
+	background-repeat:repeat-x;
+}
+
+.redbox .tr {
+	background-image:url(../images/redbox/redboxtr.png);
+	background-repeat:no-repeat;
+	width:14px;
+}
+
+.redbox .l {
+	background-image:url(../images/redbox/redboxl.png);
+	background-repeat:repeat-y;
+}
+
+.redbox .m {
+	background:#c80201;
+	color:#fff;
+	text-align:center;
+	font-size:22px;
+	height:100%;
+}
+
+.redbox .r {
+	background-image:url(../images/redbox/redboxr.png);
+	background-repeat:repeat-y;
+}
+
+.redbox .bl {
+	height:14px;
+	background-image:url(../images/redbox/redboxbl.png);
+	background-repeat:no-repeat;
+}
+
+.redbox .b {
+	background-image:url(../images/redbox/redboxb.png);
+	background-repeat:repeat-x;
+}
+
+.redbox .br {
+	background-image:url(../images/redbox/redboxbr.png);
+	background-repeat:no-repeat;
+}
+
+
+/* white Box */
+
+table.whitebox {
+	margin:0px;
+	padding:0px;
+	width:100%;
+	height:100%;
+	border-collapse:collapse;
+}
+
+.whitebox td {
+	padding:0px;
+	margin:0px;
+}
+
+.whitebox .tl {
+	height:14px;
+	width:14px;
+	background-image:url(../images/whitebox/whiteboxtl.png);
+	background-repeat:no-repeat;
+}
+
+.whitebox .t {
+	background-image:url(../images/whitebox/whiteboxt.png);
+	background-repeat:repeat-x;
+}
+
+.whitebox .tr {
+	background-image:url(../images/whitebox/whiteboxtr.png);
+	background-repeat:no-repeat;
+	width:14px;
+}
+
+.whitebox .l {
+	background-image:url(../images/whitebox/whiteboxl.png);
+	background-repeat:repeat-y;
+}
+
+.whitebox .m {
+	position:relative;
+	background:#fff;
+	color:#000;
+	height:100%
+}
+
+.whitebox .r {
+	background-image:url(../images/whitebox/whiteboxr.png);
+	background-repeat:repeat-y;
+}
+
+.whitebox .bl {
+	height:14px;
+	background-image:url(../images/whitebox/whiteboxbl.png);
+	background-repeat:no-repeat;
+}
+
+.whitebox .b {
+	background-image:url(../images/whitebox/whiteboxb.png);
+	background-repeat:repeat-x;
+}
+
+.whitebox .br {
+	background-image:url(../images/whitebox/whiteboxbr.png);
+	background-repeat:no-repeat;
+}
+
+
+/*  White value box */
+.whitevaluebox {
+	display:inline-block;
+	background:url(../images/whitebox/whitevalueboxbg.png);
+	background-repeat:no-repeat;
+	width:79px;
+	height:56px;
+	text-align:center;
+	padding-top:13px;
+	font-size:25px;
+}
+
+
+
+.tempstatus {
+    float: left;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+
+.systemstatus {
+    float: left;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.zonestatus {
+    float: left;
+    margin-left: 40px;
+    margin-top: 34px;
+}
+
+.controltitle {
+	font-size:23px;
+	margin-bottom:13px;
+}
+
+.plantcontroltitle {
+	font-size:23px;
+	margin-bottom:13px;
+	margin-left:4px;
+}
+
+.statusbox {
+	width:311px;
+	height:166px;
+}
+
+.plantstatusbox {
+    margin-left: 21px;
+	width:311px;
+	height:166px;
+}
+
+#rotor {
+    position: absolute ;
+    top:442px;
+    left:354px;
+}
+
+
+#solartank {
+    position: absolute ;
+    top:400px;
+    left:515px;
+    z-index:2;
+}
+
+#solaryield {
+    position: absolute ;
+    top:480px;
+    left:100px;
+    z-index:2;
+}
+
+#solarflow {
+    position: absolute ;
+    top:420px;
+    left:400px;
+    z-index:2;
+}
+
+#solarreturn {
+    position: absolute ;
+    top:480px;
+    left:400px;
+    z-index:2;
+}
+
+#solarrti {
+    position: absolute ;
+    top:180px;
+    left:340px;
+    z-index:2;
+}
+
+.statusboxcontent {
+	font-size:18px;
+	position:relative;
+	height:100%;
+}
+
+.statusboxcontent div {
+	position:absolute;
+}
+
+.statusboxcontent .label1 {
+	top:8px;
+}
+
+.statusboxcontent .label2 {
+	top:54px;
+}
+
+.statusboxcontent .label3 {
+	top:108px;
+}
+
+.statusboxcontent .value1 {
+	top:0px;
+	right:0px;
+}
+
+div[baseclassname="status"] {
+	top:4px;
+	right:5px;
+	font-size:24px;
+}
+
+.statusboxcontent .value2 {
+	top:46px;
+	right:5px;
+}
+
+.value3 {
+	top:14px;
+	right:19px;
+	font-size:18px;
+	position:absolute;
+}
+
+.statusboxcontent .value3 {
+	top:100px;
+	right:5px;
+}
+
+div[baseclassname="value"] {
+	vertical-align:top;
+	font-size:36px;
+	text-align:right;
+	right:22px;
+	position:absolute;
+}
+
+div[baseclassname="hs_status"] {
+	vertical-align:top;
+	font-size:25px;
+	text-align:right;
+	right:22px;
+	position:absolute;
+}
+
+
+/* Button Styling */
+
+#backbutton {
+	position:absolute;
+	right:0px;
+	top:86px;
+}
+
+.backbutton {
+	background:url(../images/buttons/backbuttonbg.png);
+	background-repeat:no-repeat;
+	width:80px;
+	height:58px;
+	text-transform:uppercase;	
+	padding-left:28px;
+	padding-top:20px;
+	font-size:15px;
+}
+
+.roundbutton {
+	background:url(../images/buttons/roundbuttonbg.png);
+	background-repeat:no-repeat;
+	width:78px;
+	height:78px;
+	display:inline-block;
+}
+
+.roundbutton a {
+	width:100%;
+	display:block;
+	text-align:center;
+	padding-top:32px;
+	padding-bottom:14px;
+	font-size:14px;
+	font-weight: bolder ;
+}
+
+
+.float_left {
+    float:left;
+    padding-right:20px;
+}
+
+#waitingBox {
+    visibility:hidden;
+    z-index: 0 ;
+	position:absolute;
+	left:0%;
+	top:0%;
+	width:100%;
+	height:100%;
+	background:url(../images/greyTrans.png);
+	color: white;
+	text-align:center;
+}
+
+#loading {
+	font-size: 64px;
+	padding: 15% 0%;
+}
+
+#helpcontent {
+text-transform: none ;
+padding: 10px;
+}
+
+.controls_top_area, .controls_bottom_area {
+    float:left;
+    padding-top:20px;
+    padding-left:20px;
+    width: 100%;
+}
+
+.occupancy_buttons {
+    float:left;
+    padding-top:54px;
+    padding-left:20px;
+}
+
+.zone_control_buttons {
+    float:left;
+    padding-top:30px;
+    padding-left:16px;
+}
+
+.plant_image_container {
+    position: relative ;
+    bottom: 46%;
+    left: 27%;
+    width: 15%;
+    height: 35%;
+    float: right;
+    }
+
+/********
+ IconBar
+*********/
+.iconBar {
+position: absolute ;
+bottom: 1px;
+right: 90px;
+z-index: 2 ;
+}
+
+
+/* This is for the plant images */
+
+.boiler_image {
+    position: absolute ;
+    background:url(/static/images/Plant/Boiler3.png);
+    top: 120px;
+    left: 420px;
+    width: 280px;
+    height: 280px;
+    }
+    
+.ashp_image {
+    position: absolute ;
+    background:url(/static/images/Plant/Ashp.png);
+    top: 140px;
+    left: 440px;
+    width: 220px;
+    height: 220px;
+    }
+    
+.solar_image {
+    position: absolute ;
+    background:url(/static/images/Plant/Solar.png);
+    top: 70px;
+    left: 20px;
+    width: 630px;
+    height: 505px;
+    }
+
+.plant_control {
+    position: absolute ;
+    top:110px;
+    left: 23px;
+    }
+    
+.plant_status {
+    position: absolute ;
+    top:185px;
+    left: 3px;
+    }
+    
+/* This is for mixing group status */
+
+.mix_group {
+    position: absolute ;
+    height: 300px ;
+    width:  150px ;
+    vertical-align: top ;
+}
+    
+.mix_out_temp {
+    position:relative ;
+    top: 30px;
+    right: 100px;
+    text-align: right ;
+    width: 150px ;
+}
+ 
+.mix_out_valve {
+    position:relative ;
+    top: 160px;
+    right: 100px;
+    text-align: right ;
+    width: 150px ;
+    height: 100px ;
+}
+  
+.mix_out_pump {
+    position:relative ;
+    top: -15px;
+    right: 100px;
+    text-align: right ;
+    width: 150px ;
+    height: 80px ;
+    font-size: 11px ;
+}    
+
+    
+/* Entry Widgets */    
+#WbTimeEntry table {
+    background-color:#5a5a5a ;
+    padding: 4px 4px ;
+}
+
+/* Meter Stuff */
+
+td.CSSMeter {
+    position: relative ;
+    margin: 0 auto;
+    padding: 0 ;
+    border: none ; 
+    top : 0px ;
+    left : 0px ;
+}
+      
+#bezel {
+     position: absolute ; 
+     margin: 0 auto ;
+}
+
+#ptr {
+     position: relative ; 
+     margin: 0 auto ;
+     z-index : 2 ;
+    -moz-transition-property: -moz-transform ;
+    -moz-transition-duration: 1s ;
+    -webkit-transition-property: -webkit-transform ;
+    -webkit-transition-duration: 1s ;
+  
+}
+
+#reading {
+    position: relative ; 
+    margin: 0  ;
+    padding: 0  ;
+    top : -60px ;
+    text-align : center ;
+    font-size: 16px ;
+}
+
+#mTitle {
+    position: relative ; 
+    margin: 0  ;
+    padding: 0  ;
+    top : -100px ;
+    text-align : center ;
+    font-size: 16px ;
+}
+
+

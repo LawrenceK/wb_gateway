@@ -1,0 +1,49 @@
+<eventInterfaces>
+    <!-- interface to set/unset alarm system -->
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+
+        <eventtype type="http://id.webbrick.co.uk/events/uri">
+            <!-- single webbrick does not have alarm control interface -->
+            <eventsource source="security/alarm/set" >
+                <event>
+                    <url address="localhost:8080" uri="/local/postmessage?msg=Alarm%20Set&amp;priority=2&amp;validFor=10" cmd="GET" />
+                    <url address="10.100.100.100" uri="/hid.spi?COM=DO1;D;1:" cmd="GET" />
+                </event>
+            </eventsource>
+
+            <eventsource source="security/alarm/unset" >
+                <event>
+                    <url address="localhost:8080" uri="/local/postmessage?msg=Alarm%20Unset&amp;priority=2&amp;validFor=10" cmd="GET" />
+                    <url address="10.100.100.100" uri="/hid.spi?COM=DO1;D;1:" cmd="GET" />
+                </event>
+            </eventsource>
+
+
+        </eventtype>
+
+    </eventInterface>
+
+
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>ali
+        <!-- map webbrick inputs to friendly names -->
+        <eventtype type="http://id.webbrick.co.uk/events/webbrick/DI">
+            <eventsource source="webbrick/1/DI/8" >
+                <event>
+                    <params>
+                        <state>0</state>
+                    </params>
+                    <newEvent type="internal" source="alarm/isclear"/>
+                </event>
+                <event>
+                    <params>
+                        <state>1</state>
+                    </params>
+                    <newEvent type="internal" source="alarm/isalarming"/>
+                </event>
+            </eventsource>
+
+        </eventtype>
+
+    </eventInterface>
+    
+</eventInterfaces>

@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Widgets</title>
+  </head>
+  <body>
+    <h1>Widgets</h1>
+
+<p>
+    The gateway user interface can use a number of widgets to provide the user interface, these generally are
+    active components that are used to display date from the gateway and to issue commands to the gateway.
+
+    They are put into the kid templates using custom xml tags, the reason for this is so that the 
+    user interface can degrade gracefully, i.e. if the browser does not support javascript they can be
+    rendered using static data and the whole page refreshed.
+
+    Some widgets are display only and some are input as well as display.
+
+    See additional document on the flash interface for developers wishing to create there own
+    flash assets.
+
+</p>
+    <h2>General attributes</h2>
+    <p>
+        These attributes are all optional. The rowspan nd colspan attributes are likely to go as
+        the td elements should not be held within the widget but be prt of the surrounding layout.
+
+        <ul>
+            <li>height - mainly needed for image and flash displays</li>
+            <li>width - mainly needed for image and flash displays</li>
+            <li>rowspan - number of table rows to span - NOT IN widgets.kid</li>
+            <li>colspan - number of table columns to span</li>
+            <li>baseClassName - Change the base CSS class name for the widget.</li>
+        </ul>
+    </p>
+
+    <h2>Links</h2>
+    <p>
+        This type of widget generally provides a link to another page.
+        <ul>
+            <li>target - where the link goes when clicked.</li>
+            <li></li>
+        </ul>
+    </p>
+        <h3>simpleLink</h3>
+        <p>
+            This widget uses either a href or an onclick handler to provide the link.
+            <ul>
+                <li>colspan - number of table columns to span</li>
+            </ul>
+            Default Css class(s).
+            <ul>
+                <li>navBarSmall</li>
+            </ul>
+        </p>
+
+    <h2>Simple display</h2>
+    <p>
+        A simple display element, i.e. indicator, only has a single interface variable a state variable. 
+        This is delivered by specification using the wbSource attribute in the KID template.
+
+        <ul>
+            <li>wbSource - state of the indicator.</li>
+        </ul>
+
+        <h3>textDisplay</h3>
+        <p>
+            This type of widget displays text retrieved from the gateway.
+            <ul>
+                <li>prefix - fixed prefix for the return value.</li>
+                <li>postfix - fixed postfix for the return value.</li>
+                <li>width - override natural width of element</li>
+                <li>colspan - number of table columns to span</li>
+            </ul>
+            Default Css class(s).
+            <ul>
+                <li>textPresent</li>
+                <li>textPending</li>
+                <li>textAbsent</li>
+                <li></li>
+                <li></li>
+            </ul>
+        </p>
+
+        <h3>imageIndicator</h3>
+        <p>
+            This type of widget expects a single numeric value that is used to select one a small
+            number of configured images to be displayed.
+            <ul>
+                <li>imageBase - Base URL for images</li>
+                <li>imageList - comma separated list of images, these should be relative to imageBase.</li>
+            </ul>
+            If the imageList is blank then use names based on wbSource value and assume png extension. If
+            imageBase is missing then assume /static/images/indicators.
+        </p>
+
+        <h3>caption</h3>
+        <p>
+            This type of widget displays a pre configured text string.
+            Default Css class(s).
+            <ul>
+                <li>caption</li>
+            </ul>
+        </p>
+    </p>
+
+    <h2>Analogue display</h2>
+    <p>
+        An analogue display element, i.e. meter, has an interface variable that controls. This is delivered
+        by specification using the wbSource attribute in the KID template.
+
+        <ul>
+            <li>wbSource - value for meter.</li>
+        </ul>
+
+        <h3>numericDisplay</h3>
+        <p>
+            This type of widget formats and displays a numeric value retrieved from the gateway.
+            <ul>
+                <li>prefix - fixed prefix for the return value.</li>
+                <li>postfix - fixed postfix for the return value.</li>
+                <li>format - format specifier for the number.</li>
+                <li>width - override natural width of element</li>
+                <li>colspan - number of table columns to span</li>
+            </ul>
+            Default Css class(s).
+            <ul>
+                <li>numericPending</li>
+                <li>numericInfo</li>
+                <li>numericAbsent</li>
+                <li></li>
+            </ul>
+        </p>
+
+        <h3>flashMeter</h3>
+        <p>
+            This type of widget formats and displays a numeric value retrieved from the gateway using
+            a small flash movie. See also section on creating flash assets.
+            <ul>
+                <li>prefix - fixed prefix for the return value.</li>
+                <li>postfix - fixed postfix for the return value.</li>
+                <li>format - format specifier for the number.</li>
+                <li>width - override natural width of element</li>
+                <li>colspan - number of table columns to span</li>
+                <li>minvalue</li>
+                <li>maxvalue</li>
+                <li>setlow</li>
+                <li>sethigh</li>
+                <li>labels</li>
+                <li>metertitle</li>
+                <li>flashMovie</li>
+            </ul>
+            Default Css class(s).
+            <ul>
+                <li>FlashMeter</li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </p>
+    </p>
+
+    <h2>Digital control</h2>
+    <p>
+        A digital control element, i.e. button, has a state number and a trigger target. 
+        This is delivered by specification using the wbSource attribute in the KID template.
+
+        <ul>
+            <li>wbSource - state of the indicator.</li>
+            <li>wbTarget - url to be accessed when the control is activated.</li>
+        </ul>
+
+        <h3>simpleButton</h3>
+        <p>
+            This widget optionally shows a simple state and enables the user to trigger a change.
+            <ul>
+                <li>format - format specifier for the number.</li>
+                <li>width - override natural width of element</li>
+                <li>height - override natural height of element</li>
+                <li>colspan - number of table columns to span</li>
+                <li>baseClassName - CSS classes are derived from this by adding the current state.</li>
+                <li>stateVals - contains a comma separated list of strings that are apended to CSS class to get
+                    the CSS class to be used for each of the wbSource state values. The defaults are Off and On </li>
+            </ul>
+            Default Css class(s).
+            <ul>
+                <li>buttonPending</li>
+                <li>buttonAbsent</li>
+                <li>buttonOff</li>
+                <li>buttonOn</li>
+                <li>button&lt;stateVals&gt;</li>
+            </ul>
+            Where baseClassName is used replace the string button by the baseClassName value. StateVals may
+            change thesecond part of the CSS class name.
+        </p>
+        <h3>flashButton</h3>
+        <p>
+            This widget uses a small flash movie to enable the user to control.
+            <ul>
+                <li>labels</li>
+                <li>flashMovie</li>
+            </ul>
+
+            Default Css class(s).
+            <ul>
+                <li>FlashButton</li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </p>
+    </p>
+
+    <h2>Analogue control</h2>
+    <p>
+        An analogue control element, i.e. volume control, has an interface variable that controls. This is delivered
+        by specification using the wbSource attribute in the KID template.
+
+        <ul>
+            <li>wbSource - value for meter.</li>
+            <li>wbTarget - url to be accessed when the control is changed.</li>
+        </ul>
+
+        <h3>numericEntry</h3>
+        <p>
+            This type of widget formats and displays a numeric value retrieved from the gateway, and enables
+            the user to enter a new value that is sent to the gateway.
+            This type of widget formats and displays a numeric value retrieved from the gateway.
+            <ul>
+                <li>prefix - fixed prefix for the return value.</li>
+                <li>postfix - fixed postfix for the return value.</li>
+                <li>format - format specifier for the number.</li>
+                <li>width - override natural width of element</li>
+                <li>colspan - number of table columns to span</li>
+            </ul>
+            Default Css class(s).
+            <ul>
+                <li>numericPending</li>
+                <li>numericInfo</li>
+                <li>numericAbsent</li>
+                <li></li>
+            </ul>
+        </p>
+
+        <h3>flashNumericEntry</h3>
+        <p>
+            This type of widget formats and displays a numeric value retrieved from the gateway, and enables
+            the user to enter a new value that is sent to the gateway.
+        </p>
+
+    </p>
+
+    <h2>Time controls</h2>
+    <p>
+        These controls are used to display and manipulate time.
+    </p>
+        <h3>timeDisplay</h3>
+        <p>
+            This type of widget formats and displays a time value retrieved from the gateway.
+            <ul>
+                <li>width - override natural width of element</li>
+                <li>colspan - number of table columns to span</li>
+            </ul>
+            Default Css class(s).
+            <ul>
+                <li>numericInfo</li>
+                <li>numericPending</li>
+            </ul>
+        </p>
+
+        <h3>timeEntry</h3>
+        <p>
+            This type of widget formats and displays a time value retrieved from the gateway, and enables
+            the user to enter a new time that is sent to the gateway.
+            <ul>
+                <li>title - Title for the entry dialog.</li>
+                <li>width - override natural width of element</li>
+                <li>colspan - number of table columns to span</li>
+                <li>wbTarget - Target URL fr the new value, the value will be appended to this URL.</li>
+            </ul>
+            Default Css class(s).
+            <ul>
+                <li>numericInfo</li>
+                <li>numericPending</li>
+                <li>numericAbsent</li>
+                <li></li>
+                <li></li>
+            </ul>
+        </p>
+
+    <h2>Miscellaneous</h2>
+    <p>
+        These controls are used to display and manipulate time.
+    </p>
+        <h3>onoffEntry</h3>
+        <p>
+            This widget is specific to a schedule and displays the action for a simple on off device and
+            enables the user to enter a new setting.
+            <ul>
+                <li>title - Title for the entry dialog.</li>
+                <li>width - override natural width of element</li>
+                <li>colspan - number of table columns to span</li>
+                <li>wbTarget - Target URL fr the new value, the value will be appended to this URL.</li>
+                <li>baseClassName - CSS classes are derived from this by adding the current state.</li>
+            </ul>
+            Default Css class(s).
+            <ul>
+                <li>WbOnOffEntry&lt;state&gt;</li>
+            </ul>
+            Note class is calulated, if baseClassName provided replace WbOnOffEntry by baseClassName value.
+        </p>
+
+        <h3>dayEntry</h3>
+        <p>
+            This widget is specific to a schedule and displays the days of the week that a scheduled event
+            occurs and enables the user to enter a new set of days.
+            <ul>
+                <li>title - Title for the entry dialog.</li>
+                <li>width - override natural width of element</li>
+                <li>colspan - number of table columns to span</li>
+                <li>wbTarget - Target URL fr the new value, the value will be appended to this URL.</li>
+            </ul>
+            Default Css class(s).
+            <ul>
+                <li>numericInfo</li>
+                <li>numericPending</li>
+                <li>numericAbsent</li>
+                <li></li>
+                <li></li>
+            </ul>
+        </p>
+  </body>
+</html>
+

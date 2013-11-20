@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+  <title>WebBrick Configuration Manager</title>
+  <script src="/static/javascript/MochiKit.js"></script>
+  <script src="/static/javascript/WebBrick.js"></script>
+  <script src="/static/javascript/WbConfig.js"></script>
+</head>
+
+<!--
+    Note: all event handlers are invoked via MochiKit's Signal module.
+    File WebBrick.js invokes the initial window.onload handler that scans
+    the entire DOM looking for wbLoad attributes and calling the corresponding 
+    functions when the page has been loaded.
+
+    DO NOT specify an onload handler on the <body> element.
+-->
+
+<body>
+
+<style type="text/css">
+.OptNorm { font-family: monospace; }
+.OptAttn { font-family: monospace; color: red }
+</style>
+
+<form name="ConfigManager" action="/wbcnf/ConfigAction" method="post">
+<table style="width: 100%;" border="0" cellpadding="2" cellspacing="2">
+<tbody>
+
+<tr>
+  <td halign="right" style="width: 42%; text-align: right;">
+  <h3>WebBricks on Network</h3>
+  </td>
+  <td>
+  </td>
+  <td style="width: 42%;">
+  <h3>Stored WebBrick Configurations</h3>
+  </td>
+</tr>
+<tr>
+  <td style="text-align: right;">
+    Network address:&nbsp;&nbsp;
+    <select id="WbIpNetworks" name="WbIpNetworks" size="1" wbLoad="loadWbIpNetworks()" >
+      <option value="Example_1">zz111.222.333.444/24</option>
+      <option value="Example_2">zz10.0.0.1/8</option>
+    </select>
+  </td>
+  <td>
+  </td>
+  <td>
+    Configuration set: 
+    <select id="WbConfigSets" name="WbConfigSets" size="1" wbLoad="loadConfigSetSelector()" >
+      <option value="Example_1">Example 1</option>
+      <option value="Example_2">Example 2</option>
+    </select>
+    <button value="New_ConfigSet"    id="WbNewCs"    name="action">New...</button>
+    <button value="Delete_ConfigSet" id="WbDeleteCs" name="action">Delete...</button>
+  </td>
+</tr>
+<tr>
+  <td style="text-align: right;"> 
+    <pre>MAC address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Node&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre>
+    <select id="WbSelector" name="WbSelector" size="12" wbLoad="loadActiveWebBricksSelector()">
+      <option value="waiting" class="OptAttn">(Waiting for WebBrick discovery)</option>
+      <option value="Example_1" class="OptNorm">xx:xx:xx:xx:xx:xx&nbsp;&nbsp;nnn&nbsp;&nbsp;somename---</option>
+      <option value="Example_2" class="OptAttn">xx:xx:xx:xx:xx:xx&nbsp;&nbsp;nnn&nbsp;&nbsp;somename----</option>
+      <option value="Example_3" class="OptAttn">3</option>
+      <option value="Example_4" class="OptAttn">4</option>
+      <option value="Example_5" class="OptNorm">5</option>
+      <option value="Example_6" class="OptNorm">6</option>
+      <option value="Example_7" class="OptNorm">7</option>
+      <option value="Example_8" class="OptNorm">8</option>
+      <option value="Example_9" class="OptNorm">9</option>
+      <option value="Example_10" class="OptNorm">10</option>
+      <option value="Example_11" class="OptNorm">11</option>
+      <option value="Example_12" class="OptNorm">12</option>
+      <option value="Example_13" class="OptNorm">13</option>
+    </select>
+    <input id="WbNodeList" name="WbNodeList" type="hidden" value="" />
+  </td>
+  <td>
+    <p style="text-align: center;">
+      <button id="WbLoad" name="action" value="Load" >&lt;&lt; Load</button>
+    </p>
+    <p style="text-align: center;">
+      <button id="WbSave" name="action" value="Save" >Save &gt;&gt;</button>
+    </p>
+    <p style="text-align: center;">
+      <button id="WbSaveAll" name="action" value="Save_all" >Save all &gt;&gt;</button>
+    </p>
+  </td>
+  <td>
+    <pre>Node&nbsp;&nbsp;Name</pre>
+    <select id="WbConfigs" name="WbConfigs" size="12" wbLoad="loadWebBrickConfigurationSelector()" >
+      <option class="OptNorm" node="001" name="somename----">001&nbsp;&nbsp;somename----</option>
+      <option class="OptNorm" node="002" name="Name2">002&nbsp;&nbsp;Name2</option>
+      <option class="OptNorm" node="003" name="Name3">003&nbsp;&nbsp;Name3</option>
+      <option class="OptNorm" node="004" name="Name4">004&nbsp;&nbsp;Name4</option>
+      <option class="OptNorm" node="005" name="Name5">005&nbsp;&nbsp;Name5</option>
+      <option class="OptNorm" node="006" name="Name6">006&nbsp;&nbsp;Name6</option>
+      <option class="OptNorm" node="007" name="Name7">007&nbsp;&nbsp;Name7</option>
+      <option class="OptNorm" node="008" name="Name8">008&nbsp;&nbsp;Name8</option>
+      <option class="OptNorm" node="009" name="Name9">009&nbsp;&nbsp;Name9</option>
+      <option class="OptNorm" node="010" name="Name10">010&nbsp;&nbsp;Name10</option>
+      <option class="OptNorm" node="011" name="Name11">011&nbsp;&nbsp;Name11</option>
+      <option class="OptNorm" node="012" name="Name12">012&nbsp;&nbsp;Name12</option>
+      <option class="OptNorm" node="013" name="Name13">013&nbsp;&nbsp;Name13</option>
+      <option class="OptNorm" node="014" name="Name14">014&nbsp;&nbsp;Name14</option>
+    </select>
+    <input type="hidden" id="WbConfigNode" name="WbConfigNode" value="nnn"      wbLoad="loadWbConfigNode()" />
+    <input type="hidden" id="WbConfigName" name="WbConfigName" value="somename" wbLoad="loadWbConfigName()" />
+    <input type="hidden" id="WbIpAddress"  name="WbIpAddress"  value="x.x.x.x"  wbLoad="loadWbIpAddress()"  />
+  </td>
+</tr>
+<tr>
+</tr>
+  <td style="text-align: right;">
+    WebBrick password:&nbsp;&nbsp;
+    <input type="password" id="WbPassword" name="WbPassword" value="password" wbLoad="loadWbPassword()" />
+  </td>
+  <td>
+  </td>
+<tr>
+  <td style="text-align: right;">
+    IP address:&nbsp;&nbsp;
+    <input id="WbNewIpAdrs" name="WbNewIpAdrs" value="111.222.333.444" wbLoad="loadWbNewIpAdrs()" />
+    &nbsp;&nbsp;&nbsp;
+    <button id="WbIpUpdate" name="action" value="UpdateIP" >Update IP</button>
+    <input type="hidden" id="WbMacAddress" name="WbMacAddress" value="yy:xx:xx:xx:xx:xx" wbLoad="loadWbMacAddress()" />
+  </td>
+  <td>
+  </td>
+  <td style="text-align: left;">
+    <button id="WbNew"    name="action" value="New_Config"    >New...</button>
+    <button id="WbShow"   name="action" value="Show_Config"   >Show...</button>
+    <button id="WbEdit"   name="action" value="Edit_Config"   >Edit...</button>
+    <button id="WbDelete" name="action" value="Delete_Config" >Delete...</button>
+  </td>
+</tr>
+<tr>
+  <td style="text-align: right;">
+    <button id="WbDiscover" type="button" value="Discover" 
+            wbLoad="loadWbDiscoverButton()">Discover</button>
+    <button id="WbRemove"   type="button" value="Remove"   
+            wbLoad="loadWbRemoveButton()">Remove</button>
+  </td>
+  <td>
+  </td>
+  <td style="text-align: left;">
+    <button id="WbCopy"     name="action" value="Copy"     >Copy...</button>
+    <button id="WbMove"     name="action" value="Move"     >Move...</button>
+    <!-- Should these upload/download complete config sets as ZIP file? -->
+    <button id="WbUpload"   name="action" value="Upload"   >Upload...</button>
+    <button id="WbDownload" name="action" value="Download" >Download</button>
+  </td>
+</tr>
+</tbody>
+</table>
+</form>
+</body>
+
+</html>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>WebBrick Gateway Appliance.</title>
+  </head>
+  <body><h1>WebBrick Gateway Appliance.</h1>
+  <p>
+        This section provides information on reconfiguring the gateway when supplied as a preinstalled appliance to suit local network 
+        configuration. This section is very technical, reconfiguration at this level is done using a command shell
+        on the WebBrick Gateway Appliance. You will need to be able to start an SSH (Secure SHell) session from a machine, the install media 
+        should have a copy of an SSH client called putty on it, this can be run on another computer and connect to the 
+        WebBrick Gateway. If you go beyond here it is assumed you have some knowledge of Linux.
+</p>
+<p>
+        The default configuration of the WebBrick Gateway Appliance is to use a single network connection on 10.100.100.1 (labeled LAN1), 
+        therefore all the webbricks and clients will need to be on this network. 
+</p>
+<p>
+        The WebBrick Gateway Appliance has installed:
+  <table>
+         <tr><td>Apache</td><td>to act as a secure interface to the WebBrick Gateway Appliance and to provide on line documentation</td></tr>
+         <tr><td>NTPD</td><td>A network time protocol client</td></tr>
+         <tr><td>DHCPCD</td><td>A dhcp client that can be used for any other network interface</td></tr>
+         <tr><td>DHCPSD</td><td>A dhcp server to provide IP addresses as required to clients</td></tr>
+  </table>
+</p>
+<h2>Network</h2>
+<p>
+The WebBrick Gateway Appliance has 3 network connections, as delivered it is expected that everything connects to LAN1
+which has the IP address 10.100.100.1. The additional interfaces can be used to separate the webbrick control network from the 
+general computer network and from the outside world. The system as delivered is not expected
+to be connected using these but your installer can set them up for your use if required. The Linux firewall is installed
+and can be enabled if required.
+</p>
+<h3>HostName</h3>
+<p>
+The system hostname defaults to 'gateway'
+To change it edit /etc/conf.d/hostname
+</p>
+<p>
+If you change this it is suggested that you also change the apache ServerName and regenerate the self signed server
+certificates.
+</p>
+<h3>IP addresses</h3>
+<p>
+The WebBrick Gateway Appliance has 3 network interfaces, If you are going to use all 3 it is suggested you do as follows.
+LAN1 - Webbrick network, default IP address 10.100.100.1
+LAN2 - public internet, this should use DHCP to get an IP address from your brodband connection
+LAN3 - private network, local computers, default IP address 192.168.1.1. This will run a DHCP server to provide IP address 
+and routing information to local computers.
+</p><p>
+The address configuration for these is in /etc/conf.d/net. The new interface is started with /etc/init.d/net.1 start, to get the interface to
+automatically start when booted the command /etc/init.d/net.1 add defauit is required to be issued.
+</p><h3>Routing</h3><p>
+No routing adjustments need to be done if the WebBrick Gateway Appliance is used in default setup using just LAN1.
+</p><p>
+If you use the extra interfaces you may
+need to add a route to the router that will deliver inbound traffic correctly. Note the broadband connection is liekly to be using NAT
+and therefore it is not neccesary to run NAT on the WebBrick Gateway Appliance, but the broadband router will need to know where the internal networks are.
+</p><p>
+LAN3 is suggested for use as the private network and it is expected that computers on this network will require
+external access therefore the external router needs to be given a routing table entry for the 192.168.1.0 
+network so that it can route return traffic.
+</p><p>
+This consists of adding the following routing rule:
+network 192.168.1.0
+netmask 255.255.255.0
+gateway &lt;address currently provided using DHCP for LAN2&gt;
+</p><p>
+As the address required for gateway is needed for routing, you can either change the LAN2 interface to use a static address
+on your network or get the DHCP server to provide a known address for LAN2 using MAC address lookup.
+</p><p>
+It is not expected that access to the 10.100.100.0 network will be available from the external systems or that 
+any device on 10.100.100.0 network will make external access therefore no routing should be added for that network.
+</p><p>
+If you decide not to use the LAN3 private network and just to connect all local machines on the LAN1 side of the 
+WebBrick Gateway Appliance this
+routing entry is not needed.
+</p><h3>DHCP</h3><p>
+DHCP is used in two guises: 
+A DHCP client is used to retrieve external addressing and routing information from
+your external broadband connection when using LAN2 for this purpose.
+A DHCP server is used to provide IP addresses and routing information to the private network when using LAN3 for this purpose.
+</p><p>
+The DHCP server needs to be configured with the DNS servers in use for your site, with most broadband routers this will be
+your routers IP address.
+</p><h3>DNS</h3><p>
+The WebBrick Gateway Appliance itself will get DNS server addresses from the DHCP request for the 2nd LAN interface, if you are not 
+using the second network interface then you will need to remove it from startup and manually edit /etc/resolve.conf.
+</p><p>
+To remove second network interface use the command.
+</p><tt>rc-update delete net.eth1 default</tt><p>
+At present the DHCP server supporting the 3rd LAN port will need to be provided with the site DNS server addresses
+so that it can provide them to DHCP clients on that network segment.
+</p><h3>Firewall</h3><p>
+The linux firewall software is installed if you wish to use the firewall to enhance security, it's default rules
+allow all traffic. This relies on the firewall and NAT abilities of most ADSL routers to handle perimeter security.
+</p><p>
+If using SSH and allowing external access you may want to retrict the accounts allowed access.
+</p><h3>Network Time (NTP) </h3><p>
+NTP is used to syncronize the system clock, The default configuration files use uk NTP pools (see www.ntp.org), 
+this can be updated by editing /etc/net.cfg.
+</p><h2>Apache HTTP server</h2><p>
+Apache HTTP server is used to provide authenticated secure external access to the WebBrick Gateway Appliance and access to online documentation.
+Access to the WebBrick Gateway Appliance from outside, public network, is only allowed using https, from inside you can access
+</p><p>
+Apache is used to provide access to documentation and remote access to the WebBrick Gateway Appliance. 
+</p><p>
+If you connect to port 80, i.e. using http://&lt;address&gt; you will be presented with the WebBrick Gateway Appliance and webbrick documentation
+links, if you connect over https:, i.e. using https://&lt;address&gt; you will be presented with the WebBrick Gateway Appliance home page. In the 
+later case you will have to accept a self signed certificate used by apace for the SSL connection. For access to the
+WebBrick Gateway Appliance through apache you will also be asked for a user name and password. The default usernam/password is user/webbrick.
+</p><p>
+To add additional passwords you will need to log in to the WebBrick Gateway Appliance and use the htpasswd2 command.
+</p>
+htpasswd2 -a /etc/apache2/.htpasswd &lt;username&gt;
+
+<p>
+will add a new user and ask for password.
+</p><p>
+htpasswd2 -help will provide help.
+</p>
+<h2>passwords</h2><p>
+To add users or change password for users you need to login to the WebBrick Gateway Appliance using SSH (or connect keyboard and screen to the console ports). 
+The following usernames are setup on delivery:
+<table>
+  <tr><th>username</th><th>password</th></tr>
+  <tr><td>root</td><td>webbrick</td></tr>
+  <tr><td>webbrick</td><td>password</td></tr>
+</table>
+SSH is configured to disallow direct root login, so you will need to ssh as webbrick@mysite and then issue su (set user).
+</p><p>
+once logged in the command passwd can be used to change the root password. To add users use adduser. To change 
+password for an arbitray user enter the command: passwd &lt;username&gt;.
+</p></body>
+</html>

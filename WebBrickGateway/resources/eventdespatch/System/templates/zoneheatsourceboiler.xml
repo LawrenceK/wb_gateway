@@ -1,0 +1,87 @@
+<eventInterfaces>
+
+    <eventInterface module='EventHandlers.Compound' name='Compound'>
+
+        <!-- Gas/Oil boiler High -->
+        <initialState name='heatSourceEnabled' value='1' />
+        <initialState name='heatSourceName' value='Boiler' />
+        <initialState name='availability' value='2' />
+        
+        <initialState name='state' value='0' />
+        <initialState name='requeststate' value='0' />
+
+        <eventtype type="">
+            <eventsource source="time/runtime">
+                <event>
+                    <params>
+                        <testEq name='elapsed' value='30' />
+                    </params>
+                    <action name="publish" value="1" transient="true" />
+                </event>
+            </eventsource>
+            <eventsource source="time/minute">
+                <event>
+                    <action name="checkRun" value="1" transient="true" />
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <eventtype type="http://id.webbrick.co.uk/events/config/get">
+            <eventsource source="zoneheatsource/boiler/enabled">
+                <event>
+                    <action name="heatSourceEnabled" key="val"/>
+                    <action name="publish" value="1" transient="true" />
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <eventtype type="http://id.webbrick.co.uk/zones/heatsource">
+            <eventsource source="heatsource/boiler/requestrun">
+                <event>
+                    <action name="requeststate" value="1"/>
+                    <action name="state" value="1"/>
+                </event>
+            </eventsource>
+            <eventsource source="heatsource/boiler/requeststop">
+                <event>
+                    <action name="requeststate" value="0"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <compound>
+            <params>
+                <testEq type='int' name='publish' value='1'/>
+            </params>
+            <newState name='publish' value='0' />
+            <newEvent type='http://id.webbrick.co.uk/zones/heatsource' source="heatsource/boiler/availability" >
+                <copy_other_data availability='availability' enabled='heatSourceEnabled' name='heatSourceName'/>
+            </newEvent>                
+        </compound>
+
+        <!-- Stop heat source -->
+        <compound>
+            <params>
+                <testEq type='int' name='checkRun' value='1'/>
+                <testEq type='int' name='requeststate' value='0'/>
+                <testEq type='int' name='state' value='1'/>
+            </params>
+            <newState name='state' value='0' />
+            <newEvent type='http://id.webbrick.co.uk/zones/heatsource' source="heatsource/boiler/dostop" >
+            </newEvent>                
+        </compound>
+        
+        <!-- keep heat source running-->
+        <compound>
+            <params>
+                <testEq type='int' name='checkRun' value='1'/>
+                <testEq type='int' name='state' value='1'/>
+                <testEq type='int' name='heatSourceEnabled' value='1'/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/zones/heatsource' source="heatsource/boiler/dorun" >
+            </newEvent>                
+        </compound>
+
+    </eventInterface>
+
+</eventInterfaces>

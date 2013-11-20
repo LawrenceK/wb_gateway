@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Exhibition example</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="Test03-Exhibition.css">
+
+<script src="slider.js"></script>
+<script src="MochiKit.js"></script>
+<script src="WebBrick.js"></script>
+
+<script language="JavaScript">
+
+var bimages = new Array ("dropletTheme", "flowerTheme", "leafTheme", "abstractTheme", "winterTheme" ) ;
+var bindex = 0 ;
+
+var bthemes = new Array ("isOn", "isPending","isOff", "isLocked", "isAbsent" ) ;
+var tindex = 0 ;
+
+var spValue = 20.1 ;
+
+var mySlider1 = new Slider("Slider1") ;
+mySlider1.orientation = "h" ;
+mySlider1.buttonWidth = 16;
+mySlider1.buttonHeight = 26;
+mySlider1.offsetY = 0 ;
+mySlider1.offsetX = -2 ;
+mySlider1.maxSlide = 200 ;
+mySlider1.leftValue= 0 ;
+mySlider1.rightValue = 100 ;
+mySlider1.buttonImg = "red.png";
+mySlider1.buttonHiliteImg = "orange.png" ;
+//mySlider1.onchange = "updateVal(this.getValue(2))" ;
+mySlider1.onmouseup = "updateVal(this.getValue(2))" ;
+mySlider1.onmouseout = "updateVal(this.getValue(2))" ;
+
+
+function initStuff(domthing)
+{
+//
+//  Anything that needs to be started
+//
+mySlider1.placeSlider() ;
+changeBG();
+
+walkTheDom(domthing.document) ;
+}
+
+
+function walkTheDom(domref)
+{
+//
+// In here we walk through looking for all elements with class = isPending
+//
+
+tdList = domref.getElementsByTagName("td") ;
+
+for (i = 0 ; i < tdList.length ; i++)
+	{
+	if (tdList[i].getAttribute("onLoad"))
+		{
+		// alert ("Found " + tdList[i].getAttribute("onLoad")) ;
+		eval (tdList[i].getAttribute("onLoad")+"(tdList[i])") ;
+		}
+	}
+
+
+}
+
+
+
+function changeBG()
+{
+document.body.className = bimages[bindex] ;
+document.getElementById("ibCenter").firstChild.nodeValue = bimages[bindex] ;
+ch = document.body.clientHeight ;
+cw = document.body.clientWidth ;
+document.getElementById("ibLeft").firstChild.nodeValue = "W: " + cw + " H: " + ch ;
+
+//
+// Now get the time
+//
+ntime = new Date() ;
+document.getElementById("ibRight").firstChild.nodeValue = ntime.getHours() + ":" + ntime.getMinutes() ;
+
+bindex++ ;
+if (bindex >= bimages.length)
+	{
+	bindex = 0 ;
+	}
+
+setTimeout("changeBG()", 5000);
+}
+
+function changeButton(btn)
+{
+btn.className = bthemes[tindex] ;
+btn.prev = btn.className ;
+tindex++ ;
+if (tindex >= bthemes.length)
+	{
+	tindex = 0 ;
+	}
+
+}
+
+
+function highlightButton(btn)
+{
+btn.prev = btn.className ;
+btn.className = "isSelectable" ;
+}
+
+
+function returnButton(btn)
+{
+btn.className = btn.prev ;
+}
+
+function initButton(btn)
+{
+//
+//  This is called as the button first loaded, goto pending then work out status
+//
+btn.className = "isPending" ;
+btn.uri = "/query/status?wbaddr="+btn.getAttribute("wbaddr") ;
+btn.sts = "&wbchan="+btn.getAttribute("stschn") ;
+btn.chn = btn.getAttribute("trig") ;
+alert ("called by " + btn.id +
+	" with:addr " + btn.uri +
+	" src:" + btn.sts +
+	" trig:" + btn.trg
+	) ;
+//
+//  Now find out the status
+//
+var req     = doSimpleXMLHttpRequest(btn.uri+btn.sts) ;
+var display = partial(displayStatus,btn) ;
+req.addCallback(display) ;
+}
+
+function displayStatus(btn,req)
+{
+alert("Displaying btn status: "+btn.sts) ;
+alert("Displaying btn status: req: "+req) ;
+alert("Displaying btn status: req.responseText : "+req.responseText ) ;
+alert("Displaying btn status: req.responseXML: "+req.responseXML) ;
+alert("Displaying btn status: req.responseXML.documentElement: "+req.responseXML.documentElement) ;
+var response  = req.responseXML.documentElement;
+alert("Got response: "); //+response) ;
+}
+
+
+function nudge(inc)
+{
+spValue = spValue + inc ;
+document.getElementById("setPoint").firstChild.nodeValue = spValue + "\u00BAC" ;
+}
+
+function updateVal(v)
+{
+document.getElementById("ibLeft").firstChild.nodeValue = v ;
+}
+
+</script>
+
+</head>
+
+<body onLoad="initStuff(this);">
+
+<table class="navTable">
+  <tr>
+    <td class="navBar" id="menuTitle">Master Bedroom</td>
+    <td class="navBar">Back</td>
+    <td class="navBar">More</td>
+    <td class="navBar">Home</td>
+  </tr>
+</table>
+
+<table class="rule"><tr><td class="ruleBar"></td></tr></table>
+
+<table class="buttonTable">
+<tr>
+<td id="mySwitchName" class="isAbsent">
+An Absent Button
+</td>
+<td class="isOn">
+An On Button
+</td>
+<td class="isOff">
+An Off Button
+</td>
+<td class="isLocked">
+A Locked Button
+</td>
+</tr>
+</table>
+
+
+<table class="buttonTable">
+<tr>
+<td class="isPending"
+	id="WardrobeLights"
+	onLoad="initButton"
+	wbaddr="webbrick"
+	stschn="DO2"
+	trig="DI2"
+	onClick="changeButton(this)"
+	onMouseOver="highlightButton(this)"
+	onMouseOut="returnButton(this)"
+	>
+	Wardrobe Lights
+</td>
+
+<td class="isAbsent" id="MyOffButton" onClick="changeButton(this)" onMouseOver="highlightButton(this)" onMouseOut="returnButton(this)">
+	Ensuite Lights
+</td>
+
+<td class="isAbsent" id="EnsuiteFlr" onClick="changeButton(this)" onMouseOver="highlightButton(this)" onMouseOut="returnButton(this)">
+	Ensuite Floor
+</td>
+
+
+</tr>
+</table>
+
+
+<table class="buttonTable">
+<tr>
+<td class="isAbsent" id="Scene1" onClick="changeButton(this)" onMouseOver="highlightButton(this)" onMouseOut="returnButton(this)">
+	Low Scene
+</td>
+<td class="isAbsent" id="Scene2" onClick="changeButton(this)" onMouseOver="highlightButton(this)" onMouseOut="returnButton(this)">
+	Full On Scene
+</td>
+<td class="isAbsent" id="Scene3" onClick="changeButton(this)" onMouseOver="highlightButton(this)" onMouseOut="returnButton(this)">
+	Reading Scene
+</td>
+<td class="isAbsent" id="Scene4" onClick="changeButton(this)" onMouseOver="highlightButton(this)" onMouseOut="returnButton(this)">
+	Waking Scene
+</td>
+<td class="isAbsent" id="Scene5" onClick="changeButton(this)" onMouseOver="highlightButton(this)" onMouseOut="returnButton(this)">
+	Sleep Scene
+</td>
+
+</tr>
+</table>
+
+
+<table width="30%" cols="2">
+<tr><td id="setPoint" class="isLocked" colspan="2">22.1&ordm;C</td></tr>
+<tr>
+	<td class="goDown" onClick="nudge(-0.1);">Down</td>
+	<td class="goUp" onClick="nudge(0.1);">Up</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td background="green.png" width="200" height="20" name="Slider1RailImg" id="Slider1RailImg"></td>
+</tr>
+</table>
+<script>mySlider1.writeSlider();</script>
+
+<table class="infoTable">
+  <tr>
+    <td class="infoBar" id="ibLeft"> A bigger Left bit </td>
+    <td class="infoBar" id="ibCenter"> Center </td>
+    <td class="infoBar" id="ibRight"> Right </td>
+  </tr>
+</table>
+
+
+</body>
+</html>

@@ -1,0 +1,529 @@
+/* $Id: $
+ *
+ * CSS definitions for WebBrick HGA panel for mobile users
+ */
+
+body    { 
+          font-family: Verdana, Arial, Helvetica, sans-serif; 
+          font-size: x-large;
+          font-weight: bolder;
+		  -moz-user-select:none;
+		  color: #444444 ;
+        }
+
+dataEntry  { 
+			background-image : url("/static/images/72/greyTrans.png") ; 
+        	}
+
+table   { margin-left: 2% ; 
+          width : 96% ;
+          border-collapse: separate ;
+          border-spacing: 4pt 2pt ;
+        }
+
+td      { 
+          text-align: left; 
+		  padding: 3% 16% 3% 1%;
+		  margin: 0% ;
+		  border-width: thin ;
+		  border-spacing : 0% ;
+		  border-collapse: collapse ;
+		  border-style : solid ;
+          border-color: rgb(50%,50%,0%) ;		
+		  background-repeat : no-repeat ;
+		  background-position: 95%;
+		  vertical-align: middle ;
+		  position: relative ;
+		  z-index: 0 ;
+        }
+
+.NumericBar{ 
+		padding: 0px 0px 0px 0px; 
+        margin: 0px 0px 0px 0px; 
+        border-style: none ;
+		border-spacing : 0% ;
+		border-collapse: collapse ;
+		line-height: 0.4 ; 
+        }
+
+img   { padding: 0px 0px 0px 0px; 
+        margin: 0px 0px 0px 0px; 
+        border-style: none ; 
+        }
+
+.objCenter	{
+		text-align: center ;
+		display: block ;
+    	margin-left: auto;
+    	margin-right: auto;
+		}
+
+td[wbtype="PushButton"]
+        { border-style : outset ;
+          border-color: rgb(40%,80%,40%) ;
+          border-width: 4px ;
+        }
+
+td[wbtype="PushButton"]:hover, .navBar:hover, .navBarSmall:hover
+        { 
+		border-style : outset ;
+        border-color: rgb(90%,90%,90%) ;
+        }
+
+td[wbtype="PushButton"]:active, 
+	.navBar:active, 
+	.navBarSmall:active,
+	.playButton:active, 
+	.pauseButton:active, 
+	.stopButton:active, 
+	.forwardButton:active, 
+	.backButton:active, 
+	.nextTrackButton:active, 
+	.prevTrackButton:active 
+        { 
+          border-style : inset ;
+          border-color: inherit ;
+          background-image : url("/static/images/72/blue.png") ;
+        }
+
+td.buttonAbsent   
+        { 
+          background-image : url("/static/images/72/absent.png") ;
+          border-style : groove ;
+          border-color: rgb(24%,24%,40%) ;
+          color: gray ;
+		}
+
+td.buttonPending  
+        { 
+          background-image : url("/static/images/72/waiting.png") ;
+          border-style : groove ;
+          border-color: rgb(24%,24%,40%) ;
+        }
+
+td.buttonDormant
+        { 
+          background-image : url("/static/images/72/go.png") ;
+		  border-style : outset ;
+		  		
+        }
+
+td.buttonSelected
+        { background-image : url("/static/images/72/green.png") ;
+          border-style : outset ;
+          border-color: rgb(0%,40%,80%) ;
+          color: white ;
+        }
+    
+td.buttonCurtainsOpen  
+        { 
+          background-image : url("/static/images/72/curtainsOpen.png") ;
+        }
+
+td.buttonCurtainsClosed  
+        { 
+          background-image : url("/static/images/72/curtainsClosed.png") ;
+        }
+
+td.buttonCooling
+        { 
+          background-image : url("/static/images/72/snowflake.png") ;
+        }
+
+td.buttonRecycle
+        { 
+          background-image : url("/static/images/72/recycle.png") ;
+        }
+
+td.indicatorAlert, td.doorError       
+        { 
+          background-image : url("/static/images/72/alert.png") ;
+        }
+
+td.indicatorAlarm       
+        { 
+          background-image : url("/static/images/72/alarm.png") ;
+        }
+
+td.indicatorClear  
+        { 
+          background-image : url("/static/images/72/ok.png") ;
+        }
+
+td.indicatorDay  
+        { 
+          background-image : url("/static/images/72/light.png") ;
+        }
+td.indicatorNight 
+        { 
+          background-image : url("/static/images/72/dark.png") ;
+        }
+
+td.indicatorOff  
+        { 
+          background-image : url("/static/images/72/indOff.png") ;
+        }
+
+td.indicatorNotReady  
+        { 
+          background-image : url("/static/images/72/notReady.png") ;
+        }
+        
+td.indicatorAway  
+        { 
+         background-image : url("/static/images/72/icon_plane.png") ;
+        }
+
+td.indicatorHome  
+        { 
+         background-image : url("/static/images/72/atHome.png") ;
+        }
+
+td.statusAway  
+        { 
+         background-image : url("/static/images/72/icon_plane.png") ;
+		 border-style : none ;        		
+        }
+
+td.statusHome  
+        { 
+         background-image : url("/static/images/72/atHome.png") ;
+		 border-style : none ;         		
+        }
+
+td.indicatorWillRun  
+        { 
+         background-image : url("/static/images/72/heatWillRun.png") ;
+        }
+
+td.indicatorSuppress  
+        { 
+         background-image : url("/static/images/72/heatWillNotRun.png") ;
+        }
+
+td.indicatorIdle  
+        { 
+         background-image : url("/static/images/72/heatIdle.png") ;
+        }
+
+td.indicatorVacation
+        { 
+         background-image : url("/static/images/72/heatVacation.png") ;
+        }
+
+
+td.statusWillRun  
+     { 
+     background-image : url("/static/images/72/heatWillRun.png") ;
+	 border-style : none ;
+     }
+
+td.statusSuppress  
+     { 
+     background-image : url("/static/images/72/heatWillNotRun.png") ;
+	 border-style : none ;
+     }
+
+        
+td.statusIdle  
+     { 
+     background-image : url("/static/images/72/heatIdle.png") ;
+	 border-style : none ;
+     }
+
+td.statusVacation  
+     { 
+     background-image : url("/static/images/72/heatVacation.png") ;
+	 border-style : none ;
+     }
+
+td.statusBlank  
+     {
+     width : 0% ;
+     background-image : url("/static/images/72/clear.png") ;
+	 padding: 0% 0% 0% 0%;
+     }
+
+td.statusBird  
+     {
+     width : 3% ;
+     background-image : url("/static/images/72/earlyBird.png") ;
+	 border-style : none ;
+     }
+        
+td.doorOpen
+        { 
+          background-image : url("/static/images/72/open.png") ;
+		  border-style : outset ;
+          		
+        }
+
+td.doorClosed
+        { 
+          background-image : url("/static/images/72/closed.png") ;
+		  border-style : outset ;          		
+        }
+
+td.doorAjar
+        { 
+          background-image : url("/static/images/72/ajar.png") ;
+		  border-style : outset ;          		
+        }
+
+td.doorPending
+        { 
+          background-image : url("/static/images/72/doorPending.png") ;
+        }
+
+td.buttonOn
+        { 
+          background-image : url("/static/images/72/on.png") ;
+		  border-style : outset ;          		
+        }
+
+td.buttonOff
+        { 
+          background-image : url("/static/images/72/off.png") ;
+		  border-style : outset ;          		
+        }
+
+td.buttonLocked
+        { 
+		  background-image : url("/static/images/72/locked.png") ;
+        }
+
+.selectPending
+        { 
+          color: #FFFFFF ;
+        }
+
+.selectAbsent
+        { background-image : url("/static/images/72/grey.png") ;
+          color: #AAAAAA ;
+        }
+
+/* Caption properties */
+
+.caption
+        { text-align: LEFT; 
+          font-family: Verdana, Arial, Helvetica, sans-serif; 
+          font-size: large;           
+		  color: #FFFFFF ; 
+        }
+
+td.compositeWidget
+        { border: none ;
+          margin:0%;
+          padding:0%;
+        }
+
+.compositeWidget
+        { 
+          border-style: none ;
+		  border: none ;
+          border-color: #888888;
+          border-width: 0px ;
+		  border-spacing: 0px ; 
+		  padding: 0%;
+		  margin: 0%;
+        }
+
+
+.rule   { width : 96% ; 
+          height  : 1px ;
+          text-align : CENTER ;
+          border-spacing : 0pt ;
+          margin-left  : 2% ;
+		  border-bottom-style : solid ;
+		  border-width : 2px ;
+          border-bottom-color  : orange ;
+          padding : 0% ;
+        }
+
+.ruleBar{ 
+          height  : 0px ;
+          border-spacing : 0pt ;
+          margin  : 0% ;
+          border  : 0% ;
+          padding : 0% ;
+        }
+
+
+.goNext     {
+            background-image : url("next.svg") ;
+            text-align: CENTER; 
+            font-family: Verdana, Arial, Helvetica, sans-serif; 
+            font-size: large;              
+            color: #4444FF
+            }
+
+.playButton, .playButtonDormant 
+		{
+          background-image : url("/static/images/72/media/play.png") ;
+		  border-style : outset ;          		
+            }
+
+.pauseButton, .pauseButtonDormant 
+		{
+          background-image : url("/static/images/72/media/pause.png") ;
+		  border-style : outset ;          		
+            }
+
+.stopButton, .stopButtonDormant, .stopButtonPending
+		 {
+          background-image : url("/static/images/72/media/stop.png") ;
+		  border-style : outset ;          		
+            }
+
+
+.forwardButton, .forwardButtonDormant 
+		{
+          background-image : url("/static/images/72/media/forward.png") ;
+		  border-style : outset ;          		
+            }
+
+.backButton, .backButtonDormant 
+		{
+          background-image : url("/static/images/72/media/backward.png") ;
+		  border-style : outset ;          		
+            }
+
+
+.volUp, .volUpDormant 
+		{
+          background-image : url("/static/images/72/media/volUp.png") ;
+		  border-style : outset ;          		
+            }
+
+
+.volDown, .volDownDormant 
+		{
+          background-image : url("/static/images/72/media/volDown.png") ;
+		  border-style : outset ;          		
+            }
+
+
+.prevTrackButton, .prevTrackButtonDormant
+		 {
+          background-image : url("/static/images/72/media/prevTrack.png") ;
+		  border-style : outset ;          		
+            }
+
+.nextTrackButton, .nextTrackButtonDormant 
+		{
+          background-image : url("/static/images/72/media/nextTrack.png") ;
+		  border-style : outset ;          		
+            }
+
+
+.infoBar    {
+            background-image : url("/static/images/72/yellow.png") ;
+		    background-repeat : repeat ;
+		    background-position: center;
+            text-align: CENTER; 
+            font-size: large;
+		    padding: 1% 1% 1% 1% ;			
+            border-color: rgb(0%,50%,50%) ;		
+            }
+
+.infoTable  {
+            width: 96% ;
+			margin-left: 2% ;
+            text-align: CENTER ;
+            position: absolute ;
+            top: 90% ;
+            }
+
+td.navBar     {
+             
+		    border-style : outset ;
+		    padding: 1% 1% 1% 1% ;
+			width : 19% ;
+            border-color: rgb(0%,0%,50%) ;		
+            }
+td.navBarSmall {
+            text-align: CENTER; 
+            font-size: large; 
+		    padding: 1% 1% 1% 1% ;
+			border-width: thin ;
+          	border-style : outset ;
+          	border-color: rgb(0%,0%,50%) ;
+			}
+			
+td.navTable   {
+            width: 96% ;
+			margin-left: 2% ;
+            text-align: CENTER ;
+            }
+	
+td.textPending, td.numericPending
+        { 
+          background-image : url("/static/images/72/pending.png") ;
+          color: #FFFFFF ;
+        }
+
+td.textAbsent, td.numericAbsent
+        { 
+          background-image : url("/static/images/72/grey.png") ;
+          color: gray ;
+        }
+
+td.textPresent, td.numericPresent
+        {
+          background-image : url("/static/images/72/yellow.png") ;
+          border-style: solid ;
+		  padding: 1% ;
+          
+        }
+
+td.textInfo, td.numericInfo, td.WbOnOffEntryOff
+        {
+          background-image : url("/static/images/72/orange.png") ;
+          border-style: solid ;
+		  padding: 1% ;
+          
+        }
+
+.dataEntry div {
+    width: 200px;
+    height: 200px;
+    border:0px;
+    margin:0px;
+    padding:0px;
+}
+
+.dataEntry table {
+    width: 100%;
+    height: 100%;
+    border:0px;
+    margin:0px;
+    padding:0px;
+    background-image : url("/static/images/72/greyTrans.png") ; 
+}
+
+.dataEntry tr {
+    width: 100%;
+    border:0px;
+    margin:0px;
+    padding:0px;
+}
+
+.dataEntry td {
+    height: 100%;
+    border:0px;
+    margin:0px;
+    padding:0px;
+}
+
+.dataEntry input{
+  font-family: Verdana, Arial, Helvetica, sans-serif; 
+  font-size: larger; 
+   
+}
+
+.WbEventsTrue {
+          background-color: #FF2222;
+}
+
+.WbEventsFalse {
+}

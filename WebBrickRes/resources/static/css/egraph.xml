@@ -1,0 +1,38 @@
+<graphprop>
+    <title text="Unset Title" style="{font-size: 18px; color: #444444; font-family: Verdana; text-align: center; font-weight: bold;}">
+    </title>
+  
+ 
+    <x_legend text="Time" style="{font-size: 14px; color: #444444;}">
+    </x_legend>
+    
+    <y_legend text="Energy Wh" style="{font-size: 14px; color: #444444;}">
+    </y_legend>
+ 
+    <elements>
+        <element type="bar_glass" alpha="0.8" colour="#9933CC" text="" font-size="14">
+        </element>
+        <element type="bar_glass" alpha="0.8" colour="#CC3300" text="" font-size="14">
+        </element>
+        <element type="bar_glass" alpha="0.8" colour="#3333FF" text="" font-size="14">
+        </element>
+        <element type="bar_glass" alpha="0.8" colour="#444444" text="" font-size="14">
+        </element>
+        <element type="bar_glass" alpha="0.8" colour="#FF4444" text="" font-size="14">
+        </element>
+        <element type="bar_glass" alpha="0.8" colour="#44FF44" text="" font-size="14">
+        </element>
+        <element type="bar_glass" alpha="0.8" colour="#4444FF" text="" font-size="14">
+        </element>
+        <element type="bar_glass" alpha="0.8" colour="#0000FF" text="" font-size="14">
+        </element>
+    </elements>    
+    
+    <x_axis stroke="2" steps="2" tick_height="10" colour="#444444" grid-colour="#888888">
+        <labels steps="2" labels="unset" rotate="270">
+	    </labels>
+	</x_axis>
+	
+	<y_axis stroke="2" steps="1000" tick_length="3" colour="#444444" grid-colour="#888888" offset="0" max="20000" min="0" >
+	</y_axis>
+</graphprop>	

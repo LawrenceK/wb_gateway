@@ -1,0 +1,47 @@
+<!-- $Id: TestAsyncEventRouterHTTP.html 2642 2008-08-27 16:35:49Z graham.klyne $ -->
+<!-- To run this test:
+  -
+  -  1. Start the JSProxy server:
+  -     /HomeGateway2/Trunk/WebBrickLibs/EventLib/tests/JSProxy/start-jsproxy.py
+  -  2. Start the HTTP event routing server:
+  -     /HomeGateway2/Trunk/WebBrickLibs/EventLib/tests/TestEventHTTPServer.py
+  -  3. Browse to http:/localhost:8080/
+  -  4. Load this HTML file via the link:
+  -     http://localhost:8080/EventLib/tests/static/TestAsyncEventRouterHTTP.html
+  -
+  -  This arrangement ensures that the javascript callbacks in the test program are
+  -  permitted in the browser security model, and the HTTP event requests are
+  -  directed to the appropriate HTTP test server ports.
+  -->
+
+<html>
+
+  <head>
+    <title>Asynchronous Test Suite for HTTP event event forwarding functions</title>
+    <link rel="stylesheet" type="text/css" href="mochikit/tests/SimpleTest/test.css">
+    <script type="text/javascript" src="../../static/javascript/URI.js"></script>
+    <script type="text/javascript" src="../../static/javascript/Status.js"></script>
+    <script type="text/javascript" src="../../static/javascript/Event.js"></script>
+    <script type="text/javascript" src="../../static/javascript/EventEnvelope.js"></script>
+    <script type="text/javascript" src="../../static/javascript/EventSerializer.js"></script>
+    <script type="text/javascript" src="../../static/javascript/EventAgent.js"></script>
+    <script type="text/javascript" src="../../static/javascript/EventHandler.js"></script>
+    <script type="text/javascript" src="../../static/javascript/EventRouter.js"></script>
+    <script type="text/javascript" src="../../static/javascript/EventRouterHTTPC.js"></script>
+    <script type="text/javascript" src="javascript/MochiKit.js"></script>
+    <script type="text/javascript" src="mochikit/tests/SimpleTest/SimpleTest.js"></script>
+    <script type="text/javascript" src="javascript/DeferredMonad.js"></script>
+    <script type="text/javascript" src="javascript/AsyncUnitTest.js"></script>
+    <script type="text/javascript" src="javascript/TestEventRouterHTTP.js"></script>
+  </head>
+
+  <body>
+    <h1>TestAsyncEventRouterHTTP.html</h1>
+    <pre id="test">
+    <script type="text/javascript">
+    runTestSuite(TestEventRouterHTTP);
+    </script>
+    </pre>
+  </body>
+
+</html>

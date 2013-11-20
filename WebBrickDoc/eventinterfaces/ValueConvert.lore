@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>ValueConvert</title>
+</head>
+
+<body>
+
+    <h1>ValueConvert</h1>
+
+        <p>Convert an event value and generate a new event from it.</p>
+
+    <h2>Description</h2>
+        <p>This event handler is typically used to convert the val attribute of an event using a simple offset and multiplier.</p>
+
+
+    <h2>Configuration</h2>
+    <p>The handler specific element in this case is called newEvent, 
+    this has two attributes for the new event type and source. 
+    Two additional attributes must be provided these are offset and multiplier. 
+    Following the syntax of EventMapper et al. The contents of the newEvent element may contain 
+    other_data and copy_other_data. other_data is used in the event verbatim whilst copy_other_data is
+    used to select attributes from the old event and the newVal. If you want the converted number
+    you should have a copy_other_data element.
+
+    When an event is selected for processing the newVal 
+    attribute is the value of the old event minus the preoffset and then multiplied by the multiplier and then the
+    postoffset is added.
+    
+    If the atributes (preoffset, postoffset and multiplier) are fixed for the conversion, 
+    then these can be spcified as atributes in the newEvent tag, see Example 1. Alternatively they can be passed
+    in as payload of the incoming event. If the incoming event has payload atributes with the names 
+    preoffset, postoffset or multiplier the values of these will override the values specified in the 
+    newEvent tag, see Example 2.</p>
+
+    <p>The following can be achieved:
+    <ul>
+    <li>Add an offset: preoffset=0,multiplier = 1, postoffset=offset.</li>
+    <li>Subtract an offset: preoffset=0,multiplier = 1, postoffset= - the offset.</li>
+    <li>multiply by a factor: preoffset=0,multiplier = factor, postoffset=0.</li>
+    <li>divide by a factor: preoffset=0,divisor = factor, postoffset=0.</li>
+    </ul>
+    </p>
+
+    <h2>Example 1</h2>
+
+    <a href="ValueConvert.xml" class="html-listing" />
+
+    <p>This example, assuming it has a humidity sensor attached, picks an analogue input from a webbrick and converts it into 
+    a relative humidity.</p>
+    
+    <h2>Example 2</h2>
+
+    <a href="ValueConvert2.xml" class="html-listing" />
+
+    <p>This example assumes that the incoming event includes preoffset, postoffset and/or multiplier, 
+    to perform the value conversion. If these are not included, then the values speciefied
+    in the newEvent tag will be used. Shoud these not exist, then the default values are used. </p>
+
+    <h2>Example 3 - Pressure Sensor</h2>
+
+    <a href="ValueConvert3.xml" class="html-listing" />
+
+    <p>Here is a practical example from a pressure sensor with characteristics shown in this graph</p>
+
+	<p><img src="../Images/pressureSensorGraph.png"/>
+	</p>
+
+
+</body>
+
+</html>

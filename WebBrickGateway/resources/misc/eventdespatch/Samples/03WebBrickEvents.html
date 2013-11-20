@@ -1,0 +1,18 @@
+<?xml version="1.0"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><title>H2M8 Documentation WebBrick to WebBrick events</title><link href="./css/h2m8.css" type="text/css" rel="stylesheet" /><link href="../css/h2m8.css" type="text/css" rel="stylesheet" /><link href="../../css/h2m8.css" type="text/css" rel="stylesheet" /></head><body bgcolor="white"><h1 class="title">WebBrick to WebBrick events</h1><div class="toc"><ol><li><a href="#auto0">Behaviour</a></li><li><a href="#auto1">File Sections</a></li><ul><li><a href="#auto2">HttpAction</a></li><li><a href="#auto3">DelayedEvent</a></li><li><a href="#auto4">EvMapper</a></li></ul></ol></div><div class="content"><span></span><p>In this example we listen for events generated on one WebBrick and from these issue actions to
+	other WebBricks.
+	</p><p>
+	As shipped the example is designed to work on a single WebBrick, with only the following configuration changes
+	</p><p>Nodename: bench</p><p>Nodenumber: 101</p><p>This configuration is kept away from a new unconfigured WebBrick to avoid any confusion when bringing WebBricks up
+	for the first time.</p><p>Note that all the internal events begin with '03'.  This is so that they are mot confused with other similar events
+	that might be generated buy having more than one WebBrick to WebBrick event sampple file in the EventDespatch directory.
+	</p><h2>Behaviour<a name="auto0"></a></h2><p>In this example, Digital Inputs 0,1,2 will trigger Digital Inputs 7,6,5 and after a delay Digital Input 4</p><p> 0 - 7 </p><p> 1 - 6, then after 5 seconds 4</p><p> 2 - 5 </p><h2>File Sections<a name="auto1"></a></h2><p>There are three main sections in this file:</p><ul><li>
+	'WebBrickLibs.WbEvHttpAction' name='WbEvHttpAction'
+	</li><li>
+	'WebBrickLibs.WbEvDelayedEvent' name='WbEvDelayedEvent'
+	</li><li>
+	'WebBrickLibs.WbEvMapper' name='WbEvMapper'
+	</li></ul><h3>HttpAction<a name="auto2"></a></h3><p> This section deals with the TARGET WebBricks and the actions that will be called </p><h3>DelayedEvent<a name="auto3"></a></h3><p> This section deals with events that will be directed to the TARGET WebBricks after a delay </p><h3>EvMapper<a name="auto4"></a></h3><p> This section deals with mapping events that arrive from:
+	<ul><li> URI calls </li><li> WebBrick Web Interfaces </li><li> WebBrick Physical Interfaces </li></ul></p><pre class="shell">
+	    &gt;eventInterface module='WebBrickLibs.WbEvMapper' name='WbEvMapper' &lt;
+	</pre></div><p><a href="index.html">Index</a></p><span class="version">Version: </span></body></html>

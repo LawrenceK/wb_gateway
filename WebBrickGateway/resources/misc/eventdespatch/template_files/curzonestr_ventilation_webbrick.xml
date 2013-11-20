@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+
+    <!--
+    ==================================================================================================================
+    
+        Fan Control 
+        
+        for fans where the sensors (humidity sensor and/or PIR) and the fan are on 
+        the same WebBrick
+       
+        TODO: 
+            - replace SampelWb with WebBrick name 
+            - Change Xurl to url 
+            - Change the node and channel number for inputs
+    
+    ==================================================================================================================
+    -->
+               
+    <!--
+    ==================================================================================================================
+        Outputs to Webbricks
+    ==================================================================================================================
+    -->                
+                
+    <!-- Outputs to WebBricks  -->
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+        <!--This responds to events and does an HTTP request(s) as the action.-->
+        
+        <!-- events triggered by user using simple buttons on form control -->
+        <eventtype type="http://id.webbrick.co.uk/events/uri">   
+            <eventsource source="curzonestr/ventilation/fan/10min_run" >
+                <event>
+                    <url address="SampleWb" uri="/hid.spi?COM=DT;D4;6;5;600;0;0;0;0:" cmd="GET" />
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <!-- Passing on persited data to WebBrick --> 
+        <eventtype type="http://id.webbrick.co.uk/events/config/get">   
+            <eventsource source="curzonestr/ventilation/fan/runtime" >
+                <event>
+                    <url address="SampleWb" uri="/hid.spi?COM=LG;installer:" cmd="GET"/>
+                    <url address="SampleWb" uri="/hid.spi?COM=CW;7;%(val)s:" cmd="GET"/>
+                </event>
+            </eventsource>
+            <eventsource source="curzonestr/ventilation/hum/threshold" >
+                <event>
+                    <url address="SampleWb" uri="/hid.spi?COM=LG;installer:" cmd="GET"/>
+                    <url address="SampleWb" uri="/hid.spi?COM=CI0;H;%(val)s;D4;6;5;7;1:" cmd="GET"/>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+        <eventtype type="internal">   
+            <eventsource source="pir/disable" >
+                <event>
+                    <url address="SampleWb" uri="/hid.spi?COM=LG;installer:" cmd="GET"/>
+                    <url address="SampleWb" uri="/hid.spi?COM=CD9;D4;6;0;7;1;0;0;1:" cmd="GET"/>
+                </event>
+            </eventsource>
+            <eventsource source="pir/enable" >
+                <event>
+                    <url address="SampleWb" uri="/hid.spi?COM=LG;installer:" cmd="GET"/>
+                    <url address="SampleWb" uri="/hid.spi?COM=CD9;D4;6;5;7;1;0;0;1:" cmd="GET"/>
+                </event>
+            </eventsource>
+   
+        </eventtype>
+        
+    </eventInterface>
+
+    
+    
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+        <eventtype type='http://id.webbrick.co.uk/events/config/get'>
+            <eventsource source='curzonestr/ventilation/pir/enabled'>
+                <event>
+                    <params>
+                        <testEq type='int' name='val'> 
+                            <value>0</value>
+                        </testEq>
+                    </params>
+                    <newEvent type="internal" source="pir/disable">
+                    </newEvent>
+                </event>
+                <event>
+                    <params>
+                        <testEq type='int' name='val'> 
+                            <value>1</value>
+                        </testEq>
+                    </params>
+                    <newEvent type="internal" source="pir/enable">
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+        
+        <!-- !  Temperature  -->
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/CT'>
+            <eventsource source='webbrick/999/CT/0'>
+                <event>
+        		    <params>
+                        <testNe name='val' value='0.0'/>
+        		    </params>
+                    <newEvent type="internal" source="curzonestr/ventilation/temp">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+        <!-- Fan Speed 
+            If fan is on a digiatal Output configure this mapper -->
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/DO'>
+            <eventsource source='webbrick/999/DO/1'>
+                <event>
+                    <params>
+                        <testEq name="state" value="0" />
+                    </params>
+                    <newEvent type="internal" source="curzonestr/ventilation/fan/speed">
+                        <other_data val="0"/>
+                    </newEvent>
+                </event>
+                <event>
+                    <params>
+                        <testEq name="state" value="1" />
+                    </params>
+                    <newEvent type="internal" source="curzonestr/ventilation/fan/speed">
+                        <other_data val="100"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+        <!-- Fan Speed 
+            If fan is on an analogue output configure this mapper -->
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/AO'>
+            <eventsource source='webbrick/999/AO/0'>
+                <event>
+                    <newEvent type="internal" source="curzonestr/ventilation/fan/speed">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+    </eventInterface>
+   
+    <eventInterface module='EventHandlers.ValueConvert' name='ValueConvert'>
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/AI'>
+            
+            <!-- Do a conversion on the Humidity Sensor -->
+            <eventsource source='webbrick/999/AI/3'>
+                <event>
+                    <newEvent type='internal' source='curzonestr/ventilation/hum/level' preoffset='16' multiplier='1.54'>
+                        <copy_other_data val="newVal"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+            
+        </eventtype>
+    </eventInterface> 
+    
+</eventInterfaces>

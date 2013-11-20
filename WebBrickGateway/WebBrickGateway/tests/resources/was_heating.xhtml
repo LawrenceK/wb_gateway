@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML, 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1-strict-dtd">
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+ +  $Id: was_heating.xhtml 1457 2008-05-23 01:34:46Z webbrick $
+ +
+ +  WebBrick home gateway panel definition for a simple light switch.
+ +  Shower (pull-to-toggle) light switch emulation.
+ +
+ + For show target heating.webbrick
+ +
+ -->
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" >
+
+<head>
+  <title>Heating View</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  <link href="/static/css/panel.css" rel="stylesheet" />
+  <script src="/static/javascript/MochiKit.js"></script>
+  <script src="/static/javascript/WebBrick.js"></script>
+    <script src="/static/javascript/WbButton.js"></script>
+    <script src="/static/javascript/WbNumericDisplay.js"></script>
+    <script src="/static/javascript/WbTimeDisplay.js"></script>
+    <script src="/static/javascript/WbTextDisplay.js"></script>
+</head>
+
+<body>
+
+<table class="navTable">
+  <tr>
+    <td class="navBar" onClick="window.location='/'">Home</td>
+    <td class="buttonAbsent" id="backButton">Back</td>
+    <td class="buttonAbsent" id="moreButton">More</td>
+    <td class="infoBar" id="menuTitle">Heating - Ventilation</td>
+  </tr>
+</table>
+
+<table class="rule"><tr><td class="ruleBar">&nbsp;</td></tr></table>
+
+<table>
+  <tr>
+    <td colspan="2" wbType="Caption" wbLoad="loadCaption()">Zone - Upstairs</td>
+  </tr>
+  <tr wbLoad='loadPushSelect([[1,0],["Off","On"]])' wbSource="/wbsts/heating.webbrick/DO/1">
+    <td wbType="PushButton" wbTarget="/wbcmd/heating.webbrick/DO/1/on" >Open</td>
+    <td wbType="PushButton" wbTarget="/wbcmd/heating.webbrick/DO/1/off" >Close</td>
+    <td wbType="PushButton" wbLoad="loadButton()" 
+        wbTarget="/wbcmd/heating.webbrick/DI/3" wbSource="/wbsts/heating.webbrick/DO/3">Bathroom Floor</td>
+  </tr>
+</table>
+
+<table class="rule"><tr><td class="ruleBar">&nbsp;</td></tr></table>
+
+<table>
+  <tr>
+    <td colspan="4" wbType="Caption" wbLoad="loadCaption()">Heating and Ventilation</td>
+  </tr>
+  <tr>  
+    <td wbType="PushButton" wbLoad="loadButton()" 
+        wbTarget="/wbcmd/heating.webbrick/DI/0" wbSource="/wbsts/heating.webbrick/DO/0">Ensuite Fan</td>
+    <td wbType="PushButton" wbLoad="loadButton()" 
+         wbTarget="/wbcmd/heating.webbrick/DI/5" wbSource="/wbsts/heating.webbrick/DO/5">Boiler</td>
+    <td wbType="PushButton" wbLoad="loadButton()" 
+        wbTarget="/wbcmd/heating.webbrick/DI/2" wbSource="/wbsts/heating.webbrick/DO/2">Radiator Valve</td>
+    <td wbType="PushButton" wbLoad="loadButton()" 
+        wbTarget="/wbcmd/heating.webbrick/DI/3" wbSource="/wbsts/heating.webbrick/DO/3">Radiator</td>
+  </tr>
+</table>
+  
+<table>
+  <tr>
+    <td wbType="Numeric" wbLoad='loadNumericDisplay("CH feed: ","##.#","&ordm;C")'
+        wbSource='/wbsts/heating.webbrick/Tmp/4'>-</td>
+    <td wbType="Numeric" wbLoad='loadNumericDisplay("CH return: ","##.#","&ordm;C")'
+        wbSource='/wbsts/heating.webbrick/Tmp/0'>-</td>
+    <td wbType="Numeric" wbLoad='loadNumericDisplay("HW feed: ","##.#","&ordm;C")'
+        wbSource='/wbsts/heating.webbrick/Tmp/2'>-</td>
+    <td wbType="Numeric" wbLoad='loadNumericDisplay("HW return: ","##.#","&ordm;C")'
+        wbSource='/wbsts/heating.webbrick/Tmp/1'>-</td>
+    <td wbType="Numeric" wbLoad='loadNumericDisplay("Ambient: ","##.#","&ordm;C")'
+        wbSource='/wbsts/heating.webbrick/Tmp/3'>-</td>
+  </tr>
+</table>
+
+<table class="infoTable">
+  <tr>
+    <td width='20%' wbType="Text" wbLoad='loadTextDisplay("","")'
+            wbSource='/local/time'>
+        Left
+    </td>
+    <td wbType="Text" wbLoad='loadTextDisplay("","")'
+            wbSource="/local/messages">
+        Left
+    </td>
+    <td wbType="Numeric" wbLoad='loadNumericDisplay("House: ","##.#","&ordm;C")'
+        wbSource='/wbsts/lighting.webbrick/Tmp/0'>-</td>
+  </tr>
+</table>
+
+</body>
+
+</html>

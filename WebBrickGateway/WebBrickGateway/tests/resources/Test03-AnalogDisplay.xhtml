@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML, 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1-strict-dtd">
+<!--
+ +  $Id: Test03-AnalogDisplay.xhtml 1457 2008-05-23 01:34:46Z webbrick $
+ +
+ +  WebBrick home gateway panel definition for a simple light switch.
+ +  Shower (pull-to-toggle) light switch emulation.
+ +
+ -->
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" >
+
+<head>
+  <title>Numeric value display</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  <link href="/static/css/panel.css" rel="stylesheet" />
+  <script src="/static/javascript/MochiKit.js"></script>
+  <script src="/static/javascript/WebBrick.js"></script>
+</head>
+
+<body>
+
+<table>
+  <tr>
+    <td colspan="2" wbType="Caption" wbLoad="loadCaption()">Numeric value display</td>
+  </tr>
+  <tr>
+    <td wbType="Numeric" wbLoad='loadNumericDisplay("AO0: ","##.#","")' 
+        wbSource="WebBrick:AO0">(AO0 value here)
+    </td>
+    <td wbType="Numeric" wbLoad='loadNumericDisplay("AO1: ","##.#","")' 
+        wbSource="WebBrick:AO1">(AO1 value here)
+    </td>
+  </tr>
+  <tr>
+    <td wbType="Numeric" wbLoad='loadNumericDisplay("AI0: ","##.#","")' 
+        wbSource="WebBrick:AI0">(AI0 value here)
+    </td>
+    <td wbType="Numeric" wbLoad='loadNumericDisplay("AI1: ","##.#","")' 
+        wbSource="WebBrick:AI1">(AI1 value here)
+    </td>
+  </tr>
+  <tr>
+    <td wbType="Numeric" wbLoad='loadNumericDisplay("Tmp0: ","##.#","C")' 
+        wbSource="WebBrick:Tmp0">(AO0 value here)
+    </td>
+    <td wbType="Numeric" wbLoad='loadNumericDisplay("Tmp1: ","##.#","C")' 
+        wbSource="WebBrick:Tmp1">(AO1 value here)
+    </td>
+  </tr>
+  <tr>
+    <td wbType="Text" wbLoad='loadTextDisplay("AO2: ","")'
+        wbSource="WebBrick:AO2">(AO2 text here)
+    </td>
+    <td wbType="Text" wbLoad='loadTextDisplay("AO3: ","")'
+        wbSource="WebBrick:AO3">(AO3 text here)
+    </td>
+  </tr>
+  <tr>
+    <td wbType="PushButton" wbLoad="loadButton(false)" 
+        wbTarget="WebBrick:AA2%3B25">AO2 to 25%</td>
+    <td wbType="PushButton" wbLoad="loadButton(false)" 
+        wbTarget="WebBrick:AA2%3B75">AO2 to 75%</td>
+  </tr>
+</table>
+
+</body>
+
+</html>

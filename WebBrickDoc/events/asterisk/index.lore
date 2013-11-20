@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+ <title>Asterisk event URIs</title>
+</head>
+
+<body>
+
+<h2>Asterisk vents.</h2>
+<p>
+Each of these events is caused by an AGI call from the asterisk PBX server.
+</p>
+
+<p>
+The event type is <span>http://id.webbrick.co.uk/events/asterisk</span>
+</p>
+<p>
+The event source will be the asterisk/<em>ip address</em>. Where <em>ip address</em>is the address of the asterisk server.'.
+</p>
+<p>
+The other data will contain all of the agi parameters for example. Refer to asterisk agi documentation for meaning of these parameters.
+
+<table>
+<tr><th></th><th></th></tr>
+<tr><td>agi_network</td><td>yes</td></tr>
+<tr><td>agi_request</td><td>agi://10.0.0.2:4573</td></tr>
+<tr><td>agi_channel</td><td>SIP/200-b7a02f60</td></tr>
+<tr><td>agi_language</td><td>en</td></tr>
+<tr><td>agi_type</td><td>SIP</td></tr>
+<tr><td>agi_uniqueid</td><td>1173195868.41</td></tr>
+<tr><td>agi_callerid</td><td>200</td></tr>
+<tr><td>agi_calleridname</td><td>XLITE</td></tr>
+<tr><td>agi_callingpres</td><td>0</td></tr>
+<tr><td>agi_callingani2</td><td>0</td></tr>
+<tr><td>agi_callington</td><td>0</td></tr>
+<tr><td>agi_callingtns</td><td>0</td></tr>
+<tr><td>agi_dnid</td><td>100</td></tr>
+<tr><td>agi_rdnis</td><td>unknown</td></tr>
+<tr><td>agi_context</td><td>macro-exten-vm</td></tr>
+<tr><td>agi_extension</td><td>s</td></tr>
+<tr><td>agi_priority</td><td>2</td></tr>
+<tr><td>agi_enhanced</td><td>0.0</td></tr>
+<tr><td>agi_accountcode</td><td></td></tr>
+</table>
+</p>
+</body>
+
+</html>

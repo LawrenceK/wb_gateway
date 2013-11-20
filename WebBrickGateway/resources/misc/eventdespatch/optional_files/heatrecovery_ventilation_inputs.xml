@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!-- ! HRV Inputs -->
+<!--    
+    This file is an essential part of the HRV configuration, please follow the TODO section
+    
+    TODO: 
+        1.  Replace 999 with the correct WebBrick Node number. .
+        2.  After having set the correct node numbers, please confirm that the channel numbers are correct.
+        
+    NOTE: 
+        It is essential to configure at least the section titled "Feedback from control outputs" PIRs and Humidity 
+        sensors can be configured as required. 
+
+-->
+    
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+        
+        <!-- Feedback from control outputs --> 
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/DO'>
+            
+            <!-- Digiatal Output driving the low speed relay/triac -->
+            <eventsource source='webbrick/999/DO/0'>
+                <event>
+                    <newEvent type="internal" source="general/ventilation/fan/speed/low">
+                        <copy_other_data val="state"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+            
+            <!-- Digiatal Output driving the medium speed relay/triac -->
+            <eventsource source='webbrick/999/DO/1'>
+                <event>
+                    <newEvent type="internal" source="general/ventilation/fan/speed/medium">
+                        <copy_other_data val="state"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+            
+            <!-- Digiatal Output driving the high speed relay/triac -->
+            <eventsource source='webbrick/999/DO/2'>
+                <event>
+                    <newEvent type="internal" source="general/ventilation/fan/speed/high">
+                        <copy_other_data val="state"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+        <eventtype type="http://id.webbrick.co.uk/events/webbrick/TD">
+        
+            <!-- Manual Boost (from a physical switch) -->  
+            <eventsource source="webbrick/999/TD/0" >
+                <event>
+                    <params>
+                        <testEq name="val" value="1" />
+                    </params>
+                        <newEvent type="internal" source="general/ventilation/requestBoost" />
+                </event>
+            </eventsource> 
+            
+            <!-- !  PIR 1 -->
+            <eventsource source='webbrick/999/TD/1'>
+                <event>
+                    <newEvent type="internal" source="general/ventilation/pir/1/tiggered"/>
+                </event>
+            </eventsource>
+            
+            <!-- !  PIR 2 -->
+            <eventsource source='webbrick/999/TD/2'>
+                <event>
+                    <newEvent type="internal" source="general/ventilation/pir/2/tiggered"/>
+                </event>
+            </eventsource>
+            
+            <!-- !  PIR 3 -->
+            <eventsource source='webbrick/999/TD/3'>
+                <event>
+                    <newEvent type="internal" source="general/ventilation/pir/3/tiggered"/>
+                </event>
+            </eventsource>
+            
+            <!-- !  PIR 4 -->
+            <eventsource source='webbrick/999/TD/4'>
+                <event>
+                    <newEvent type="internal" source="general/ventilation/pir/4/tiggered"/>
+                </event>
+            </eventsource>
+        
+        </eventtype>
+    </eventInterface>
+
+    
+    <eventInterface module='EventHandlers.ValueConvert' name='ValueConvert'>
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/AI'>
+            
+            <!-- Do a conversion on Humidity Sensor 1 -->
+            <eventsource source='webbrick/999/AI/0'>
+                <event>
+                    <newEvent type='internal' source='general/ventilation/hum/1/level' preoffset='16' multiplier='1.54'>
+                        <copy_other_data val="newVal"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+            
+            <!-- Do a conversion on Humidity Sensor 2 -->
+            <eventsource source='webbrick/999/AI/1'>
+                <event>
+                    <newEvent type='internal' source='general/ventilation/hum/2/level' preoffset='16' multiplier='1.54'>
+                        <copy_other_data val="newVal"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+            
+            <!-- Do a conversion on Humidity Sensor 3 -->
+            <eventsource source='webbrick/999/AI/2'>
+                <event>
+                    <newEvent type='internal' source='general/ventilation/hum/3/level' preoffset='16' multiplier='1.54'>
+                        <copy_other_data val="newVal"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+            
+            <!-- Do a conversion on Humidity Sensor 4 -->
+            <eventsource source='webbrick/999/AI/3'>
+                <event>
+                    <newEvent type='internal' source='general/ventilation/hum/4/level' preoffset='16' multiplier='1.54'>
+                        <copy_other_data val="newVal"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+            
+        </eventtype>
+    </eventInterface>
+</eventInterfaces>

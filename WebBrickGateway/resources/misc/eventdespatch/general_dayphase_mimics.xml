@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+    <!-- !  TODO: Mimic levels are set per WebBrick.
+            
+                1.  Replace Xurl with url, if http request are to be issued.
+
+                2.  Replace SampleWb1/SampleWb2 with the correct webbrick names.
+                
+                3.  uri does not need modifying unless the default low, medium 
+                    and high level for mimics are not appropriate for the site.
+    -->
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+       <!-- This responds to events and does an HTTP request(s) as the action. -->
+
+        <!-- Dayphase events -->
+        <eventtype type="internal">
+            
+            <eventsource source="general/mimics/off" >
+                <event>
+                    <!-- Sets Mimics to be completely off (in both on and off state)-->
+                    <Xurl address="SampleWb1" uri="/hid.spi?COM=SM;0;0;8:" cmd="GET" />
+                    <Xurl address="SampleWb2" uri="/hid.spi?COM=SM;0;0;8:" cmd="GET" /> 
+                </event>
+            </eventsource>
+            
+            <eventsource source="general/mimics/low" >
+                <event>
+                    <!-- Sets Mimics to be at level 1 and 4 in off/on state-->
+                    <Xurl address="SampleWb1" uri="/hid.spi?COM=SM;1;4;8:" cmd="GET" />
+                    <Xurl address="SampleWb2" uri="/hid.spi?COM=SM;1;4;8:" cmd="GET" /> 
+                </event>
+            </eventsource>
+            
+            <eventsource source="general/mimics/medium" >
+                <event>
+                    <!-- Sets Mimics to be at level 2 and 32 in off/on state-->
+                    <Xurl address="SampleWb1" uri="/hid.spi?COM=SM;2;32;8:" cmd="GET" />
+                    <Xurl address="SampleWb2" uri="/hid.spi?COM=SM;2;32;8:" cmd="GET" /> 
+                </event>
+            </eventsource>
+            
+            <eventsource source="general/mimics/high" >
+                <event>
+                    <!-- Sets Mimics to be at level 4 and 63 in off/on state-->
+                    <Xurl address="SampleWb1" uri="/hid.spi?COM=SM;4;63;8:" cmd="GET" />
+                    <Xurl address="SampleWb2" uri="/hid.spi?COM=SM;4;63;8:" cmd="GET" /> 
+                </event>
+            </eventsource>
+        
+        </eventtype>
+    </eventInterface>
+</eventInterfaces>

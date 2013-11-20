@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<persist>
+  <entry source="zone5/enabled">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone5/matStat">
+    <value name="val">
+      10
+    </value>
+  </entry>
+  <entry source="zone5/occupancy">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone5/wcselect">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="weather/1/rising/outsideThreshold">
+    <value name="val">
+      20
+    </value>
+  </entry>
+  <entry source="weather/1/falling/outsideThreshold">
+    <value name="val">
+      10
+    </value>
+  </entry>
+  <entry source="weather/2/rising/outsideThreshold">
+    <value name="val">
+      25
+    </value>
+  </entry>
+  <entry source="weather/2/falling/outsideThreshold">
+    <value name="val">
+      20
+    </value>
+  </entry>
+  <entry source="weather/3/rising/outsideThreshold">
+    <value name="val">
+      19
+    </value>
+  </entry>
+  <entry source="weather/3/falling/outsideThreshold">
+    <value name="val">
+      16
+    </value>
+  </entry>
+
+</persist>

@@ -1,0 +1,18 @@
+<eventInterface module='EventHandlers.ValueConvert' name='ValueConvert'>
+    <eventtype type=''>
+        <eventsource source='webbrick/100/AI/0'>
+            <event>
+                <newEvent type='local/value' source='offset/value'>
+                    <copy_other_data val="newVal"/>
+                </newEvent>
+            </event>
+        </eventsource>
+        <eventsource source='webbrick/100/AI/0'>
+            <event>
+                <newEvent type='local/value' source='offset/value/with/fixed/multiplier' multiplier='1.5' >
+                    <copy_other_data val="newVal"/>
+                </newEvent>
+            </event>
+        </eventsource>
+    </eventtype>
+</eventInterface>

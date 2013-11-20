@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eventInterfaces>
+    <eventInterface module='EventHandlers.ScheduleProcessor' name='ScheduleProcessor'>
+        <!-- Handles events http://id.webbrick.co.uk/events/config/get
+            where the eventsource is schedule/name/ -->
+    </eventInterface>
+</eventInterfaces>

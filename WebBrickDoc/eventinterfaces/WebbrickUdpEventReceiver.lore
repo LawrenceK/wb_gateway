@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>WebbrickUdpEventReceiver</title>
+</head>
+
+<body>
+
+    <h1>WebbrickUdpEventReceiver</h1>
+
+        <p>Listen for UDP events from webbrick.</p>
+
+    <h2>Description</h2>
+        <p>This event handler listens for UDP events that are sent by webbricks. This is one of the event interfaces that
+        connects external hardware with the WebBrick Gateway.</p>
+
+
+    <h2>Configuration</h2>
+    <pre>
+        &lt;eventInterface module='EventHandlers.WebbrickUdpEventReceiver' name='WebbrickUdpEventReceiver' listenPort='2552'&gt;
+        &lt;/eventInterface&gt;
+    </pre>
+    <p>The listenPort is the local port that we bind to, generally it should not be changed as webbricks cannot 
+    send on any other port</p>
+
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Persistant Configuration set event.</title>
+</head>
+
+<body>
+
+<h2>Persistant Configuration set event</h2>
+
+This event is used to update persistant configuration.
+
+Type=
+Source=variable
+
+<h3>Event Type</h3>
+http://id.webbrick.co.uk/events/config/set
+
+<h3>Event Source</h3>
+The event type is variable and names the piece of persistant storage, it should follow the form of a relative URI and
+may get turned into an absolute URI when it crosses gateway boundaries.
+
+<h3>Other Data</h3>
+The payload of the event (other data) is dependant on the event source. generally it will consist of a single simple value, unless
+there are a set of codependant values that should be delivered together, in which case it expected that the payload will consist 
+of a set of name value pairs that have context within the event source given.
+
+</body>
+
+</html>

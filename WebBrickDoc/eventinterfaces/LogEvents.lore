@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>LogEvents</title>
+</head>
+
+<body>
+
+    <h1>LogEvents</h1>
+
+        <p>Log all events.</p>
+
+    <h2>Description</h2>
+        <p>This handler is used to log events to local disk for later analysis. Standard python logging is used with the
+        logger name constructed from the event source so that python logging configuration can be used to filter out/in events
+        as well as the event handler's configuration.</p>
+
+
+    <h2>Configuration</h2>
+
+    <pre>
+    &lt;eventInterface module='EventHandlers.LogEvents' name='LogEvents' fileBaseName='./eventLog'&gt;
+        &lt;eventtype type=""&gt;
+            &lt;eventsource source="" &gt;
+	        &lt;event&gt;
+                    &lt;!-- interested in all events --&gt;
+	        &lt;/event&gt;
+            &lt;/eventsource&gt;
+        &lt;/eventtype&gt;
+    &lt;/eventInterface&gt;
+    </pre>
+    <p>This default configuration listens for all events</p>
+</body>
+
+</html>

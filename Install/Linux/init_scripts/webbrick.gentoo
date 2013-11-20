@@ -1,0 +1,24 @@
+#!/sbin/runscript
+EX_DIR=/opt/webbrick
+PID_FILE=/opt/webbrick/webbrick.pid
+EX_FILE=/usr/bin/start-WebBrickGateway.py
+PYTHON_FILE=/usr/bin/python
+
+depend() {
+  need net
+  use logger dns
+}
+
+start() {
+  ebegin "Starting Webbrick Gateway"
+  cd $EX_DIR
+  start-stop-daemon --start --chdir $EX_DIR --exec $EX_FILE --pidfile $PID_FILE --background --make-pidfile -- start-WebBrickGateway.py resources/prod.cfg
+  eend $?
+}
+
+stop() {
+  ebegin "Stopping Webbrick Gateway"
+  start-stop-daemon --stop --exec $EX_FILE --pidfile $PID_FILE
+#  killall $PYTHON_FILE
+  eend $?
+}

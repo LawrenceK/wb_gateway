@@ -1,0 +1,97 @@
+<html>
+<head><title>Simplest Event Despatch possible</title></head>
+<body>
+    <h1>Simplest Event Despatch possible</h1>
+
+    <p>As we have seen the raw webbrick command strings are not very easy to interpret so here we are going
+    to use HttpAction to give more meaningfull names to them.
+    </p>
+
+    <p>
+    So first the Xml.
+    <a href="01.03HttpAction.xml" class="html-listing" />
+    And a discussion of each part.
+    </p>
+
+    <h2>element: &lt;eventInterfaces&gt;</h2>
+	<p>
+    Each event despatch control file has a single top level container element called eventInterfaces, inside
+    of which are 1 or more eventInterface elements.
+    </p>
+   
+    <h2>element: &lt;eventInterface&gt;</h2>
+    <p>
+    An eventInterface element configures one instance of a named eventInterface, the configuration of
+    an instance is private to itself. Most of the event interfaces can be loaded multiple times in the same 
+    configuration files or across multiple configuration files. A few can only be loaded once as they use 
+    dedicated resources or there is no point loading multiple times - these are typically listed in 
+    BaseHandlers.xml.
+    </p>
+
+    <p>
+    An event interface element lists two attributes that are used to dynamically load the event interface, these
+    will be documented for each event interface. The dynamic loading means that it is possible to develop
+    bespoke event interfaces and deploy without rebuilding the complete gateway.
+    
+    Each event interface element typically has one or more eventType elements, not typically but 
+    it is possible to have event interfaces that handle the configuration differently.
+    </p>
+    <p>
+    The sample above loads the event interface HttpAction, this event interface performs an HTTP
+    request when it sees the configured event.
+    </p>
+    
+    <h2>element: &lt;eventtype&gt;</h2>
+    <p>
+    Most event interface then lists one or more event types that it is interested in, this may be blank if it wants to 
+    see all event types and filter on the other things. The event log is an example of an event interface that
+    listend to all events from all event sources (see BaseHandlers.xml).
+    </p>
+    <p>
+    The sample above listens for the event type "internal" - This is just a convention of ours to identify events thats
+    are local to this webbrick gateway.
+    </p>
+    
+    <h2>element: &lt;eventsource&gt;</h2>
+    <p>
+    Within the event type element the event interface lists one or more eventsource entries,
+    these are the event source's that the interface it is interested in. 
+    It is possible again to put the empty string in here which means listen to all events of the named type.
+    </p>
+    <p>
+    The sample listens for lights/garage/on and lights/garage/off.
+    </p>
+
+    <h2>element: &lt;event&gt;</h2>
+
+    <p>The elements contained within the eventsource element tend to be more
+    event interface dependant and reference should be made to the event interface documentation at.
+    <a href="http://docs.webbrick.co.uk/eventinterfaces/EventInterfaces.html">http://docs.webbrick.co.uk/eventinterfaces/EventInterfaces.html</a>
+    </p>
+
+    <p>In the case of the HttpAction each event source element contains one event element, within
+    each of these is one or more uri elements.
+    </p>
+
+    <h2>element: &lt;uri&gt;</h2>
+
+    <p>Each URI element has 3 attributes. These are address, uri and cmd. The address is the network address
+    of the server to send the HTTP request to, this may be a dotted IP address or a hostname that can be 
+    resolved by the host platform. The uri is the full uri to access on the targetted server and cmd is the
+    HTTP command verb to use.
+    </p>
+    <p>
+    In the sample we issue a DO7N command when we see lights/garage/on and a DO7F command when we see lights/garage/off.
+    </p>
+
+    <h2>Summary</h2>
+
+    <p>This once again gives us much easier to read event names when generating more complex actions, there
+    could be an evemnt despatch file for every webbrick mapping easy names to the command structure. This could
+    be taken further for other devices, i.e. audio/lounge/cd/play</p>
+
+    <p>The next example will combine the first three examples into a single configuration file to give us the basis
+    of using user understandable names.</p>
+
+</body>
+</html>

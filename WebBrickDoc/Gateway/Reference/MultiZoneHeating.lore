@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Multi Zone Heating</title>
+  </head>
+  <body>
+    <h1>Multi Zone Heating</h1>
+
+    <p>
+    The gateway can coordinate a multi zone heating setup, with zones being grouped into zone groups where there is common equipment shared by the 
+    set of zones e.g. a manifold and pump. The zone groups are then combined into the overall 
+    heating system where equipment may be shared, e.g. a boiler.
+    </p>
+
+    <h2>Features</h2>
+
+    <p>
+    Up to 16 Zones.
+    Up to 6 zone groups.
+    Up to 3 heat sources.
+    Simple weather compensation based on local inputs.
+    </p>
+    
+    <h2>Specification</h2>
+    <h3>Simple</h3>
+    To provide scheduled set points for each zone.
+    To switch on the required valves as appropriate for the zone.
+    To switch on required valves for the geoup of zones.
+    To select the appropriate heat source for the zone group and hence for a heating zone.
+    
+    <h3>Occupancy based.</h3>
+
+    <h2>Configuration</h2>
+
+    <h3>Naming of zones and sensors.</h3>
+    <p>
+        There are some files that need editing to put the correct names in them:
+        <ul>
+            <li>zone_names.xml.</li>
+            <li>zone&gt;nn&lt;_inputs.xml.</li>
+        </ul>
+        The first of these needs editing to provide names for the zone. The second needs editing to name the temperature sensors for
+        the zone.
+    </p>
+
+    <h3>Per Zone</h3>
+    <p>
+        There are 3 files that are relevant to each zone:
+        <ul>
+            <li>zone&gt;nn&lt;.xml.</li>
+            <li>zone&gt;nn&lt;_inputs.xml.</li>
+            <li>zone&gt;nn&lt;_outputs.xml.</li>
+        </ul>
+        Of these the first should not need editing at all and by default is in a system directory, 
+        the next 2 are used to connect the logical events calling for the
+        zone to run and stop to the physical inputs and outputs.
+    </p>
+    <h3>Schedules</h3>
+    You need to declare a schedule for each zone. This is done in the prod.cfg file, normally in
+    /opt/webbrick/site. The default prod.cfg contains entries for zone1 to zone16, these name the schedules and
+    by default the schedule for a zone is named the same as the zone key (&gt;nn&lt;).
+
+    <h3>Per Zone Group</h3>
+    <p>
+        There are 3 files that are relevant to each zone group:
+        <ul>
+            <li>zonegroup&gt;nn&lt;.xml.</li>
+            <li>zonegroup&gt;nn&lt;_inputs.xml.</li>
+            <li>zonegroup&gt;nn&lt;_outputs.xml.</li>
+        </ul>
+        Of these the first should not need editing at all and by default is in a system directory, 
+        the later 2 are used to connect the logical events calling for the zone group to run and stop to the 
+        physical inputs and outputs.
+    </p>
+    <p>
+        Zones are allocated to groups by the installer using /template/ZoneGroupSetup:
+    </p>
+
+    <h3>Per Heat Source</h3>
+    <p>
+        There are 3 files that are relevant to each heat source:
+        <ul>
+            <li>zoneheatsource&gt;nn&lt;.xml.</li>
+            <li>zoneheatsource&gt;nn&lt;_inputs.xml.</li>
+            <li>zoneheatsource&gt;nn&lt;_outputs.xml.</li>
+        </ul>
+        Of these the first should not need editing at all and by default is in a system directory, 
+        the later 2 are used to connect the logical events calling for the heat source to run and stop to the 
+        physical inputs and outputs. By convention heatsource 1 is a Boiler, heatsource 2 is a ground source heat pump
+        and heat source 3 is solar water panel.
+    </p>
+
+    <h3>Overall heating system</h3>
+    <p>
+        The zonemaster is selected dependant on the number of heat sources you have, the correct set of three files
+        should be copied from zoneinactive into the user directory.
+
+        There are 3 files that are relevant to each zonemaster set:
+        <ul>
+            <li>zonemasterXxxx&gt;nn&lt;.xml.</li>
+            <li>zonemasterXxxx&gt;nn&lt;_inputs.xml.</li>
+            <li>zonemasterXxxx&gt;nn&lt;_outputs.xml.</li>
+        </ul>
+        Where Xxxx is the type of zone master.
+        Of these the first may need editing to add additional zone groups beyond the default 6 zone groups, 
+        the later 2 are used to connect the logical events calling for the heating system to run and 
+        stop to the physical inputs and outputs.
+    </p>
+    <p>
+        The supplied zone master files are as follows.
+        <ul>
+            <li>zonemaster_single - handles a single heat source i.e. gas fired boiler.</li>
+            <li>zonemaster_multiple - handles multiple heat sources i.e. boiler and solar.</li>
+        </ul>
+    </p>
+
+    <h2>Limitations</h2>
+    <p>
+
+    </p>
+
+  </body>
+</html>
+

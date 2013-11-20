@@ -1,0 +1,110 @@
+Serial Drivers Event Structure List
+
+
+Each driver has a list of "actions" these are things that the device can do. They can be triggered by sending an event of the following structure
+    Type: 'serial/action'
+    Source: 'serial/send/action'
+    Payload: cmd = 'send' id = 'Device id here' action = 'ACTION NAME HERE' parameter1 = '' parameter2 = '' and so on
+    
+
+NAD :
+
+    Events from driver :
+                        Type : 'NAD/5/Power'
+                        Source : 'to_ui/DEVICEID/NAD/5/PowerState/Changed
+                        Payload : val = (0 - 1)
+                        Description : Indicates whether the device is on or off
+                        
+                        Type : 'NAD/5/Volume'
+                        Source : 'to_ui/DEVICEID/NAD/5/VolumeChange'
+                        Payload : val = (1 - 99)
+                        Description : Indicates the current volume on the NAD
+                        
+                        Type : 'NAD/5/NewSource'
+                        Source : 'to_ui/DEVICEID/NAD/5/Source/SOURCETYPE' *sourcetype can be : DVD , Satellite , CAB/SAT , VCR , Video/4 , Tuner , Ext/5/1
+                        Payload : val = (0 - 1 )
+                        Description : Indicates whether a source is selected or not (1 for selected , 0 for not selected)
+    Actions available :
+            
+            Action name : "setvolume"
+            Parameters required : val =  (1-99)
+            
+            Action name : "mute"
+            Parameters required : None
+            
+            Action name : "unmute"
+            Parameters required : None
+            
+            Action name : "standby"
+            Parameters required : None
+            
+            Action name : "on"
+            Parameters required : None
+            
+            Action name : "setsource"
+            Parameters required : source = (DVD , Satellite , CAB/SAT , VCR , Video/4 , Tuner , External/5/1)
+        
+SKY : 
+
+* Sky is split into two parts , the sky driver which generates events from the data from the skyboxes rs232 port , and the dusky driver which is used for actual control of the skybox *
+
+    Sky Driver:
+        Events from driver :
+                        Type : Sky/Device/Update
+                        Source : Sky/Device/Id/DEVICEID/ChannelNumber
+                        Payload : val = (xxx) 
+                        Description : Current 3 digit channel number
+                        
+                        Type : Sky/Device/Update
+                        Source : Sky/Device/Id/DEVICEID/ChannelName
+                        Payload : val = text
+                        Description : Current channel name
+                        
+                        Type : Sky/Device/Update
+                        Source : Sky/Device/Id/DEVICEID/ProgramName
+                        Payload : val = text
+                        Description : Currently playing program name
+                        
+                        Type  : Sky/Device/Update
+                        Source : Sky/Device/Id/DEVICEID/ProgramDescription
+                        Payload : val = text
+                        Description : The description of the currently playing program
+                        
+                        Type : Sky/Device/Update
+                        Source : Sky/Device/Id/DEVICEID/CurrentTime
+                        Payload : val = text
+                        Description : The current time according to the skybox
+                        
+                        Type : Sky/Device/Update
+                        Source : Sky/Device/Id/DEVICEID/StartTime
+                        Payload : val = text
+                        Description : The start time of the current program
+                        
+    Dusky Driver:
+        Available actions :
+            
+            Action name : "setchannel"
+            Parameters required : val = 000
+            Description : Sets the channel to the three digit channel number
+            
+            Action name : "on"
+            Parameters required : None
+            Description : Turns the skybox on
+            
+            Action name : "off"
+            Parameters required : None
+            Description : Turns the skybox off    
+            
+            
+Lutron Homeworks : 
+    *NOTE processor/link/keypad numbers MUST be two digits long e.g.  processor = '1' is invalid ,  processor = '01' is valid NOTE* 
+    Events from driver : 
+                Type : 'Lutron/Lighting/Update'
+                Source : 'Lutron/Device/Id/DEVICEID/Processor_X/Link_X/Keypad_X/Light_X
+                Payload : val  =  (0-3)
+                Description : Indicates the status of a light (0 - off , 1 - on , 2,3 - sequences)
+                
+    Available Actions : 
+                Action name : 'togglelight'                                
+                Required Parameters : processor = (01-16) , link = (04,05,06) , keypad = (01-32) light = (01-15,23,24)
+                Description : Toggles the light specified.          

@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>PersistFile</title>
+</head>
+
+<body>
+
+    <h1>PersistFile</h1>
+
+        <p>This event interface handles the peristing of user entered configuration and delivery to interested parties.</p>
+
+    <h2>Description</h2>
+        <p>This event handler generates events for all persisted configuration at startup and when a subscribe is made for the data, it
+        also listens for events to update this configuration data and saves the new value and distributes it.</p>
+
+        The only configuration attribute is the name of the disk file to write the data to.
+
+    <h2>Configuration</h2>
+        <pre>
+    &lt;eventInterface module='EventHandlers.PersistFile' name='PersistFile' persistFile='WebBrickGateway.xml'&gt;
+    &lt;/eventInterface&gt;
+        </pre>
+</body>
+
+</html>

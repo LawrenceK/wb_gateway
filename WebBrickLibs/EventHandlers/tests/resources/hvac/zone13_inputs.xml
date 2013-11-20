@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!-- 
+TODO 
+Chnage temp sensor to be correct and zone valve feedbcak
+-->
+
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+    
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/CT'>
+            <eventsource source='webbrick/13/CT/0'>
+                <event>
+                    <params>
+                        <testNe name='val' value='0.0'/>
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/sensor" source="zone13/sensor">
+                        <copy_other_data val="val" />
+                        <other_data id="1" name="Landing"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+        <!-- not using digital outputs so comment out these, hence webbrick 999  -->
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/DO'>
+            <eventsource source='webbrick/999/DO/2'>
+                <event>
+                    <params>
+                        <testEq name="state" value="0" />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/zone" source="zone13/stopped" />
+                </event>
+                <event>
+                    <params>
+                        <testEq name="state" value="1" />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/zone" source="zone13/running" />
+                </event>
+            </eventsource>
+        </eventtype>
+        
+    </eventInterface>
+
+</eventInterfaces>

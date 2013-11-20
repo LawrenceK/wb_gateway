@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta name="author" content="Graham Klyne" />
+  <title>Subscribe request event URIs</title>
+  <style type="text/css">
+  .body { margin-left: 40px; }
+  .code { font-family: monospace; }
+  .param { font-style: italic;  }
+  .strong { font-weight: bold; }
+  </style>
+</head>
+
+<body>
+
+<h2>Subscribe Event Types.</h2>
+<p>
+Each of these events is caused by a subscribe or unsubscribe request being made to some event,
+the purpose is to enable those events that are resource intensive to collect to only be made
+when there is an interested party.
+</p>
+
+<h3>subscribe</h3>
+<p>
+The event type is <span>http://id.webbrick.co.uk/events/subscribe</span>
+</p>
+<p>
+The event source will be the the URL of the event distributor requesting it, in the case of the request being
+in the local event distributor it will be just '.' (single period). This enables subscribe requests to be distributed
+across a network of devices and affect the data collection.
+</p>
+<p>
+The other data consists of the event type and source of the event being subscribed to.
+
+eventType
+eventSource.
+</p>
+
+
+<h3>unsubscribe</h3>
+<p>
+The event type is <span>http://id.webbrick.co.uk/events/unsubscribe</span>
+</p>
+<p>
+The event source will be the the URL of the event distributor requesting it, in the case of the request being
+in the local event distributor it will be just '.' (single period). This enables subscribe requests to be distributed
+across a network of devices and affect the data collection.
+</p>
+<p>
+The other data consists of the event type and source of the event being subscribed to.
+
+eventType
+eventSource.
+</p>
+
+</body>
+
+</html>

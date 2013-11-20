@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>WebBrick Gateway Documentation.</title>
+</head>
+
+<body>
+    <h1>WebBrick Gateway Documentation.</h1>
+
+    <ul>
+        <li><a href="./User/index.xhtml">User Manual</a></li>
+        <li><a href="./Reference/index.xhtml">Reference Manual</a></li>
+        <li><a href="./linux/index.xhtml">Linux Install</a></li>
+        <li><a href="./Appliance/Introduction.xhtml">Appliance Manual</a></li>
+        <li><a href="./touchscreen/index.xhtml">Touchscreen Manual</a></li>
+    </ul>
+    <ul>
+        <li><a href="./User/User.pdf">User Manual(PDF)</a></li>
+        <li><a href="./Reference/Reference.pdf">Reference Manual(PDF)</a></li>
+        <li><a href="./Appliance/Appliance.pdf">Appliance Manual(PDF)</a></li>
+        <li><a href="./touchscreen/TouchScreen.pdf">TouchScreen Manual(PDF)</a></li>
+    </ul>
+
+</body>
+
+</html>

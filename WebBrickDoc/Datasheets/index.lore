@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Datasheets and Manuals</title>
+</head>
+
+<body>
+
+<h2>Datasheets and manuals</h2>
+<p>Here are the documents for various WebBrickSystems products
+</p> 
+
+<h3>URPS</h3>
+
+Manual <a href="URPSManualV1-0-iss2.pdf">WebBrick Gateway</a>
+
+<h3>8SSR</h3>
+
+<p>Low voltage version datasheet <a href="WebBrick%208SSR-Driver%20Datasheet%20LV%20Nov08.pdf">WebBrick Gateway</a></p>
+
+<p>Mains voltage version datasheet <a href="WebBrick%208SSR-Driver%20Datasheet%20HV%20Nov08.pdf">WebBrick Gateway</a></p>
+
+</body>
+
+</html>

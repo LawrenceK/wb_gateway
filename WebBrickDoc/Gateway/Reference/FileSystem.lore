@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>file system Directories</title>
+  </head>
+  <body>
+		<h1>file system Directories</h1>
+
+    <p>
+	    In this section we describe where to find things in your WebBrick Gateway installation. THIS NEEDS DECISIONS MADE.
+    </p>
+
+    <p>
+	    Here are the directories related to the WebBrick Gateway operation and the functionality they provide is:
+	
+      <table>
+        <tr><td>Documentation</td> 
+          <td>This contains documentation for the WebBrick Gateway and WebBricks</td>
+        </tr>
+        <tr><td>site</td> 
+          <td>This contains the applications for discovery and configuration management of WebBricks</td>
+         </tr>
+
+        <tr><td>WebBrickGateway</td> 
+          <td>This contains the programs and libraries that implement the Web Server component of the WebBrick Gateway</td>
+        </tr>
+
+        <tr><td>WebBrickLibs</td> 
+          <td>This contains the programs that make up the generic event dispatcher component of the WebBrick Gateway</td>
+        </tr>
+        
+        <tr><td>WebBrickPanel</td> 
+          <td>This contains generic libraries used to render panels and widgets for the WebBrick Gateway</td>
+        </tr>
+      </table>
+    </p>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>WebBrick Gateway Linux Prerequisites.</title>
+</head>
+
+<body>
+    <h1>WebBrick Gateway Linux Prerequisites.</h1>
+
+    The Webbrick gateway needs python 2.5 installed on the platform.
+    There are packages on the install CD but is is suggested that you use the platforms package manager to handle the 
+    software install using a network connection or system CDs.
+
+    <h2>Check python version</h2>
+    From a terminal window enter the command <em>python -V</em> (note capital V) to display the python version on your system.You will get an output 
+    like <em>Python 2.3.4</em> in this case the version needs upgrading. Use the system package mananger to install version 2.5, ideally 2.5.1. 
+    If you receive <em>Python 2.5.0</em> then nothing needs to be done. 
+
+    <h3>Debian</h3>
+    Ensure libc6-dev installed.
+    Ensure python-dev installed as well as python 2.5.
+    apt-get install python2.5-dev
+    
+    Or use apt-get install python-turbogears to install turbogears.
+    
+    <h3>Fedora Core</h3>
+
+    <h3>Ubuntu</h3>
+
+    <h3>Red Hat</h3>
+
+    <h3>Source Code</h3>
+
+        Download from python.org http://www.python.org/ftp/python/2.4.4/Python-2.4.4.tgz or locate in the python directory of the install package.
+        
+        From a command shell change to the directory where you downloaded the source file and enter the following commands.
+        <em>tar -xvf Python-2.5.1.tgz</em>
+        <em>cd Python-2.5.1.tgz</em>
+        <em>./configure</em>
+        <em>make</em>
+        <em>make install</em>
+        
+    <h2>Turbogears</h2>
+    The Webbrick Gateway uses the TurboGears framework to generate user interfaces. This can be installed over the Internet
+    or from local files.
+
+    <h3>Net install</h3>
+    Download <em>http://www.turbogears.org/download/tgsetup.py</em> or locate in the Turbogears folder of the install media.
+    
+    Start a command shell and go to where downloaded to or to the Turbogears folder on the install kit. Enter the command <em>python tgsetup.py</em>
+
+    <h3>Local install</h3>
+    Start a command shell and go to the Turbogears folder on the install kit. Enter the command <em>python tgsetup.py -f . TurboGears-1.0.3.2-py2.5.egg</em>
+
+    <h2>Serial support</h2>
+    The gateway can connect to devices over serial connections and uses pyserial for this support. This again can be installed over the Internet
+    or from local files.
+
+    <h3>Net install</h3>
+    Start a command shell, Enter the command <em>easy_install pyserial</em>
+
+    <h3>Local install</h3>
+    Start a command shell and go to the python folder on the install kit. Enter the command <em>easy_install pyserial2.2.zip</em>
+
+</body>
+
+</html>

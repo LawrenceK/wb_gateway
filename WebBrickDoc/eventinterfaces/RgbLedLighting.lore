@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>RgbLedLighting</title>
+</head>
+
+<body>
+
+    <h1>RgbLedLighting</h1>
+
+        <p>Respond to events to control Colorstars Tristar LED lights. These are accessed over an RS485 serial
+        interface.</p>
+
+    <h2>Description</h2>
+        <p>This event interface responds to events and send out serial commands as configured to control the LED lighting.</p>
+
+
+    <h2>Configuration</h2>
+        <p>The EventInterface element of this configuration has an additional attribute:
+        <ul>
+        <li>serialPort the platform specific name for the serial interface to be opened. For example on windows this
+        may be com9 and on linux /dev/ttys0</li>
+        </ul>
+
+        </p>
+
+        <p>The handler specific configuration for this expects one or more 'action' elements within the event element. 
+        This contains the folllowing attributes</p>
+
+        <ul>
+        <li>task - one of "rgb", "command", "on" or "off"</li>
+        </ul>
+
+        Attributes also required for the rgb task.
+        <ul>
+        <li>red - a value between 0 and 64 as red brightness level</li>
+        <li>green - a value between 0 and 64 as green brightness level</li>
+        <li>blue - a value between 0 and 64 as blue brightness level</li>
+        </ul>
+
+        Attributes also required for the command task.
+        <ul>
+        <li>command - one of the following commands, these match the commands on the IR remote, but 
+            please remember that some of the remote commands are performed by the master lamp and not 
+            the slaves. When integrated with WebBrick Gateway you do not have a master lamp and some fetures that the
+            remote controls are not available.</li>
+        </ul>
+
+        If the task is command then the command attribute must be given and have one of the following string velues.
+        <ul>
+            <li>on</li>
+            <li>off</li>
+            <li>toggle</li>
+
+            <li>flash - This command is processed by thre master lamp.</li>
+            <li>strobe - This command is processed by thre master lamp.</li>
+            <li>fade - This command is processed by thre master lamp.</li>
+            <li>smooth - This command is processed by thre master lamp.</li>
+
+            <li>bright1</li>
+            <li>bright2</li>
+            <li>bright3</li>
+            <li>bright4</li>
+            <li>red1</li>
+            <li>red2</li>
+            <li>red3</li>
+            <li>red4</li>
+            <li>red5</li>
+            <li>green1</li>
+            <li>green2</li>
+            <li>green3</li>
+            <li>green4</li>
+            <li>green5</li>
+            <li>blue1</li>
+            <li>blue2</li>
+            <li>blue3</li>
+            <li>blue4</li>
+            <li>blue5</li>
+            <li>white</li>
+            <li>lock</li>
+            <li>unlock</li>
+            <li>setup</li>
+            <li>cancel</li>
+        </ul>
+
+        <p>The action element may be repeated to get multiple actions on a single event.
+        </p>
+    <h2>Example</h2>
+    <pre>
+    &lt;eventInterface module='EventHandlers.RgbLedLighting' name='RgbLedLighting' serialport="com9"&gt;
+        &lt;eventtype type="internal"&gt;
+            &lt;eventsource source="cinema/lighting/red" &gt;
+                &lt;event&gt;
+                    &lt;action task="rgb" red="64" green="0" blue="0" /&gt;
+                &lt;/event&gt;
+            &lt;/eventsource&gt;
+            &lt;eventsource source="cinema/lighting/white" &gt;
+                &lt;event&gt;
+                    &lt;action task="command" command="white" /&gt;
+                &lt;/event&gt;
+            &lt;/eventsource&gt;
+            &lt;eventsource source="cinema/lighting/on" &gt;
+                &lt;event&gt;
+                    &lt;action task="command" command="on" /&gt;
+                &lt;/event&gt;
+            &lt;/eventsource&gt;
+            &lt;eventsource source="cinema/lighting/off" &gt;
+                &lt;event&gt;
+                    &lt;action task="command" command="off" /&gt;
+                &lt;/event&gt;
+            &lt;/eventsource&gt;
+        &lt;/eventtype&gt;
+    &lt;/eventInterface&gt;
+    </pre>
+
+</body>
+
+</html>

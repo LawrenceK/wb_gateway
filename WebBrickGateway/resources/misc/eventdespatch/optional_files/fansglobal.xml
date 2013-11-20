@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+
+<!--  Fan Control for cases where fans are not on the same webbrick as the PIR or Humidity sensor that controls them-->
+<!-- TODO change 999 for webbrick node number and target correct webbrick -->
+<!-- TODO change Xurl to url and change SampleWb to target correct webbrick -->
+
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+        <!--This responds to events and does an HTTP request(s) as the action.-->
+
+        <!-- Internal routing events, triggered by PIR or Humidity sensor-->
+        <eventtype type="internal">   
+            <eventsource source="fans/downstairs/doDwell" >
+                <event>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=DT;A0;6;5;%(dwell)s;0;0;0;0:" cmd="GET" />
+                </event>
+            </eventsource>
+        </eventtype>
+        
+        <eventtype type="internal">
+            <eventsource source="fans/upstairs/doDwell" >
+                <event>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=DT;A1;6;5;%(dwell)s;0;0;0;0:" cmd="GET" />
+                </event>
+            </eventsource>
+        </eventtype>      
+        
+        <!-- events triggered by user using simple buttons on form control -->
+        <eventtype type="http://id.webbrick.co.uk/events/uri">   
+            <eventsource source="fans/downstairs/10Min" >
+                <event>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=DT;A0;6;5;600;0;0;0;0:" cmd="GET" />
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <eventtype type="http://id.webbrick.co.uk/events/uri">
+            <eventsource source="fans/upstairs/10Min" >
+                <event>
+                    <Xurl address="SampleWb" uri="/hid.spi?COM=DT;A1;6;5;600;0;0;0;0:" cmd="GET" />
+                </event>
+            </eventsource>
+        </eventtype>     
+
+    </eventInterface>
+
+    
+    
+    <eventInterface module='EventHandlers.Compound' name='Compound'>
+        <!-- Build conditionals to handle PIR triggering for Downstairs Bathroom fan -->
+        
+        <eventtype type="http://id.webbrick.co.uk/events/webbrick/DI">
+            <eventsource source="webbrick/999/DI/0" >
+                <event>
+                    <action name="downpirtriggered" key="state"/>
+                </event>
+            </eventsource>
+            <eventsource source="webbrick/999/DI/1" >
+                <event>
+                    <action name="uppirtriggered" key="state"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <eventtype type="internal">
+            <eventsource source="HumDownWC" >
+                <event>
+                    <action name="downhumwc" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="HumUpWC">
+                <event>
+                    <action name="uphumwc" key="val"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <eventtype type="http://id.webbrick.co.uk/events/config/get">
+            <eventsource source="fans/downstairs/dwDuration">
+                <event>
+                    <action name='downdwell' key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="hum/downstairs/threshold">
+                <event>
+                    <action name='downhumthreshold' key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="fans/downstairs/PIRenabled">
+                <event>
+                    <action name='downpirenable' key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="fans/upstairs/dwDuration">
+                <event>
+                    <action name='updwell' key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="hum/upstairs/threshold">
+                <event>
+                    <action name='uphumthreshold' key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="fans/upstairs/PIRenabled">
+                <event>
+                    <action name='uppirenable' key="val"/>
+                </event>
+            </eventsource>
+        </eventtype> 
+        
+        <!--Run fan on PIR -->
+        <compound>
+            <params>
+                <testEq name='downpirenable' value='1'/>
+                <testEq name='downpirtriggered' value='1'/>
+            </params>
+            <newEvent type="internal" source="fans/downstairs/doDwell">
+                <copy_other_data dwell='downdwell'/>
+            </newEvent>
+        </compound>
+       
+        <!--Run Fan when Humidity above downhumthreshold-->
+        <compound>
+            <params>
+                <testGe type='float' name='downhumwc' param2='downhumthreshold'/>
+            </params>
+            <newEvent type="internal" source="fans/downstairs/doDwell">
+                <copy_other_data dwell='downdwell'/>
+            </newEvent>
+        </compound>
+        
+        <!--Run fan on PIR-->
+        <compound>
+            <params>
+                <testEq name='uppirenable' value='1' />
+                <testEq name='uppirtriggered' value='1' />
+            </params>
+            <newEvent type="internal" source="fans/upstairs/doDwell">
+                <copy_other_data dwell='updwell'/>
+            </newEvent>
+        </compound>
+        
+        <!--Run Fan when Humidity above uphumthreshold-->
+        <compound>
+            <params>
+                <testGe type='float' name='uphumwc' param2='uphumthreshold'/>
+            </params>
+            <newEvent type="internal" source="fans/upstairs/doDwell">
+                <copy_other_data dwell='updwell'/>
+            </newEvent>
+        </compound>
+
+    </eventInterface> 
+    
+</eventInterfaces>

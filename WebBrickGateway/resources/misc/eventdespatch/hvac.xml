@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eventInterfaces>
+
+    <eventInterface module='EventHandlers.HVAC' name='HeatingVentilationAC'>
+        <zones>
+            <zone key="zone1"  name='Hot Water' />
+            <zone key="zone2"  name='Dining' />
+            <zone key="zone3"  name='Office' />
+            <zone key="zone4"  name='Hall' />
+            <zone key="zone5"  name='Sitting Room' />
+            <zone key="zone6"  name='Garden Room' />
+            <zone key="zone7"  name='Up Bath' />
+            <zone key="zone8"  name='Ensuite' />
+            <zone key="zone9"  name='Gnd Bath' />
+            <zone key="zone10"  name='Playroom' />
+            <zone key="zone11"  name='Kitchen' />
+            <zone key="zone12"  name='Master Bed' />
+            <zone key="zone13"  name='Landing' />
+            <zone key="zone14"  name='Guest Bed' />
+            <zone key="zone15"  name='Notused' />
+            <zone key="zone16"  name='Kids Rooms' />
+        </zones>
+        <zonegroups>
+            <zonegroup key="1"  name='ZoneGroup1' />
+            <zonegroup key="2"  name='ZoneGroup2' />
+            <zonegroup key="3"  name='ZoneGroup3' />
+            <zonegroup key="4"  name='ZoneGroup4' />
+            <zonegroup key="5"  name='ZoneGroup5' />
+        </zonegroups>
+        <heatsources>
+            <heatsource key="1" type="boiler" name="Boiler" />
+            <heatsource key="2" type="ground" name="Ground Source" />
+
+            <heatsource key="3" type="multisolar" name="Solar">
+                <elevations>
+                    <elevation key="east" type="elevation" name="East"/>
+                    <elevation key="south" type="elevation" name="South"/>
+                    <elevation key="west" type="elevation" name="West"/>
+                </elevations>
+            </heatsource>
+            
+            <heatsource key="4" type="solar" name="Solar" />
+            <heatsource key="5" type="multiboiler" name="Multi Boiler" >
+                <boilers>
+                    <boiler key="1" name="Boiler 1" />
+                    <boiler key="2" name="Boiler 2" />
+                </boilers>
+            </heatsource>
+        </heatsources>
+        <zonemaster active="1" />
+    </eventInterface>
+
+</eventInterfaces>

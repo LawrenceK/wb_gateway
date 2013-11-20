@@ -1,0 +1,123 @@
+<html>
+<head><title>Simplest Event Despatch possible</title></head>
+<body>
+    <h1>Simplest Event Despatch possible</h1>
+
+    <p>This is a simple example with some issues but is good for explaining concepts. It listens for an event from a
+    single webbrick and instructs another webbrick to toggle an output. i.e. If you had a switch on one webbrick 
+    that was to control the lights on another webbrick.
+    </p>
+
+    <p>
+    So first the Xml.
+    <a href="01.01WebBrickEvent.xml" class="html-listing" />
+    And a discussion of each part.
+    </p>
+
+    <h2>element: &lt;eventInterfaces&gt;</h2>
+	<p>
+    Each event despatch control file has a single top level container element called eventInterfaces, inside
+    of which are 1 or more eventInterface elements.
+    </p>
+   
+    <h2>element: &lt;eventInterface&gt;</h2>
+    <p>
+    An eventInterface element configures one instance of a named eventInterface, the configuration of
+    an instance is private to itself. Most of the event interfaces can be loaded multiple times in the same 
+    configuration files or across multiple configuration files. A few can only be loaded once as they use 
+    dedicated resources or there is no point loading multiple times - these are typically listed in 
+    BaseHandlers.xml.
+    </p>
+
+    <p>
+    An event interface element lists two attributes that are used to dynamically load the event interface, these
+    will be documented for each event interface. The dynamic loading means that it is possible to develop
+    bespoke event interfaces and deploy without rebuilding the complete gateway.
+    
+    Each event interface element typically has one or more eventType elements, not typically but 
+    it is possible to have event interfaces that handle the configuration differently.
+    </p>
+    <p>
+    The sample above loads the event interface HttpAction, this event interface performs an HTTP
+    request when it sees the configured event.
+    </p>
+
+    <h2>events</h2>
+    <p>
+    I am going to digress slightly here. Within the gateway an event consists of an event type an event source and
+    optional other data. The event type identifies the meaning of the event and will specify the content of the 
+    other data, in effect it is a contract. If something sends a specific event type out it must supply the
+    documented other data. The event source identifies where the event has come from, this generally is a 
+    relative URI but in passing across between webbrick gateways it may be turned in to an absolute URI. 
+    Think of the event source as a bit like a telephone number, where a relative URI it consists of the just the 
+    local part of the number, when made absolute it aquires the exchange code.      
+    Even then it is being made unique within the country and not world wide.
+    </p>
+    
+    <h2>element: &lt;eventtype&gt;</h2>
+    <p>
+    Most event interface then lists one or more event types that it is interested in, this may be blank if it wants to 
+    see all event types and filter on the other things. The event log is an example of an event interface that
+    listend to all events from all event sources (see BaseHandlers.xml).
+    </p>
+    <p>
+    The sample above listens for the event type http://id.webbrick.co.uk/events/webbrick/TD - the definition of the 
+    event types we define can be found at
+    <a href="http://docs.webbrick.co.uk/events/index.html">http://docs.webbrick.co.uk/events</a>
+    The TD event is sent by a webbrick when it 
+    sees a digital input activated, a Td (lower case d) is sent when the same event is generated from
+    the webbricks own home page.
+    </p>
+    
+    <h2>element: &lt;eventsource&gt;</h2>
+    <p>
+    Within the event type element the event interface lists one or more eventsource entries,
+    these are the event source's that the interface it is interested in. 
+    It is possible again to put the empty string in here which means listen to all events of the named type.
+    </p>
+    <p>
+    The sample listens for webbrick/101/TD/0. This is an event from a webbrick, webbrick node number 101, type is
+    TD and channel is 0. This is the naming convention for events sent by webbricks.
+    </p>
+
+    <h2>element: &lt;event&gt;</h2>
+
+    <p>The elements contained within the eventsource element tend to be more
+    event interface dependant and reference should be made to the event interface documentation at.
+    <a href="http://docs.webbrick.co.uk/eventinterfaces/EventInterfaces.html">http://docs.webbrick.co.uk/eventinterfaces/EventInterfaces.html</a>
+    </p>
+
+    <p>In the case of the HttpAction each event source element contains one event element, within
+    each of these is one or more uri elements.
+    </p>
+
+    <h2>element: &lt;uri&gt;</h2>
+
+    <p>Each URI element has 3 attributes. These are address, uri and cmd. The address is the network address
+    of the server to send the HTTP request to, this may be a dotted IP address or a hostname that can be 
+    resolved by the host platform. The uri is the full uri to access on the targetted server and cmd is the
+    HTTP command verb to use.
+    </p>
+    <p>
+    In the sample we are accessing a webbrick at address "10.100.100.101". The uri is "/hid.spi?COM=DI7:". 
+    /hid.spi?COM= is the network command interface to a webbrick, the remainder follows the webbrick command
+    documentation.
+    </p>
+
+    <h2>Summary</h2>
+
+    <p>So the minimalistic xml above loads the event interface HttpAction, it listens for a trigger
+    of digital channel 0 on webbrick 100. It then issues an HTTP request to webbrick 10.100.100.101. The
+    command is DO7T, which is a command to toggle the state of digital output 7.
+    </p>
+
+    <h2>Gotchas</h2>
+    <p>By directly specifying the source webbrick for the event and the target webbrick in one place
+    if you move a switch or change a light channel you may have to edit the configuration in multiple
+    places. See the next sample for use of EventMapper to turn physical channel/webbrick numbers into logical 
+    devices, i.e. lights/kitchen/left/switch.
+    </p>
+    
+
+</body>
+</html>

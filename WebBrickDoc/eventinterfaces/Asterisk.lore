@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Asterisk</title>
+</head>
+
+<body>
+
+    <h1>Asterisk</h1>
+
+        <p>This is responsible for picking up AGI calls from asterisk, primary use is 
+        so the WebBrick Gateway can display caller id. You need to understand asterisk dial plans to use this.
+        </p>
+
+    <h2>Description</h2>
+        <p>This listens for AGI requests from asterisk.</p>
+
+
+    <h2>Configuration</h2>
+    <pre>
+        &lt;eventInterface module='EventHandlers.Asterisk' name='Asterisk' [listenPort='4573' ]&gt;
+        &lt;/eventInterface&gt;
+    </pre>
+
+    The listen port defaults to 4573 which is asterisks default port for FASTAGI.
+</body>
+
+</html>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<WebbrickConfig Ver="6.1.708">
+<NN>ExtLights</NN>
+<SI ip="10.0.0.21" mac="00:03:75:0F:83:A2"/>
+<SN>21</SN>
+<SRs>
+<SR id="0" Value="8"/>
+<SR id="1" Value="8"/>
+</SRs>
+<IR>29</IR>
+<SF>12</SF>
+<CDs>
+<CD id = "0" Name="Fan Run" Opt="2">
+<Trg B1="4" B2="0" B3="0" B4="0"/>
+</CD>
+<CD id = "1" Name="Fan Hi" Opt="2">
+<Trg B1="4" B2="1" B3="0" B4="0"/>
+</CD>
+<CD id = "2" Name="Land X-O" Opt="2">
+<Trg B1="4" B2="2" B3="0" B4="0"/>
+</CD>
+<CD id = "3" Name="Enab-Lght" Opt="2">
+<Trg B1="4" B2="3" B3="0" B4="0"/>
+</CD>
+<CD id = "4" Name="PIR North" Opt="2">
+<Trg B1="69" B2="133" B3="0" B4="165"/>
+</CD>
+<CD id = "5" Name="PIR South" Opt="2">
+<Trg B1="69" B2="149" B3="0" B4="165"/>
+</CD>
+<CD id = "6" Name="PIR East" Opt="2">
+<Trg B1="69" B2="165" B3="0" B4="165"/>
+</CD>
+<CD id = "7" Name="PIR West" Opt="2">
+<Trg B1="69" B2="181" B3="0" B4="165"/>
+</CD>
+<CD id = "8" Name="Land Lghts" Opt="3">
+<Trg B1="0" B2="0" B3="0" B4="0"/>
+</CD>
+<CD id = "9" Name="Loft Lghts" Opt="3">
+<Trg B1="0" B2="0" B3="0" B4="0"/>
+</CD>
+<CD id = "10" Name="Cancel Cyd" Opt="2">
+<Trg B1="86" B2="69" B3="0" B4="165"/>
+</CD>
+<CD id = "11" Name="Courtyard" Opt="2">
+<Trg B1="117" B2="69" B3="0" B4="165"/>
+</CD>
+</CDs>
+<CCs>
+<CC id = "0" Dm="8" Ds="0" Am="15" Av="0"/>
+<CC id = "1" Dm="8" Ds="8" Am="15" Av="13107"/>
+<CC id = "2" Dm="8" Ds="8" Am="15" Av="13111"/>
+<CC id = "3" Dm="8" Ds="8" Am="15" Av="13171"/>
+<CC id = "4" Dm="8" Ds="8" Am="15" Av="0"/>
+<CC id = "5" Dm="0" Ds="0" Am="1" Av="6"/>
+<CC id = "6" Dm="0" Ds="0" Am="0" Av="0"/>
+<CC id = "7" Dm="8" Ds="8" Am="15" Av="30583"/>
+</CCs>
+<CWs>
+<CW id="0">30</CW>
+<CW id="1">2</CW>
+<CW id="2">60</CW>
+<CW id="3">300</CW>
+<CW id="4">300</CW>
+<CW id="5">600</CW>
+<CW id="6">900</CW>
+<CW id="7">1200</CW>
+</CWs>
+<CSs>
+<CS id="0">0</CS>
+<CS id="1">14</CS>
+<CS id="2">28</CS>
+<CS id="3">42</CS>
+<CS id="4">57</CS>
+<CS id="5">71</CS>
+<CS id="6">85</CS>
+<CS id="7">99</CS>
+</CSs>
+<CTs>
+<CT id="0" Name="Loft">
+<TrgL Lo="-80" B1="192" B2="0" B3="0" B4="165"/>
+<TrgH Hi="1600" B1="0" B2="0" B3="0" B4="0"/>
+</CT>
+<CT id="1" Name="Temp-2">
+<TrgL Lo="-800" B1="0" B2="0" B3="0" B4="0"/>
+<TrgH Hi="1600" B1="0" B2="0" B3="0" B4="0"/>
+</CT>
+<CT id="2" Name="Temp-3">
+<TrgL Lo="-800" B1="0" B2="0" B3="0" B4="0" />
+<TrgH Hi="1600" B1="0" B2="0" B3="0" B4="0"/>
+</CT>
+<CT id="3" Name="Temp-4">
+<TrgL Lo="-800" B1="0" B2="0" B3="0" B4="0"/>
+<TrgH Hi="1600" B1="0" B2="0" B3="0" B4="0"/>
+</CT>
+<CT id="4" Name="Temp-5">
+<TrgL Lo="-800" B1="0" B2="0" B3="0" B4="0"/>
+<TrgH Hi="1600" B1="0" B2="0" B3="0" B4="0"/>
+</CT>
+</CTs>
+<CIs>
+<CI id="0" Name="AnIn-1">
+<TrgL Lo="0" B1="0" B2="0" B3="0" B4="0"/>
+<TrgH Hi="100" B1="0" B2="0" B3="0" B4="0"/>
+</CI>
+<CI id="1" Name="AnIn-2">
+<TrgL Lo="0" B1="0" B2="0" B3="0" B4="0"/>
+<TrgH Hi="100" B1="0" B2="0" B3="0" B4="0"/>
+</CI>
+<CI id="2" Name="AnIn-3">
+<TrgL Lo="0" B1="0" B2="0" B3="0" B4="0"/>
+<TrgH Hi="100" B1="0" B2="0" B3="0" B4="0"/>
+</CI>
+<CI id="3" Name="AnIn-4">
+<TrgL Lo="0" B1="0" B2="0" B3="0" B4="0"/>
+<TrgH Hi="100" B1="0" B2="0" B3="0" B4="0"/>
+</CI>
+</CIs>
+<CEs>
+<CE id="0" Days="0" Hours="0" Mins="0">
+<Trg B1="0" B2="0" B3="0" B4="0"/>
+</CE>
+<CE id="1" Days="0" Hours="0" Mins="0">
+<Trg B1="0" B2="0" B3="0" B4="0"/>
+</CE>
+<CE id="2" Days="0" Hours="0" Mins="0">
+<Trg B1="0" B2="0" B3="0" B4="0"/>
+</CE>
+<CE id="3" Days="0" Hours="0" Mins="0">
+<Trg B1="0" B2="0" B3="0" B4="0"/>
+</CE>
+<CE id="4" Days="0" Hours="0" Mins="0">
+<Trg B1="0" B2="0" B3="0" B4="0"/>
+</CE>
+<CE id="5" Days="0" Hours="0" Mins="0">
+<Trg B1="0" B2="0" B3="0" B4="0"/>
+</CE>
+<CE id="6" Days="0" Hours="0" Mins="0">
+<Trg B1="0" B2="0" B3="0" B4="0"/>
+</CE>
+<CE id="7" Days="0" Hours="0" Mins="0">
+<Trg B1="0" B2="0" B3="0" B4="0"/>
+</CE>
+<CE id="8" Days="0" Hours="0" Mins="0">
+<Trg B1="0" B2="0" B3="0" B4="0"/>
+</CE>
+<CE id="9" Days="0" Hours="0" Mins="0">
+<Trg B1="0" B2="0" B3="0" B4="0"/>
+</CE>
+<CE id="10" Days="0" Hours="0" Mins="0">
+<Trg B1="0" B2="0" B3="0" B4="0"/>
+</CE>
+<CE id="11" Days="0" Hours="0" Mins="0">
+<Trg B1="0" B2="0" B3="0" B4="0"/>
+</CE>
+<CE id="12" Days="0" Hours="0" Mins="0">
+<Trg B1="0" B2="0" B3="0" B4="0"/>
+</CE>
+<CE id="13" Days="0" Hours="0" Mins="0">
+<Trg B1="0" B2="0" B3="0" B4="0"/>
+</CE>
+<CE id="14" Days="0" Hours="0" Mins="0">
+<Trg B1="0" B2="0" B3="0" B4="0"/>
+</CE>
+<CE id="15" Days="0" Hours="0" Mins="0">
+<Trg B1="0" B2="0" B3="0" B4="0"/>
+</CE>
+</CEs>
+<NOs>
+<NO id="0" Name="Fan Run"/>
+<NO id="1" Name="Fan Hi Sp"/>
+<NO id="2" Name="Land Rela"/>
+<NO id="3" Name="Enable Li"/>
+<NO id="4" Name="DigOut-5"/>
+<NO id="5" Name="DigOut-6"/>
+<NO id="6" Name="DigOut-7"/>
+<NO id="7" Name="DigOut-8"/>
+</NOs>
+<NAs>
+<NA id="0" Name="North"/>
+<NA id="1" Name="South"/>
+<NA id="2" Name="East"/>
+<NA id="3" Name="West"/>
+</NAs>
+</WebbrickConfig>

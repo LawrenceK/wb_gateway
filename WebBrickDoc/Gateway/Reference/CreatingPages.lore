@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Creating Pages</title>
+  </head>
+  <body>
+    <h1>Creating Pages</h1>
+
+<p>
+    This section deals with creating pages in the WebBrick Gateway.  There are a number of approaches
+    depending on the required outcome.  Most pages are written using the KID template template
+    language. The benefit of this is that it enables a clean separation between data and style.
+    It also allows us to generate user interface's that have 'standard' (for the installation) 
+    display elements on all pages, which are tailored for the end user.
+</p>
+
+         <h2>BoilerPlate</h2>
+
+<p>
+    All templated pages are based on the following boilerplate and this can be found as BoilerPlate.kid.
+    It is this that pulls in the default headers and footers on each page.
+</p>
+
+
+<pre>
+  &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  &lt;html xmlns="http://www.w3.org/1999/xhtml" xmlns:py="http://purl.org/kid/ns#" py:extends="'master.kid'">
+  ${output_head("WebBrick Gateway Home page")}
+
+  &lt;body>
+
+  ${output_nav("WebBrick Gateway")}
+
+    Insert page specific code in here.
+
+  ${output_site_info_bar()}
+
+  &lt;/body>
+
+  &lt;/html>
+</pre>
+
+<p>
+In this there is an header section, a call to generate a display header with standard navigation buttons. The
+page specific data then goes next followed by a call to generate a standard page footer (information area).
+
+</p>
+         <h2>User interface Elements</h2>
+
+<p>
+        An element on a page with a wbType attribute is generally a dynamic element and has associated javascript. 
+        Depending on wbType there may be other attributes.
+</p>
+<p>
+        The UI may have any of the following dynamic elements.
+</p>
+<p>
+            
+  <table>
+    <tr><td>wbType</td><td>Description</td></tr>
+    <tr><td>PushButton</td><td>sends a command when clicked or touched using wbTarget, displays the state of wbSource</td></tr>
+    <tr><td>Indicator</td><td>a variant of pushbutton that only displays state.</td></tr>
+    <tr><td>Numeric</td><td>displays a numeric value retrived using wbSource.</td></tr>
+    <tr><td>NumericBar</td><td>Used to display a numeric display as a grahical bar.</td></tr>
+    <tr><td>WbBackGround</td><td>Used to do dynamic updates to the display background using wbSource to retrive image name.</td></tr>
+    <tr><td>Caption</td><td>Que</td></tr>
+    <tr><td>PushSelect</td><td>Multiple push buttons</td></tr>
+    <tr><td>Text</td><td>display dynamic text retrived using wbSource</td></tr>
+    <tr><td>TextEntry</td><td>Not yet implemented</td></tr>
+    <tr><td>WbTimeDisplay</td><td>Used for formatted time display.</td></tr>
+    <tr><td>WbTimeEntry</td><td>Used for time display and to enter a time by a user performing updates.</td></tr>
+    <tr><td>WbDayEntry</td><td>Used for display and to enter a day or set of days by a user performing updates.</td></tr>
+    <tr><td>WbNumericEntry</td><td>Used for numeric display and to enter a numeric value by a user performing updates.</td></tr>
+    <tr><td>WbOnOffEntry</td><td>Used for On Off state display and for use to enter On Off or Ignore by a user performing updates.</td></tr>
+  </table>
+</p>
+
+<p>
+        Common attributes on these dynamic elements are:
+</p>
+<p>
+            
+  <table>
+    <tr><td>attribute</td><td>Description</td></tr>
+    <tr><td>wbSource</td><td>URI providing the state to retrived and displayed</td></tr>
+    <tr><td>wbTarget</td><td>URI providing target for element command</td></tr>
+    <tr><td>wbLoad</td><td>name of javascript function used to start the dynamic element. If not given then a function called load&lt;wbType&gt; is looked for, where wbType is replaced by content of wbType attribute.</td></tr>
+  </table>
+</p>
+
+<p>
+        An example of a simple push button would have this fragment in the template.
+</p>
+
+
+<pre>
+  &lt;td wbType="PushButton" wbLoad="loadButton()" 
+        wbTarget="/wbcmd/heating.webbrick/DI/0" 
+        wbSource="/wbsts/heating.webbrick/DO/0"&gt;
+            Ensuite Fan
+  &lt;/td&gt;
+
+</pre>
+
+	      <h3>PushButton, Indicator</h3>
+
+<p>
+        A push button when selected uses the URI given in wbTarget to generate some action at the WebBrick Gateway, and uses the 
+        data retrived from the wbSource URI to control the look of button. This latter allows the button to show the
+        state of an output or some other information. This element can also be used purely as an indicator by
+        ommmiting the wbTarget attribute.
+</p>
+<p>
+            
+  <table>
+    <tr><td>attribute</td><td>Description</td></tr>
+    <tr><td>wbType</td><td>PushButton</td></tr>
+    <tr><td>wbSource</td><td>URI providing the state to retrived and displayed. The returned string is either a numeric string or one of the strings 'true','false','on','off'.</td></tr>
+    <tr><td>wbTarget</td><td>As Above</td></tr>
+    <tr><td>wbLoad</td><td>As Above</td></tr>
+    <tr><td>stateVals</td><td>contains a string of comma separated state names, if not given the state names 'Off' and 'On' are used</td></tr>
+    <tr><td>baseClassName</td><td>contains a base name for the CSS classes used by the element, if not given the base name'button' is used</td></tr>
+  </table>
+</p>
+
+<p>
+        The state names and the baseClassName are used to set the CSS class name for this element based on
+        the value returned by wbSource which is an index into the stateVals. The default CSS class 
+        names are buttonOff and buttonOn. This indicator functionality is intended to be used where the number
+        of distinct values that wbSource returns are from a small set.
+</p>
+<p>
+        Default CSS class names.
+</p>
+<p>
+            
+  <table>
+    <tr><td>cssClass</td><td>Description</td></tr>
+    <tr><td>buttonOff</td><td>used when wbSource returns 0 or false or off</td></tr>
+    <tr><td>buttonOn</td><td>used when wbSource returns non zero or 'true' or 'on'</td></tr>
+  </table>
+</p>
+
+<p>
+        An example of a slightly more complex push button would have this xhtml fragment in the template.
+
+</p>
+
+<pre>
+	&lt;td wbType="PushButton" wbLoad="loadButton()"
+                wbTarget="/wbcmd/garage/DI/4"
+                wbSource="/localstate/Garage/Door/1"
+                stateVals="Ajar,Closed,Open,Error"
+                baseClassName="door"
+  &gt;
+    Garage Door
+  &lt;/td&gt;
+
+</pre>
+
+<p>
+        In this case we are getting the garage state in a processed form that returns a number between 0 and 3. The
+        display element maps this to the states "Ajar,Closed,Open,Error". The baseClassName is used so the CSS class names
+        used are "doorAjar,doorClosed,doorOpen,doorError". When the button is clicked then the webbrick input that corresponds 
+        to the correct digitral output connected to the door motor is activated. The target output could be aactioned directly
+        but normally there will be a physical button as well.
+</p>
+	      <h3>Numeric</h3>
+
+<p>
+        A numeric element retrives the numeric string using wbSource and displays it using formatting 
+        information provided to the wbLoad function.
+</p>
+<p>
+            
+<table>
+<tr><td>attribute</td><td>Description</td></tr>
+<tr><td>wbType</td><td>Numeric</td></tr>
+<tr><td>wbSource</td><td>URI providing the state to be retrieved and displayed. The returned string shouyld be a numeric string.</td></tr>
+<tr><td>wbLoad</td><td>As Above, also
+            the wbLoad function can take further parameters to control the formatting of the numeric. These are:
+            prefix a string to put in front, a format string and postfix a string to puit after the number.</td></tr></table>
+</p>
+
+<p>
+        Default CSS class names.
+</p>
+<p>
+            
+<table>
+<tr><td>cssClass</td><td>Description</td></tr></table>
+</p>
+
+<p>
+        An example of a Numeric display would have this xhtml fragment in the template.
+</p>
+
+<pre>
+        &lt;td wbType="Numeric" wbLoad='loadNumericDisplay("CH Flow: ","##.#","&amp;ordm;C")'
+            wbSource='/wbsts/heating/Tmp/4'&gt;&amp;nbsp;&lt;/td&gt;
+
+</pre>
+
+<p>
+        This uses the extended load function to put a label before the value, specifies a format for the number and a postfix
+        string to be put after the value. The td element has a non blank space so that the td is correctly formatted at load time
+        before it has the value to display. 
+</p>
+<p>
+        The wbSource for this element when displaying webbrick information is typically one 
+        of /wbsts/heating/Tmp/n, /wbsts/heating/AI/n, /wbsts/heating/AO/n.
+</p>
+	      <h3>NumericBar</h3>
+<p>
+        A numeric bar displays a numeric value graphically.
+</p>
+<p>
+            
+  <table>
+    <tr><td>attribute</td><td>Description</td></tr>
+    <tr><td>wbType</td><td>NumericBar</td></tr>
+    <tr><td>wbSource</td><td>URI providing the state to retrived and displayed. The returned string is a numeric string.</td></tr>
+    <tr><td>wbLoad</td><td>As Above</td></tr>
+    <tr><td>minvalue</td><td>data value that corresponds to left hand end of scale. default is 0</td></tr>
+    <tr><td>maxvalue</td><td>data value that corresponds to right hand end of scale. default is 100</td></tr>
+    <tr><td>graphic0</td><td>graphic image used for left hand section of display, default is /static/images/green.png</td></tr>
+    <tr><td>graphic1</td><td>graphic image used for centre section of display, default is /static/images/red.png</td></tr>
+    <tr><td>graphic2</td><td>graphic image used for right hand section of display, default is /static/images/green.png</td></tr>
+    <tr><td>curvalue</td><td>Initial value for display</td></tr>
+  </table>
+</p>
+
+<p>
+        If the value retrieved is less than minvalue then the marker will be at the left hand end, if it
+        is greater than maxvalue then the marker will be at the right hand end.
+</p>
+<p>
+        Default CSS class names.
+</p>
+<p>
+            
+<table>
+<tr><td>cssClass</td><td>Description</td></tr></table>
+</p>
+
+<p>
+        An example of a NumericBar display would have this xhtml fragment in the template.
+</p>
+
+<pre>
+        &lt;td class='NumericBar' id='ambientTemp'
+                wbType="NumericBar" 
+                wbSource='/wbsts/heating/Tmp/4'
+                minvalue="-5"
+                maxvalue="70"
+                graphic0="/static/images/clear.png"
+                graphic1="/static/images/WhiteVPointer.png"
+                graphic2="/static/images/clear.png"
+                curvalue="0"
+                height="10px" width='80%' &gt;&amp;nbsp;
+        &lt;/td&gt; 
+
+</pre>
+
+<p>
+        In this case the default graphics have been replaced by alternates, that only display a white pointer. The range
+        of the display is -5 to 70. We have also provided a height and width for the element.
+</p>
+
+	      <h3>WbBackGround</h3>
+<p>	      
+            WbBackGround
+
+            Used to do dynamic updates to the display background using wbSource to retrive image name. This is generally
+            applied to the Body element by the master.kid template. It could be applied to other elements but this could 
+            result in messy displays.
+</p>
+<p>
+            
+  <table>
+    <tr><td>attribute</td><td>Description</td></tr>
+    <tr><td>wbType</td><td>BackGround</td></tr>
+    <tr><td>wbSource</td><td>URI providing the name of an image file to be used as the element background.</td></tr>
+    <tr><td>wbLoad</td><td>As Above</td></tr>
+  </table>
+</p>
+
+<p>
+        Default CSS class names.
+            
+<table>
+<tr><td>cssClass</td><td>Description</td></tr></table>
+</p>
+
+<p>
+        An example of a background display element would have this xhtml fragment in the template. 
+
+<pre>
+&lt;body wbType="WbBackGround" wbSource="/localstate/background"&gt;
+&lt;/body&gt;
+
+</pre>
+        Note
+        that this is the default in master.kid and affects the complete display area. Most times it is not
+        expected that this will be changed, but some weird effects could be caused by this. e.g.
+</p>
+<p>
+
+<pre>
+  &lt;div wbType="WbBackGround" wbSource="/localstate/backgroundTop"&gt;
+  &lt;/div&gt;
+  &lt;div wbType="WbBackGround" wbSource="/localstate/backgroundMiddle"&gt;
+      &lt;div wbType="WbBackGround" wbSource="/localstate/backgroundLeft"&gt;
+      &lt;/div&gt;
+      &lt;div wbType="WbBackGround" wbSource="/localstate/backgroundright"&gt;
+      &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div wbType="WbBackGround" wbSource="/localstate/backgroundBottom"&gt;
+  &lt;/div&gt;
+</pre>
+</p>
+<p>
+        You would need to set up the event handling to update the backgroundXxx states but this would result
+        in different background images on different parts of the screen. An example may be for camera displays
+        you may change background on a PIR trigger.
+</p>
+
+	      <h3>Caption</h3>
+<p>
+            A caption is mainly a place holder for labeling the user interface, it is not currently dynamic.
+</p>
+<p>
+            
+  <table>
+    <tr><td>attribute</td><td>Description</td></tr>
+    <tr><td>wbType</td><td>Caption</td></tr>
+    <tr><td>wbSource</td><td>As Above</td></tr>
+    <tr><td>wbLoad</td><td>As Above</td></tr>
+  </table>
+</p>
+
+<p>
+        Default CSS class names.
+
+
+            
+<table>
+<tr><td>cssClass</td><td>Description</td></tr>
+<tr><td>caption</td><td>always used</td></tr></table>
+not fully understood.
+	
+      <h3>PushSelect</h3>
+<p>
+            PushSelect
+</p>
+<p>
+            Multiple push buttons
+</p>
+<p>
+            
+<table>
+<tr><td>attribute</td><td>Description</td></tr>
+<tr><td>wbType</td><td>Caption</td></tr>
+<tr><td>wbSource</td><td>As Above</td></tr>
+<tr><td>wbLoad</td><td>As Above</td></tr></table>
+</p>
+
+<p>
+        Default CSS class names.
+
+<table>
+<tr><td>cssClass</td><td>Description</td></tr></table>
+</p>
+
+
+	      <h3>Text</h3>
+<p>
+            Text
+            Display dynamic text retrieved using wbSource
+</p>
+<p>
+            
+  <table>
+    <tr><td>attribute</td><td>Description</td></tr>
+    <tr><td>wbType</td><td>Caption</td></tr>
+    <tr><td>wbSource</td><td>As Above</td></tr>
+    <tr><td>wbLoad</td><td>As Above</td></tr>
+  </table>
+</p>
+
+<p>
+        This has an alternate load function loadTextDisplay that takes optional prefix and postfix for the text.
+        Default CSS class names.
+
+            
+<table>
+<tr><td>cssClass</td><td>Description</td></tr>
+<tr><td>textPending</td><td>We are waiting for the text.</td></tr>
+<tr><td>textAbsent</td><td>The text cannot be retrieved.</td></tr>
+<tr><td>textPresent</td><td>The text has been retrieved.</td></tr></table>
+</p>
+
+<p>
+        An example of a text display element would have this xhtml fragment in the template. 
+
+
+<pre>
+&lt;td wbType="Text" wbSource="/"&gt;
+&lt;/td&gt;
+
+</pre>
+</p>
+
+	      <h3>
+            TextEntry
+        </h3>
+
+<p>
+            Not yet implemented
+            
+<table>
+<tr><td>attribute</td><td>Description</td></tr>
+<tr><td>wbType</td><td>Caption</td></tr>
+<tr><td>wbSource</td><td>As Above</td></tr>
+<tr><td>wbLoad</td><td>As Above</td></tr></table>
+</p>
+
+<p>
+        Default CSS class names.
+
+            
+<table>
+<tr><td>cssClass</td><td>Description</td></tr></table>
+</p>
+
+
+	      <h3>WbTimeDisplay</h3>
+<p>
+            WbTimeDisplay
+
+
+            Used for formatted time display.
+
+            
+<table>
+<tr><td>attribute</td><td>Description</td></tr>
+<tr><td>wbType</td><td>Caption</td></tr>
+<tr><td>wbSource</td><td>As Above</td></tr>
+<tr><td>wbLoad</td><td>As Above</td></tr></table>
+</p>
+
+<p>
+        Default CSS class names.
+
+            
+<table>
+<tr><td>cssClass</td><td>Description</td></tr></table>
+</p>
+
+
+	      <h3>WbTimeEntry</h3>
+<p>
+
+            WbTimeEntry
+
+            Used for time display and to enter a time by a user performing updates.
+
+            
+<table>
+<tr><td>attribute</td><td>Description</td></tr>
+<tr><td>wbType</td><td>Caption</td></tr>
+<tr><td>wbSource</td><td>As Above</td></tr>
+<tr><td>wbLoad</td><td>As Above</td></tr></table>
+</p>
+
+<p>
+        Default CSS class names.
+
+            
+<table>
+<tr><td>cssClass</td><td>Description</td></tr></table>
+</p>
+
+
+<div>
+	<h3>WbDayEntry</h3>
+    Used for display and to enter a day or set of days by a user performing updates.
+      <table>
+        <tr><td>attribute</td><td>Description</td></tr>
+        <tr><td>wbType</td><td>Caption</td></tr>
+        <tr><td>wbSource</td><td>As Above</td></tr>
+        <tr><td>wbLoad</td><td>As Above</td></tr>
+      </table>
+</div>
+
+<p>
+  Default CSS class names.
+
+<table>
+<tr><td>cssClass</td><td>Description</td></tr></table>
+</p>
+
+	      <h3>WbNumericEntry</h3>
+<p>
+            WbNumericEntry
+
+            Used for numeric display and to enter a numeric value by a user performing updates.
+
+            
+<table>
+<tr><td>attribute</td><td>Description</td></tr>
+<tr><td>wbType</td><td>Caption</td></tr>
+<tr><td>wbSource</td><td>As Above</td></tr>
+<tr><td>wbLoad</td><td>As Above</td></tr></table>
+</p>
+
+<p>
+        Default CSS class names.
+
+<table>
+<tr><td>cssClass</td><td>Description</td></tr></table>
+</p>
+	      <h3>WbOnOffEntry</h3>
+
+<p>
+	      
+            WbOnOffEntry
+
+            Used for On Off state display and for use to enter On Off or Ignore by a user performing updates.
+
+<table>
+<tr><td>attribute</td><td>Description</td></tr>
+<tr><td>wbType</td><td>Caption</td></tr>
+<tr><td>wbSource</td><td>As Above</td></tr>
+<tr><td>wbLoad</td><td>As Above</td></tr></table>
+</p>
+
+<p>
+        Default CSS class names.
+            
+<table>
+<tr><td>cssClass</td><td>Description</td></tr></table>
+</p>
+</p>
+
+         <h2>Example Pages</h2>
+
+        Here we have some slightly more complex examples.
+  <div>
+    <h3>NavigationPage</h3>
+
+    Here is an example of a page that purely provides navigation to other pages.
+
+    <a href="welcome.kid" class="html-listing" />
+
+    <p>
+        The core of this is a table containing td elements all with an onClick attribute, this means when the 
+        use clicks or touches the data element the browser is redirected to a new page. The pages with URIs that start <em>/template</em>
+        do not require any extra data from the WebBrick Gateway and are then just build from the named template, i.e. Lighting
+        loads template lighting.kid from the templates directory. other URIs generally require extra data
+        from the WebBrick Gateway, for example heating schedule where the number of devices is configued elsewhere.
+    </p>
+  </div>
+  <div>
+    <h3>Heating</h3>
+  	  Here is an example of a page for creating a panel for control of central heating and hot water.
+
+      <a href="heating.kid" class="html-listing" />
+
+      <p>
+        The termperature display actually consists of multiple display elements, one displays 
+        the temperature textually and the other graphically, there is also an image between the two elements as
+        a separator and to add a slightly different look and feel to the display.
+      </p>
+  </div>
+
+  <h2>PushButton examples</h2>
+
+    <h3>An Active Section</h3>
+
+		This section contains controls that send events to WebBricks, where they are acted upon:
+
+<pre>
+			&lt;table&gt;
+			  &lt;tr&gt;  
+			    &lt;td wbType="PushButton" wbLoad="loadButton()" 
+			        wbTarget="/wbcmd/heating.webbrick/DI/0" 
+			        wbSource="/wbsts/heating.webbrick/DO/0"&gt;Ensuite Fan&lt;/td&gt;
+			  &lt;/tr&gt;
+			&lt;/table&gt;
+		
+</pre>
+
+<p>
+		Here there are several things to note, first lets examine the <em>td</em> that starts wbType="PushButton":
+		
+<ol type="1">
+<li><b>wbType</b>  This sets the type of widget that will be rendered on the page, in this case "PushButton"
+</li>
+
+<li><b>wbTarget</b>  This is a URI that points to the resource that will be commanded if the widget is cleanly clicked.
+</li>
+
+<li><b>wbSource</b>  This is a URI that points to the resource that will be used to render the <b>state</b> of the 
+			widget.
+</li>
+</ol>
+</p>
+
+<p>
+		To explain further:  The WebBrick Gateway makes extensive use of the URI <em>Universal Resource Identifier</em> construction.  As a 
+		design goal, all practicable inputs should be available as URI's.  Here's a break down of the URI:
+
+<pre>
+
+		
+		    /wbcmd/heating.webbrick/DI/0
+			
+		
+</pre>
+</p>
+
+<p>
+		Generically this is /<em>type</em>/<em>IPaddressOrName</em>/<em>object</em>/<em>index</em>.
+
+		Taking the example above, we have a command /<em>wbcmd</em> to a WebBrick called <em>"heating.webbrick"</em>.  The command is 
+		directed to the digital inputs /<em>DI</em> and the index is /<em>0</em> i.e. the first digital input (Digital input 1)
+</p>		
+	      <h3>Creating an indicator</h3>
+
+<p>
+		An indicator differs from a button in two key ways:
+		
+<ul>
+<li><b>Operation:</b> There is no command to be issued, therefore an indicator is not clickable.
+</li>
+
+<li><b>Representation:</b> An indicator can represent a wide range of states, from simple <em>On-Off</em> through <em>Alarm-Clear</em>
+			to more complex schemes.  For example a garage door may have the states <em>Open-Closed-Ajar-Error</em>.
+</li>
+</ul>
+</p>
+
+<p>
+		Within the WebBrick Gateway, the treatment is similar to a button, but somewhat extended, here is an example:
+
+<pre>
+		        &lt;td wbType="Indicator" wbLoad="loadButton()" 
+		                wbSource="/wbsts/kitchen/DI/3"
+		                stateVals="Clear,NotReady"
+		                baseClassName="indicator"&gt;
+                        Coffee Ready
+		        &lt;/td&gt;
+		
+</pre>		        
+</p>
+
+<p>
+		The parameters are
+
+<ol type="1">
+<li><b>wbType:</b> Tells the WebBrick Gateway what kind of widget to render on the page.
+</li>
+
+<li><b>wbLoad:</b> Calls the initialization code.
+</li>
+
+<li><b>wbSource</b> This is a URI that points to the resource that will be used to render the <b>state</b> of the 
+			widget.
+</li>
+
+<li><b>stateVals:</b> This is a list of states that the indicator can have.  These states are numbered from 0 <em>Zero</em>.
+</li>
+
+<li><b>baseClassName:</b> This is the <em>Class Name</em> as found in the CSS stylesheet.  The actual class used is made up from
+			<em>baseClassName</em> + <em>currentState</em>
+</li>
+</ol>
+
+<p>
+    <img src="../../Images/IndicatorClear.png" alt="../../Images/IndicatorClear.png" />
+		<img src="../../Images/IndicatorNotReady.png" alt="../../Images/IndicatorNotReady.png" />
+</p>
+		
+  Figure 1: Example of Indicator using classes to control graphical interface
+</p>
+
+  </body>
+</html>
+

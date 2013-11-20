@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/CT'>
+            <!-- The OUTSIDE temperature sensor, this is needed for weather compensation we chose the one in the shade -->
+            <!-- TODO at install connect to valid outdoor sensor -->
+            <eventsource source='webbrick/5/CT/1'>
+                <event>
+                    <newEvent type="http://id.webbrick.co.uk/zones/weather" source="weather/outsideTemp">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+    </eventInterface>
+
+</eventInterfaces>

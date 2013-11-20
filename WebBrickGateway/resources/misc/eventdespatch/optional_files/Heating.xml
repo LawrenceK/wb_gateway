@@ -1,0 +1,51 @@
+<eventInterfaces>
+
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+        <!-- This is setup to provide heating primitives used by heating page -->
+
+        <!-- Internal routing events -->
+        <eventtype type="internal">
+
+            <!-- Hot Water On  -->
+            <eventsource source="HW/On" >
+                <event>
+                    <url address="localhost:8080" uri="/local/postmessage?msg=Hot%20Water%20On&amp;priority=2&amp;validFor=240" cmd="GET"/>
+                    <!-- Start the Boiler -->
+                    <url address="cheating" uri="/hid.spi?COM=DO6N:" cmd="GET" />
+                </event>
+            </eventsource>
+
+            <!-- Hot Water Off  -->
+            <eventsource source="HW/Off" >
+                <event>
+                    <url address="localhost:8080" uri="/local/postmessage?msg=Hot%20Water%20Off&amp;priority=2&amp;validFor=240" cmd="GET"/>
+                    <!-- Start the Boiler -->
+                    <url address="cheating" uri="/hid.spi?COM=DO6F:" cmd="GET" />
+                </event>
+            </eventsource>
+
+
+            <!-- CH/Boost  -->
+            <eventsource source="CH/Boost" >
+                <event>
+                    <url address="localhost:8080" uri="/local/postmessage?msg=Central%20Heating%20Boost&amp;priority=2&amp;validFor=240" cmd="GET"/>
+                    <!-- Start the Boiler -->
+                    <url address="cheating" uri="/hid.spi?COM=DI8:" cmd="GET" />
+                </event>
+            </eventsource>
+
+            <!-- HW/Boost  -->
+            <eventsource source="HW/Boost" >
+                <event>
+                    <url address="localhost:8080" uri="/local/postmessage?msg=Central%20Heating%20Boost&amp;priority=2&amp;validFor=240" cmd="GET"/>
+                    <!-- Start the HW Boiler -->
+                    <url address="cheating" uri="/hid.spi?COM=DI9:" cmd="GET" />
+                </event>
+            </eventsource>
+
+        </eventtype>
+
+  </eventInterface>
+
+    
+</eventInterfaces>

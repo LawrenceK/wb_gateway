@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+ <title>Transport state</title>
+</head>
+
+<body>
+
+<h2>Transport state</h2>
+<p>
+These events are associated with the state of AV equipment transport.
+</p>
+
+<h3>Event Type</h3>
+<p>
+http://id.webbrick.co.uk/events/av/transport/state
+</p>
+
+<h3>Event Source</h3>
+<p>
+av/transport/state/&lt;usn&gt;
+The usn is the uniqueu id for the av device
+</p>
+
+<h3>Event Payload</h3>
+<p>
+<table>
+    <tr>
+        <td>usn</td><td>a unique identifier for the target.</td><td>mandatory</td>
+        <td>volume</td><td>current volume setting</td><td>only if changed</td>
+    </tr>
+</table>
+</p>
+
+</body>
+
+</html>

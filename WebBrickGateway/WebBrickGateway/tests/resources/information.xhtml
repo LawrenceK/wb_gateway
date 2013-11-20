@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML, 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1-strict-dtd">
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+ +  $Id: information.xhtml 1457 2008-05-23 01:34:46Z webbrick $
+ +
+ +  WebBrick home gateway panel definition for a simple light switch.
+ +  Shower (pull-to-toggle) light switch emulation.
+ +
+ + For show target extlighting
+ +
+ -->
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" >
+
+<head>
+    <title>Information Page</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <link href="/static/css/panel.css" rel="stylesheet" />
+    <script src="/static/javascript/MochiKit.js"></script>
+    <script src="/static/javascript/WebBrick.js"></script>
+    <script src="/static/javascript/WbButton.js"></script>
+    <script src="/static/javascript/WbNumericDisplay.js"></script>
+    <script src="/static/javascript/WbTimeDisplay.js"></script>
+    <script src="/static/javascript/WbTextDisplay.js"></script>
+</head>
+
+<body>
+
+<table py:def="output_nav( location )" class="navTable">
+    <tr>
+        <td class="navBar" onClick="window.location='/thirtover/home.xhtml'">Home Menu</td>
+        <td class="navBarSmall" onClick="history.back()">Back</td>
+        <td class="navBarSmall" onClick="window.location='/test/guide.xhtml'">Guide</td>
+        <td class="infoBar" id="menuTitle">Information</td>
+    </tr>
+    <tr class="rule"><td colspan='4' class="ruleBar">&nbsp;</td></tr>
+</table>
+
+<!--       This is where we work        -->
+
+<table>
+	<colgroup span="4" width="25%"></colgroup>
+  <tr>
+    <td colspan="2" wbType="Caption" wbLoad="loadCaption()">Information and Status</td>
+  </tr>
+  <tr>	
+  	
+  </tr>
+    <td wbType="Text" wbLoad='loadTextDisplay("Sunrise ","")'
+            wbSource='/local/time?val=sunrise'>
+    <td wbType="Text" wbLoad='loadTextDisplay("Sunset ","")'
+            wbSource='/local/time?val=sunset'>
+  <tr>
+  </tr>
+</table>
+
+<table>
+	<colgroup span="4" width="25%"></colgroup>
+  <tr>
+    <td colspan="2" wbType="Caption" wbLoad="loadCaption()">Key Temperatures</td>
+  </tr>
+</table>
+
+
+
+<table class="infoTable">
+  <tr>
+    <td width='18%' wbType="Text" wbLoad='loadTextDisplay("","")'
+            wbSource='/local/time'>
+        Left
+    </td>
+    <td wbType="Text" wbLoad='loadTextDisplay("","")'
+            wbSource="/local/messages">
+        Centre
+    </td>
+    <td width='18%' wbType="Numeric" wbLoad='loadNumericDisplay("Outside: ","##.#","&ordm;C")'
+        wbSource='/wbsts/publicwb/Tmp/0'>-</td>
+  </tr>
+</table>
+
+</body>
+
+</html>

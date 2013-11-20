@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!-- Generate lots of temperature sensors from one webbrick -->
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+    
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/CT'>
+            <eventsource source='webbrick/0/CT/0'>
+                <event>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/1/CT/0">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/2/CT/0">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/3/CT/0">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/4/CT/0">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/5/CT/0">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/6/CT/0">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/7/CT/0">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/8/CT/0">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/9/CT/0">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/10/CT/0">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/11/CT/0">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/12/CT/0">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/13/CT/0">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/14/CT/0">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/15/CT/0">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/16/CT/0">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                </event>
+            </eventsource>
+            <eventsource source='webbrick/0/CT/1'>
+                <event>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/1/CT/1">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/2/CT/1">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/3/CT/1">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/4/CT/1">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/5/CT/1">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/6/CT/1">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/7/CT/1">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/8/CT/1">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/9/CT/1">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/10/CT/1">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/11/CT/1">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/12/CT/1">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/13/CT/1">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/14/CT/1">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/15/CT/1">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/16/CT/1">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                </event>
+            </eventsource>
+            <eventsource source='webbrick/0/CT/2'>
+                <event>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/1/CT/2">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/2/CT/2">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/3/CT/2">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/4/CT/2">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/5/CT/2">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/6/CT/2">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/7/CT/2">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/8/CT/2">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/9/CT/2">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/10/CT/2">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/11/CT/2">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/12/CT/2">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/13/CT/2">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/14/CT/2">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/15/CT/2">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/events/webbrick/CT" source="webbrick/16/CT/2">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+    </eventInterface>
+
+</eventInterfaces>

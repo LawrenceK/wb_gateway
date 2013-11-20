@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Managing WebBrick Configurations</title>
+  </head>
+  <body>
+      <h1>Managing WebBrick Configurations</h1>
+ 
+
+<p>
+This page contains a description of the Web interface provided by the WebBrick configuration tool.
+</p>
+
+     <h2>Overview</h2>
+
+<p>
+The WebBrick configuration tool provides an alternative means to the WebBricks' own web interface for configuring WebBricks.  
+In particular, it allows configuration files to be prepared offline (for example, by an installer preparing to install a WebBrick 
+system) and subsequently uploaded to the WebBricks (for example, during an installer site visit).  It also allows WebBrick configuration 
+files to be saved to a separate location as 
+backup (for example, allowing a WebBrick to be replaced without having to re-emter all the configuration details).
+</p>
+<p>
+The WebBrick configuration tool can be installed stand-alone, or as part of the WebBrick Gateway. It must be running on 
+the same local network as the WebBricks themselves.  It is accessed using a FireFox web browser on any computer, possible the 
+same one that is running the WebBrick configuration server.  (Internet Explorer is not supported by the configuration utilityat present) Thus, anyone using this utility 
+to configure WebBricks must use a Firefox browser to access the user interface (http://www.mozilla.com/en-US/firefox/).  Some 
+other browsers may also work, but have not been tested.
+</p>
+<p>
+The WebBrick configuration utility provides the following main functions:
+
+<ol type="1"><li> WebBrick discovery: locate all operational WebBricks (version 6.2 and above) on a local network.  (For WebBricks prior 
+ to version 6.1, their IP addresses must be entered manually.)
+</li><li> Save configuration(s): the current configuration of one or all WebBricks can be saved as files on the WebBrick configuration server.
+</li><li> Load configuration: a saved WebBrick configuration on the WebBrick configuration server can be loaded to a running WebBrick, 
+ replacing all of its previous configuration (except its IP address is not usually changed).
+</li><li> Set IP address: the IP address of a WebBrick may be set to a specified value.
+</li></ol>
+</p>
+
+
+     <h2>Configuration Sets and Configuration Files</h2>
+
+<p>
+Individual WebBrick configurations are stored in Configuration Files.  The configuration for a single WebBrick 
+is stored in a single file on the WebBrick configuration server, 
+using an XML format for the configuration data.  The file format is the same as that returned by accessing 
+path <em>/WbCfg.xml</em> on a WebBrick; e.g. <em>http://10.100.100.100/WbCfg.xml</em>.  A configuration file is named <em>nnn.xml</em>, 
+where <em>nnn</em> is the WebBrick node number contained in the configuration.
+</p>
+<p>
+The WebBrick configuration utility organizes individual Configuration Files into Configuration Sets, 
+where each is intended to represent the configuration of all WebBricks in a particular installation.  
+A Configuration Set is a directory containing any number of Configuration Files.  Because Configuration Files 
+are named using the node number, a Configuration Set can define at most one configuration for each WebBrick node, 
+which reflects the requirement that each WebBrick in an installation has a unique node number.
+</p>
+<p>
+The Configuration Sets are stored in subdirectorie of the webbrickDirectory specified in the configuration file, see Configuration section.
+ </p>
+
+
+     <h2>Accessing the WebBrick configuration interface</h2>
+
+<p>
+A Firefox web browser is required to access the WebBrick configuration interface;  this browser may run on any machine which can 
+contact the WebBrick configuration server using HTTP on port 8080.  Typically, this includes any machine on the same local network, 
+possibly including the WebBrick configuration server itself.
+</p>
+
+<p>
+Start the firefox browser, then enter the URI:
+<em>http://server:8080/wbcnf</em>, 
+where server" is the name or IP address of the WebBrick configuration server 
+(e.g. <em>http://10.100.100.1:8080/wbcnf</em>).
+</p>
+
+     <h2>The WebBrick configuration user interface</h2>
+
+<p>
+The main WebBrick configuration user interface looks like this:
+<center>
+    <img src="../../Images/wbcnf_front.jpg" alt="../../Images/wbcnf_front.jpg" width="80%" />
+</center>
+<p>
+The interface is organized into three main columns:
+ 1. the left part deals with WebBricks connected to the network, and lists all currently known WebBricks.
+ 2. the right part deals with WebBrick configuration data stored on the configuration server, and lists all Configuration Files in a selected Configuration Set.
+ 3. the centre column has command buttons used to initiate the transfer of configuration data between WebBricks and configuration server.
+</p>
+<p>
+The following sections describe these various parts in greater detail. Note: not all features are fully implemented.
+</p>
+
+      <h3>WebBricks on network</h3>
+
+<p>
+This is the left column of the main WebBrick configuration user interface.
+
+<ol type="1"><li> Network address
+
+Normally this is left set at its default value, which is typically 10.0.0.0/8.
+
+If a WebBrick configuration server is installed and configured to work with WebBricks on multiple networks, this control will contain a drop-down list of available networks, each specified as a.a.a.a/m, where a.a.a.a is the base IP address for the network (e.g. 10.0.0.0), and m is the number of address bits used to distinguish this network (e.g. a value of 8 means that the first 8 bits of theIP address are the network address bits, and all remaining bits are used to designate different devices on that network).  Selecting any element from this list causes the configuration server to scan the selected network for WebBricks and display them in the list of WebBricks, replacing any previous list of WebBricks.
+</li><li> List of WebBricks on network
+
+The main part of the left column of the WebBrick configuration user interface is a list of known WebBricks on the selected network.  
+
+For each WebBrick, its MAC address (a string that uniquely identifies any WebBrick), its node number and its node name are displayed.  Clicking on an entry in this list causes the corresponding WebBrick to be ßelected", and its IP address to be displayed in the IP Address box below.
+</li><li> WebBrick password
+
+WebBricks are equipped with rudimentary password-based security, which is mainly intended to prevent casual interference with the operation of a system.  (Security against a determined attempt to subvert the system is provided by controlling physical access to the network, and using the WebBrick Gateway as a gateway for external interactions; these issues are discussed further elsewhere.)
+
+A WebBrick is shipped with a factory-default password, 
+
+Before performing any operations that change a WebBrick's configuration, a configured password must be supplied.  If the factory default password has not been changed, this field can be left blank.  Otherwise, the current installer password must be entered into this field before attempting to update a WebBrick's configuration in any way.
+
+A WebBrick's password may be changed by browsing directly to the WebBrick, or by depressing the reset switch while powering it up to revert the webbrick configuration back to its factory default.
+</li><li> IP Address
+
+This field displays the IP address of the currently selected WebBrick.
+
+It can also be used to change the currently selected WebBrick's IP address by typing in a new IP address value (which should be on the same IP network) and clicking on the "'Update IP"' button.
+
+It can also be used to add an undetected WebBrick by typing its IP address value and clicking on the "'Add IP"' button.
+</li><li> Discover button
+
+Click on this button to force a re-scan for WebBricks on the currently selected network.  The current list of WebBricks is discarded, and a new list of those that are detected on the current network is displayed.  The re-scan takes about 10 seconds.
+
+Note: any changes made using "'Remove"' or "'AddIP"' are discarded when performing a scan for WebBricks.
+</li><li> Add IP button
+
+WebBricks prior to version 6.2 are not detected by a network scan (e.g. when clicking the "'Discover"' button).  These older WebBricks that are known to be present can be added to the list by entering the IP address in the "'IP Address"' field, and clicking on this button.  If a WebBrick is present at the given IP address, its MAC address, node number and node name are retrieved and added to the list of WebBricks.
+
+In some circumstances, this option might also be used to acces sor configure WebBricks that are connected to a different IP network.  It is not always possible to do this, and it can require a deep working knowledge of the local IP network topology, so the technique is not further discussed here.
+</li><li> Update IP button
+
+The currently selected WebBrick's IP address can be changed by typing in a new IP address value (which should be on the same IP network) in the "'IP Address"' field, then clicking on this button.
+
+Note that a WebBrick's IP address "'cannot"' be changed simply by uploading a new configuration, even if that configuration specifies a different IP address.
+</li></ol>
+</p>
+
+      <h3>Stored WebBrick configurations</h3>
+
+<p>
+This is the right column of the main WebBrick configuration user interface.
+
+
+
+<ol type="1"><li> Configuration set
+
+This field is a drop-down list of Configuration Sets that are stored on the WebBrick configuration server.  The field displays the currently selected configuration set, or "(None)" if there is none.
+
+A different Configuration Set may be selected by selection from the drop-down list.  Doing this refreshes the displayed list of WebBrick configuration files.
+</li><li> New Configuration Set button
+
+The button labelled "'New..."' beside the "'Configuration set"' field is used to create a new empty Configuration Set.
+
+A new page is displayed for entry of a name for the new Configuration Set.  Enter a name and click the "'Create"' button to create a new empty configuration set with that name, or click on "'Cancel"' to abandon the operation.
+
+The newly created Configuration Set is not automatically selected as the current set, but it is made immediately available for selection from the drop-down list of Configuration Sets ("'Configuration set"').
+</li><li> Delete Configuration Set button
+
+The button labelled "'Delete..."' beside the "'Configuration set"' field is used to delete the currently selected Configuration Set.
+
+A new page is displayed asking for confirmation that the selected Configuration Set is to be deleted.  Click the "'Delete"' button to delete the specified Configuration Set, and all the Configuration Files it contains, or click on "'Cancel"' to abandon the operation.
+</li><li> List of WebBrick Configuration Files
+
+The main part of the right column of the WebBrick configuration user interface is a list of WebBrick Configuration Files in the currently selected Configuration Set.
+
+For each Configuration File, a node number and node name are displayed.  Clicking on an entry in this list causes the corresponding file to be ßelected".
+</li><li> New Configuration File button
+
+"(Not presently implemented)"
+
+The button labelled "'New..."' below the list of configuration files is used to create a new configuration file, without the necessity of a WebBrick actually being present.  A new page is displayed with fields for entering various WebBrick configuration details;  all the main configuration options are shown on a single page, with pop-up fields for entering new details for a selected entry.
+
+Functionally, this largely duplicates the configuration interface of a real WebBrick, but it provides a complete view of the configuration in a single web page, and allows a configuration file to be created offline, in absence of any physical WebBrick.
+</li><li> Show Configuration File button
+
+"(presently, only partially implemented)"
+
+The button labelled "'Show..."' below the list of configuration files is used to display the detailed content of a selected configuration file.  A new page is displayed showing various WebBrick configuration details;  all the main configuration details are shown on a single page.
+</li><li> Edit Configuration File button
+
+"(Not presently implemented)"
+
+The button labelled "'Edit..."' below the list of configuration files is used to edit the currently selected configuration file.  A new page is displayed with fields for displaying and entering various WebBrick configuration details;  all the main configuration options are shown on a single page, with pop-up fields for updating details of a selected entry.
+
+Functionally, this largely duplicates the configuration interface of a real WebBrick, but it provides a complete view of the configuration in a single web page, and allows a configuration file to be modified offline, in absence of any physical WebBrick.
+</li><li> Delete Configuration File button
+
+The button labelled "'Delete..."' below the list of configuration files is used to delete the currently selected file.  A new page is displayed asking for confirmation that the file is to be deleted.  Click the "'Delete"' button to delete the indicated configuration file, or click on "'Cancel"' to abandon the operation.
+</li><li> Copy button
+
+The button labelled "'Copy..."' below the list of configuration files is used to copy the currently selected configuration set or file.  A new page is  displayed indicating the selected configuration set and file as the source to be copied, and fields for the target configuration set name and node number, like this:
+
+<center>
+    <img src="../../Images/wbcnf_copy.jpg" alt="../../Images/wbcnf_copy.jpg" width="50%"/>
+</center>
+<p>
+If you want to copy the entire configuration set:
+ * Under "'Copy from"', select the radio button "'Entire configuration set"'
+ * Under "'Copy to"', select the target configuration set from the drop-down list.  Files are always copied to an existing configiration set, and may be merged with existing files provided that the node numbers are all distinct.  To make a completely new copy, first create an empty configuration set (as described above at section "New Configuration Set button"), then perform the copy.
+ * Click the "'Copy"' button to perform the operation, or "'Cancel"' to abandon it.
+</p>
+<p>
+To copy just one configuration file, select the file to be copied before clicking on "'Copy..."':
+ * Under "'Copy from"', select the radio button "'Node configuration"'
+ * Under "'Copy to"', select the target configuration set from the drop-down list.
+ * Under "'Copy to"', enter the node number to be used for the copied file (the default node number is the same as the original).
+ * Click the "'Copy"' button to perform the operation, or "'Cancel"' to abandon it.
+ </p>
+</li><li> Move button
+
+The button labelled "'Move..."' below the list of configuration files is used to copy the currently selected file.  A new page is  displayed indicating the selected configuration file as the source to be copied, and fields for the target configuration set name and node number, like this:
+
+<center>
+    <img src="../../Images/wbcnf_move.jpg" alt="../../Images/wbcnf_move.jpg"  width="50%"/>
+</center>
+<p>
+ * Under "'Move to"', select the target Configuration Set from the drop-down list.
+ * Under "'Move to"', enter the node number to be used for the moved configuration file (the default node number is the same as the original).
+ * Click the "'Move"' button to perform the operation, or "'Cancel"' to abandon it.
+</p> 
+
+</li><li> Upload button
+
+The button labelled "'Upload..."' below the list of configuration files is used to upload one or more WebBrick configurations to the currently selected configuration set from the computer running the web browser.  A new page is displayed indicating the target configuration set, and a field to enter the name of the file to be uploaded:
+
+<p>
+<center>
+    <img src="../../Images/wbcnf_upload.jpg" alt="../../Images/wbcnf_upload.jpg"  width="50%"/>
+</center>
+</p>
+<p>
+Under "'Upload from"', enter the name of the file to be uploaded, or use the "'Browse..."' button to select a file.  In either case, the file must exist somewhere on the computer on which the web browser is running.
+</p>
+<p>
+The selected file may be an XML file containing a single WebBrick configuration, or may be a ZIP file containing a previously saved Configuration Set (see the "'Download"' option).
+</p>
+<p>
+Click the "'Upload"' button to perform the operation, or "'Cancel"' to abandon it.
+</p>
+</li><li> Download button
+
+The button labelled "'Download"' below the list of configuration files is used to download one all WebBrick configurations from the currently selected configuration set to the computer running the web browser.
+
+<p>
+To download a single sonfiguration file, select the configuration set and file to be downloaded before clicking the "'Download"' button.  The server responds by returning the WebBrick XML Configuration File to the browser, which can be saved or viewed using the browser's normal file download mechanisms.
+</p>
+<p>
+To download a complete configuration set, select it, but do not select any configuration file, before clicking the "'Download"' button.  The server responds by returning a ZIP file to the browser containing all files in the selected set.  This can be saved or viewed using the browser's normal file download mechanisms.
+</p>
+<p>
+If a configuration file has been selected, the selection can be revoked by:
+ 1. select an alternative configuration set, then re-select the desired set.
+ 2. start to create a new configuration set (using the "'New..."' button), but immediately cancel the operation and, if necessary, re-select the desired set.
+</p>
+</li></ol>
+</p>
+</p>
+
+
+      <h3>Transferring Webbrick configurations</h3>
+
+<p>
+The centre column of the main user interface contains three buttons that are used to transfer WebBrick configurations between WebBricks on the network and files on the configuration server.
+</p>
+<p>
+The general pattern of operation for all of these is to select the source, select the target, then click on the desired operation button.  Details follow.
+
+<ol type="1"><li> Load configuration
+
+To load a stored configuration to a WebBrick, select the WebBrick to be configured (left column) and the configuration set and file to be loaded (right column).
+
+If necessary, enter the password for the target WebBrick.  (The default value used by the configuration software is the current factory default - if the factory default is changed then it may be necessary to explicitly enter that each time a WebBrick is configured.
+
+Cloick on the "'Load &gt;&gt;"' button: the configuration server will attempt to upload the specified configuration file to the indicated WebBrick.
+
+"Developer note: the current default password comes from WebBrickConfig.py, line 57 (I think).  This should be superseded by a default specified in WbConfigSettings.py."
+</li><li> Save configuration
+
+To save the configuration of a single WebBrick, select the WebBrick (left column) and the configuration set to which it is to be saved (right column), then clock on the "'Save &gt;&gt;"' button.
+
+If a configuration file for the same node number already exists in the stored configuration set, you will be prompted to confirm whether or not that stored configuration is to be overwritten.
+</li><li> Save all configurations
+
+To save the configurations of all known WebBricks, select the configuration set to which they are to be saved (right column), then clock on the "'Save All &gt;&gt;"' button.
+
+If a configuration file with the same node number as any of the WebBricks already exists in the stored configuration set, you will be prompted to confirm whether or not that stored configuration is to be overwritten.
+</li></ol>
+</p>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Event URIs</title>
+</head>
+
+<body>
+    <h1>Introduction</h1>
+
+	<p> When building a solution, the goal is to have as much as possible controlled by the WebBricks.
+	</p>
+
+	<p>  Consider an underfloor heating scheme; the room sensor should be connected to the same WebBrick
+	as the zone actuator.  In this way the setpoint, or target temperature of the room can be managed locally.
+	</p>
+
+	<p><img src="../../Images/HeatingSolution.png"/>
+	</p>
+
+	<p> The Gateway holds the global intelligence, which in this case would be:
+
+		<li>Occupancy -- are the home users present, does this zone follow Occupancy </li>
+		<li>Schedules -- what is the setpoint or running schedules for this zone </li>
+		<li>Minima    -- what is the minimum temperature allowed for this zone </li>
+	</p>
+
+	<p> The Gateway also holds details on the heat source, or sources that can feed this zone.
+	For example this could be a combination of a heat pump and fossil fuel boiler.  These sources might
+	feed a number of zones.  The Gateway will call for heat demand from the appropriate source based on
+	Occupancy, Global Schedules and Mimina
+	</p>
+
+
+    <h1>Event URIs</h1>
+
+        <p>These events are to do with the multi zone heating module.</p>
+
+    <ul>
+        <li><a href="./zone.xhtml" >Control of a single heating zone</a></li>
+
+        <li><a href="./group.xhtml" >Control of a zone group.</a></li>
+
+        <li><a href="./master.xhtml" >Control of the whole multi zone heating.</a></li>
+
+        <li><a href="./weather.xhtml" >Distribution of weather compensation actions.</a></li>
+
+        <li><a href="./heatsource.xhtml" >Distribution of weather compensation actions.</a></li>
+
+        <li><a href="./manual.xhtml" >Control of the whole multi zone heating.</a></li>
+    </ul>
+</body>
+
+</html>

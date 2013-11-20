@@ -1,0 +1,100 @@
+<eventInterfaces>
+    <!-- this currently contains more than would be normal, would expect time based updates for sunrise, sunset, dayend and daystart -->
+    <!-- Could have updates due to telephone call, but would need to use delta and compound to reset after a short time -->
+    <eventInterface module='WebBrickLibs.WbEvMapper' name='WbEvMapper' category='debug'>
+        <eventtype type="">
+
+            <eventsource source="time/runtime" >
+                <event>
+                    <params>
+                        <testEq name='elapsed' value='5' />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/events/state" source="background">
+                        <other_data val='/static/images/backgrounds/blueLogo.png'/>
+                    </newEvent>
+                </event>
+            </eventsource>
+
+            <!-- periodically change the background on the user interface. -->
+            <!-- This could be done on second intervals as well. -->
+            <eventsource source="time/hour" >
+                <event>
+                    <!-- lunchtime -->
+                    <params>
+                        <testEq name='hour' value='12' />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/events/state" source="background">
+                        <other_data val='/static/images/backgrounds/yellowLogo.png'/>
+                    </newEvent>
+                </event>
+            </eventsource>
+
+            <eventsource source="time/minute" >
+                <event>
+                    <!-- teatime -->
+                    <params>
+                        <testEq name='hour' value='17' />
+                        <testEq name='minute' value='30' />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/events/state" source="background">
+                        <other_data val='/static/images/backgrounds/pinkLogo.png'/>
+                    </newEvent>
+                </event>
+
+                <event>
+                    <params>
+                        <testEq name='minute' value='0' />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/events/state" source="background">
+                        <other_data val='/static/images/backgrounds/greenLogo.png'/>
+                    </newEvent>
+                </event>
+
+                <event>
+                    <params>
+                        <testEq name='minute' value='15' />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/events/state" source="background">
+                        <other_data val='/static/images/backgrounds/yellowLogo.png'/>
+                    </newEvent>
+                </event>
+
+                <event>
+                    <params>
+                        <testEq name='minute' value='30' />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/events/state" source="background">
+                        <other_data val='/static/images/backgrounds/orangeLogo.png'/>
+                    </newEvent>
+                </event>
+
+                <event>
+                    <params>
+                        <testEq name='minute' value='45' />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/events/state" source="background">
+                        <other_data val='/static/images/backgrounds/pinkLogo.png'/>
+                    </newEvent>
+                </event>
+
+            </eventsource>
+
+            <eventsource source="time/sunrise" >
+                <event>
+                    <newEvent type="http://id.webbrick.co.uk/events/state" source="background">
+                        <other_data val='/static/images/backgrounds/day.png'/>
+                    </newEvent>
+                </event>
+            </eventsource>
+
+            <eventsource source="time/sunset" >
+                <event>
+                    <newEvent type="http://id.webbrick.co.uk/events/state" source="background">
+                        <other_data val='/static/images/backgrounds/night.png'/>
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+
+    </eventInterface>
+</eventInterfaces>

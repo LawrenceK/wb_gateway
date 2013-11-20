@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>WebBrick Data Output (DO) Event.</title>
+</head>
+
+<body>
+
+<h2>WebBrick Data Output (DO) Event.</h2>
+
+
+This event indicates the current state of a digital output.
+
+Type=http://id.webbrick.co.uk/events/webbrick/DO
+Source=webbrick/fromNode/DO/<em>channel number</em>
+
+ipAdr=dotted ip address
+udpType=one of G, A, R
+phtType=DO
+fromNode=webbrick node number
+srcChannel=output channel number.
+state=0 or 1 for off or on.
+
+
+</body>
+
+</html>

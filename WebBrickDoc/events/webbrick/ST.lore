@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>System time (ST) Event.</title>
+</head>
+
+<body>
+
+<h1>System time (ST) Event.</h1>
+
+This event is sent periodically with the webbricks current time in it and can be used as a watchdog of webbricks and
+used to reset the time of a webbrick if it drifts from the WebBrick Gateway's own time.
+
+Type=http://id.webbrick.co.uk/events/webbrick/ST
+Source=webbrick/fromNode/ST
+
+ipAdr=dotted ip address
+udpType=G
+pktType=ST
+fromNode=webbrick node number
+hour=0-23
+minute=0-59
+second=0-59
+day=0 to 6 where 0 is sunday.
+
+</body>
+
+</html>

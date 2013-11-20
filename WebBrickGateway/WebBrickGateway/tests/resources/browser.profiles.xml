@@ -1,0 +1,35 @@
+<userprofiles>
+    <!-- The contents of these are used to map ua strings to client names -->
+    <useragent client='opera'>User-Agent String</useragent>
+    <useragent client='firefox'>firefoxUaString</useragent>
+
+    <!-- The contents of these define the abilities and default template sets for an HTTP client -->
+    <client name='default'>
+        <default>
+            <!-- Theses settings are default for entries not provided in browsr specirfic settings -->
+            <javascript>no</javascript>
+            <alinksonly>no</alinksonly>
+            <tg_format>xhtml</tg_format>
+            <templateModule>templates</templateModule>
+        </default>
+    </client>
+
+    <client name='unknown'>
+        <default>
+            <!-- Theses settings are for unknown browsers -->
+            <javascript>no</javascript>
+            <alinksonly>no</alinksonly>
+            <tg_format>xhtml</tg_format>
+            <templateModule>templates</templateModule>
+        </default>
+        <!-- The intention is to add address specific entries as well -->
+    </client>
+
+    <client name='firefox'>
+        <default>
+            <javascript>yes</javascript>
+            <alinksonly>no</alinksonly>
+        </default>
+    </client>
+
+</userprofiles>

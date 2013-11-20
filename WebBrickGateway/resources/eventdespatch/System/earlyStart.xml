@@ -1,0 +1,491 @@
+<eventInterfaces>
+	<!--
+	
+	Early Start functionality:
+	
+	This is currently a bit of a fudge, being driven from the heating schedules to 'borrow' a 
+	dynamic time input.
+	
+	Andy Harris 15th July 2007
+	
+	-->
+
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+        	
+        <eventtype type="">
+            <eventsource source="time/runtime" >
+                <event>
+                    <params>
+                        <testEq name="elapsed" value="5"/>
+                    </params>
+                    <!-- create some initial states -->
+					<newEvent type="http://id.webbrick.co.uk/events/state" source="earlyStart/enabled">
+						<other_data val='0'/>
+					</newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <eventtype type="http://id.webbrick.co.uk/events/uri">
+
+			<!-- Used for interface based setting of the occupants state -->
+
+        	<eventsource source="earlyStart/enable">
+        		<event>
+					<newEvent type="http://id.webbrick.co.uk/events/state" source="earlyStart/enabled">
+						<other_data val='1'/>
+					</newEvent>
+        		</event>
+        	</eventsource>
+
+        	<eventsource source="earlyStart/disable">
+        		<event>
+					<newEvent type="http://id.webbrick.co.uk/events/state" source="earlyStart/enabled">
+						<other_data val='0'/>
+					</newEvent>
+        		</event>
+        	</eventsource>
+
+        </eventtype>
+
+
+
+    </eventInterface>
+
+
+    <eventInterface module='EventHandlers.Compound' name='Compound'>
+
+		<!--  
+		=================================================================================
+						Build the information
+		=================================================================================
+		-->
+        <eventtype type="http://id.webbrick.co.uk/events/config/get">
+            <!-- the attribute doNow is used to force a recheck of dayphase when any of these are changed -->
+            <eventsource source="earlystart/time">
+                <event>
+                    <action name="earlystarttime" key="time"/>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+        <eventtype type="">
+            <eventsource source="time/minute">
+                <event>
+                    <action name="timestr" key="timestr"/>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+        <eventtype type="http://id.webbrick.co.uk/events/state">
+			<!-- Are occupants home or not? -->
+            <eventsource source="earlyStart/enabled" >
+                <event>
+                    <action name="earlystartenable" key="val"/>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+        
+        <initialState name="zone1enable" value="0" />
+        <initialState name="zone2enable" value="0" />
+        <initialState name="zone3enable" value="0" />
+        <initialState name="zone4enable" value="0" />
+        <initialState name="zone5enable" value="0" />
+        <initialState name="zone6enable" value="0" />
+        <initialState name="zone7enable" value="0" />
+        <initialState name="zone8enable" value="0" />
+        <initialState name="zone9enable" value="0" />
+        <initialState name="zone10enable" value="0" />
+        <initialState name="zone11enable" value="0" />
+        <initialState name="zone12enable" value="0" />
+        <initialState name="zone13enable" value="0" />
+        <initialState name="zone14enable" value="0" />
+        <initialState name="zone15enable" value="0" />
+        <initialState name="zone16enable" value="0" />
+        
+        <initialState name="zone1setpoint" value="0" />
+        <initialState name="zone2setpoint" value="0" />
+        <initialState name="zone3setpoint" value="0" />
+        <initialState name="zone4setpoint" value="0" />
+        <initialState name="zone5setpoint" value="0" />
+        <initialState name="zone6setpoint" value="0" />
+        <initialState name="zone7setpoint" value="0" />
+        <initialState name="zone8setpoint" value="0" />
+        <initialState name="zone9setpoint" value="0" />
+        <initialState name="zone10setpoint" value="0" />
+        <initialState name="zone11setpoint" value="0" />
+        <initialState name="zone12setpoint" value="0" />
+        <initialState name="zone13setpoint" value="0" />
+        <initialState name="zone14setpoint" value="0" />
+        <initialState name="zone15setpoint" value="0" />
+        <initialState name="zone16setpoint" value="0" />
+        
+        <eventtype type="http://id.webbrick.co.uk/events/config/get">
+            <eventsource source="zone1/earlystart/enabled">
+                <event>
+                    <action name="zone1enable" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone2/earlystart/enabled">
+                <event>
+                    <action name="zone2enable" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone3/earlystart/enabled">
+                <event>
+                    <action name="zone3enable" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone4/earlystart/enabled">
+                <event>
+                    <action name="zone4enable" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone5/earlystart/enabled">
+                <event>
+                    <action name="zone5enable" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone6/earlystart/enabled">
+                <event>
+                    <action name="zone6enable" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone7/earlystart/enabled">
+                <event>
+                    <action name="zone7enable" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone8/earlystart/enabled">
+                <event>
+                    <action name="zone8enable" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone9/earlystart/enabled">
+                <event>
+                    <action name="zone9enable" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone10/earlystart/enabled">
+                <event>
+                    <action name="zone10enable" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone11/earlystart/enabled">
+                <event>
+                    <action name="zone11enable" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone12/earlystart/enabled">
+                <event>
+                    <action name="zone12enable" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone13/earlystart/enabled">
+                <event>
+                    <action name="zone13enable" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone14/earlystart/enabled">
+                <event>
+                    <action name="zone14enable" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone15/earlystart/enabled">
+                <event>
+                    <action name="zone15enable" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone16/earlystart/enabled">
+                <event>
+                    <action name="zone16enable" key="val"/>
+                </event>
+            </eventsource>    
+
+
+
+            
+            <eventsource source="zone1/earlystart/setpoint">
+                <event>
+                    <action name="zone1setpoint" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone2/earlystart/setpoint">
+                <event>
+                    <action name="zone2setpoint" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone3/earlystart/setpoint">
+                <event>
+                    <action name="zone3setpoint" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone4/earlystart/setpoint">
+                <event>
+                    <action name="zone4setpoint" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone5/earlystart/setpoint">
+                <event>
+                    <action name="zone5setpoint" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone6/earlystart/setpoint">
+                <event>
+                    <action name="zone6setpoint" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone7/earlystart/setpoint">
+                <event>
+                    <action name="zone7setpoint" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone8/earlystart/setpoint">
+                <event>
+                    <action name="zone8setpoint" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone9/earlystart/setpoint">
+                <event>
+                    <action name="zone9setpoint" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone10/earlystart/setpoint">
+                <event>
+                    <action name="zone10setpoint" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone11/earlystart/setpoint">
+                <event>
+                    <action name="zone11setpoint" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone12/earlystart/setpoint">
+                <event>
+                    <action name="zone12setpoint" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone13/earlystart/setpoint">
+                <event>
+                    <action name="zone13setpoint" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone14/earlystart/setpoint">
+                <event>
+                    <action name="zone14setpoint" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone15/earlystart/setpoint">
+                <event>
+                    <action name="zone15setpoint" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone16/earlystart/setpoint">
+                <event>
+                    <action name="zone16setpoint" key="val"/>
+                </event>
+            </eventsource>
+            
+        </eventtype>
+            
+		<!--  
+		=================================================================================
+						Here is the decision zone
+		=================================================================================		
+		-->
+        
+        <compound>
+            <params>
+                <testEq name='earlystartenable' value='1'/>
+                <testEq name='timestr' param2='earlystarttime'/>
+                <testEq name='zone1enable' value='1'/>
+                <testNe name='zone1setpoint' value='0'/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/events/zones/manual' source="zone1/manual/set" >
+                <copy_other_data val='zone1setpoint' />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq name='earlystartenable' value='1'/>
+                <testEq name='timestr' param2='earlystarttime'/>
+                <testEq name='zone2enable' value='1'/>
+                <testNe name='zone2setpoint' value='0'/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/events/zones/manual' source="zone2/manual/set" >
+                <copy_other_data val='zone2setpoint' />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq name='earlystartenable' value='1'/>
+                <testEq name='timestr' param2='earlystarttime'/>
+                <testEq name='zone3enable' value='1'/>
+                <testNe name='zone3setpoint' value='0'/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/events/zones/manual' source="zone3/manual/set" >
+                <copy_other_data val='zone3setpoint' />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq name='earlystartenable' value='1'/>
+                <testEq name='timestr' param2='earlystarttime'/>
+                <testEq name='zone4enable' value='1'/>
+                <testNe name='zone4setpoint' value='0'/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/events/zones/manual' source="zone4/manual/set" >
+                <copy_other_data val='zone4setpoint' />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq name='earlystartenable' value='1'/>
+                <testEq name='timestr' param2='earlystarttime'/>
+                <testEq name='zone5enable' value='1'/>
+                <testNe name='zone5setpoint' value='0'/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/events/zones/manual' source="zone5/manual/set" >
+                <copy_other_data val='zone5setpoint' />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq name='earlystartenable' value='1'/>
+                <testEq name='timestr' param2='earlystarttime'/>
+                <testEq name='zone6enable' value='1'/>
+                <testNe name='zone6setpoint' value='0'/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/events/zones/manual' source="zone6/manual/set" >
+                <copy_other_data val='zone6setpoint' />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq name='earlystartenable' value='1'/>
+                <testEq name='timestr' param2='earlystarttime'/>
+                <testEq name='zone7enable' value='1'/>
+                <testNe name='zone7setpoint' value='0'/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/events/zones/manual' source="zone7/manual/set" >
+                <copy_other_data val='zone7setpoint' />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq name='earlystartenable' value='1'/>
+                <testEq name='timestr' param2='earlystarttime'/>
+                <testEq name='zone8enable' value='1'/>
+                <testNe name='zone8setpoint' value='0'/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/events/zones/manual' source="zone8/manual/set" >
+                <copy_other_data val='zone8setpoint' />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq name='earlystartenable' value='1'/>
+                <testEq name='timestr' param2='earlystarttime'/>
+                <testEq name='zone9enable' value='1'/>
+                <testNe name='zone9setpoint' value='0'/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/events/zones/manual' source="zone9/manual/set" >
+                <copy_other_data val='zone9setpoint' />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq name='earlystartenable' value='1'/>
+                <testEq name='timestr' param2='earlystarttime'/>
+                <testEq name='zone10enable' value='1'/>
+                <testNe name='zone10setpoint' value='0'/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/events/zones/manual' source="zone10/manual/set" >
+                <copy_other_data val='zone10setpoint' />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq name='earlystartenable' value='1'/>
+                <testEq name='timestr' param2='earlystarttime'/>
+                <testEq name='zone11enable' value='1'/>
+                <testNe name='zone11setpoint' value='0'/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/events/zones/manual' source="zone11/manual/set" >
+                <copy_other_data val='zone11setpoint' />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq name='earlystartenable' value='1'/>
+                <testEq name='timestr' param2='earlystarttime'/>
+                <testEq name='zone12enable' value='1'/>
+                <testNe name='zone12setpoint' value='0'/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/events/zones/manual' source="zone12/manual/set" >
+                <copy_other_data val='zone12setpoint' />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq name='earlystartenable' value='1'/>
+                <testEq name='timestr' param2='earlystarttime'/>
+                <testEq name='zone13enable' value='1'/>
+                <testNe name='zone13setpoint' value='0'/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/events/zones/manual' source="zone13/manual/set" >
+                <copy_other_data val='zone13setpoint' />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq name='earlystartenable' value='1'/>
+                <testEq name='timestr' param2='earlystarttime'/>
+                <testEq name='zone14enable' value='1'/>
+                <testNe name='zone14setpoint' value='0'/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/events/zones/manual' source="zone14/manual/set" >
+                <copy_other_data val='zone14setpoint' />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq name='earlystartenable' value='1'/>
+                <testEq name='timestr' param2='earlystarttime'/>
+                <testEq name='zone15enable' value='1'/>
+                <testNe name='zone15setpoint' value='0'/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/events/zones/manual' source="zone15/manual/set" >
+                <copy_other_data val='zone15setpoint' />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq name='earlystartenable' value='1'/>
+                <testEq name='timestr' param2='earlystarttime'/>
+                <testEq name='zone16enable' value='1'/>
+                <testNe name='zone16setpoint' value='0'/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/events/zones/manual' source="zone16/manual/set" >
+                <copy_other_data val='zone16setpoint' />
+            </newEvent>                
+        </compound>
+        
+        <compound>
+            <params>
+                <testEq name='earlystartenable' value='1'/>
+                <testEq name='timestr' param2='earlystarttime'/>
+            </params>
+            <!-- Cancel the event for tomorrow -->
+            <newEvent type="http://id.webbrick.co.uk/events/state" source="earlyStart/enabled">
+                <other_data val='0'/>
+            </newEvent>
+
+        </compound>
+
+
+    </eventInterface>
+
+
+</eventInterfaces>

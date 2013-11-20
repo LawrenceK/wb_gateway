@@ -1,0 +1,8 @@
+<mediaaccess>
+    <VlcAccess module="VlcAccess" location="vlcplayer:8082" >VlcAccess</VlcAccess>
+    <ITunesDirect module="ITunesAccess" >ITunes Direct</ITunesDirect>
+    <ITunesInDirect module="HttpAccess" remoteName="ITunesDirect" location="itunesServer:8081" >ITunes In Direct</ITunesInDirect>
+    <AccessGood module="AccessGood" >Access Good</AccessGood>
+    <AccessBad module="AccessBad" >Access Bad</AccessBad>
+    <AccessGoodInDirect module="HttpAccess" remoteName="AccessGood" location="localhost:8081" >Access Good InDirect</AccessGoodInDirect>
+</mediaaccess>

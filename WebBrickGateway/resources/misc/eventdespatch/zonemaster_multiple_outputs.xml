@@ -1,0 +1,474 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+
+<!-- Master outputs to connect correct heatsources to zone groups. -->
+<!-- TODO change Xurl to url and target correct webbrick for control valves -->
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+        <eventtype type='http://id.webbrick.co.uk/zones/master'>
+            <eventsource source='zonemaster/run'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/stop'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0F:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup1/heatsource0/run'>
+                <event>
+                    <!-- issue commands to disconnect all heatsource from zonegroup1 -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup1/heatsource0/stop'>
+                <event>
+                    <!-- issue commands to disconnect all heatsource from zonegroup1 -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup1/heatsource1/run'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 1 feeds zonegroup1 and turns actuators on -->
+                    <!-- i.e. puts valves in correct positions and tunrs on circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup1/heatsource1/stop'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 1 feeds zonegroup1 and turns actuators off -->
+                    <!-- Note: three way valves shoudl be switched to the same position as in .../run, -->
+                    <!-- reason for having .../run and .../ stop is to switch actuators like circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup1/heatsource2/run'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 2 feeds zonegroup1 and turns actuators on -->
+                    <!-- i.e. puts valves in correct positions and tunrs on circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup1/heatsource2/stop'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 2 feeds zonegroup1 and turns actuators off -->
+                    <!-- Note: three way valves shoudl be switched to the same position as in .../run, -->
+                    <!-- reason for having .../run and .../ stop is to switch actuators like circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup1/heatsource3/run'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 3 feeds zonegroup1 and turns actuators on -->
+                    <!-- i.e. puts valves in correct positions and tunrs on circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup1/heatsource3/stop'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 3 feeds zonegroup1 and turns actuators off -->
+                    <!-- Note: three way valves shoudl be switched to the same position as in .../run, -->
+                    <!-- reason for having .../run and .../ stop is to switch actuators like circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup2/heatsource0/run'>
+                <event>
+                    <!-- issue commands to disconnect all heatsource from zonegroup2 and turns actuators on -->
+                    <!-- i.e. puts valves in correct positions and tunrs on circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup2/heatsource0/stop'>
+                <event>
+                    <!-- issue commands to disconnect all heatsource from zonegroup2 and turns actuators off -->
+                    <!-- Note: three way valves shoudl be switched to the same position as in .../run, -->
+                    <!-- reason for having .../run and .../ stop is to switch actuators like circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup2/heatsource1/run'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 1 feeds zonegroup2 and turns actuators on -->
+                    <!-- i.e. puts valves in correct positions and tunrs on circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup2/heatsource1/stop'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 1 feeds zonegroup2 and turns actuators off -->
+                    <!-- Note: three way valves shoudl be switched to the same position as in .../run, -->
+                    <!-- reason for having .../run and .../ stop is to switch actuators like circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup2/heatsource2/run'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 2 feeds zonegroup2 and turns actuators on -->
+                    <!-- i.e. puts valves in correct positions and tunrs on circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup2/heatsource2/stop'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 2 feeds zonegroup2 and turns actuators off -->
+                    <!-- Note: three way valves shoudl be switched to the same position as in .../run, -->
+                    <!-- reason for having .../run and .../ stop is to switch actuators like circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup2/heatsource3/run'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 3 feeds zonegroup2 and turns actuators on -->
+                    <!-- i.e. puts valves in correct positions and tunrs on circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup2/heatsource3/stop'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 3 feeds zonegroup2 and turns actuators off -->
+                    <!-- Note: three way valves shoudl be switched to the same position as in .../run, -->
+                    <!-- reason for having .../run and .../ stop is to switch actuators like circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup3/heatsource0/run'>
+                <event>
+                    <!-- issue commands to disconnect all heatsource from zonegroup3 and turns actuators on -->
+                    <!-- i.e. puts valves in correct positions and tunrs on circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup3/heatsource0/stop'>
+                <event>
+                    <!-- issue commands to disconnect all heatsource from zonegroup3 and turns actuators off -->
+                    <!-- Note: three way valves shoudl be switched to the same position as in .../run, -->
+                    <!-- reason for having .../run and .../ stop is to switch actuators like circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup3/heatsource1/run'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 1 feeds zonegroup3 and turns actuators on -->
+                    <!-- i.e. puts valves in correct positions and tunrs on circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup3/heatsource1/stop'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 1 feeds zonegroup3 and turns actuators off -->
+                    <!-- Note: three way valves shoudl be switched to the same position as in .../run, -->
+                    <!-- reason for having .../run and .../ stop is to switch actuators like circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup3/heatsource2/run'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 2 feeds zonegroup3 and turns actuators on -->
+                    <!-- i.e. puts valves in correct positions and tunrs on circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup3/heatsource2/stop'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 2 feeds zonegroup3 and turns actuators off -->
+                    <!-- Note: three way valves shoudl be switched to the same position as in .../run, -->
+                    <!-- reason for having .../run and .../ stop is to switch actuators like circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup3/heatsource3/run'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 3 feeds zonegroup3 and turns actuators on -->
+                    <!-- i.e. puts valves in correct positions and tunrs on circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup3/heatsource3/stop'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 3 feeds zonegroup3 and turns actuators off -->
+                    <!-- Note: three way valves shoudl be switched to the same position as in .../run, -->
+                    <!-- reason for having .../run and .../ stop is to switch actuators like circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup4/heatsource0/run'>
+                <event>
+                    <!-- issue commands to disconnect all heatsource from zonegroup4 and turns actuators on -->
+                    <!-- i.e. puts valves in correct positions and tunrs on circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup4/heatsource0/stop'>
+                <event>
+                    <!-- issue commands to disconnect all heatsource from zonegroup4 and turns actuators off -->
+                    <!-- Note: three way valves shoudl be switched to the same position as in .../run, -->
+                    <!-- reason for having .../run and .../ stop is to switch actuators like circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup4/heatsource1/run'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 1 feeds zonegroup4 and turns actuators on -->
+                    <!-- i.e. puts valves in correct positions and tunrs on circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup4/heatsource1/stop'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 1 feeds zonegroup4 and turns actuators off -->
+                    <!-- Note: three way valves shoudl be switched to the same position as in .../run, -->
+                    <!-- reason for having .../run and .../ stop is to switch actuators like circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup4/heatsource2/run'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 2 feeds zonegroup4 and turns actuators on -->
+                    <!-- i.e. puts valves in correct positions and tunrs on circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup4/heatsource2/stop'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 2 feeds zonegroup4 and turns actuators off -->
+                    <!-- Note: three way valves shoudl be switched to the same position as in .../run, -->
+                    <!-- reason for having .../run and .../ stop is to switch actuators like circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup4/heatsource3/run'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 3 feeds zonegroup4 and turns actuators on -->
+                    <!-- i.e. puts valves in correct positions and tunrs on circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup4/heatsource3/stop'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 3 feeds zonegroup4 and turns actuators off -->
+                    <!-- Note: three way valves shoudl be switched to the same position as in .../run, -->
+                    <!-- reason for having .../run and .../ stop is to switch actuators like circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup5/heatsource0/run'>
+                <event>
+                    <!-- issue commands to disconnect all heatsource 1 from zonegroup5 and turns actuators on -->
+                    <!-- i.e. puts valves in correct positions and tunrs on circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup5/heatsource0/stop'>
+                <event>
+                    <!-- issue commands to disconnect all heatsource 1 from zonegroup5 and turns actuators off -->
+                    <!-- Note: three way valves shoudl be switched to the same position as in .../run, -->
+                    <!-- reason for having .../run and .../ stop is to switch actuators like circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup5/heatsource1/run'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 1 feeds zonegroup5 and turns actuators on -->
+                    <!-- i.e. puts valves in correct positions and tunrs on circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup5/heatsource1/stop'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 1 feeds zonegroup5 and turns actuators off -->
+                    <!-- Note: three way valves shoudl be switched to the same position as in .../run, -->
+                    <!-- reason for having .../run and .../ stop is to switch actuators like circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup5/heatsource2/run'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 2 feeds zonegroup5 and turns actuators on -->
+                    <!-- i.e. puts valves in correct positions and tunrs on circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup5/heatsource2/stop'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 2 feeds zonegroup5 and turns actuators off -->
+                    <!-- Note: three way valves shoudl be switched to the same position as in .../run, -->
+                    <!-- reason for having .../run and .../ stop is to switch actuators like circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup5/heatsource3/run'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 3 feeds zonegroup5 and turns actuators on -->
+                    <!-- i.e. puts valves in correct positions and tunrs on circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup5/heatsource3/stop'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 3 feeds zonegroup5 and turns actuators off -->
+                    <!-- Note: three way valves shoudl be switched to the same position as in .../run, -->
+                    <!-- reason for having .../run and .../ stop is to switch actuators like circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup6/heatsource0/run'>
+                <event>
+                    <!-- issue commands to disconnect all heatsource 1 from zonegroup6 and turns actuators on -->
+                    <!-- i.e. puts valves in correct positions and tunrs on circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup6/heatsource0/stop'>
+                <event>
+                    <!-- issue commands to disconnect all heatsource 1 from zonegroup6 and turns actuators off -->
+                    <!-- Note: three way valves shoudl be switched to the same position as in .../run, -->
+                    <!-- reason for having .../run and .../ stop is to switch actuators like circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup6/heatsource1/run'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 1 feeds zonegroup6 and turns actuators on -->
+                    <!-- i.e. puts valves in correct positions and tunrs on circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup6/heatsource1/stop'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 1 feeds zonegroup6 and turns actuators off -->
+                    <!-- Note: three way valves shoudl be switched to the same position as in .../run, -->
+                    <!-- reason for having .../run and .../ stop is to switch actuators like circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup6/heatsource2/run'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 2 feeds zonegroup6 and turns actuators on -->
+                    <!-- i.e. puts valves in correct positions and tunrs on circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup6/heatsource2/stop'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 2 feeds zonegroup6 and turns actuators off -->
+                    <!-- Note: three way valves shoudl be switched to the same position as in .../run, -->
+                    <!-- reason for having .../run and .../ stop is to switch actuators like circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup6/heatsource3/run'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 3 feeds zonegroup6 and turns actuators on -->
+                    <!-- i.e. puts valves in correct positions and tunrs on circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            <eventsource source='zonemaster/zonegroup6/heatsource3/stop'>
+                <event>
+                    <!-- issue commands to ensure only heatsource 3 feeds zonegroup6 and turns actuators off -->
+                    <!-- Note: three way valves shoudl be switched to the same position as in .../run, -->
+                    <!-- reason for having .../run and .../ stop is to switch actuators like circulation pumps -->
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO0N:' address='SampleWb'/>
+                </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+
+</eventInterfaces>

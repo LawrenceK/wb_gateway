@@ -1,0 +1,208 @@
+[DEFAULT]
+# For linux. On windows updated by installer.
+logRoot="/var/log/webbrick"
+
+# LOGGING
+# Logging is often deployment specific, but some handlers and
+# formatters can be defined here.
+#
+# This is normal deployment settings.
+#
+[logging]
+[[formatters]]
+[[[message_only]]]
+format='*(message)s'
+
+[[[event_fmt]]]
+format='*(asctime)s *(message)s'
+
+[[[full_content]]]
+format='*(asctime)s *(name)s *(levelname)s *(message)s'
+
+[[[named_content]]]
+format='*(name)s *(levelname)s *(message)s'
+
+[[[level_content]]]
+format='*(levelname)s *(message)s'
+
+[[handlers]]
+[[[screen_out]]]
+class='StreamHandler'
+level='INFO'
+args="(sys.stdout,)"
+formatter='level_content'
+
+[[[debug_out]]]
+class='TimedRotatingFileHandler'
+level='CRITICAL'
+formatter='full_content'
+# hourly for two days
+args="('%(logRoot)s/debug.log', 'H', 1, 48 )"
+
+[[[error_out]]]
+level='ERROR'
+class='TimedRotatingFileHandler'
+#class='FileHandler'
+formatter='full_content'
+args="('%(logRoot)s/errors.log', 'midnight', 0, 7 )"
+#args="('%(logRoot)s/errors.log', 'a+')"
+
+[[[access_out]]]
+level='INFO'
+class='TimedRotatingFileHandler'
+#class='FileHandler'
+formatter='message_only'
+args="('%(logRoot)s/access.log', 'midnight', 0, 7 )"
+#args="('%(logRoot)s/access.log', 'a+')"
+
+[[[event_log]]]
+level='INFO'
+class='RotatingFileHandler'
+formatter='event_fmt'
+args='("%(logRoot)s/EventLog.log", "a+", 1048576, 50 )' 
+
+[[loggers]]
+
+[[[wsgi]]]
+level='INFO'
+qualname='wsgi'
+handlers=[ 'error_out', 'debug_out']
+propagate=0
+
+[[[WebBrickGateway]]]
+level='ERROR'
+qualname='WebBrickGateway'
+handlers=['error_out', 'debug_out']
+propagate=0
+
+[[[WebBrickGateway.EventState]]]
+level='ERROR'
+qualname='WebBrickGateway.EventState'
+handlers=['error_out', 'debug_out']
+propagate=0
+
+[[[WebBrickGateway.Heating]]]
+level='ERROR'
+qualname='WebBrickGateway.Heating'
+handlers=['error_out', 'debug_out']
+propagate=0
+
+[[[WebBrickGateway.HeatingHandler]]]
+level='ERROR'
+qualname='WebBrickGateway.HeatingHandler'
+handlers=['error_out', 'debug_out']
+propagate=0
+
+[[[WebBrickGateway.WebbrickStatusCache]]]
+level='ERROR'
+qualname='WebBrickGateway.WebbrickStatusCache'
+handlers=['error_out', 'debug_out']
+propagate=0
+
+[[[WbConfig]]]
+level='ERROR'
+qualname='WbConfig'
+handlers=['error_out', 'debug_out']
+propagate=0
+
+[[[WebBrickLibs]]]
+level='ERROR'
+qualname='WebBrickLibs'
+handlers=['error_out', 'debug_out']
+propagate=0
+
+[[[EventLib]]]
+level='ERROR'
+qualname='EventLib'
+handlers=['error_out', 'debug_out']
+propagate=0
+
+[[[EventLib.EventPubSub]]]
+level='ERROR'
+qualname='EventLib.EventPubSub'
+handlers=['error_out', 'debug_out']
+propagate=0
+
+[[[EventHandlers]]]
+level='ERROR'
+qualname='EventHandlers'
+handlers=['error_out', 'debug_out']
+propagate=0
+
+[[[EventHandlers.HttpAction]]]
+qualname='EventHandlers.HttpAction'
+level='ERROR'
+handlers=['error_out', 'debug_out' ]
+propagate=0
+
+[[[EventHandlers.LogEvents]]]
+# suppress these as they are going to be events getting logged anyway
+qualname='EventHandlers.LogEvents'
+level='ERROR'
+handlers=['error_out', 'debug_out' ]
+propagate=0
+
+[[[EventHandlers.WebbrickStatusQuery]]]
+qualname='EventHandlers.WebbrickStatusQuery'
+level='ERROR'
+handlers=['error_out', 'debug_out' ]
+propagate=0
+
+[[[EventHandlers.TimeEventGenerator]]]
+qualname='EventHandlers.TimeEventGenerator'
+level='ERROR'
+handlers=['error_out', 'debug_out' ]
+propagate=0
+
+[[[EventHandlers.WebbrickUdpEventReceiver]]]
+qualname='EventHandlers.WebbrickUdpEventReceiver'
+level='ERROR'
+handlers=['error_out', 'debug_out' ]
+propagate=0
+
+[[[EventHandlers.Compound]]]
+qualname='EventHandlers.Compound'
+level='ERROR'
+handlers=['error_out', 'debug_out' ]
+propagate=0
+
+[[[EventHandlers.EventMapper]]]
+qualname='EventHandlers.EventMapper'
+level='ERROR'
+handlers=['error_out', 'debug_out' ]
+propagate=0
+
+[[[cherrypy]]]
+level='INFO'
+qualname='cherrypy'
+handlers=['screen_out', 'error_out', 'debug_out']
+propagate=0
+
+[[[turbogears]]]
+level='INFO'
+qualname='turbogears'
+handlers=['error_out', 'debug_out']
+propagate=0
+
+[[[turbogears.access]]]
+qualname='turbogears.access'
+level='INFO'
+handlers=['access_out' ]
+
+[[[EventLog]]]
+level='INFO'
+qualname='EventLog'
+handlers=['event_log', ]
+propagate=0
+
+[[[EventLog.time.second]]]
+# suppress these
+qualname='EventLog.time.second'
+level='CRITICAL'
+handlers=['event_log', ]
+propagate=0
+
+[[[root]]]
+level='ERROR'
+qualname=''
+handlers=['screen_out', 'error_out', 'debug_out']

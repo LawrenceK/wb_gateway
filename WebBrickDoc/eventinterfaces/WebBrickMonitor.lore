@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>WebBrickMonitor</title>
+</head>
+
+<body>
+    <h1>WebBrickMonitor</h1>
+
+        <p>This is responsible for monitoring webbricks, and performing actions on them.</p>
+
+    <h2>Description</h2>
+        <p>
+            <ul>
+                <li>This monitors the time on webbrick nodes and corrects as required.</li>
+                <li>watches for webbrick faults and logs as appropriate, if possible it recovers them.</li>
+            </ul>
+        </p>
+
+
+    <h2>Configuration</h2>
+    <pre>
+        &lt;eventInterface module='EventHandlers.WebBrickMonitor' name='WebBrickMonitor' 
+            webReset='2' clockReset=3' clockMaxError='120' &gt;
+        &lt;/eventInterface&gt;
+    </pre>
+
+    <ol>
+        <li>webReset - maximum number of minutes without UDP packets, after which the siteplayer is reset.</li>
+        <li>clockReset - maximum number of minutes for which the clock can be more than clockMaxError seconds out.</li>
+        <li>clockMaxError - Number of seconds out that counts as clock error.</li>
+    </ol>
+
+</body>
+
+</html>

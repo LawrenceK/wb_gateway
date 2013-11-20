@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>WebBrick Gateway Introduction</title>
+</head>
+
+<body>
+
+    <h1>WebBrick Gateway Datasheet</h1>
+
+	<h2>Introduction</h2>
+
+	<p> This is the product that was known has the HGA, or Home Gateway Appliance.  As this previous name implies the product
+	acts as a gateway between various functions in the home and the Intranet/Internet.</p>
+
+	<p>These functions include:</p>
+	<ul>
+		<li>Master home schedule for heating</li>
+		<li>Lighting actions to be taken for each phase of the day</li>
+		<li>Actions to be taken on the basis of occupancy, i.e. how the home behaves whilst the occupants are on vacation</li>
+		<li>Actions to be taken on the basis of user input, either through button, web, or mobile interactions</li>
+		<li>Provides a user interfaces to control the home.  These interfaces are presented as web pages on touch screens,
+		VOIP phones, mobile devices and regular browsers on PCs, MACs etc.</li>
+		<li>Management of a collection of WebBricks, including presence and configuration backup/restore</li>
+		<li>Secure username/password access to the home automation system</li>
+		<li>Simple interface for control of iTunes for audio and VLC for video distribution</li>
+	</ul>
+
+</body>
+
+</html>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Using the WebBrick Gateway</title>
+  </head>
+  <body>
+
+    <h1>Using the WebBrick Gateway</h1>
+
+      <p>
+          The user interface for the WebBrick Gateway consists of panels with a mixture of display and input elements on it. Some elements may combine both
+          display and input.
+      </p>
+
+      <p>
+        Here is an example home page:
+        <div class="center">
+              <img src="../../Images/Start.jpg" alt="Start Page" width="60%" />
+        </div>
+      </p>
+
+      <h2>Operation</h2>
+
+        <p>
+          Selecting any element on the screen may cause an action to occur or a new page to be displayed.
+          If you are using a touch screen touching the interface element will select it.
+          If using a mouse on a standard web browser then click and release is a select.
+        </p>
+
+        <p>
+          Here's an example UI panel,  a heating control page:
+          <div class="center">
+            <img src="../../Images/Heating.png" alt="Hearing Schedule" width="60%" />
+          </div>
+        </p>
+        <p>
+          Here's the same example with parts labelled:
+          <div class="center">
+            <img src="../../Images/Labelled.png" alt="Labelled Heating schedule" width="60%" />
+          </div>
+        </p>
+
+      <h2>Display elements</h2>
+        <p>
+          Depending on the target device or task the user interface will display different interface elements. These interface elements
+          may be standard web browser elements or built up using a mixture of technologies. A lot of the simple elements consist of text and graphics,
+          with the graphic being used to indicate some state or indication of what the element is connected with.
+        </p>
+
+        <p>
+          For simple devices that have a distinct number of number of states such as a light, i.e. on or off the graphic
+          will vary depending on whether the device is:
+          <ol>
+            <li>on</li>
+            <li>off</li>
+            <li>has been given a command and are waiting for a response</li>
+            <li>the state can not be determined</li>
+          </ol>
+        </p>
+
+        <p>
+          For slightly more complex devices, i.e. garage doors where the door can be one of closed, open, ajar, error, unknown.
+          Again simple graphics will be used with a wider range of possibilities. Look at the help page for current explanations on the graphics
+          being used, again these may be changed to suit the installation i.e. French symbols.
+        </p>
+
+        <p>
+          Some user interface elements are both the state display and the command request element, i.e. a light switch.
+        </p>
+
+        <p>
+          Some user interface elements are just command request elements as they target multiple devices and therefore no single entity can
+          be queried to update the element state. i.e. a Macro or job request.
+        </p>
+
+        <p>
+          For devices that can have a continuous range of output values, i.e. a light dimmer, the display can either be a textual
+          display of the current value or a graphical display or a mixture of both.
+        </p>
+
+       <h2>User input elements</h2>
+
+        <p>
+          Most activities on the user interface consist of making requests for something to happen and therefore a simple button metaphor is used.
+          Some limited system reconfiguration can be performed from the user interface, e.g. adjust heating schedules. These are performed using on screen
+          keypads and selectors as follows, these are intended to be usable using traditional mouse or touch screen input. See also the previous section
+          where some buttons are display and request elements.
+        </p>
+
+        <h3>Numeric keypad</h3>
+          <p>
+            <img width="25%" src="../../Images/RoundNumericKeypad.png" alt="Numeric Keypad for date entry"/>
+            This is used to enter a numeric value, i.e. a temperature in a heating schedule. A number can be entered by touching the
+            relevant numeric symbols and then select either Set or Cancel. The decimal point will be displayed if the target can accept
+            fractional numbers i.e. 21.5 for a temperature setting.
+          </p>
+
+          <h3>Time thumbwheel</h3>
+            <p>
+              <img width="25%" src="../../Images/RoundTimeThumbwheel.png" alt="Dialog for time entry"/>
+
+              This is used to enter a time value. It is a thumbwheel display and the up and down arrows above and below each digit are used
+              to select the desired time. The time entered will be in 24 hour format an attempt to enter a time greater than 23:59 will be
+              prevented by where necessary changing a digit as the user causes changes another digit that would result in a time
+              greater than 23:59.
+              </p>
+
+          <h3>Day selection</h3>
+              <p>
+                  <img src="../../Images/RoundDaySelection.png" alt="Dialog for days of week selection" width="20%" />
+                  This is used to select one or more days of the week for some request, typically during schedule updates. Select each day to toggle its select
+                  state and once the correct selections of days has been identified for the task in hand then select either Set or Cancel.
+              </p>
+
+          <h3>State request</h3>
+              <p>
+                 <img width="15%" src="../../Images/RoundOnOffIgnoreSelection.png" alt="Dialog to select action at scheduled event" />
+              This is used to select a state for an action, typically used as an action on a device as part of schedule. i.e. When the time for the schedule
+              entry occurs should this device be:
+                <ul>
+                  <li>switched On</li>
+                  <li>switched Off</li>
+                  <li>no change happen to the device</li>
+               </ul>
+              </p>
+
+      <h2>Operating an item</h2>
+
+          <p>
+              When you click/select an item, it is selected <em>'ready for command'</em>.  The command is not issued until you release
+              the click within the area of the item control.  So if you move your mouse or finger outside the item 'box' the select is cancelled.
+              This feature helps to prevent accidental operation whilst brushing across or cleaning a touch screen.
+              Here's what happens to an item that starts in the 'Off' state, and is properly 'click-released':
+
+        <div class="center">
+                  <img src="../../Images/Transition.png" alt="picture showing transition states of buttons" width="20%" />
+        </div>
+          </p>
+          <p>
+              There are times when an item cannot be operated:
+
+              <ul><li><b>Searching</b>
+                      <img src="../../Images/absent.png" alt="diagram showing button where source data is absent" float="left"/>
+                      This means that the WebBrick Gateway is searching for the item.  Generally you'll
+                        see this icon for two reasons, either the network to that WebBrick is down, or the WebBrick is powered off.
+                  </li><li>
+                      <b>Locked</b>
+                      <img src="../../Images/locked.png" alt="Diagram showing a locked button" float="left"/>
+                      This means that the item is locked out.  This means the WebBrick
+                        that controls the item has been set to locked out mode.
+                  </li></ul>
+          </p>
+
+      <h2>Macros/Jobs</h2>
+
+          <p>
+            The WebBrick Gateway can execute macros or jobs that consist of multiple actions<br/>
+            <img src="../../Images/RoundGoNormal.png" alt="Diagram showing stateless button" float="left"/>
+            This is where:
+
+              <ul><li> Several items are operated upon, configured within the WebBrick Gateway.  A example would be a 'Twilight' job
+                    where items may be distributed over more than one WebBrick.  Internally the WebBrick Gateway has a list of operations
+                    grouped into a 'job'
+                  </li><li>
+                      Scenes, an element may drive the 'next' and 'prev' functions for set points and scenes.
+                  </li></ul>
+          </p>
+
+          <p>
+            There is no single point of feedback to show that a job has completed, therefore the click-release transition looks like:
+
+        <div class="center">
+              <img src="../../Images/RoundGoNormal.png" alt="Diagram showing stateless button" width="20%"/>
+              <img src="../../Images/RoundGoHourglass.png" alt="Diagram showing stateless button" width="20%"/>
+              <img src="../../Images/RoundGoNormal.png" alt="Diagram showing stateless button" width="20%"/>
+        </div>
+          </p>
+
+      <h2>Guide/Help</h2>
+
+          <p>
+              From most pages the following is available by selecting the Cog Icon in the top right corner of the display, yours
+              may not look like this as it may have been modified by your installer to suit your location, i.e. use of german symbols.
+
+        <div class="center">
+                  <img src="../../Images/RoundInstallerToolsBasic.png" alt="Sample UI guide page" width="60%" />
+        </div>
+          </p>
+  </body>
+</html>

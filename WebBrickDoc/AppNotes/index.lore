@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>WebBrick Systems Application Notes</title>
+</head>
+
+<body>
+
+    <h1>WebBrick Systems Design Notes</h1>
+
+	<p> Design notes are for installer guidance </p>
+	 <ul>
+
+        <li><a href="WallLayout.xhtml">Equipment layout for the star point</a></li>
+        <li><a href="TriacDimmers.xhtml">Triac Based Dimmers, fusing and I<sup>2</sup>T</a></li>
+        <li><a href="WBTriacs.xhtml">Electrical Testing with WebBrick Triacs</a></li>
+        <li><a href="./DN001DesigningHeatingSchemes.pdf">DN001 - Designing Heating and Cooling Schemes</a></li>
+	 </ul>
+    <h1>WebBrick Systems Application Notes</h1>
+    <p>
+        Please note that all Application Notes are preliminary versions only and are not necessarily complete.
+    </p>
+    <ul>
+        <li><a href="./AN001SwitchingMains.pdf">AN001 - Switching Mains</a></li>
+<!--
+        <li><a href="./AN002DimmingMainsLighting.pdf">AN002 - Dimming Mains Lighting</a></li>
+        <li><a href="./AN003ControllingCurtainMotors.xhtml">AN003 - Controlling Curtain Motors</a></li>
+-->
+        <li><a href="./AN004NetworkingAndAccessingWBs.pdf">AN004 - Networking and Accessing WebBricks</a></li>
+<!--
+        <li><a href="./AN005ConfiguringScenes.pdf">AN005 - Configuring Scenes</a></li>
+        <li><a href="./AN006SceneControlPB.xhtml">AN006 - Scene Control with Push-Buttons</a></li>
+-->
+        <li><a href="./AN007SceneControlRotary.pdf">AN007 - Scene Control with Rotary Encoders</a></li>
+    </ul>
+
+</body>
+
+</html>

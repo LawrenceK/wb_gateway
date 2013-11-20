@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta name="author" content="Graham Klyne" />
+  <title>Heating event URIs</title>
+  <style type="text/css">
+  .body { margin-left: 40px; }
+  .code { font-family: monospace; }
+  .param { font-style: italic;  }
+  .strong { font-weight: bold; }
+  </style>
+</head>
+
+<body>
+
+A schedule consists of a set of times and a list of devices that are controlled by that schedule. All devices in the same
+schedule have the same set of control times. Although not all devices have to be operated at the time points. Updates to
+the time points affect all devices with a control action at that time point.
+
+A schedule may be for a combined set of devices that are interrelated, i.e. a heating system or for a set of devices that are not 
+related but have a grouping under some other context, i.e. lighting control based on time of day.
+
+The schedule names, and devices are preconfigured in the application configuration, the remaining control
+data is persisted using the persistantce events. The data items all have reletaive URIs andthe first component is
+schedule, followed by the schedule name and then the time point number - starting at zero. The schedule processor issues
+events to trigger the required action the event type for these is http://id.webbrick.co.uk/events/schedule/control with the
+event source being the device name and the action name (on, off, set) In the case of a set action the
+event will also have the desired value, e.g. setPoint. The event source does not identify the schedule, this means that 
+a device needs a unique name across all schedules and may exist in multiple schedules.
+
+The standard schedule template also will look for events providing the current state of the device, i.e. on off or set level.
+
+<h2>Schedule Event Types.</h2>
+<ul>
+<li><a href="current.html">http://id.webbrick.co.uk/events/schedule/current</a></li>
+<li><a href="control.html">http://id.webbrick.co.uk/events/schedule/control</a></li>
+<li><a href="">http://id.webbrick.co.uk/events/config/get</a></li>
+</ul>
+
+<h2>Schedule Event Source.</h2>
+<ul>
+<li><a href="zone.html">deviceName/on</a></li>
+<li><a href="zone.html">deviceName/off</a></li>
+<li><a href="zone.html">deviceName/set</a></li>
+</ul>
+
+<h2>schedule/set Other Data.</h2>
+
+This event is used to adjust a current setting of a device. The other data will contain a single attribute of val
+that is the new setting.
+<ul>
+<li>val</li>
+</ul>
+
+</body>
+
+</html>

@@ -1,0 +1,177 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!-- !  This file defines the connection between UI & WebBricks and vice versa 
+        for LIGHTING. Correcsponding kid files: 
+            outside_lighting_overview.kid 
+            
+                    <wb:simpleButton wbTarget="/sendevent/from_ui/outside/lighting/gardenpath">
+
+                    <wb:simpleButton wbTarget="/sendevent/from_ui/outside/lighting/housepath">
+
+                    <wb:simpleButton wbTarget="/sendevent/from_ui/outside/lighting/decking">
+
+                    <wb:simpleButton wbTarget="/sendevent/from_ui/outside/lighting/kitchen">
+
+                    <wb:simpleButton wbTarget="/sendevent/from_ui/outside/lighting/office">
+
+                    <wb:simpleButton wbTarget="/sendevent/from_ui/outside/lighting/summerhouse">
+
+                    <wb:simpleButton wbTarget="/sendevent/from_ui/outside/lighting/mower">
+                -->
+            
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+    
+    <!-- !  WebBrick to UI
+            Modify type and source to give the correct feedback for UI elements -->
+        
+        <!-- !  Feedback from Digital Output (On/Off) -->
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/DO'>
+            
+            <!-- ! gardenpath Lighting Circuit -->
+            <eventsource source='webbrick/5/DO/0'>
+                <event>
+                    <newEvent type="" source="to_ui/outside/lighting/gardenpath">
+                        <copy_other_data val="state" />
+                        <other_data name=""/>
+                    </newEvent>
+                </event>
+            </eventsource>
+            
+            
+            <!-- ! housepath Lighting Circuit -->
+            <eventsource source='webbrick/2/DO/3'>
+                <event>
+                    <newEvent type="" source="to_ui/outside/lighting/housepath">
+                        <copy_other_data val="state" />
+                        <other_data name=""/>
+                    </newEvent>
+                </event>
+            </eventsource>
+            
+            
+            <!-- ! decking Lighting Circuit -->
+            <eventsource source='webbrick/5/DO/1'>
+                <event>
+                    <newEvent type="" source="to_ui/outside/lighting/decking">
+                        <copy_other_data val="state" />
+                        <other_data name=""/>
+                    </newEvent>
+                </event>
+            </eventsource>
+            
+            
+            <!-- ! kitchen Lighting Circuit -->
+            <eventsource source='webbrick/2/DO/2'>
+                <event>
+                    <newEvent type="" source="to_ui/outside/lighting/kitchen">
+                        <copy_other_data val="state" />
+                        <other_data name=""/>
+                    </newEvent>
+                </event>
+            </eventsource>
+            
+            
+            <!-- ! office Lighting Circuit -->
+            <eventsource source='webbrick/1/DO/0'>
+                <event>
+                    <newEvent type="" source="to_ui/outside/lighting/office">
+                        <copy_other_data val="state" />
+                        <other_data name=""/>
+                    </newEvent>
+                </event>
+            </eventsource>
+            
+            
+            <!-- ! summerhouse Lighting Circuit -->
+            <eventsource source='webbrick/6/DO/2'>
+                <event>
+                    <newEvent type="" source="to_ui/outside/lighting/summerhouse">
+                        <copy_other_data val="state" />
+                        <other_data name=""/>
+                    </newEvent>
+                </event>
+            </eventsource>
+            
+            
+            <!-- ! mower Lighting Circuit -->
+            <eventsource source='webbrick/6/DO/3'>
+                <event>
+                    <newEvent type="" source="to_ui/outside/lighting/mower">
+                        <copy_other_data val="state" />
+                        <other_data name=""/>
+                    </newEvent>
+                </event>
+            </eventsource>
+            
+            
+            
+        </eventtype>
+        
+        
+    <!-- !  UI to WebBrick
+            Replace 'Xurl' with 'url' and edit address adn uri field issue the correct command-->
+        
+            
+        <eventtype type="http://id.webbrick.co.uk/events/uri">   
+            
+            <!-- !  gardenpath Lighting Circuit -->
+            <eventsource source="from_ui/outside/lighting/gardenpath" >
+                <event>
+                    <url address="oiltank" uri="/hid.spi?COM=DI;0:" cmd="GET" />
+                </event>
+            </eventsource>
+            
+            
+            <!-- !  housepath Lighting Circuit -->
+            <eventsource source="from_ui/outside/lighting/housepath" >
+                <event>
+                    <url address="MainCab2" uri="/hid.spi?COM=DI;3:" cmd="GET" />
+                </event>
+            </eventsource>
+            
+            
+            <!-- !  decking Lighting Circuit -->
+            <eventsource source="from_ui/outside/lighting/decking" >
+                <event>
+                    <url address="oiltank" uri="/hid.spi?COM=DI;1:" cmd="GET" />
+                </event>
+            </eventsource>
+            
+            
+            <!-- !  kitchen Lighting Circuit -->
+            <eventsource source="from_ui/outside/lighting/kitchen" >
+                <event>
+                    <url address="MainCab2" uri="/hid.spi?COM=DI;2:" cmd="GET" />
+                </event>
+            </eventsource>
+            
+            
+            <!-- !  office Lighting Circuit -->
+            <eventsource source="from_ui/outside/lighting/office" >
+                <event>
+                    <url address="MainCab1" uri="/hid.spi?COM=DI;11:" cmd="GET" />
+                </event>
+            </eventsource>
+            
+            
+            <!-- !  summerhouse Lighting Circuit -->
+            <eventsource source="from_ui/outside/lighting/summerhouse" >
+                <event>
+                    <url address="summerhous" uri="/hid.spi?COM=DI;2:" cmd="GET" />
+                </event>
+            </eventsource>
+            
+            
+            <!-- !  mower Lighting Circuit -->
+            <eventsource source="from_ui/outside/lighting/mower" >
+                <event>
+                    <url address="summerhous" uri="/hid.spi?COM=DI;6:" cmd="GET" />
+                </event>
+            </eventsource>
+        
+        </eventtype>
+    
+    </eventInterface>
+</eventInterfaces>
+
+

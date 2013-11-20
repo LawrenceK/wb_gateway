@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>DelayedEvent</title>
+</head>
+
+<body>
+
+    <h1>DelayedEvent</h1>
+
+        <p>Delay and translate any event into one or more new events.</p>
+
+    <h2>Description</h2>
+        <p>This event handler is typically used to generate delayed events, for example 1 hour after sunset.</p>
+
+
+    <h2>Configuration</h2>
+    <p>The handler specific element in this case is called delay within which are one or more newEvent elements.
+    The delay element has one of 3 attributes, delaySeconds, delaySeconds, delayHours, these each specify a number of units to delay. 
+    The newEvent elements can have copy_other_data and other_data elements refer to EventMapper for the details on these.</p>
+
+    <h2>Example</h2>
+
+    <a href="DelayedEvent.xml" class="html-listing" />
+
+    <p>This example creates events delayed by 2 minutes or 23 seconds.</p>
+
+</body>
+
+</html>

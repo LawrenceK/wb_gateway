@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta name="author" content="Graham Klyne" />
+  <title>Heating event URIs</title>
+  <style type="text/css">
+  .body { margin-left: 40px; }
+  .code { font-family: monospace; }
+  .param { font-style: italic;  }
+  .strong { font-weight: bold; }
+  </style>
+</head>
+
+<body>
+
+Note this is being subsumed into schedule events, heating is a specific form of schedule.
+
+So refer to <a href="setting.html">http://id.webbrick.co.uk/events/schedule/index.html</a>
+
+<h2>Heating Event Types.</h2>
+<ul>
+<li><a href="setting.html">http://id.webbrick.co.uk/events/heating/schedule</a></li>
+<li><a href="setting.html">http://id.webbrick.co.uk/events/heating/device</a></li>
+<li><a href="setting.html">http://id.webbrick.co.uk/events/heating/action</a></li>
+<li><a href="setting.html">http://id.webbrick.co.uk/events/heating/current</a></li>
+<li><a href="setting.html">http://id.webbrick.co.uk/events/heating/control</a></li>
+</ul>
+
+<h2>Heating Event Source.</h2>
+<ul>
+<li><a href="zone.html">heating/schedule</a></li>
+<li><a href="zone.html">heating/device</a></li>
+<li><a href="zone.html">heating/action</a></li>
+<li><a href="zone.html">heating/current</a></li>
+<li><a href="zone.html">heating/control</a></li>
+</ul>
+
+<h2>heating/schedule Other Data.</h2>
+<ul>
+<li>schKey</li>
+<li>time</li>
+<li>day</li>
+</ul>
+
+<h2>heating/device Other Data.</h2>
+<ul>
+<li>devKey</li>
+<li>val</li>
+</ul>
+
+<h2>heating/action Other Data.</h2>
+<ul>
+<li>schKey</li>
+<li>devKey</li>
+<li>val</li>
+</ul>
+
+<h2>heating/current Other Data.</h2>
+<ul>
+<li>devKey</li>
+<li>val</li>
+</ul>
+
+<h2>http://id.webbrick.co.uk/events/heating/control source.</h2>
+<ul>
+<li>devKey</li>
+<li>val</li>
+</ul>
+
+The entry attribute identifies the 
+
+The other contains both an identifier for the schedule entry and an identifier for the
+attributes of the 
+
+The event source contains both an identifier for the schedule entry and an identifier for the
+attributes of the 
+
+<h2>setting</h2>
+This event type 
+
+</body>
+
+</html>

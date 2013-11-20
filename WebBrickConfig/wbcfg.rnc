@@ -1,0 +1,150 @@
+# $Id: wbcfg.rnc 493 2006-01-09 15:21:34Z graham $
+#
+# Relax NG compact syntax schema for WebBrick configuration file
+#
+# See:
+#  [1] http://www.relaxng.org/compact-tutorial-20030326.html
+#  [2] http://www.relaxng.org/compact-20021121.html
+#  [3] http://www.relaxng.org/spec-20011203.html
+#
+
+# First cut based on svn://mail.thirtover.com/WebBrick/Trunk/PIC/SitePlayer/web55/wbcfg.xml
+# Expect subsequent revisions to add value-type information and relax ordering constraints
+
+start = xmlcfg
+
+# May use these later to factor out repeated attribute pattern
+
+ident = attribute id { text }, attribute Name { text }
+
+## Trigger details are encoded in 3 byte values.
+##
+## Look in lib.js, or splocation.h in PIC
+
+triggerDetails = attribute B1 { text }, attribute B2 { text }, attribute B3 { text }
+
+## A threshold is a trigger associated with some threshold value
+
+thresholdDetails = attribute Val { text } , triggerDetails
+
+# Note: '##' annotations become part of the generated schema documentation
+# Comments with '???' need expanding or clarifying
+
+## Syntax for WebBrick configuration
+xmlcfg = element WebbrickConfig
+    {
+    ## Config file version
+    attribute Ver { text },
+    ## Node name
+    element NN { text },
+    ## Node number
+    element SN { text },
+    ## Rotary step value ????
+    element SRs 
+        { 
+        element SR { attribute id { text }, attribute Value { text } }*
+        },
+    ## Fade rate ???
+    element SF { text },
+    ## Digital inputs (switches, etc) ???
+    CDs,
+    ## Dwell values (seconds)
+    CWs,
+    ## Setpoints
+    CSs,
+    ## Temperature sensors ???
+    CTs,
+    ## Analogue inputs ??? (how different from temperature inputs???)
+    CIs,
+    ## Scheduled events (really needs explaining???)
+    CEs,
+    ## Digital outputs ???
+    NOs,
+    ## Monitor inputs ???
+    NMs,
+    ## Analogue outputs ???
+    NAs
+    }
+
+CDs = element CDs 
+        { 
+        element CD 
+            { 
+            attribute id   { text }, 
+            attribute Name { text },
+            element Trg { triggerDetails } 
+            }*
+        }
+
+CWs = element CWs 
+        { 
+        element CW { attribute id { text }, text }*
+        }
+
+CSs = element CSs 
+        { 
+        element CS { attribute id { text }, text }*
+        }
+
+CTs = element CTs 
+        { 
+        element CT
+            { 
+            attribute id   { text }, 
+            attribute Name { text },
+            element TrgL   { thresholdDetails },
+            element TrgH   { thresholdDetails }
+            }*
+        }
+
+CIs = element CIs 
+        { 
+        element CI
+            { 
+            attribute id   { text }, 
+            attribute Name { text },
+            element TrgL   { thresholdDetails },
+            element TrgH   { thresholdDetails }
+            }*
+        }
+
+CEs = element CEs 
+        { 
+        element CE
+            { 
+            attribute id   { text }, 
+            attribute Days { text }, 
+            attribute Hrs  { text }, 
+            attribute Mins { text }, 
+            element Trg    { triggerDetails }
+            }*
+        }
+
+NOs = element NOs
+        { 
+        element NO
+            { 
+            attribute id   { text }, 
+            attribute Name { text } 
+            }*
+        }
+
+NMs = element NMs
+        { 
+        element NM
+            { 
+            attribute id   { text }, 
+            attribute Name { text } 
+            }*
+        }
+
+NAs = element NAs
+        { 
+        element NA
+            { 
+            attribute id   { text }, 
+            attribute Name { text } 
+            }*
+        }
+
+# End.

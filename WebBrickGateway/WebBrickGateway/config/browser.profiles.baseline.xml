@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<userprofiles>
+    <!-- The contents of these are used to map ua strings to client names -->
+    <useragent client='opera'>User-Agent String</useragent>
+
+    <!-- The contents of these define the abilities and default template sets for an HTTP client -->
+
+    <!-- Theses settings are default for entries not provided in browsr specirfic settings -->
+    <client name='default'>
+        <default javascript='yes' alinksonly='no' flash='yes' tg_format='xhtml' templateModule='templates' />
+    </client>
+
+    <client name='unknown'>
+        <default javascript='no' alinksonly='no' flash='no' tg_format='xhtml' templateModule='templates' />
+    </client>
+
+    <client name='operamini'>
+        <default javascript='no' alinksonly='no' flash='no' tg_format='xhtml' templateModule='templates.simple' />
+    </client>
+
+    <client name='windowsce'>
+        <default javascript='yes' alinksonly='no' flash='no' tg_format='xhtml' templateModule='templates.simple' />
+    </client>
+
+    <client name='minimo'>
+        <default javascript='yes' alinksonly='no' flash='no' templateModule='templates.simple' />
+    </client>
+
+    <client name='windowsmc'>
+        <default javascript='no' alinksonly='yes' flash='no' tg_format='xhtml' templateModule='templates' />
+    </client>
+
+    <client name='phonesnom'>
+        <default javascript='no' alinksonly='no' flash='no' tg_format='xml' templateModule='templates.snom' />
+    </client>
+
+    <client name='phonecisco'>
+        <default javascript='no' alinksonly='no' flash='no' tg_format='xml' templateModule='templates.cisco' />
+    </client>
+
+    <client name='phoneastra'>
+        <default javascript='no' alinksonly='no' flash='no' tg_format='xml' templateModule='templates.aastra' />
+    </client>
+
+    <client name='firefox'>
+        <default javascript='yes' alinksonly='no' />
+    </client>
+
+    <client name='msie'>
+        <default javascript='yes' alinksonly='no' />
+    </client>
+
+</userprofiles>

@@ -1,0 +1,751 @@
+<eventInterfaces>
+    <!-- TODO may need updating if zones in the zonegroup change -->
+    <eventInterface module='EventHandlers.Compound' name='Compound'>
+
+        <initialState name='zoneSource' value='default' />
+        <eventtype type='http://id.webbrick.co.uk/zones/group/heatsource'>
+            <eventsource source="zonegroup/4/heatsource" >
+                <event>
+                    <action name="zoneSource" key="name"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <initialState name="zonegroupActive" value="0" />
+        <eventtype type='http://id.webbrick.co.uk/zones/zonegroup'>
+            <eventsource source='zonegroup/4/running'>
+                <event>
+                    <action name="zonegroupActive" value="1"/>
+                </event>
+            </eventsource>
+            <eventsource source='zonegroup/4/stopped'>
+                <event>
+                    <action name="zonegroupActive" value="0"/>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+        <eventtype type='http://id.webbrick.co.uk/zones/zone'>
+            <eventsource source='zone1/running'>
+                <event>
+                    <action name="zone1Active" value="1"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone1/stop'>
+                <event>
+                    <action name="zone1Active" value="0"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone1/running'>
+                <event>
+                    <action name="zone1Active" value="1"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone1/stop'>
+                <event>
+                    <action name="zone1Active" value="0"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone2/running'>
+                <event>
+                    <action name="zone2Active" value="1"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone2/stop'>
+                <event>
+                    <action name="zone2Active" value="0"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone3/running'>
+                <event>
+                    <action name="zone3Active" value="1"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone3/stop'>
+                <event>
+                    <action name="zone3Active" value="0"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone4/running'>
+                <event>
+                    <action name="zone4Active" value="1"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone4/stop'>
+                <event>
+                    <action name="zone4Active" value="0"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone5/running'>
+                <event>
+                    <action name="zone5Active" value="1"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone5/stop'>
+                <event>
+                    <action name="zone5Active" value="0"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone6/running'>
+                <event>
+                    <action name="zone6Active" value="1"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone6/stop'>
+                <event>
+                    <action name="zone6Active" value="0"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone7/running'>
+                <event>
+                    <action name="zone7Active" value="1"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone7/stop'>
+                <event>
+                    <action name="zone7Active" value="0"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone8/running'>
+                <event>
+                    <action name="zone8Active" value="1"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone8/stop'>
+                <event>
+                    <action name="zone8Active" value="0"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone9/running'>
+                <event>
+                    <action name="zone9Active" value="1"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone9/stop'>
+                <event>
+                    <action name="zone9Active" value="0"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone10/running'>
+                <event>
+                    <action name="zone10Active" value="1"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone10/stop'>
+                <event>
+                    <action name="zone10Active" value="0"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone11/running'>
+                <event>
+                    <action name="zone11Active" value="1"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone11/stop'>
+                <event>
+                    <action name="zone11Active" value="0"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone12/running'>
+                <event>
+                    <action name="zone12Active" value="1"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone12/stop'>
+                <event>
+                    <action name="zone12Active" value="0"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone13/running'>
+                <event>
+                    <action name="zone13Active" value="1"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone13/stop'>
+                <event>
+                    <action name="zone13Active" value="0"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone14/running'>
+                <event>
+                    <action name="zone14Active" value="1"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone14/stop'>
+                <event>
+                    <action name="zone14Active" value="0"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone15/running'>
+                <event>
+                    <action name="zone15Active" value="1"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone15/stop'>
+                <event>
+                    <action name="zone15Active" value="0"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone16/running'>
+                <event>
+                    <action name="zone16Active" value="1"/>
+                </event>
+            </eventsource>
+            <eventsource source='zone16/stop'>
+                <event>
+                    <action name="zone16Active" value="0"/>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+        <eventtype type="http://id.webbrick.co.uk/events/config/get">
+            <eventsource source="zone1/groupnumber">
+                <event>
+                    <action name="zone1Group" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone2/groupnumber">
+                <event>
+                    <action name="zone2Group" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone3/groupnumber">
+                <event>
+                    <action name="zone3Group" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone4/groupnumber">
+                <event>
+                    <action name="zone4Group" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone5/groupnumber">
+                <event>
+                    <action name="zone5Group" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone6/groupnumber">
+                <event>
+                    <action name="zone6Group" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone7/groupnumber">
+                <event>
+                    <action name="zone7Group" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone8/groupnumber">
+                <event>
+                    <action name="zone8Group" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone9/groupnumber">
+                <event>
+                    <action name="zone9Group" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone10/groupnumber">
+                <event>
+                    <action name="zone10Group" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone11/groupnumber">
+                <event>
+                    <action name="zone11Group" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone12/groupnumber">
+                <event>
+                    <action name="zone12Group" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone13/groupnumber">
+                <event>
+                    <action name="zone13Group" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone14/groupnumber">
+                <event>
+                    <action name="zone14Group" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone15/groupnumber">
+                <event>
+                    <action name="zone15Group" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source="zone16/groupnumber">
+                <event>
+                    <action name="zone16Group" key="val"/>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+        <!-- Note these indicate the group each zone belongs to-->
+        <initialState name="zone1Group" value="0" />
+        <initialState name="zone2Group" value="0" />
+        <initialState name="zone3Group" value="0" />
+        <initialState name="zone4Group" value="0" />
+        <initialState name="zone5Group" value="0" />
+        <initialState name="zone6Group" value="0" />
+        <initialState name="zone7Group" value="0" />
+        <initialState name="zone8Group" value="0" />
+        <initialState name="zone9Group" value="0" />
+        <initialState name="zone10Group" value="0" />
+        <initialState name="zone11Group" value="0" />
+        <initialState name="zone12Group" value="0" />
+        <initialState name="zone13Group" value="0" />
+        <initialState name="zone14Group" value="0" />
+        <initialState name="zone15Group" value="0" />
+        <initialState name="zone16Group" value="0" />
+        
+        <!-- Note these indicate whether a zone is active, it will briefly be the whether the zone is active but quickly gets reset to be only set if active within this group.-->
+        <initialState name="zone1Active" value="0" />
+        <initialState name="zone2Active" value="0" />
+        <initialState name="zone3Active" value="0" />
+        <initialState name="zone4Active" value="0" />
+        <initialState name="zone5Active" value="0" />
+        <initialState name="zone6Active" value="0" />
+        <initialState name="zone7Active" value="0" />
+        <initialState name="zone8Active" value="0" />
+        <initialState name="zone9Active" value="0" />
+        <initialState name="zone10Active" value="0" />
+        <initialState name="zone11Active" value="0" />
+        <initialState name="zone12Active" value="0" />
+        <initialState name="zone13Active" value="0" />
+        <initialState name="zone14Active" value="0" />
+        <initialState name="zone15Active" value="0" />
+        <initialState name="zone16Active" value="0" />
+        
+        <!-- reset activity flag if not part of our group -->
+        <compound>
+            <params>
+                <testEq type='int' name='zone1Active' value='1'/>
+                <testNe type='int' name='zone1Group' value='4'/>
+            </params>            
+            <newState name="zone1Active" value="0" />
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone2Active' value='1'/>
+                <testNe type='int' name='zone2Group' value='4'/>
+            </params>            
+            <newState name="zone2Active" value="0" />
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone3Active' value='1'/>
+                <testNe type='int' name='zone3Group' value='4'/>
+            </params>            
+            <newState name="zone3Active" value="0" />
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone4Active' value='1'/>
+                <testNe type='int' name='zone4Group' value='4'/>
+            </params>            
+            <newState name="zone4Active" value="0" />
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone5Active' value='1'/>
+                <testNe type='int' name='zone5Group' value='4'/>
+            </params>            
+            <newState name="zone5Active" value="0" />
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone6Active' value='1'/>
+                <testNe type='int' name='zone6Group' value='4'/>
+            </params>            
+            <newState name="zone6Active" value="0" />
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone7Active' value='1'/>
+                <testNe type='int' name='zone7Group' value='4'/>
+            </params>            
+            <newState name="zone7Active" value="0" />
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone8Active' value='1'/>
+                <testNe type='int' name='zone8Group' value='4'/>
+            </params>            
+            <newState name="zone8Active" value="0" />
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone9Active' value='1'/>
+                <testNe type='int' name='zone9Group' value='4'/>
+            </params>            
+            <newState name="zone9Active" value="0" />
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone10Active' value='1'/>
+                <testNe type='int' name='zone10Group' value='4'/>
+            </params>            
+            <newState name="zone10Active" value="0" />
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone11Active' value='1'/>
+                <testNe type='int' name='zone11Group' value='4'/>
+            </params>            
+            <newState name="zone11Active" value="0" />
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone12Active' value='1'/>
+                <testNe type='int' name='zone12Group' value='4'/>
+            </params>            
+            <newState name="zone12Active" value="0" />
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone13Active' value='1'/>
+                <testNe type='int' name='zone13Group' value='4'/>
+            </params>            
+            <newState name="zone13Active" value="0" />
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone14Active' value='1'/>
+                <testNe type='int' name='zone14Group' value='4'/>
+            </params>            
+            <newState name="zone14Active" value="0" />
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone15Active' value='1'/>
+                <testNe type='int' name='zone15Group' value='4'/>
+            </params>            
+            <newState name="zone15Active" value="0" />
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone16Active' value='1'/>
+                <testNe type='int' name='zone16Group' value='4'/>
+            </params>            
+            <newState name="zone16Active" value="0" />
+        </compound>
+
+        <!-- now test whether zonegroup is inactive -->
+        <compound>
+            <params>
+                <testEq type='int' name='zone1Active' value='0'/>
+                <testEq type='int' name='zone2Active' value='0'/>
+                <testEq type='int' name='zone3Active' value='0'/>
+                <testEq type='int' name='zone4Active' value='0'/>
+                <testEq type='int' name='zone5Active' value='0'/>
+                <testEq type='int' name='zone6Active' value='0'/>
+                <testEq type='int' name='zone7Active' value='0'/>
+                <testEq type='int' name='zone8Active' value='0'/>
+                <testEq type='int' name='zone9Active' value='0'/>
+                <testEq type='int' name='zone10Active' value='0'/>
+                <testEq type='int' name='zone11Active' value='0'/>
+                <testEq type='int' name='zone12Active' value='0'/>
+                <testEq type='int' name='zone13Active' value='0'/>
+                <testEq type='int' name='zone14Active' value='0'/>
+                <testEq type='int' name='zone15Active' value='0'/>
+                <testEq type='int' name='zone16Active' value='0'/>
+                <testEq type='int' name='zonegroupActive' value='1'/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/zones/zonegroup' source="zonegroup/4/stop" >
+            </newEvent>                
+        </compound>
+        <!-- now test whether zonegroup is active -->
+        <compound>
+            <params>
+                <testEq type='int' name='zone1Active' value='1'/>
+                <testEq type='int' name='zone1Group' value='4'/>
+                <testEq type='int' name='zonegroupActive' value='0'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zonegroup' source="zonegroup/4/run" >
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone2Active' value='1'/>
+                <testEq type='int' name='zone2Group' value='4'/>
+                <testEq type='int' name='zonegroupActive' value='0'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zonegroup' source="zonegroup/4/run" >
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone3Active' value='1'/>
+                <testEq type='int' name='zone3Group' value='4'/>
+                <testEq type='int' name='zonegroupActive' value='0'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zonegroup' source="zonegroup/4/run" >
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone4Active' value='1'/>
+                <testEq type='int' name='zone4Group' value='4'/>
+                <testEq type='int' name='zonegroupActive' value='0'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zonegroup' source="zonegroup/4/run" >
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone5Active' value='1'/>
+                <testEq type='int' name='zone5Group' value='4'/>
+                <testEq type='int' name='zonegroupActive' value='0'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zonegroup' source="zonegroup/4/run" >
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone6Active' value='1'/>
+                <testEq type='int' name='zone6Group' value='4'/>
+                <testEq type='int' name='zonegroupActive' value='0'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zonegroup' source="zonegroup/4/run" >
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone7Active' value='1'/>
+                <testEq type='int' name='zone7Group' value='4'/>
+                <testEq type='int' name='zonegroupActive' value='0'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zonegroup' source="zonegroup/4/run" >
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone8Active' value='1'/>
+                <testEq type='int' name='zone8Group' value='4'/>
+                <testEq type='int' name='zonegroupActive' value='0'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zonegroup' source="zonegroup/4/run" >
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone9Active' value='1'/>
+                <testEq type='int' name='zone9Group' value='4'/>
+                <testEq type='int' name='zonegroupActive' value='0'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zonegroup' source="zonegroup/4/run" >
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone10Active' value='1'/>
+                <testEq type='int' name='zone10Group' value='4'/>
+                <testEq type='int' name='zonegroupActive' value='0'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zonegroup' source="zonegroup/4/run" >
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone11Active' value='1'/>
+                <testEq type='int' name='zone11Group' value='4'/>
+                <testEq type='int' name='zonegroupActive' value='0'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zonegroup' source="zonegroup/4/run" >
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone12Active' value='1'/>
+                <testEq type='int' name='zone12Group' value='4'/>
+                <testEq type='int' name='zonegroupActive' value='0'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zonegroup' source="zonegroup/4/run" >
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone13Active' value='1'/>
+                <testEq type='int' name='zone13Group' value='4'/>
+                <testEq type='int' name='zonegroupActive' value='0'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zonegroup' source="zonegroup/4/run" >
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone14Active' value='1'/>
+                <testEq type='int' name='zone14Group' value='4'/>
+                <testEq type='int' name='zonegroupActive' value='0'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zonegroup' source="zonegroup/4/run" >
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone15Active' value='1'/>
+                <testEq type='int' name='zone15Group' value='4'/>
+                <testEq type='int' name='zonegroupActive' value='0'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zonegroup' source="zonegroup/4/run" >
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='zone16Active' value='1'/>
+                <testEq type='int' name='zone16Group' value='4'/>
+                <testEq type='int' name='zonegroupActive' value='0'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zonegroup' source="zonegroup/4/run" >
+            </newEvent>                
+        </compound>
+        <!-- Notify zones of heat source -->
+        <compound>
+            <params>
+                <testChanged name='zoneSource'/>
+                <testEq type='int' name='zone1Group' value='4'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zone/heatsource' source="zone1/heatsource" >
+                <copy_other_data name="zoneSource" />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testChanged name='zoneSource'/>
+                <testEq type='int' name='zone2Group' value='4'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zone/heatsource' source="zone2/heatsource" >
+                <copy_other_data name="zoneSource" />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testChanged name='zoneSource'/>
+                <testEq type='int' name='zone3Group' value='4'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zone/heatsource' source="zone3/heatsource" >
+                <copy_other_data name="zoneSource" />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testChanged name='zoneSource'/>
+                <testEq type='int' name='zone4Group' value='4'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zone/heatsource' source="zone4/heatsource" >
+                <copy_other_data name="zoneSource" />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testChanged name='zoneSource'/>
+                <testEq type='int' name='zone5Group' value='4'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zone/heatsource' source="zone5/heatsource" >
+                <copy_other_data name="zoneSource" />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testChanged name='zoneSource'/>
+                <testEq type='int' name='zone6Group' value='4'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zone/heatsource' source="zone6/heatsource" >
+                <copy_other_data name="zoneSource" />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testChanged name='zoneSource'/>
+                <testEq type='int' name='zone7Group' value='4'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zone/heatsource' source="zone7/heatsource" >
+                <copy_other_data name="zoneSource" />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testChanged name='zoneSource'/>
+                <testEq type='int' name='zone8Group' value='4'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zone/heatsource' source="zone8/heatsource" >
+                <copy_other_data name="zoneSource" />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testChanged name='zoneSource'/>
+                <testEq type='int' name='zone9Group' value='4'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zone/heatsource' source="zone9/heatsource" >
+                <copy_other_data name="zoneSource" />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testChanged name='zoneSource'/>
+                <testEq type='int' name='zone10Group' value='4'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zone/heatsource' source="zone10/heatsource" >
+                <copy_other_data name="zoneSource" />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testChanged name='zoneSource'/>
+                <testEq type='int' name='zone11Group' value='4'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zone/heatsource' source="zone11/heatsource" >
+                <copy_other_data name="zoneSource" />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testChanged name='zoneSource'/>
+                <testEq type='int' name='zone12Group' value='4'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zone/heatsource' source="zone12/heatsource" >
+                <copy_other_data name="zoneSource" />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testChanged name='zoneSource'/>
+                <testEq type='int' name='zone13Group' value='4'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zone/heatsource' source="zone13/heatsource" >
+                <copy_other_data name="zoneSource" />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testChanged name='zoneSource'/>
+                <testEq type='int' name='zone14Group' value='4'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zone/heatsource' source="zone14/heatsource" >
+                <copy_other_data name="zoneSource" />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testChanged name='zoneSource'/>
+                <testEq type='int' name='zone15Group' value='4'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zone/heatsource' source="zone15/heatsource" >
+                <copy_other_data name="zoneSource" />
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testChanged name='zoneSource'/>
+                <testEq type='int' name='zone16Group' value='4'/>
+            </params>            
+            <newEvent type='http://id.webbrick.co.uk/zones/zone/heatsource' source="zone16/heatsource" >
+                <copy_other_data name="zoneSource" />
+            </newEvent>                
+        </compound>
+
+    </eventInterface>
+
+</eventInterfaces>

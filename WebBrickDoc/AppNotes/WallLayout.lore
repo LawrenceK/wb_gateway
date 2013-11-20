@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Equipment Layout for the Star Point</title>
+</head>
+
+<body>
+    <h1>Equipment Layout for the Star Point</h1>
+
+    <p>This note outlines an approach for laying out WebBrick automation equipment and associated plant
+       at the star point.
+    </p>
+
+    <h2>Diagram</h2>
+    
+    <p>
+    The diagram here shows a recommended layout for the star point.  This layout keeps line and data cables separated as far as possible.
+    </p>
+
+    <p>
+    Note that the patching arrangements for the control cables and kept separate from the data cables.  This is to avoid the inadvertent patching of switch or temperature sensor cables into Ethernet ports.
+    </p>
+
+
+    <p>
+    It is further recommended that different colour patch cables are used for the control and data functions and that this scheme is strictly adhered to.
+    </p>
+
+    
+    <img src="../Images/WallLayout.png" />
+
+    <h2>Physical mounting suggestion</h2>
+    
+    <p>
+    Note here that all cabling needs to comply with "Requirements for Electrical Installations", currently at the 17th Edition.  Here we bring you attention to the fire retardant facing applied to the board.
+    </p>
+    
+    <p>
+    Note that the whole arrangement below must be enclosed such that tools are required to access any equipment at line level.
+    </p>
+
+    <img src="../Images/WallSide.png" />
+
+
+
+
+</body>
+
+</html>

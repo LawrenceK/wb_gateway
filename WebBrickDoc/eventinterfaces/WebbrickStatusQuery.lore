@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>WebbrickStatusQuery</title>
+</head>
+
+<body>
+
+    <h1>WebbrickStatusQuery</h1>
+
+        <p>Periodically locate new webbricks and read current status from all of them.</p>
+
+    <h2>Description</h2>
+        <p>This event interface discovers webbricks and then peridocally reads there status and creates events for them. The UDP events
+        from webbricks should provide the current status but the U in UDP stands for unrealiable so we periodically check them. (UDP
+        is very light weight in network terms hence it used)</p>
+        <p>This event handler will generate any of the events defined for webbricks. See information on <a href="../events/webbrick/index.html">Webbricks</a>.</p>
+
+
+    <h2>Configuration</h2>
+    Part 1
+        <pre>
+        &lt;eventInterface module='EventHandlers.WebbrickStatusQuery' name='WebbrickStatusQuery'&gt;
+            &lt;eventtype type=""&gt;
+                &lt;eventsource source="time/second" &gt;
+                    &lt;event&gt;
+                        &lt;params&gt;
+                            &lt;!-- every 5 seconds --&gt;
+                            &lt;testEq name="second" value="0"/&lt;
+                            &lt;testEq name="second" value="5"/&lt;
+                            &lt;testEq name="second" value="10"/&lt;
+                            &lt;testEq name="second" value="15"/&lt;
+                            &lt;testEq name="second" value="20"/&lt;
+                            &lt;testEq name="second" value="25"/&lt;
+                            &lt;testEq name="second" value="30"/&lt;
+                            &lt;testEq name="second" value="35"/&lt;
+                            &lt;testEq name="second" value="40"/&lt;
+                            &lt;testEq name="second" value="45"/&lt;
+                            &lt;testEq name="second" value="50"/&lt;
+                            &lt;testEq name="second" value="55"/&lt;
+                        &lt;/params&gt;
+                        &lt;scan/&gt;
+                    &lt;/event&gt;
+        </pre>
+    Part 2
+        <pre>
+                    &lt;event&gt;
+                        &lt;params&gt;
+                            &lt;!-- every 30 seconds --&gt;
+                            &lt;testEq name="second" value="1"/&lt;
+                            &lt;testEq name="second" value="31"/&lt;
+                        &lt;/params&gt;
+                        &lt;recover&gt;Go and see whether missing webbricks have returned.&lt;/recover&gt;
+                    &lt;/event&gt;
+                &lt;/eventsource&gt;
+        </pre>
+    Part 3
+        <pre>
+                &lt;eventsource source="time/runtime" &gt;
+                    &lt;event&gt;
+                        &lt;params&gt;
+                            &lt;testEq name="elapsed" value="5"/&lt;
+                        &lt;/params&gt;
+                        &lt;webbrick address="10.100.100.100"/&gt;
+                    &lt;/event&gt;
+                &lt;/eventsource&gt;
+        </pre>
+    Part 4
+        <pre>
+                &lt;eventsource source="time/minute" &gt;
+                    &lt;event&gt;
+			&lt;discover address="10.255.255.255"/&gt;
+                    &lt;/event&gt;
+                &lt;/eventsource&gt;
+            &lt;/eventtype&gt;
+        </pre>
+    Part 5
+        <pre>
+            &lt;eventtype type="http://id.webbrick.co.uk/events/webbrick/AA"&gt;
+                &lt;eventsource source="" &gt;
+                    &lt;event&gt;
+                        &lt;discoverFound /&gt;
+                    &lt;/event&gt;
+                &lt;/eventsource&gt;
+            &lt;/eventtype&gt;
+            &lt;eventtype type="http://id.webbrick.co.uk/events/webbrick/AT"&gt;
+                &lt;eventsource source="" &gt;
+                    &lt;event&gt;
+                        &lt;discoverFound /&gt;
+                    &lt;/event&gt;
+                &lt;/eventsource&gt;
+            &lt;/eventtype&gt;
+            &lt;eventtype type="http://id.webbrick.co.uk/events/webbrick/NN"&gt;
+                &lt;eventsource source="" &gt;
+                    &lt;event&gt;
+                        &lt;discoverFound /&gt;
+                    &lt;/event&gt;
+                &lt;/eventsource&gt;
+            &lt;/eventtype&gt;
+            &lt;eventtype type="http://id.webbrick.co.uk/events/webbrick/SS"&gt;
+                &lt;eventsource source="" &gt;
+                    &lt;event&gt;
+                        &lt;discoverFound /&gt;
+                    &lt;/event&gt;
+                &lt;/eventsource&gt;
+            &lt;/eventtype&gt;
+        &lt;/eventInterface&gt;
+        </pre>
+    Generally this will not need changing.
+    <ul>
+    <li>The first part is used to trigger a scan every 5 seconds.</li>
+    <li>The second part is used to trigger recovery of webbricks thaat have gone away every 30 seconds.</li>
+    <li>The third part forecably adds webbricks to the scan list after the WebBrick Gateway has been running for 5 seconds.</li>
+    <li>The fourth part is used to start discovery once a minute.</li>
+    <li>The fifth part is used to select the events that cause a webbrick to be seen/discovered.</li>
+    </ul>
+
+</body>
+
+</html>

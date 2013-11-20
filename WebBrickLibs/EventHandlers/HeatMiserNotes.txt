@@ -1,0 +1,31 @@
+Registers
+
+1-9 available on all device types
+
+1 - TempFormat - 0=Deg in C	|
+2 - SwitchDiff	|
+3 - TempCal	|
+4 - FrostMode	|
+5 - FrostTemp	|
+6 - OutDelay -	|
+7 - address -	|
+8 - optStart	|
+9 - Rate of change	|
+
+10 - Mode (Heating/Cooling)	|
+11 - HC deadband	|
+12 - Max Floor	|
+
+13 - Device Type? 
+	0 - DT-N
+	1 - DT-N/Floor?
+	2 - DT-N
+	3 - PRT-N
+	4 - PRT-N/Floor is a floor controller?
+	5 - PRT-N/Heating&Cooling controller
+
+14 - floor Max	| type = 4
+
+
+If you write 13 bytes for WriteParameter then you get to see more registers. Reg 13 seems useful. change to 5 and partNr goes to 10 and then R14 appears.
+

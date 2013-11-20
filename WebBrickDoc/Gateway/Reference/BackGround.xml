@@ -1,0 +1,47 @@
+<eventInterfaces>
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper' category='debug'>
+        <eventtype type="">
+        
+            <!-- periodically change the background on the user interface. -->
+            <!-- This could be done on second/minute/hour intervals as well. -->
+            <eventsource source="time/minute" >
+                <event>
+                    <params>
+                        <testEq name='minute' value='0' />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/events/state" source="background">
+                        <other_data val='/static/images/backgrounds/WebBrickGatewayBackDrop1.png'/>
+                    </newEvent>
+                </event>
+
+                <event>
+                    <params>
+                        <testEq name='minute' value='15' />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/events/state" source="background">
+                        <other_data val='/static/images/backgrounds/WebBrickGatewayBackDrop2.png'/>
+                    </newEvent>
+                </event>
+
+                <event>
+                    <params>
+                        <testEq name='minute' value='30' />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/events/state" source="background">
+                        <other_data val='/static/images/backgrounds/WebBrickGatewayBackDrop3.png'/>
+                    </newEvent>
+                </event>
+
+                <event>
+                    <params>
+                        <testEq name='minute' value='45' />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/events/state" source="background">
+                        <other_data val='/static/images/backgrounds/WebBrickGatewayBackDrop4.png'/>
+                    </newEvent>
+                </event>
+
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+</eventInterfaces>

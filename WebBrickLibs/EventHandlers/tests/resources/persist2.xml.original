@@ -1,0 +1,4 @@
+<persist>
+    <entry source='test/persist'><value name='val'>1</value></entry>
+    <entry source='test/persist2'><value name='val'>2</value></entry>
+</persist>

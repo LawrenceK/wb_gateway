@@ -1,0 +1,2482 @@
+<?xml version="1.0" ?>
+<persist>
+  <entry source="dayphase/weekday/morning">
+    <value name="time">
+      06:30:00
+    </value>
+  </entry>
+  <entry source="dayphase/weekday/day">
+    <value name="time">
+      08:30:00
+    </value>
+  </entry>
+  <entry source="dayphase/weekday/evening">
+    <value name="time">
+      16:30:00
+    </value>
+  </entry>
+  <entry source="dayphase/weekday/night">
+    <value name="time">
+      23:00:00
+    </value>
+  </entry>
+  <entry source="dayphase/weekend/morning">
+    <value name="time">
+      08:00:00
+    </value>
+  </entry>
+  <entry source="dayphase/weekend/day">
+    <value name="time">
+      10:00:00
+    </value>
+  </entry>
+  <entry source="dayphase/weekend/evening">
+    <value name="time">
+      17:00:00
+    </value>
+  </entry>
+  <entry source="dayphase/weekend/night">
+    <value name="time">
+      23:30:00
+    </value>
+  </entry>
+  <entry source="thresholds/outside">
+    <value name="val">
+      25
+    </value>
+  </entry>
+  <entry source="zone1/enabled">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone1/matStat">
+    <value name="val">
+      13
+    </value>
+  </entry>
+  <entry source="zone1/occupancy">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zone1/wcselect">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="schedule/zone1/0">
+    <value name="time">
+      06:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone1/1">
+    <value name="time">
+      15:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone1/2">
+    <value name="time">
+      16:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone1/3">
+    <value name="time">
+      22:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone1/4">
+    <value name="time">
+      07:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone1/5">
+    <value name="time">
+      10:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone1/6">
+    <value name="time">
+      15:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone1/7">
+    <value name="time">
+      23:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone1/0/zone1">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone1/1/zone1">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone1/2/zone1">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone1/3/zone1">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone1/4/zone1">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone1/5/zone1">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone1/6/zone1">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone1/7/zone1">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="zone2/enabled">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone2/matStat">
+    <value name="val">
+      8
+    </value>
+  </entry>
+  <entry source="zone2/occupancy">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zone2/wcselect">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="schedule/zone2/0">
+    <value name="time">
+      07:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone2/1">
+    <value name="time">
+      08:30:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone2/2">
+    <value name="time">
+      16:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone2/3">
+    <value name="time">
+      22:30:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone2/4">
+    <value name="time">
+      07:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone2/5">
+    <value name="time">
+      08:30:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone2/6">
+    <value name="time">
+      16:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone2/7">
+    <value name="time">
+      22:30:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone2/0/zone2">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone2/1/zone2">
+    <value name="val">
+      14
+    </value>
+  </entry>
+  <entry source="schedule/zone2/2/zone2">
+    <value name="val">
+      21
+    </value>
+  </entry>
+  <entry source="schedule/zone2/3/zone2">
+    <value name="val">
+      14
+    </value>
+  </entry>
+  <entry source="schedule/zone2/4/zone2">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone2/5/zone2">
+    <value name="val">
+      14
+    </value>
+  </entry>
+  <entry source="schedule/zone2/6/zone2">
+    <value name="val">
+      21
+    </value>
+  </entry>
+  <entry source="schedule/zone2/7/zone2">
+    <value name="val">
+      14
+    </value>
+  </entry>
+  <entry source="zone3/enabled">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone3/matStat">
+    <value name="val">
+      10.0
+    </value>
+  </entry>
+  <entry source="zone3/occupancy">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zone3/wcselect">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="schedule/zone3/0">
+    <value name="time">
+      06:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone3/1">
+    <value name="time">
+      09:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone3/2">
+    <value name="time">
+      16:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone3/3">
+    <value name="time">
+      22:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone3/4">
+    <value name="time">
+      07:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone3/5">
+    <value name="time">
+      10:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone3/6">
+    <value name="time">
+      15:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone3/7">
+    <value name="time">
+      23:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone3/0/zone3">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone3/1/zone3">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone3/2/zone3">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone3/3/zone3">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone3/4/zone3">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone3/5/zone3">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone3/6/zone3">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone3/7/zone3">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="zone4/enabled">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone4/matStat">
+    <value name="val">
+      10.0
+    </value>
+  </entry>
+  <entry source="zone4/occupancy">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zone4/wcselect">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="schedule/zone4/0">
+    <value name="time">
+      06:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone4/1">
+    <value name="time">
+      09:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone4/2">
+    <value name="time">
+      16:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone4/3">
+    <value name="time">
+      22:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone4/4">
+    <value name="time">
+      07:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone4/5">
+    <value name="time">
+      10:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone4/6">
+    <value name="time">
+      15:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone4/7">
+    <value name="time">
+      23:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone4/0/zone4">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone4/1/zone4">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone4/2/zone4">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone4/3/zone4">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone4/4/zone4">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone4/5/zone4">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone4/6/zone4">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone4/7/zone4">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="zone5/enabled">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone5/matStat">
+    <value name="val">
+      10.0
+    </value>
+  </entry>
+  <entry source="zone5/occupancy">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zone5/wcselect">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="schedule/zone5/0">
+    <value name="time">
+      06:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone5/1">
+    <value name="time">
+      09:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone5/2">
+    <value name="time">
+      16:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone5/3">
+    <value name="time">
+      22:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone5/4">
+    <value name="time">
+      07:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone5/5">
+    <value name="time">
+      10:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone5/6">
+    <value name="time">
+      15:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone5/7">
+    <value name="time">
+      23:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone5/0/zone5">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone5/1/zone5">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone5/2/zone5">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone5/3/zone5">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone5/4/zone5">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone5/5/zone5">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone5/6/zone5">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone5/7/zone5">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="zone6/enabled">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone6/matStat">
+    <value name="val">
+      10.0
+    </value>
+  </entry>
+  <entry source="zone6/occupancy">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zone6/wcselect">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="schedule/zone6/0">
+    <value name="time">
+      06:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone6/1">
+    <value name="time">
+      09:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone6/2">
+    <value name="time">
+      16:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone6/3">
+    <value name="time">
+      22:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone6/4">
+    <value name="time">
+      07:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone6/5">
+    <value name="time">
+      10:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone6/6">
+    <value name="time">
+      15:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone6/7">
+    <value name="time">
+      23:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone6/0/zone6">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone6/1/zone6">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone6/2/zone6">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone6/3/zone6">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone6/4/zone6">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone6/5/zone6">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone6/6/zone6">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone6/7/zone6">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="zone7/enabled">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone7/matStat">
+    <value name="val">
+      10.0
+    </value>
+  </entry>
+  <entry source="zone7/occupancy">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zone7/wcselect">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="schedule/zone7/0">
+    <value name="time">
+      06:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone7/1">
+    <value name="time">
+      09:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone7/2">
+    <value name="time">
+      16:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone7/3">
+    <value name="time">
+      22:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone7/4">
+    <value name="time">
+      07:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone7/5">
+    <value name="time">
+      10:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone7/6">
+    <value name="time">
+      15:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone7/7">
+    <value name="time">
+      23:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone7/0/zone7">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone7/1/zone7">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone7/2/zone7">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone7/3/zone7">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone7/4/zone7">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone7/5/zone7">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone7/6/zone7">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone7/7/zone7">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="zone8/enabled">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone8/matStat">
+    <value name="val">
+      10.0
+    </value>
+  </entry>
+  <entry source="zone8/occupancy">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zone8/wcselect">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="schedule/zone8/0">
+    <value name="time">
+      06:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone8/1">
+    <value name="time">
+      09:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone8/2">
+    <value name="time">
+      16:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone8/3">
+    <value name="time">
+      22:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone8/4">
+    <value name="time">
+      07:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone8/5">
+    <value name="time">
+      10:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone8/6">
+    <value name="time">
+      15:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone8/7">
+    <value name="time">
+      23:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone8/0/zone8">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone8/1/zone8">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone8/2/zone8">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone8/3/zone8">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone8/4/zone8">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone8/5/zone8">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone8/6/zone8">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone8/7/zone8">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="zone9/enabled">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone9/matStat">
+    <value name="val">
+      10.0
+    </value>
+  </entry>
+  <entry source="zone9/occupancy">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zone9/wcselect">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="schedule/zone9/0">
+    <value name="time">
+      06:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone9/1">
+    <value name="time">
+      09:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone9/2">
+    <value name="time">
+      16:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone9/3">
+    <value name="time">
+      22:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone9/4">
+    <value name="time">
+      07:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone9/5">
+    <value name="time">
+      10:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone9/6">
+    <value name="time">
+      15:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone9/7">
+    <value name="time">
+      23:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone9/0/zone9">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone9/1/zone9">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone9/2/zone9">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone9/3/zone9">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone9/4/zone9">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone9/5/zone9">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone9/6/zone9">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone9/7/zone9">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="zone10/enabled">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone10/matStat">
+    <value name="val">
+      10.0
+    </value>
+  </entry>
+  <entry source="zone10/occupancy">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zone10/wcselect">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="schedule/zone10/0">
+    <value name="time">
+      06:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone10/1">
+    <value name="time">
+      09:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone10/2">
+    <value name="time">
+      16:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone10/3">
+    <value name="time">
+      22:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone10/4">
+    <value name="time">
+      07:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone10/5">
+    <value name="time">
+      10:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone10/6">
+    <value name="time">
+      15:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone10/7">
+    <value name="time">
+      23:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone10/0/zone10">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone10/1/zone10">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone10/2/zone10">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone10/3/zone10">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone10/4/zone10">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone10/5/zone10">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone10/6/zone10">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone10/7/zone10">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="zone11/enabled">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone11/matStat">
+    <value name="val">
+      10.0
+    </value>
+  </entry>
+  <entry source="zone11/occupancy">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zone11/wcselect">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="schedule/zone11/0">
+    <value name="time">
+      06:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone11/1">
+    <value name="time">
+      09:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone11/2">
+    <value name="time">
+      16:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone11/3">
+    <value name="time">
+      22:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone11/4">
+    <value name="time">
+      07:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone11/5">
+    <value name="time">
+      10:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone11/6">
+    <value name="time">
+      15:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone11/7">
+    <value name="time">
+      23:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone11/0/zone11">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone11/1/zone11">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone11/2/zone11">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone11/3/zone11">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone11/4/zone11">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone11/5/zone11">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone11/6/zone11">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone11/7/zone11">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="zone12/enabled">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone12/matStat">
+    <value name="val">
+      10.0
+    </value>
+  </entry>
+  <entry source="zone12/occupancy">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zone12/wcselect">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="schedule/zone12/0">
+    <value name="time">
+      06:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone12/1">
+    <value name="time">
+      09:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone12/2">
+    <value name="time">
+      16:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone12/3">
+    <value name="time">
+      22:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone12/4">
+    <value name="time">
+      07:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone12/5">
+    <value name="time">
+      10:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone12/6">
+    <value name="time">
+      15:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone12/7">
+    <value name="time">
+      23:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone12/0/zone12">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone12/1/zone12">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone12/2/zone12">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone12/3/zone12">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone12/4/zone12">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone12/5/zone12">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone12/6/zone12">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone12/7/zone12">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="zone13/enabled">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone13/matStat">
+    <value name="val">
+      10.0
+    </value>
+  </entry>
+  <entry source="zone13/occupancy">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zone13/wcselect">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="schedule/zone13/0">
+    <value name="time">
+      06:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone13/1">
+    <value name="time">
+      09:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone13/2">
+    <value name="time">
+      16:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone13/3">
+    <value name="time">
+      22:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone13/4">
+    <value name="time">
+      07:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone13/5">
+    <value name="time">
+      10:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone13/6">
+    <value name="time">
+      15:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone13/7">
+    <value name="time">
+      23:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone13/0/zone13">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone13/1/zone13">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone13/2/zone13">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone13/3/zone13">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone13/4/zone13">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone13/5/zone13">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone13/6/zone13">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone13/7/zone13">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="zone14/enabled">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone14/matStat">
+    <value name="val">
+      10.0
+    </value>
+  </entry>
+  <entry source="zone14/occupancy">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zone14/wcselect">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="schedule/zone14/0">
+    <value name="time">
+      06:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone14/1">
+    <value name="time">
+      09:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone14/2">
+    <value name="time">
+      16:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone14/3">
+    <value name="time">
+      22:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone14/4">
+    <value name="time">
+      07:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone14/5">
+    <value name="time">
+      10:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone14/6">
+    <value name="time">
+      15:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone14/7">
+    <value name="time">
+      23:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone14/0/zone14">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone14/1/zone14">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone14/2/zone14">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone14/3/zone14">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone14/4/zone14">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone14/5/zone14">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone14/6/zone14">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone14/7/zone14">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="zone15/enabled">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone15/matStat">
+    <value name="val">
+      10.0
+    </value>
+  </entry>
+  <entry source="zone15/occupancy">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zone15/wcselect">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="schedule/zone15/0">
+    <value name="time">
+      06:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone15/1">
+    <value name="time">
+      09:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone15/2">
+    <value name="time">
+      16:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone15/3">
+    <value name="time">
+      22:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone15/4">
+    <value name="time">
+      07:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone15/5">
+    <value name="time">
+      10:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone15/6">
+    <value name="time">
+      15:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone15/7">
+    <value name="time">
+      23:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone15/0/zone15">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone15/1/zone15">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone15/2/zone15">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone15/3/zone15">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone15/4/zone15">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone15/5/zone15">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone15/6/zone15">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone15/7/zone15">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="zone16/enabled">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone16/matStat">
+    <value name="val">
+      10.0
+    </value>
+  </entry>
+  <entry source="zone16/occupancy">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zone16/wcselect">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="schedule/zone16/0">
+    <value name="time">
+      06:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone16/1">
+    <value name="time">
+      09:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone16/2">
+    <value name="time">
+      16:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone16/3">
+    <value name="time">
+      22:00:00
+    </value>
+    <value name="day">
+      -MTWtF-
+    </value>
+  </entry>
+  <entry source="schedule/zone16/4">
+    <value name="time">
+      07:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone16/5">
+    <value name="time">
+      10:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone16/6">
+    <value name="time">
+      15:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone16/7">
+    <value name="time">
+      23:00:00
+    </value>
+    <value name="day">
+      S-----s
+    </value>
+  </entry>
+  <entry source="schedule/zone16/0/zone16">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone16/1/zone16">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone16/2/zone16">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone16/3/zone16">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone16/4/zone16">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone16/5/zone16">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="schedule/zone16/6/zone16">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="schedule/zone16/7/zone16">
+    <value name="val">
+      12
+    </value>
+  </entry>
+  <entry source="occupants/home">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone1/groupnumber">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone2/groupnumber">
+    <value name="val">
+      2
+    </value>
+  </entry>
+  <entry source="zone3/groupnumber">
+    <value name="val">
+      2
+    </value>
+  </entry>
+  <entry source="zone4/groupnumber">
+    <value name="val">
+      2
+    </value>
+  </entry>
+  <entry source="zone5/groupnumber">
+    <value name="val">
+      2
+    </value>
+  </entry>
+  <entry source="zone6/groupnumber">
+    <value name="val">
+      2
+    </value>
+  </entry>
+  <entry source="zone7/groupnumber">
+    <value name="val">
+      3
+    </value>
+  </entry>
+  <entry source="zone8/groupnumber">
+    <value name="val">
+      3
+    </value>
+  </entry>
+  <entry source="zone9/groupnumber">
+    <value name="val">
+      3
+    </value>
+  </entry>
+  <entry source="zone10/groupnumber">
+    <value name="val">
+      3
+    </value>
+  </entry>
+  <entry source="zone11/groupnumber">
+    <value name="val">
+      3
+    </value>
+  </entry>
+  <entry source="zone12/groupnumber">
+    <value name="val">
+      4
+    </value>
+  </entry>
+  <entry source="zone13/groupnumber">
+    <value name="val">
+      4
+    </value>
+  </entry>
+  <entry source="zone14/groupnumber">
+    <value name="val">
+      4
+    </value>
+  </entry>
+  <entry source="zone15/groupnumber">
+    <value name="val">
+      5
+    </value>
+  </entry>
+  <entry source="zone16/groupnumber">
+    <value name="val">
+      5
+    </value>
+  </entry>
+  <entry source="zonegroup1/heatsource1priority">
+    <value name="val">
+      2
+    </value>
+  </entry>
+  <entry source="zonegroup1/heatsource2priority">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zonegroup1/heatsource3priority">
+    <value name="val">
+      3
+    </value>
+  </entry>
+  <entry source="zonegroup2/heatsource1priority">
+    <value name="val">
+      2
+    </value>
+  </entry>
+  <entry source="zonegroup2/heatsource2priority">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zonegroup2/heatsource3priority">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zonegroup3/heatsource1priority">
+    <value name="val">
+      2
+    </value>
+  </entry>
+  <entry source="zonegroup3/heatsource2priority">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zonegroup3/heatsource3priority">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zonegroup4/heatsource1priority">
+    <value name="val">
+      2
+    </value>
+  </entry>
+  <entry source="zonegroup4/heatsource2priority">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zonegroup4/heatsource3priority">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zonegroup5/heatsource1priority">
+    <value name="val">
+      2
+    </value>
+  </entry>
+  <entry source="zonegroup5/heatsource2priority">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zonegroup5/heatsource3priority">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zonegroup6/heatsource1priority">
+    <value name="val">
+      2
+    </value>
+  </entry>
+  <entry source="zonegroup6/heatsource2priority">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zonegroup6/heatsource3priority">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zoneheatsource/1/enabled">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zoneheatsource/2/enabled">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zoneheatsource/3/enabled">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zonegroup1/heatsource0/priority">
+    <value name="val">
+      2
+    </value>
+  </entry>
+  <entry source="zonegroup1/heatsource1/priority">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zonegroup1/heatsource2/priority">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zonegroup2/heatsource0/priority">
+    <value name="val">
+      2
+    </value>
+  </entry>
+  <entry source="zone3/schedulesetpoint">
+    <value name="val">
+      12.0
+    </value>
+  </entry>
+  <entry source="zone15/schedulesetpoint">
+    <value name="val">
+      12.0
+    </value>
+  </entry>
+  <entry source="zone2/schedulesetpoint">
+    <value name="val">
+      21.0
+    </value>
+  </entry>
+  <entry source="zone14/schedulesetpoint">
+    <value name="val">
+      12.0
+    </value>
+  </entry>
+  <entry source="zone1/schedulesetpoint">
+    <value name="val">
+      12.0
+    </value>
+  </entry>
+  <entry source="zone13/schedulesetpoint">
+    <value name="val">
+      12.0
+    </value>
+  </entry>
+  <entry source="zone12/schedulesetpoint">
+    <value name="val">
+      12.0
+    </value>
+  </entry>
+  <entry source="zone11/schedulesetpoint">
+    <value name="val">
+      12.0
+    </value>
+  </entry>
+  <entry source="zone10/schedulesetpoint">
+    <value name="val">
+      12.0
+    </value>
+  </entry>
+  <entry source="zone7/schedulesetpoint">
+    <value name="val">
+      12.0
+    </value>
+  </entry>
+  <entry source="zone6/schedulesetpoint">
+    <value name="val">
+      12.0
+    </value>
+  </entry>
+  <entry source="zone5/schedulesetpoint">
+    <value name="val">
+      12.0
+    </value>
+  </entry>
+  <entry source="zone4/schedulesetpoint">
+    <value name="val">
+      12.0
+    </value>
+  </entry>
+  <entry source="zone9/schedulesetpoint">
+    <value name="val">
+      12.0
+    </value>
+  </entry>
+  <entry source="zone8/schedulesetpoint">
+    <value name="val">
+      12.0
+    </value>
+  </entry>
+  <entry source="zone16/schedulesetpoint">
+    <value name="val">
+      12.0
+    </value>
+  </entry>
+  <entry source="zonegroup3/heatsource0/priority">
+    <value name="val">
+      2
+    </value>
+  </entry>
+  <entry source="zonegroup4/heatsource0/priority">
+    <value name="val">
+      2
+    </value>
+  </entry>
+  <entry source="zonegroup5/heatsource0/priority">
+    <value name="val">
+      2
+    </value>
+  </entry>
+  <entry source="zonegroup2/heatsource1/priority">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zonegroup3/heatsource1/priority">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zonegroup4/heatsource1/priority">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zonegroup5/heatsource1/priority">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zonegroup2/heatsource2/priority">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zonegroup3/heatsource2/priority">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zonegroup4/heatsource2/priority">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zonegroup5/heatsource2/priority">
+    <value name="val">
+      0
+    </value>
+  </entry>
+  <entry source="zoneheatsource/0/enabled">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="weather/1/rising/outsideThreshold">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="weather/1/falling/outsideThreshold">
+    <value name="val">
+      15
+    </value>
+  </entry>
+  <entry source="weather/2/rising/outsideThreshold">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="weather/2/falling/outsideThreshold">
+    <value name="val">
+      15
+    </value>
+  </entry>
+  <entry source="weather/3/rising/outsideThreshold">
+    <value name="val">
+      18
+    </value>
+  </entry>
+  <entry source="weather/3/falling/outsideThreshold">
+    <value name="val">
+      15
+    </value>
+  </entry>
+  <entry source="zone1/earlystart/enabled">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone3/earlystart/enabled">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone5/earlystart/enabled">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone7/earlystart/enabled">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone9/earlystart/enabled">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone11/earlystart/enabled">
+    <value name="val">
+      1
+    </value>
+  </entry>
+  <entry source="zone1/earlystart/setpoint">
+    <value name="val">
+      21
+    </value>
+  </entry>
+  <entry source="zone3/earlystart/setpoint">
+    <value name="val">
+      21
+    </value>
+  </entry>
+  <entry source="zone5/earlystart/setpoint">
+    <value name="val">
+      21
+    </value>
+  </entry>
+  <entry source="zone7/earlystart/setpoint">
+    <value name="val">
+      21
+    </value>
+  </entry>
+  <entry source="zone9/earlystart/setpoint">
+    <value name="val">
+      21
+    </value>
+  </entry>
+  <entry source="earlystart/time">
+    <value name="time">
+      04:00:00
+    </value>
+  </entry>
+  <entry source="schedule/zone1/0/pump">
+    <value name="onoff">
+      On
+    </value>
+  </entry>
+  <entry source="schedule/zone1/1/pump">
+    <value name="onoff">
+      Off
+    </value>
+  </entry>
+</persist>

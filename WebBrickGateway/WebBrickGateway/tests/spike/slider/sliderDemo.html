@@ -1,0 +1,187 @@
+<html>
+
+<head>
+
+<title>Slider Demo</title>
+<script language="Javascript" src="../../dynapi/src/dynapi.js"></script>
+
+
+
+
+<script language="Javascript">
+
+DynAPI.setLibraryPath('../../dynapi/src/lib/')
+
+DynAPI.include('dynapi.api.*')
+DynAPI.include('dynapi.event.*')
+
+DynAPI.include('slider.js','./');
+
+DynAPI.onLoad=function() {
+
+
+mySlider = new Slider("v",24,115,100,0);
+mySlider.moveTo(320,70);
+mySlider.callback=showVal;
+mySlider.slot.size(8,100);
+mySlider.knob.size(16,8);
+mySlider.knob.setBgColor("#7171AC");
+mySlider.slot.setBgColor("#282842");
+mySlider.grid.setBgColor("#BDBDFF");
+
+mySlider.createBorders();
+mySlider.borderSize(1,1,1,1);
+mySlider.borderColor("#9F9F9F","#9F9F9F","black","black");
+
+mySlider.slot.createBorders();
+mySlider.slot.borderSize(1,1,1,1);
+mySlider.slot.borderColor("gray","gray","gray","gray");
+
+mySlider.knob.createBorders();
+mySlider.knob.borderSize(1,1,1,1);
+mySlider.knob.borderColor("white","white","black","black");
+
+mySlider.scale.setLabelStyle("times",10,"black");
+mySlider.scale.createScale(2,"lightgrey");
+mySlider.scale.setBgColor("#9F9FE1");
+mySlider.scale.setDiv(4);
+
+mySlider2 = new Slider("h",21,150,100,0);
+mySlider2.moveTo(480,70);
+mySlider2.callback=showVal2;
+mySlider2.slot.size(8,130);
+mySlider2.knob.size(15,8);
+// mySlider2.grid.setBgColor("green");
+mySlider2.setBgImage("metal003.gif");
+
+mySlider2.slot.setBgColor("#000032");
+mySlider2.knob.setBgColor("#B9B9B9");
+
+mySlider2.createBorders();
+mySlider2.borderSize(1,1,1,1);
+mySlider2.borderColor("#9F9F9F","#9F9F9F","black","black");
+
+mySlider2.slot.createBorders();
+mySlider2.slot.borderSize(1,1,1,1);
+mySlider2.slot.borderColor("#9F9F9F","#9F9F9F","#9F9F9F","#9F9F9F");
+
+mySlider2.knob.createBorders();
+mySlider2.knob.borderSize(1,1,1,1);
+mySlider2.knob.borderColor("white","white","black","black");
+
+mySlider2.scale.setLabelStyle("times",10,"#FFFFFF");
+mySlider2.scale.createScale(2,"lightgrey");
+// mySlider2.scale.setBgColor("green");
+mySlider2.scale.setDiv(5);
+
+
+mySlider3=new Slider("v",15,80,50,0,"black","gray");
+mySlider3.moveTo(720,70);
+mySlider3.slot.size(8,65);
+mySlider3.knob.size(14,9);
+mySlider3.callback=function(){};
+
+DynAPI.document.addChild(mySlider);
+DynAPI.document.addChild(mySlider2);
+DynAPI.document.addChild(mySlider3);
+
+
+mySlider2BG = new DynLayer();
+mySlider2BG.moveTo(632,70);
+mySlider2BG.setSize(21,21)
+mySlider2BG.setBgColor("gray");
+
+
+mySlider2Dis = new DynLayer()
+mySlider2Dis.moveTo(633,71);
+mySlider2Dis.setSize(19,19)
+mySlider2Dis.setBgColor("lightgrey");
+
+
+
+mySliderBG = new DynLayer();
+mySliderBG.moveTo(297,70);
+mySliderBG.setSize(21,21)
+mySliderBG.setBgColor("#9F9F9F");
+
+
+mySliderDis = new DynLayer()
+mySliderDis.moveTo(298,71);
+mySliderDis.setSize(19,19)
+mySliderDis.setBgColor("#E1E1FF");
+
+DynAPI.document.addChild(mySliderBG);
+DynAPI.document.addChild(mySliderDis);
+DynAPI.document.addChild(mySlider2BG);
+DynAPI.document.addChild(mySlider2Dis);
+
+
+mySlider.callback();
+mySlider2.callback();
+
+
+info = new DynLayer();
+info.moveTo(175,210);
+info.setSize(600,300);
+infoText="<FONT FACE='times' SIZE='2'>Two examples of the new slider, each with ranges of 100, but using different scales. Included on the right is a third, stripped down example-- you can still make the slider just as plain vanilla as the old version!<br><br>Version 2.0 gives you the following features: variable knob and slot sizing, optional borders for each component and optional automatically generated value scales with as many divisions as you want.<br><br>Of course, images could be used for the knob and other components in place of using the border layers or if you have a particular knob or background style that you want. The scale could also be replaced with an image.<br><br>There are still a few things I'd like to do with this widget, like making the scale labels more flexible (in terms of style), but overall it is pretty complete.<br><br><b><u>Issues:</u></b><br><br>1) There is some ugliness when using the scale on the left side of a vertical slider, mostly due to API issues, but I will see if there is a workaround.<br><br></FONT>";
+
+info.setHTML(infoText);
+
+DynAPI.document.addChild(info);
+
+
+}
+
+
+
+function showVal() {
+
+mySliderDis.setHTML('<FONT FACE="times" size="2" color="#59599C"><CENTER>' + mySlider.value + '</CENTER></font>\n');
+
+}
+
+
+
+function showVal2() {
+
+mySlider2Dis.setHTML('<FONT FACE="times" size="2" color="#59599C"><CENTER>' + mySlider2.value + '</CENTER></font>\n');
+
+}
+
+
+</script>
+
+
+
+
+</head>
+
+
+<body background="../grayBar.JPG" bgcolor="#E1E1E1">
+
+<center>
+<font face="arial" size="4">
+S l i d e r
+</font><br>
+<font face="arial" size="2">Source and documentation are available here: <a href="slider.zip">slider.zip</a>
+</center>
+
+<table border="0" width="100%">
+<tr>
+<td width=140 VALIGN=top>
+<IMG SRC="../spacer.gif" WIDTH=140 HEIGHT=1>
+</td>
+
+<td>
+
+
+
+
+
+</body>
+
+</td>
+</tr>
+</table>
+
+</html>

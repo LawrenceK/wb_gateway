@@ -1,0 +1,141 @@
+<eventInterfaces>
+    <eventInterface module='EventHandlers.Compound' name='Compound'>
+	
+        <initialState name="availability" value="0" />
+        <initialState name="state" value="0" />
+        <initialState name='heatSourceName' value='Solar' />
+        <initialState name='heatSourceEnabled' value='1' />
+        <eventtype type="http://id.webbrick.co.uk/events/config/get">
+            <eventsource source="zoneheatsource/solar/enabled">
+                <event>
+                    <action name="heatSourceEnabled" key="val"/>
+                    <action name="publish" value="1" transient="true" />
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <eventtype type="">
+            <eventsource source="time/runtime">
+                <event>
+                    <params>
+                        <testEq name='elapsed' value='30' />
+                    </params>
+                    <action name="publish" value="1" transient="true" />
+                </event>
+            </eventsource>
+            <eventsource source="time/minute">
+                <event>
+                    <action name="checkRun" value="1" transient="true" />
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <XinitialState name="manifold" value="0" />
+        <XinitialState name="heatex" value="0" />
+        <eventtype type='http://id.webbrick.co.uk/zones/heatsource/sensor'>
+            <eventsource source='heatsource/solar/manifold'>
+                <event>
+                    <action name="manifold" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source='heatsource/solar/heatex'>
+                <event>
+                    <action name="heatex" key="val"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <eventtype type="http://id.webbrick.co.uk/zones/heatsource">
+            <eventsource source="heatsource/solar/requestrun">
+                <event>
+                    <action name="requeststate" value="1"/>
+                    <action name="state" value="1"/>
+                </event>
+            </eventsource>
+            <eventsource source="heatsource/solar/requeststop">
+                <event>
+                    <action name="requeststate" value="0"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <compound>
+            <!-- High heat -->
+            <params>
+                <testDiffGe type='float' name='manifold' param2='heatex' diffValue='5'/>
+                <testGe type='float' name='manifold' value='50'/>
+            </params>
+            <newState name='availability' value='2' />
+            <newEvent type='http://id.webbrick.co.uk/zones/heatsource' source="heatsource/solar/availability" >
+                <copy_other_data availability='availability' enabled='heatSourceEnabled' name='heatSourceName'/>
+            </newEvent>                
+        </compound>
+
+        <compound>
+            <!-- Low heat -->
+            <params>
+                <testDiffGe type='float' name='manifold' param2='heatex' diffValue='5'/>
+                <testLt type='float' name='manifold' value='50'/>
+            </params>
+            <newState name='availability' value='1' />
+            <newEvent type='http://id.webbrick.co.uk/zones/heatsource' source="heatsource/solar/availability" >
+                <copy_other_data availability='availability' enabled='heatSourceEnabled' name='heatSourceName'/>
+            </newEvent>                
+        </compound>
+
+        <compound>
+            <!-- No heat -->
+            <params>
+                <testDiffLe type='float' name='manifold' param2='heatex' diffValue='5'/>
+            </params>
+            <newState name='availability' value='0' />
+            <newEvent type='http://id.webbrick.co.uk/zones/heatsource' source="heatsource/solar/availability" >
+                <copy_other_data availability='availability' enabled='heatSourceEnabled' name='heatSourceName'/>
+            </newEvent>                
+        </compound>
+
+        <compound>
+            <params>
+                <testEq type='int' name='publish' value='1'/>
+            </params>
+            <newState name='publish' value='0' />
+            <newEvent type='http://id.webbrick.co.uk/zones/heatsource' source="heatsource/solar/availability" >
+                <copy_other_data availability='availability' enabled='heatSourceEnabled' name='heatSourceName'/>
+            </newEvent>                
+        </compound>
+
+        <!-- Stop heat source -->
+        <compound>
+            <params>
+                <testEq type='int' name='requeststate' value='0'/>
+                <testEq type='int' name='state' value='1'/>
+            </params>
+            <newState name='state' value='0' />
+            <newEvent type='http://id.webbrick.co.uk/zones/heatsource' source="heatsource/solar/dostop" >
+            </newEvent>                
+        </compound>
+        <compound>
+            <params>
+                <testEq type='int' name='state' value='1'/>
+                <testDiffLe type='float' name='manifold' param2='heatex' diffValue='5'/>
+            </params>
+            <newState name='state' value='0' />
+            <newEvent type='http://id.webbrick.co.uk/zones/heatsource' source="heatsource/solar/dostop" >
+            </newEvent>                
+        </compound>
+
+        <!-- keep heat source running-->
+        <compound>
+            <params>
+                <testEq type='int' name='checkRun' value='1'/>
+                <testEq type='int' name='state' value='1'/>
+                <testEq type='int' name='heatSourceEnabled' value='1'/>
+                <testGt type='int' name='availability' value='0'/>
+            </params>
+            <newEvent type='http://id.webbrick.co.uk/zones/heatsource' source="heatsource/solar/dorun" >
+            </newEvent>                
+        </compound>
+
+    </eventInterface>
+
+</eventInterfaces>

@@ -1,0 +1,141 @@
+.button {
+    padding:20px;
+    height:58px;
+    float:left;
+}
+
+div[wbtype="PushButton"],
+div[wbtype="WbTimeEntry"],
+div[wbtype="SimpleLink"]  {
+    padding:20px;
+    height:58px;
+    float:left;
+
+}
+
+
+
+div[wbtype="PushButton"] .left,
+div[wbtype="WbTimeEntry"] .left,
+div[wbtype="SimpleLink"] .left  {
+    background-image:url(../images/buttons/gButtonLeft.png);
+    height:58px;
+    width:11px;
+    float:left;
+
+}
+
+div[wbtype="PushButton"] .center,
+div[wbtype="WbTimeEntry"] .center,
+div[wbtype="SimpleLink"] .center {
+    background-image:url(../images/buttons/gButtonCenter.png);
+    height:52px;
+    width:116px;
+    float:left;
+    text-align:center;
+    font-size:16px;
+    padding-top: 6px!important;
+}
+
+
+.centerwide {
+    background-image:url(../images/buttons/gButtonCenter.png);
+    height:52px;
+    width:156px;
+    float:left;
+    text-align:center;
+    font-size:16px;
+    padding-top: 6px!important;
+}
+
+.textwide {
+    margin-top:2px;
+    height:44px;
+    display: table-cell;
+    vertical-align: middle;
+    width: inherit;
+}
+
+div[wbtype="PushButton"] .center .text,
+div[wbtype="WbTimeEntry"] .center .buttonbodycontent,
+div[wbtype="SimpleLink"] .center .text {
+    margin-top:2px;
+    height:44px;
+    display: table-cell;
+    vertical-align: middle;
+    width: inherit;
+}
+
+.buttonPending .center .text {
+    color: red;
+}
+
+div[wbtype="PushButton"] .right,
+div[wbtype="WbTimeEntry"] .right,
+div[wbtype="SimpleLink"] .right {
+    background-image:url(../images/buttons/gButtonRight.png);
+    height:58px;
+    width:12px;
+    float:left;
+
+}
+
+div[wbtype="PushButton"] .right_box,
+div[wbtype="SimpleLink"] .right_box {
+    background-image:url(../images/buttons/gButtonBoxRight.png);
+    height:48px;
+    width:53px;
+    float:left;
+    font-size:14px;
+    padding-top:10px;
+
+}
+
+
+.button .left {
+    background-image:url(../images/buttons/gButtonLeft.png);
+    height:58px;
+    width:11px;
+    float:left;
+
+}
+
+.button .center {
+    background-image:url(../images/buttons/gButtonCenter.png);
+    height:58px;
+    width:116px;
+    float:left;
+    text-align:center;
+    font-size:16px;
+    padding-top:6px;
+}
+
+.button .center .text {
+    margin-top:2px;
+    height:44px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.button .right {
+    background-image:url(../images/buttons/gButtonRight.png);
+    height:58px;
+    width:12px;
+    float:left;
+
+}
+
+.button .right_box {
+    background-image:url(../images/buttons/gButtonBoxRight.png);
+    height:48px;
+    width:53px;
+    float:left;
+    font-size:14px;
+    padding-top:10px;
+
+}
+
+.button .right_box .temp {
+    margin-top:2px;
+    margin-left:12px;
+}

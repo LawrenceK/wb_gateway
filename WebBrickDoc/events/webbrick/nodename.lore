@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Nodename Event.</title>
+</head>
+
+<body>
+
+<h1>Nodename Event.</h1>
+
+This event is generated internally by the WebBrick Gateway to send out the current nodename of a webbrick.
+
+Type=http://id.webbrick.co.uk/events/webbrick/config/nodename
+Source=webbrick/fromNode
+
+fromNode=webbrick node number
+nodename= webbrick nodename as configured
+
+</body>
+
+</html>

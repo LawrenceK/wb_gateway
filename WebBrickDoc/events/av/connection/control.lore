@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+ <title>Renderer control</title>
+</head>
+
+<body>
+
+<h2>Renderer control.</h2>
+<p>
+These events are associated with the control of AV equipment renderering. This comes down to
+cobntrol of the amplifier.
+</p>
+
+<h3>Event Type</h3>
+<p>
+http://id.webbrick.co.uk/events/av/render/control
+</p>
+
+<h3>Event Source</h3>
+<p>
+Anything
+</p>
+
+<h3>Event Payload</h3>
+<p>
+<table>
+    <tr>
+        <td>usn</td><td>a unique identifier for the target.</td><td>mandatory</td>
+        <td>volume</td><td>new volume setting</td><td>optional</td>
+    </tr>
+</table>
+</p>
+
+</body>
+
+</html>

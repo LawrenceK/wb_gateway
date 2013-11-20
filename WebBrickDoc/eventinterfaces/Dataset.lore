@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Dataset</title>
+</head>
+
+<body>
+
+    <h1>Dataset</h1>
+
+        <p>Collect values from events and send them to a logging stream.  Typically used to create a XML or CSV file that logs temperatures
+        or energy consumption</p>
+
+    <h2>Description</h2>
+        <p>This event handler collects values from incoming events and places these in data.  Then typically on timed events the collection is passed through to a logging stream(s).  This logging stream(s) may be either CSV or XML.</p>
+
+
+    <h2>Configuration</h2>
+        <p>The 'data' element of the event uses these parameters</p>
+        <ul>
+            <li><b>column</b> This is the column number for CSV, it is mandatory and duplicates will generate an error</li>
+            <li><b>name</b> This is the XML tagname, this needs to be XML legal, it is mandatory and duplicates will generate an error</li>
+            <li><b>attr</b> This is the value to collect from the incoming event</li>
+        </ul>
+
+    <h2>Example</h2>
+
+    <a href="Dataset.xml" class="html-listing" />
+
+    <p>This example creates events delayed by 2 minutes or 23 seconds.</p>
+
+</body>
+
+</html>

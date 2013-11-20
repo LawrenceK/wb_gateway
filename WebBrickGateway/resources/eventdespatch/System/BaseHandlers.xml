@@ -1,0 +1,7 @@
+<eventRouter type="EventRouterThreaded" name="default">
+    <route from="" type="" source="" />
+    <eventInterfaces>
+        <eventInterface module="EventHandlers.ScheduleProcessor" name="ScheduleProcessor">
+        </eventInterface>
+    </eventInterfaces>
+</eventRouter>

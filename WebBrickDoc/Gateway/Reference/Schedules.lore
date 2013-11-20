@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Schedules</title>
+  </head>
+  <body>
+    <h1>Schedules</h1>
+
+    <p>
+        Schedules are defined at a high level in the application configuration file, with all dynamic data being 
+        persisted through event distribution. In the application configuration file you specify one or more
+        schedule names and the devices and types they activate. You also need to generate a set of primitive 
+        actions for schedules that defines what is to be done to control the device, i.e. wbhich webbrick 
+        controls the zone valve. Schedule's are split into two components the user interface from which
+        the home owner can change the schedule settings and the schedule processor that issues control events
+        at the configured schedule times.
+    </p>
+
+    <h2>Schedule definition</h2>
+    
+      <p>
+        The schedule defintions are typically in the prod.cfg file and are defined by your installer. They
+        consist of internal and display names for each schedule along with internal and display names for
+        each device that is part of the schedule. These devices may be simple onoff devices or
+        adjustable, i.e. zone setpoints. Some of the devices may be purely logical within the WebBrick gateway
+        e.g. a zone is configured for a temperature and actually consists of a open/close vavlve and a 
+        temperature sensor that work together to maintain a desired value, or physical devices such as a 
+        light dimmer channel.
+
+      </p>
+
+    <h2>Schedule primitive actions</h2>
+    <p>
+        These are in the XML event despatch files and are defined by your installer. These define
+        what is to happen when a zones threshold is changed or the lights are to come on.
+    </p>
+    
+    <h2>Schedule configuration</h2>
+    <p>
+      This is controlled by the home owner from the user interface and enables him to chnage the time at
+      which a group of actions occur and what the actions are. e.g. switch lights, adjust zone temperature.
+      Not all devices that are part of a schedule need be adjusted at each point.
+    </p>
+    
+  </body>
+</html>
+

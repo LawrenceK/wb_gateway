@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>WebBrick Gateway TouchScreen.</title>
+</head>
+<body><h1>WebBrick Gateway TouchScreen.</h1>
+        <p>
+            This section provides information on reconfiguring the TouchScreen to suit local network 
+            configuration. This section is very technical. The changes will require the temporary connection of a keyboard and
+            mouse to the system, note this will confuse the touch screen overaly so do not try using touch controls with the
+            keyboard and mouse connected. 
+        </p>
+        <p>
+            The default configuration of the WebBrick Gateway TouchScreen is to use DHCP to get an IP address.
+            and to connect to a WebBrick gateway on 192.168.1.5:8080. 
+        </p>
+    <h2>Login to the TouchScreen using SSH</h2>
+        <p>
+            Note SSH requires the network to already work, i.e. the machine from which you connect must
+            be on the same network or there must be a routing rule in the network to enable that to work.
+
+            So the network has started correctly then you can login to the touch screen using SSH, 
+            ssh webbrick@ip-address using the password 'password'. Look at DHCP server status to identify IP address.
+            Note SSH is configured to not permit direct root login. Once connected 'su' will prompt for the root password.
+        </p>
+        <p>#
+            putty is a terminal client that can do SSH connections, available <a href="http://www.putty.org">here</a>
+        </p>
+
+    <h2>Login to the TouchScreen using Keyboard and Mouse</h2>
+        <p>
+            If the network is not fully up then you can login to the touch screen using a keyboard and mouse plugged into the unit directly. 
+            If a mouse is connected when the screen is powered up the touch screen overlay will not operate correctly, so do not try to use the
+            overlay with a mouse plugged in.
+        </p>
+        <p>
+            Power up the touch screen, once powered up use the Ctrl and BackSpace key to exit the browser login and 
+            return to the login screen, enter the user name root and password webbrick to get a root login. 
+        </p>
+        <p>
+            When finished flick the power switch to shut down the screen, disconnect the keyboard and mouse and power up again.
+        </p>
+
+    <h2>TouchScreen IP address</h2>
+        <p>
+            Login using either of the login methods.
+        </p>
+        <p>
+            Then in the terminal prompt type
+            /usr/bin/system-config-network and enter to run the network configuration utility. Select the ethernet interface and Edit button 
+            to bring up the change dialog. Enter the new IP address, net mask and default route and then Ok. This changes to configuration but does
+            restart the network. So deactrive and activate the network interface to bring it up on the new settings.
+            You will have to disconnect the keyboard and mouse and power cycle the screen to get the touch screen working again.
+        </p>
+    <h2>WebBrick Gateway address</h2>
+        <p>
+            The default auto login user 'browser' connects to the webbrickgateway at 192.168.1.5:8080, to change this address you will once again need to
+            login using either of the above methods and edit the file /etc/conf.d/net, use 'nano' a simple editor.
+            In the terminal screen type 'nano /etc/conf.d/net' Locate the line that starts webbrickgatewaty and change the IP address to that of your gateway, then
+            type Ctrl+X and when prompted to save answer Y for yes.
+        </p>
+</body>
+</html>

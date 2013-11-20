@@ -1,0 +1,108 @@
+.spinner_control {
+    position:relative;
+    float:left;
+    width:339px;
+    height:313px;
+    margin-top:30px;
+    margin-left:30px;
+}
+
+.spinner_label {
+	position:absolute;
+	top:61px;
+	font-size:14px;
+}
+
+.spinner_value {
+	color:#000;
+}
+
+.spinner_controls {
+	width:40px;
+}
+
+.spinner_control img {
+    width:100%;
+    height:100%;
+}
+
+.spinner_control .title {
+    color:#5a5a5a;
+    position:absolute;
+    top:30%;
+    left:0px;
+    width:100%;
+    text-align: center;
+    text-transform: uppercase;
+    font-size:22px;
+    color:#5a5a5a;
+}
+
+.spinner_control .spinner_value {
+    position:absolute;
+    top:43%;
+    right:43%;
+    font-size:30px;
+}
+
+/*
+.spinner_control>.actual_value,  .actual_valuePending {
+    position:absolute;
+    top:55%;
+    right:43%;
+    font-size:31px;
+}
+*/
+
+.spinner_control .actual_value , .spinner_control .actual_valuePending {
+    position:absolute;
+    top:55%;
+    right:43%;
+    font-size:31px;
+}
+
+
+.spinner_control .spinner_controls {
+    position:absolute;
+    top:41%;
+    right:19%;
+    width:11%;
+    height:36px;
+}
+
+.spinner_controls img, .schedulelink img {
+    border: medium none;
+}
+
+.spinner_control .schedulelink {
+    position:absolute;
+    left:45%;
+    top:73%;
+    width:16%;
+    height:48px;
+}
+
+.spinner_control .minvalue {
+    position:absolute;
+    top:90%;
+    left:6%;
+}
+
+.spinner_control .maxvalue {
+    position:absolute;
+    top:90%;
+    left:81%;
+}
+
+
+#heatingcontrol {
+    position:absolute;
+    top:100px;
+    left:45px;
+}
+
+#hotwatercontrol {
+    position:absolute;
+    top:100px;
+    left:418px;
+}

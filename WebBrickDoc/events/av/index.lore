@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+ <title>Audio Video event URIs</title>
+</head>
+
+<body>
+
+<h2>Audio Video events.</h2>
+<p>
+These events are associated with the status and control of AV equipment.
+</p>
+
+<p>
+
+<ul>
+    <li><a href="./client.xhtml" >av client device</a></li>
+    <li><a href="./server.xhtml" >av server device</a></li>
+    <li><a href="./render/control.xhtml" >control the renderer - i.e. amplifier.</a></li>
+    <li><a href="./render/state.xhtml" >state of the renderer - i.e. amplifier.</a></li>
+    <li><a href="./transport/control.xhtml" >control the transport - i.e. play,pause.</a></li>
+    <li><a href="./transport/state.xhtml" >state of the transport - i.e. play,pause.</a></li>
+    <li><a href="./connection/control.xhtml" >control the connection.</a></li>
+    <li><a href="./connection/state.xhtml" >state of the connection.</a></li>
+</ul>
+
+</p>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+LGpassword:
+#
+#  GBoiler configuration
+#
+# 
+#  Note that the first line needs to be a disable commands to avoid unnecessary coms between SP and PIC
+#
+#
+SS1:
+NNGBoiler:
+SN30:
+SR0;8:
+#
+#  Input State Engine
+#
+#
+#   Central Heating
+#
+ND0;CH.T:
+CD0;D0;0;4;0;1;0:
+ND2;CHOn:
+CD2;D0;0;2;0;1;0:
+ND3;CHOf:
+CD3;D0;0;1;0;1;0:
+ND4;CHDw:
+CD4;D0;0;5;3;1;0:
+#
+#  Hot Water
+#
+ND1;HW.T:
+CD1;D1;0;4;0;1;0:
+#
+# Output Names
+#
+NO0;CH;:
+NO1;HW;:
+#
+# Dwells
+#
+CW0;30;:
+CW1;2;:
+CW2;60;:
+CW3;4200;:
+#
+SS2:
+#
+# End of file
+#

@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+=====================================================================================================
+						DAY PHASE
+=====================================================================================================
+
+CHANGED ON WEEK STARTING 26-4-2010:
+   -    If night started at or after midnight, night would never happen
+   -    If night starts after midnight, on startup evening would not happen after midnight but before
+        night. 
+   -    As soon as the time is 00:00 the original tests did not work, as the number is low. 
+   -    New section starts on line 358, there are 6 tests for evening and 6 tests for night.
+
+
+This generates events that indicate the phase of a day.
+
+These phases are:
+
+	Morning: Starts with the first activities that may involve the home users, 
+	i.e. getting up, signing for post etc.
+
+	Day: This starts at the end of the morning's activities, going to work, 
+	school runs etc, typically a quiet period for the home
+
+	Evening: This starts as the home users return from school, work etc
+
+	Night: This is when the home users are generally asleep.
+
+Each of these can be subdivided into dark and light, remember north of the artic circle 
+you can have 24 hours of light in the summer and 24 hours of dark in the winter.
+
+This configuration issues the following event types:
+
+http://id.webbrick.co.uk/events/time/dayphase
+with the source of time/dayphaseext
+
+The other data contains 2 attributes: 
+
+	dayphaseText - A textual representation of the day phase from the list below.
+	dayphase - The numeric value of the day phase from the list below.
+
+		0) unknown
+		1) night
+		3) morning
+		5) day
+		7) evening
+
+http://id.webbrick.co.uk/events/time/dayphaseext
+with the source of time/dayphaseext
+
+The other data contains 2 attribute: 
+
+	dayphaseText - A textual representation of the day phase from the list below.
+	dayphase - The numeric value of the day phase from the list below.
+
+		0) unknown
+		1) nightDark
+		2) nightLight
+		3) morningDark
+		4) morningLight
+		5) dayDark
+		6) dayLight
+		7) eveningDark
+		8) eveningLight
+
+http://id.webbrick.co.uk/events/time/isDark
+with the source of time/isDark
+
+The other data contains 1 attribute: 
+state - 0 for dayLight and 1 for darkness
+
+NOTES
+
+i) This file can be logically split into multiple parts
+    a) gather site configuration - times of day phase changes
+    b) gather time and whether light or dark - 
+    c) The main tests based on time of day equality tests against configuration.
+    d) Tests that are triggered by doNow at start up, configuration change and dark/light transition.
+    e) Finally - in its own interface handler an easy way to overide these states from the UI for testing and demonstration.
+-->
+<eventInterfaces>
+    <eventInterface module="EventHandlers.Compound" name="Compound">
+
+        <initialState name="morningstart" value=""/>
+        <initialState name="daystart" value=""/>
+        <initialState name="eveningstart" value=""/>
+        <initialState name="nightstart" value=""/>
+        <eventtype type="http://id.webbrick.co.uk/events/config/get">
+            <!-- the attribute doNow is used to force a recheck of dayphase when any of these are changed -->
+            <eventsource source="dayphase/weekday/morning">
+                <event>
+                    <action name="morningstart" key="time"/>
+                    <action name="doNow" value="1" transient="yes"/>
+                </event>
+            </eventsource>
+            <eventsource source="dayphase/weekday/day">
+                <event>
+                    <action name="daystart" key="time"/>
+                    <action name="doNow" value="1" transient="yes"/>
+                </event>
+            </eventsource>
+            <eventsource source="dayphase/weekday/evening">
+                <event>
+                    <action name="eveningstart" key="time"/>
+                    <action name="doNow" value="1" transient="yes"/>
+                </event>
+            </eventsource>
+            <eventsource source="dayphase/weekday/night">
+                <event>
+                    <action name="nightstart" key="time"/>
+                    <action name="doNow" value="1" transient="yes"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <eventtype type="">
+            <eventsource source="time/runtime">
+                <event>
+                    <params>
+                        <!-- so we know minute time before we test at startup -->
+                        <testEq name='elapsed' value='65' />
+                    </params>
+                    <action name="doNow" value="1" transient="yes"/>
+                </event>
+            </eventsource>
+
+            <eventsource source="time/minute">
+                <event>
+                    <action name="timestr" key="timestr"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <!-- every time isDark changes re-evalutate fully -->
+        <eventtype type="http://id.webbrick.co.uk/events/time/isDark">
+            <eventsource source="time/isDark">
+                <event>
+                    <action name="isDark" key="state"/>
+                    <action name="doNow" value="1" transient="yes"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <!-- we initialise time to a known pattern.-->
+        <initialState name="timestr" value="NotSet"/>
+        <XinitialState name="isDark" value=""/>
+
+        <initialState name="dayphase" value="99"/>
+
+        <!-- combined startup/unknown test into one -->
+        <compound>
+            <params>
+                <testEq name="doNow" value="1"/>
+                <testEq name="timestr" value="NotSet"/>
+                <testNe name="dayphase" value="0"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphase" source="time/dayphase">
+                <other_data dayphase="0" dayphasetext="Unknown"/>
+            </newEvent>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphaseext" source="time/dayphaseext">
+                <other_data dayphase="0" dayphasetext="Unknown"/>
+            </newEvent>
+            <newState name="dayphase" value="0"/>
+        </compound>
+
+        <!-- These are the normal tests that handle transitions -->
+        <compound>
+            <params>
+                <testEq name="timestr" param2="nightstart"/>
+                <testEq name="isDark" value="1"/>
+                <testNe name="dayphase" value="1"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphase" source="time/dayphase">
+                <other_data dayphase="1" dayphasetext="Night"/>
+            </newEvent>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphaseext" source="time/dayphaseext">
+                <other_data dayphase="1" dayphasetext="Night:Dark"/>
+            </newEvent>
+            <newState name='dayphase' value ='1' />
+        </compound>
+
+        <compound>
+            <params>
+                <testEq name="timestr" param2="nightstart"/>
+                <testEq name="isDark" value="0"/>
+                <testNe name="dayphase" value="2"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphase" source="time/dayphase">
+                <other_data dayphase="1" dayphasetext="Night"/>
+            </newEvent>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphaseext" source="time/dayphaseext">
+                <other_data dayphase="2" dayphasetext="Night:Light"/>
+            </newEvent>
+            <newState name='dayphase' value ='2' />
+        </compound>
+
+        <compound>
+            <params>
+                <testEq name="timestr" param2="morningstart"/>
+                <testEq name="isDark" value="1"/>
+                <testNe name="dayphase" value="3"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphase" source="time/dayphase">
+                <other_data dayphase="3" dayphasetext="Morning"/>
+            </newEvent>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphaseext" source="time/dayphaseext">
+                <other_data dayphase="3" dayphasetext="Morning:Dark"/>
+            </newEvent>
+            <newState name='dayphase' value ='3' />
+        </compound>
+
+        <compound>
+            <params>
+                <testEq name="timestr" param2="morningstart"/>
+                <testEq name="isDark" value="0"/>
+                <testNe name="dayphase" value="4"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphase" source="time/dayphase">
+                <other_data dayphase="3" dayphasetext="Morning"/>
+            </newEvent>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphaseext" source="time/dayphaseext">
+                <other_data dayphase="4" dayphasetext="Morning:Light"/>
+            </newEvent>
+            <newState name='dayphase' value ='4' />
+        </compound>
+
+        <compound>
+            <params>
+                <testEq name="timestr" param2="daystart"/>
+                <testEq name="isDark" value="1"/>
+                <testNe name="dayphase" value="5"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphase" source="time/dayphase">
+                <other_data dayphase="5" dayphasetext="Day"/>
+            </newEvent>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphaseext" source="time/dayphaseext">
+                <other_data dayphase="5" dayphasetext="Day:Dark"/>
+            </newEvent>
+            <newState name='dayphase' value ='5' />
+        </compound>
+
+        <compound>
+            <params>
+                <testEq name="timestr" param2="daystart"/>
+                <testEq name="isDark" value="0"/>
+                <testNe name="dayphase" value="6"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphase" source="time/dayphase">
+                <other_data dayphase="5" dayphasetext="Day"/>
+            </newEvent>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphaseext" source="time/dayphaseext">
+                <other_data dayphase="6" dayphasetext="Day:Light"/>
+            </newEvent>
+            <newState name='dayphase' value ='6' />
+        </compound>
+
+        <compound>
+            <params>
+                <testEq name="timestr" param2="eveningstart"/>
+                <testEq name="isDark" value="1"/>
+                <testNe name="dayphase" value="7"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphase" source="time/dayphase">
+                <other_data dayphase="7" dayphasetext="Evening"/>
+            </newEvent>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphaseext" source="time/dayphaseext">
+                <other_data dayphase="7" dayphasetext="Evening:Dark"/>
+            </newEvent>
+            <newState name='dayphase' value ='7' />
+        </compound>
+
+        <compound>
+            <params>
+                <testEq name="timestr" param2="eveningstart"/>
+                <testEq name="isDark" value="0"/>
+                <testNe name="dayphase" value="8"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphase" source="time/dayphase">
+                <other_data dayphase="7" dayphasetext="Evening"/>
+            </newEvent>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphaseext" source="time/dayphaseext">
+                <other_data dayphase="8" dayphasetext="Evening:Light"/>
+            </newEvent>
+            <newState name='dayphase' value ='8' />
+        </compound>
+
+
+        <compound>
+            <params>
+                <testGe name="timestr" param2="morningstart"/>
+                <testLt name="timestr" param2="daystart"/>
+                <testEq name="isDark" value="1"/>
+                <testEq name="doNow" value="1"/>
+                <testNe name="dayphase" value="3"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphase" source="time/dayphase">
+                <other_data dayphase="3" dayphasetext="Morning"/>
+            </newEvent>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphaseext" source="time/dayphaseext">
+                <other_data dayphase="3" dayphasetext="Morning:Dark"/>
+            </newEvent>
+            <newState name='dayphase' value ='3' />
+        </compound>
+
+        <compound>
+            <params>
+                <testEq name="isDark" value="0"/>
+                <testGe name="timestr" param2="morningstart"/>
+                <testLt name="timestr" param2="daystart"/>
+                <testEq name="doNow" value="1"/>
+                <testNe name="dayphase" value="4"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphase" source="time/dayphase">
+                <other_data dayphase="3" dayphasetext="Morning"/>
+            </newEvent>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphaseext" source="time/dayphaseext">
+                <other_data dayphase="4" dayphasetext="Morning:Light"/>
+            </newEvent>
+            <newState name='dayphase' value ='4' />
+        </compound>
+
+        <compound>
+            <params>
+                <testEq name="isDark" value="1"/>
+                <testGe name="timestr" param2="daystart"/>
+                <testLt name="timestr" param2="eveningstart"/>
+                <testEq name="doNow" value="1"/>
+                <testNe name="dayphase" value="5"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphase" source="time/dayphase">
+                <other_data dayphase="5" dayphasetext="Day"/>
+            </newEvent>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphaseext" source="time/dayphaseext">
+                <other_data dayphase="5" dayphasetext="Day:Dark" />
+            </newEvent>
+            <newState name='dayphase' value ='5' />
+        </compound>
+
+        <compound>
+            <params>
+                <testEq name="isDark" value="0"/>
+                <testGe name="timestr" param2="daystart"/>
+                <testLt name="timestr" param2="eveningstart"/>
+                <testEq name="doNow" value="1"/>
+                <testNe name="dayphase" value="6"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphase" source="time/dayphase">
+                <other_data dayphase="5" dayphasetext="Day"/>
+            </newEvent>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphaseext" source="time/dayphaseext">
+                <other_data dayphase="6" dayphasetext="Day:Light" />
+            </newEvent>
+            <newState name='dayphase' value ='6' />
+        </compound>
+
+
+<!-- 
+        ================================================================      
+                                 Evening Phases 
+        ================================================================     
+-->
+
+<!-- Nightstart BEFORE midnight -->
+        
+        <!-- Night starts before midnight, is time currently >= eveningstart and before nightstart?  --> 
+        <compound>
+            <params>                
+                <testLt name="timestr" param2="nightstart"/>     
+                <testGe name="timestr" param2="eveningstart"/>
+                <testEq name="isDark" value="1"/>
+                <testEq name="doNow" value="1"/>
+                <testNe name="dayphase" value="1"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphase" source="time/dayphase">
+                <other_data dayphase="1" dayphasetext="Evening"/>
+            </newEvent>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphaseext" source="time/dayphaseext">
+                <other_data dayphase="1" dayphasetext="Evening:Dark" />
+            </newEvent>
+            <newState name='dayphase' value ='7' />
+        </compound>
+        
+        
+        <!-- Night starts before midnight, is time currently >= eveningstart and before nightstart?  --> 
+        <compound>
+            <params>                
+                <testLt name="timestr" param2="nightstart"/>     
+                <testGe name="timestr" param2="eveningstart"/>
+                <testEq name="isDark" value="0"/>
+                <testEq name="doNow" value="1"/>
+                <testNe name="dayphase" value="1"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphase" source="time/dayphase">
+                <other_data dayphase="1" dayphasetext="Evening"/>
+            </newEvent>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphaseext" source="time/dayphaseext">
+                <other_data dayphase="1" dayphasetext="Evening:Light" />
+            </newEvent>
+            <newState name='dayphase' value ='8' />
+        </compound>
+        
+        
+        <!-- Nightstart AT/AFTER midnight -->
+
+        <!-- Night starts at/after midnight, so is nightstart less than eveningstart, and is time less than nightstart? -->
+        <compound>
+            <params>                
+                <testLt name="nightstart" param2="eveningstart"/>
+                <testLt name="timestr" param2="nightstart"/>    
+                <testEq name="isDark" value="1"/>
+                <testEq name="doNow" value="1"/>
+                <testNe name="dayphase" value="1"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphase" source="time/dayphase">
+                <other_data dayphase="1" dayphasetext="Evening"/>
+            </newEvent>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphaseext" source="time/dayphaseext">
+                <other_data dayphase="1" dayphasetext="Evening:Dark" />
+            </newEvent>
+            <newState name='dayphase' value ='7'/> 
+        </compound>        
+        
+        <!-- Night starts at/after midnight, so is nightstart less than eveningstart, and is time less than nightstart? -->
+        <compound>
+            <params>                
+                <testLt name="nightstart" param2="eveningstart"/>
+                <testLt name="timestr" param2="nightstart"/>    
+                <testEq name="isDark" value="0"/>
+                <testEq name="doNow" value="1"/>
+                <testNe name="dayphase" value="1"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphase" source="time/dayphase">
+                <other_data dayphase="1" dayphasetext="Evening"/>
+            </newEvent>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphaseext" source="time/dayphaseext">
+                <other_data dayphase="1" dayphasetext="Evening:Light" />
+            </newEvent>
+            <newState name='dayphase' value ='8' />
+        </compound>
+        
+        <!-- Night starts at/after midnight, so is nightstart less than eveningstart, and is time before midnight? -->
+        <compound>
+            <params>                
+                <testLt name="nightstart" param2="eveningstart"/>
+                <testGe name="timestr" param2="eveningstart"/>    
+                <testEq name="isDark" value="1"/>
+                <testEq name="doNow" value="1"/>
+                <testNe name="dayphase" value="1"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphase" source="time/dayphase">
+                <other_data dayphase="1" dayphasetext="Evening"/>
+            </newEvent>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphaseext" source="time/dayphaseext">
+                <other_data dayphase="1" dayphasetext="Evening:Dark" />
+            </newEvent>
+            <newState name='dayphase' value ='7' />
+        </compound>        
+        
+        <!-- Night starts at/after midnight, so is nightstart less than eveningstart, and is time before midnight? -->
+        <compound>
+            <params>                
+                <testLt name="nightstart" param2="eveningstart"/>
+                <testGe name="timestr" param2="eveningstart"/>      
+                <testEq name="isDark" value="0"/>
+                <testEq name="doNow" value="1"/>
+                <testNe name="dayphase" value="1"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphase" source="time/dayphase">
+                <other_data dayphase="1" dayphasetext="Evening"/>
+            </newEvent>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphaseext" source="time/dayphaseext">
+                <other_data dayphase="1" dayphasetext="Evening:Light" />
+            </newEvent>
+            <newState name='dayphase' value ='8' />
+        </compound>
+        
+<!-- 
+        ================================================================      
+                                 Night Phases 
+        ================================================================     
+-->
+        
+        <!-- Nightstart BEFORE midnight -->
+        
+        <!-- Night starts before midnight, does night start before midnight, is time currently after midnight and before morningstart?  -->
+        <compound>
+            <params>                
+                <testGt name="nightstart" param2="eveningstart"/>
+                <testLt name="timestr" param2="morningstart"/>            
+                <testEq name="isDark" value="1"/>
+                <testEq name="doNow" value="1"/>
+                <testNe name="dayphase" value="1"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphase" source="time/dayphase">
+                <other_data dayphase="1" dayphasetext="Night"/>
+            </newEvent>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphaseext" source="time/dayphaseext">
+                <other_data dayphase="1" dayphasetext="Night:Dark" />
+            </newEvent>
+            <newState name='dayphase' value ='1' />
+        </compound>
+        
+        <!-- Night starts before midnight, does night start before midnight, is time currently after midnight and before morningstart?  -->
+        <compound>
+            <params>                
+                <testGt name="nightstart" param2="eveningstart"/>
+                <testLt name="timestr" param2="morningstart"/>            
+                <testEq name="isDark" value="0"/>
+                <testEq name="doNow" value="1"/>
+                <testNe name="dayphase" value="1"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphase" source="time/dayphase">
+                <other_data dayphase="1" dayphasetext="Night"/>
+            </newEvent>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphaseext" source="time/dayphaseext">
+                <other_data dayphase="1" dayphasetext="Night:Light" />
+            </newEvent>
+            <newState name='dayphase' value ='2' />
+        </compound>
+        
+        <!-- Night starts before midnight, does night start before midnight, is time currently before midnight and larger than nightstart?  -->
+        <compound>
+            <params>                
+                <testGt name="nightstart" param2="eveningstart"/>
+                <testLe name="timestr" value="23:59:59"/>            
+                <testGe name="timestr" param2="nightstart"/>
+                <testEq name="isDark" value="1"/>
+                <testEq name="doNow" value="1"/>
+                <testNe name="dayphase" value="1"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphase" source="time/dayphase">
+                <other_data dayphase="1" dayphasetext="Night"/>
+            </newEvent>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphaseext" source="time/dayphaseext">
+                <other_data dayphase="1" dayphasetext="Night:Dark" />
+            </newEvent>
+            <newState name='dayphase' value ='1' />
+        </compound>
+        
+        <!-- Night starts before midnight, does night start before midnight, is time currently before midnight and larger than nightstart?  -->
+        <compound>
+            <params>                
+                <testGt name="nightstart" param2="eveningstart"/>
+                <testLe name="timestr" value="23:59:59"/>            
+                <testGe name="timestr" param2="nightstart"/>
+                <testEq name="isDark" value="0"/>
+                <testEq name="doNow" value="1"/>
+                <testNe name="dayphase" value="1"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphase" source="time/dayphase">
+                <other_data dayphase="1" dayphasetext="Night"/>
+            </newEvent>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphaseext" source="time/dayphaseext">
+                <other_data dayphase="1" dayphasetext="Night:Light" />
+            </newEvent>
+            <newState name='dayphase' value ='2' />
+        </compound>
+        
+        
+        
+        <!-- Nightstart AFTER midnight -->
+
+        <!-- Night starts at/after midnight, so is time greater than nightstart and less than morningstart -->
+        <compound>
+            <params>                
+                <testLt name="nightstart" param2="eveningstart"/>
+                <testGe name="timestr" param2="nightstart"/>
+                <testLt name="timestr" param2="morningstart"/>
+                <testEq name="isDark" value="1"/>
+                <testEq name="doNow" value="1"/>
+                <testNe name="dayphase" value="1"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphase" source="time/dayphase">
+                <other_data dayphase="1" dayphasetext="Night"/>
+            </newEvent>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphaseext" source="time/dayphaseext">
+                <other_data dayphase="1" dayphasetext="Night:Dark" />
+            </newEvent>
+            <newState name='dayphase' value ='1' />
+        </compound>        
+        
+        <!-- Night starts at/after midnight, so is time greater than nightstart and less than morningstart -->
+        <compound>
+            <params>                
+                <testLt name="nightstart" param2="eveningstart"/>
+                <testGe name="timestr" param2="nightstart"/>
+                <testLt name="timestr" param2="morningstart"/>    
+                <testEq name="isDark" value="0"/>
+                <testEq name="doNow" value="1"/>
+                <testNe name="dayphase" value="1"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphase" source="time/dayphase">
+                <other_data dayphase="1" dayphasetext="Night"/>
+            </newEvent>
+            <newEvent type="http://id.webbrick.co.uk/events/time/dayphaseext" source="time/dayphaseext">
+                <other_data dayphase="1" dayphasetext="Night:Light"/>
+            </newEvent>
+            <newState name='dayphase' value ='2' />
+        </compound>
+        
+    </eventInterface>
+
+    <!-- these are purely to enable easy setting arbitrary state from the UI for testing -->
+    <!-- set dark, light and then nightr,day,evening,morning -->
+    <!-- use of compound to pick up configured values -->
+    <eventInterface module="EventHandlers.Compound" name="Compound">
+
+        <!-- grab configuration -->
+        <eventtype type="http://id.webbrick.co.uk/events/config/get">
+            <!-- the attribute doNow is used to force a recheck of dayphase when any of these are changed -->
+            <eventsource source="dayphase/weekday/morning">
+                <event>
+                    <action name="morningstart" key="time"/>
+                </event>
+            </eventsource>
+            <eventsource source="dayphase/weekday/day">
+                <event>
+                    <action name="daystart" key="time"/>
+                </event>
+            </eventsource>
+            <eventsource source="dayphase/weekday/evening">
+                <event>
+                    <action name="eveningstart" key="time"/>
+                </event>
+            </eventsource>
+            <eventsource source="dayphase/weekday/night">
+                <event>
+                    <action name="nightstart" key="time"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <eventtype type="http://id.webbrick.co.uk/events/uri">
+            <eventsource source="dayphase/dark">
+                <event>
+                    <action name="action" value="dark" transient='yes'/>
+                </event>
+            </eventsource>
+            <eventsource source="dayphase/light">
+                <event>
+                    <action name="action" value="light" transient='yes'/>
+                </event>
+            </eventsource>
+            <eventsource source="dayphase/night">
+                <event>
+                    <action name="action" value="nightstart" transient='yes'/>
+                </event>
+            </eventsource>
+            <eventsource source="dayphase/morning">
+                <event>
+                    <action name="action" value="morningstart" transient='yes'/>
+                </event>
+            </eventsource>
+            <eventsource source="dayphase/day">
+                <event>
+                    <action name="action" value="daystart" transient='yes'/>
+                </event>
+            </eventsource>
+            <eventsource source="dayphase/evening">
+                <event>
+                    <action name="action" value="eveningstart" transient='yes'/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <compound>
+            <params>
+                <testEq name="action" value="dark"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/isDark" source="time/isDark">
+                <other_data state='1'/>
+            </newEvent>
+        </compound>
+        <compound>
+            <params>
+                <testEq name="action" value="light"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/isDark" source="time/isDark">
+                <other_data state='0'/>
+            </newEvent>
+        </compound>
+        <compound>
+            <params>
+                <testEq name="action" value="morningstart"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/minute" source="time/minute">
+                <copy_other_data timestr='morningstart' />
+            </newEvent>
+        </compound>
+        <compound>
+            <params>
+                <testEq name="action" value="daystart"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/minute" source="time/minute">
+                <copy_other_data timestr='daystart' />
+            </newEvent>
+        </compound>
+        <compound>
+            <params>
+                <testEq name="action" value="eveningstart"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/minute" source="time/minute">
+                <copy_other_data timestr='eveningstart' />
+            </newEvent>
+        </compound>
+        <compound>
+            <params>
+                <testEq name="action" value="nightstart"/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/time/minute" source="time/minute">
+                <copy_other_data timestr='nightstart' />
+            </newEvent>
+        </compound>
+        
+    </eventInterface>
+</eventInterfaces>

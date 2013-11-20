@@ -1,0 +1,38 @@
+/* $Id: dropdown.css 2213 2008-05-11 12:57:45Z andy $
+ *
+ *  Specific definitions for dropdowns
+ *
+ *  ASH 4-Jun-2009: New implementation
+ *         
+ *
+ */
+
+.dropDown {
+  background-image : url("/static/images/greyTrans.png") ; 
+  color: #FFFFFF;
+  font-size: xx-large;
+  border: 8px #FFFFFF solid;
+  overflow:auto;    /* in case we have a lot of options */
+  position: absolute;
+  z-index: 1;
+  display:none;  /*  initially not displayed */
+  width: 50%;
+  height: 50%;
+  top: 25%;
+  left:25%;
+  
+}
+
+.dropDownCancel {
+  background-color: #00CC00;
+  position: relative;
+  width: 100%;
+  bottom: 0px;
+  text-align: left;
+  display: block;
+}
+
+
+
+
+

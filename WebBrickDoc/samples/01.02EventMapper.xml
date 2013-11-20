@@ -1,0 +1,14 @@
+<eventInterfaces>
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+
+        <eventtype type="http://id.webbrick.co.uk/events/webbrick/TD">
+
+            <eventsource source="webbrick/101/TD/0" >
+                <event>
+                    <newEvent type="internal" source="light/garage/switch" />        		
+                </event>
+            </eventsource>
+        </eventtype>
+			
+    </eventInterface>    
+</eventInterfaces>

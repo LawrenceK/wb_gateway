@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!-- 
+TODO 
+
+    1. Update Xurl to url and enter correct webbrick command.
+    2. Replace hs_key with the key of the heatsource defined in hvac.xml file
+-->
+
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+        <eventtype type='http://id.webbrick.co.uk/zones/heatsource'>
+            
+        
+            <!-- These pairs are for using a multiple boiler setup -->
+            <eventsource source='heatsource/hs_key/1/dorun'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;4;N:' address='WB905'/>
+                </event>
+            </eventsource>
+            <eventsource source='heatsource/hs_key/1/dostop'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;4;F:' address='WB905'/>
+                </event>
+            </eventsource>
+            <eventsource source='heatsource/hs_key/2/dorun'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;5;N:' address='WB905'/>
+                </event>
+            </eventsource>
+            <eventsource source='heatsource/hs_key/2/dostop'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;5;F:' address='WB905'/>
+                </event>
+            </eventsource>
+            <eventsource source='heatsource/hs_key/3/dorun'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;6;N:' address='WB905'/>
+                </event>
+            </eventsource>
+            <eventsource source='heatsource/hs_key/3/dostop'>
+                <event>
+                    <Xurl cmd='GET' uri='/hid.spi?COM=DO;6;F:' address='WB905'/>
+                </event>
+            </eventsource>
+        
+            <!-- Pick up the state of Boiler Isolation Switch and deliver message to UI-->
+            <eventsource source='heatsource/hs_key/inmaintenance'>
+                <event>
+                    <url address="localhost:8080" uri="/local/postmessage?msg=Boiler%20in%20maintenance%20mode%20(isolated)&amp;priority=2&amp;validFor=3600&amp;tag=maintenance" cmd="GET" />
+
+                </event>
+            </eventsource>
+            <eventsource source='heatsource/hs_key/nonmaintenance'>
+                <event>
+                    <url address="localhost:8080" uri="/local/removemessage?tag=maintenance" cmd="GET" />
+
+                </event>
+            </eventsource>
+         
+        </eventtype>
+    </eventInterface>
+
+</eventInterfaces>

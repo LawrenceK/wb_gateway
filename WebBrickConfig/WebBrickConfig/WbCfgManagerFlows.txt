@@ -1,0 +1,99 @@
+Webbrick Configuration Manger request handling flows 
+
+WbCfgManagerForm:
+
+.index() -> front page
+
+.default() -> dispatch for
+ (0) Main config form:
+     /ConfigManager -> .ConfigFrontPage()
+ (1) Ajax callbacks:  (are these redundant?)
+     /Networks    -> .wbNetworks()
+     /Discover    -> .wbDiscover(net)
+     /Config      -> .wbConfigSets()
+     /Config/cset -> .wbConfig(cset)
+ (2) Intermediate form response handlers:
+     /ConfigAction    -> .wbConfigAction()
+     /NewConfigSet    -> .wbNewConfigSet()
+     /DeleteConfigSet -> .wbDeleteConfigSet()
+     /DeleteConfig    -> .wbDeleteConfig()
+     /CopyConfig      -> .wbCopyConfig()
+     /MoveConfig      -> .wbMoveConfig()
+     /UploadConfig    -> .wbUploadConfig()
+
+.continuation() -> 
+     generic method to invoke a form-defined method with form-specified parameters
+
+.ConfigFrontPage() -> main form display
+
+.wbConfigAction() -> form response dispatcher
+     based primarily on the returned "action" value oin the request parameter map:
+     "Discover"         -> .WebBrickDiscover(net); .ConfigFrontPage()
+     "UpdateIP"         -> .WebBrickUpdateIp(...); .WebBrickFlushDiscovered(); .wbConfigMessage()
+     "Remove"           -> .WebBrickRemove(node); .ConfigFrontPage()
+     "Add"              -> .WebBrickAdd(node); .ConfigFrontPage()
+     "Load"             -> .WebBrickLoad(...); .wbConfigMessage()
+     "Save"             -> .WebBrickSave(...); .wbConfigMessage()
+     "Save_all"         -> repeat(.WebBrickSave(...)); .wbConfigMessage()
+     "New_ConfigSet"    -> .NewConfigSetForm()
+     "Delete_ConfigSet" -> .DeleteConfigSetForm()
+     "Delete_Config"    -> .DeleteConfigForm()
+     "Show_Config"      -> .ShowConfigForm()
+#    "Create_Config"    -> .CreateConfigForm()  ???
+#    "Edit_Config"      -> .EditConfigForm()    ???
+     "Copy"             -> .CopyConfigForm()
+     "Move"             -> .MoveConfigForm()
+     "Upload"           -> .UploadConfigForm()
+     "Download"         -> .DownloadConfigForm() -> (download)
+     (unrecognized: dump params)
+
+-- callback methods: these return values used by form javascript (Ajax)
+.wbNetworks()
+.wbDiscover(net)
+.wbConfigSets()
+.wbConfig(cset)
+
+-- secondary form display functions, used to gather additional information
+-- vectored from .wbConfigAction()
+.NewConfigSetForm()
+.DeleteConfigSetForm()
+.DeleteConfigForm()
+.ShowConfigForm()
+.CreateConfigForm()  ???
+.EditConfigForm()    ???
+.CopyConfigForm()
+.MoveConfigForm()
+.UploadConfigForm()
+
+-- secondary form submission handling
+-- vectored from .default()
+.wbNewConfigSet()
+.wbDeleteConfigSet()
+.wbDeleteConfig()
+.wbCopyConfig()
+.wbMoveConfig()
+.wbUploadConfig()
+
+-- operation support functions
+.WebBrickDiscover(net)
+.WebBrickFlushDiscovered()
+.WebBrickRemove(node)
+.WebBrickAdd(node)
+.WebBrickUpdateIp(...)
+.WebBrickLoad(...)
+.WebBrickSave(...)
+.WebBrickSaveAndContinue(...) (from .WebBrickSave() via .wbConfirmQuery())
+.UpdateConfig()      (called from .WebBrickLoad(...))
+.CopyConfigSet()     (called from .wbCopyConfig())
+.CopyConfig()        (called from .wbCopyConfig())
+.MoveConfig()        (called from .wbMoveConfig())
+.UploadConfig()      (called from .wbUploadConfig())
+.UploadConfigData()  (called from .UploadConfig())
+
+.DownloadConfig()    (called from .wbConfigAction())
+
+-- generic error/query forms
+.wbConfigError(msg)   -> .ConfigFrontPage()
+.wbConfigMessage(msg) -> .ConfigFrontPage()
+.wbConfirmQuery(msg)  -> .continuation() OR .ConfigFrontPage()
+     

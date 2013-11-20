@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+
+    <!-- !  This file will allows interfacing with a Barco Cine 9 CRT Projector
+        
+        TODO: 
+            1.  Change the node number in the Decoding section the the node number of the 
+                WebBrick the amplifier is connected to.
+                
+            2.  Change "SampleWb", to the name of the WebBrick the amplifier is connected to. 
+    
+    -->
+
+    <!-- !  Decoding serial comming back from the amplifier -->
+    <eventInterface module='EventHandlers.SerialDataConvertor' name='SerialDataConvertor'>
+        <eventtype type="http://id.webbrick.co.uk/events/webbrick/1">
+            <eventsource source="webbrick/999/1" >
+                <!-- all events from a single source -->
+                <event>
+                    <!-- These are all matches in the data attribute of the payload -->
+                    <!-- Acknowledgement -->
+                    <match offset='0' value='6'/>
+                    <newEvent type="internal/cinema" source="projector/1/ack">
+                    </newEvent>
+                </event>
+                
+                <event>
+                    <!-- These are all matches in the data attribute of the payload -->
+                    <!-- Acknowledgement -->
+                    <match offset='0' value='21'/>
+                    <newEvent type="internal/cinema" source="projector/1/nak">
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+
+    <!-- !  Commands to control the amplifier -->
+    
+    
+    
+    
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+        <eventtype type=''>
+            <eventsource source='time/runtime'>
+                <event>
+                    <params>
+                        <testEq name="elapsed" value='15'/>
+                        <testEq name="elapsed" value='30'/>
+                        <testEq name="elapsed" value='45'/>
+                        <testEq name="elapsed" value='60'/>
+                    </params>
+					<!-- ensure serial port on 9600 8 N 1 -->
+                    <url cmd='GET' uri='/hid.spi?COM=CR2;5:' address='SampleWb'/>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+        <eventtype type='internal/cinema'>
+			<!-- In the following commnds we need to convert from the hex chars in the documentation to decimal, for the webbrick -->
+            <eventsource source='projector/1/power/on'>
+                <event>
+                    <!-- By default goes to channel 5-->
+                    <url cmd='GET' uri='/hid.spi?COM=RD;2;1;1;22;0;1;1;1;22:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='projector/1/power/off'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;2;1;1;15;1;1;1;1;15:' address='SampleWb'/>
+                </event>
+            </eventsource>
+			
+            <eventsource source='projector/1/number/0'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;2;1;1;17;0;1;1;1;17:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            
+            <eventsource source='projector/1/number/1'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;2;1;1;18;0;1;1;1;18:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            
+            <eventsource source='projector/1/number/2'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;2;1;1;19;0;1;1;1;19:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            
+            <eventsource source='projector/1/number/3'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;2;1;1;20;0;1;1;1;20:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            
+            <eventsource source='projector/1/number/4'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;2;1;1;21;0;1;1;1;21:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            
+            <eventsource source='projector/1/number/5'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;2;1;1;22;0;1;1;1;22:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            
+            <eventsource source='projector/1/number/6'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;2;1;1;23;0;1;1;1;23:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            
+            <eventsource source='projector/1/number/7'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;2;1;1;24;0;1;1;1;24:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            
+            <eventsource source='projector/1/number/8'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;2;1;1;25;0;1;1;1;25:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            
+            <eventsource source='projector/1/number/9'>
+                <event>
+                    <url cmd='GET' uri='/hid.spi?COM=RD;2;1;1;26;0;1;1;1;26:' address='SampleWb'/>
+                </event>
+            </eventsource>
+            
+        </eventtype>
+    </eventInterface>
+
+</eventInterfaces>
+

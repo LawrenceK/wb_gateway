@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML, 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1-strict-dtd">
+<!--
+ +  $Id: Test02-LightSwitch.xhtml 1457 2008-05-23 01:34:46Z webbrick $
+ +
+ +  WebBrick home gateway panel definition for a simple light switch.
+ +  Shower (pull-to-toggle) light switch emulation.
+ +
+ -->
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" >
+
+<head>
+  <title>Shower light</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  <link href="/static/css/panel.css" rel="stylesheet" />
+  <script src="/static/javascript/MochiKit.js"></script>
+  <script src="/static/javascript/WebBrick.js"></script>
+</head>
+
+<body>
+
+<table>
+  <tr>
+    <td wbType="Caption" wbLoad="loadCaption()">Shower light</td>
+  </tr>
+  <tr>
+    <td wbType="PushButton" wbLoad="loadButton()" 
+        wbTarget="WebBrick:DI1" wbSource="WebBrick:DO2">On/Off</td>
+  </tr>
+  <tr>
+    <td>Configure WebBrick trigger 2 (DI2) to toggle digital output 3 (DO3) 
+        (numbered from 1: that's DI1 -> DO2 in WebBrick network commands)
+    </td>
+  </tr>
+</table>
+
+</body>
+
+</html>

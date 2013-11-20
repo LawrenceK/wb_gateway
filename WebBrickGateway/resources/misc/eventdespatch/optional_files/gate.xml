@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- TODO change Xurl to url and target correct webbrick to enable/disable gate  (line 13 &18)-->
+<!-- TODO change 999 for webbrick node number and target correct webbrick to get gate states  (line 84 & 89)-->
+
+<eventInterfaces>
+
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+        <eventtype type="internal"> 
+            <!-- Enable / Diable the Gate -->
+            <eventsource source="gate/enable" >
+                <event>
+                    <Xurl  cmd="GET" uri='/hid.spi?COM=DO6N:' address="SampleWb"/>
+                </event>
+            </eventsource>
+            <eventsource source="gate/disable" >
+                <event>
+                    <Xurl  cmd="GET" uri='/hid.spi?COM=DO6F:' address="SampleWb"/>
+                </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+
+
+
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+
+        <eventtype type="http://id.webbrick.co.uk/events/schedule/control">
+            <eventsource source="gate/On" >
+                <event>
+                    <newEvent type="http://id.webbrick.co.uk/events/config/set" source="gate/enabled">
+                        <other_data val='1'/>
+                    </newEvent>
+                </event>
+            </eventsource>
+            
+            <eventsource source="gate/Off" >
+                <event>
+                    <newEvent type="http://id.webbrick.co.uk/events/config/set" source="gate/enabled">
+                        <other_data val='0'/>
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+        <eventtype type='http://id.webbrick.co.uk/events/config/get'>
+                <eventsource source='gate/enabled'>
+                    <event>
+                        <params>
+                            <testEq type='int' name='val' value="0"/> 
+                        </params>
+                        <newEvent type="internal" source="gate/disable">
+                        </newEvent>
+                    </event>
+                    <event>
+                        <params>
+                            <testEq type='int' name='val' value="1"/> 
+                        </params>
+                        <newEvent type="internal" source="gate/enable">
+                        </newEvent>
+                    </event>
+                </eventsource>
+            </eventtype>
+
+    </eventInterface>
+
+
+
+
+    <eventInterface module='EventHandlers.Compound' name='Compound'>
+
+        <eventtype type="http://id.webbrick.co.uk/events/webbrick/DI">
+            <!-- events from a source of a specific type -->
+            <!-- 
+            =================================================================================
+            State Table:
+            
+                0 : Ajar
+                1 : Closed
+                2 : Open
+                3 : Error
+            =================================================================================
+            -->
+            <eventsource source="webbrick/2/DI/7" >
+                <event>
+                    <action name="gateclosed" key="state"/>
+                </event>
+            </eventsource>
+            <eventsource source="webbrick/2/DI/6" >
+                <event>
+                    <action name="gateopen" key="state"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+
+        <compound>
+            <params>
+                <testEq name='gateclosed' value='1'/>
+                <testEq name='gateopen' value='1'/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/state" source="gate/state">
+                <other_data val='0'/>
+            </newEvent>
+        </compound>
+
+        <compound>
+            <params>
+                <testEq name='gateclosed' value='0'/>
+                <testEq name='gateopen' value='1'/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/state" source="gate/state">
+                <other_data val='1'/>
+            </newEvent>
+        </compound>
+
+        <compound>
+            <params>
+                <testEq name='gateclosed' value='1'/>
+                <testEq name='gateopen' value='0'/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/state" source="gate/state">
+                <other_data val='2'/>
+            </newEvent>
+        </compound>
+        <compound>
+            <params>
+                <testEq name='gateclosed' value='0'/>
+                <testEq name='gateopen' value='0'/>
+            </params>
+            <newEvent type="http://id.webbrick.co.uk/events/state" source="gate/state">
+                <other_data val='3'/>
+            </newEvent>
+        </compound>
+        
+
+    </eventInterface>   
+</eventInterfaces>

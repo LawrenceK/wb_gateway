@@ -1,0 +1,193 @@
+<eventInterfaces>
+
+    <eventInterface module='EventHandlers.HttpAction' name='HttpAction'>
+        This responds to events and does an HTTP request(s) as the action.
+
+        <!-- Internal routing events -->
+        <eventtype type="internal">
+        
+            <eventsource source="lighting/security/30Sec" >
+                <event>
+                    <url address="heating" uri="/hid.spi?COM=DO3D0:" cmd="GET" />
+                </event>
+            </eventsource>
+        
+            <eventsource source="lighting/security/5Min" >
+                <event>
+                    <url address="heating" uri="/hid.spi?COM=DO3D2:" cmd="GET" />
+                </event>
+            </eventsource>
+        
+            <!-- Basic Twilights and Night Jobs -->
+            <eventsource source="lighting/security/Off" >
+                <event>
+                    <url address="heating" uri="/hid.spi?COM=DO3F:" cmd="GET" />
+                </event>
+            </eventsource>
+          
+            <eventsource source="NightEnable" >
+                <event>
+                    <!-- Uses a webbrick scene to do what is wanted -->
+                    <url address="vm:8080" uri="/local/postmessage?msg=Night%20Enable&amp;priority=2&amp;validFor=180" cmd="GET" />
+                    <url address="heating" uri="/hid.spi?COM=SC4:" cmd="GET" />
+                </event>
+            </eventsource>
+          
+            <eventsource source="NightDisable" >
+                <event>
+                    <!-- Uses a webbrick scene to do what is wanted -->
+                    <url address="vm:8080" uri="/local/postmessage?msg=Night%20Disable&amp;priority=2&amp;validFor=180" cmd="GET" />
+                    <url address="heating" uri="/hid.spi?COM=SC0:" cmd="GET" />
+                </event>
+            </eventsource>
+
+            <eventsource source="Twilights" >
+                <event>
+                    <!-- Uses a webbrick scene to do what is wanted -->
+                    <url address="vm:8080" uri="/local/postmessage?msg=Lighting%20Twilights&amp;priority=2&amp;validFor=180" cmd="GET" />
+                    <url address="heating" uri="/hid.spi?COM=SC1:" cmd="GET" />
+                </event>
+            </eventsource>
+            
+        </eventtype>
+    </eventInterface>
+
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+          
+        <eventtype type="http://id.webbrick.co.uk/events/time/sunset">
+            <eventsource source="" >
+                <event>
+                    <!-- because evening is night plus some -->
+                    <newEvent type="internal" source="NightEnable" />
+                    <newEvent type="internal" source="Twilights" />
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <eventtype type="http://id.webbrick.co.uk/events/time/minute">
+            <eventsource source="" >
+                <event>
+                    <params>
+                        <testEq name='hour' value='23' />
+                        <testEq name='minute' value='30' />
+                    </params>
+                    <newEvent type="internal" source="NightEnable" />
+                </event>
+            </eventsource>
+            <eventsource source="" >
+                <event>
+                    <params>
+                        <testEq name='hour' value='6' />
+                        <testEq name='minute' value='30' />
+                    </params>
+                    <newEvent type="internal" source="Twilights" />
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <eventtype type="http://id.webbrick.co.uk/events/time/sunrise">
+            <eventsource source="" >
+                <event>
+                    <newEvent type="internal" source="NightDisable" />
+                </event>
+            </eventsource>
+        </eventtype>
+        
+        <!--
+        #
+        #  Here are the direct uri calls for testing
+        #
+        #
+        #
+        -->
+        <eventtype type="http://id.webbrick.co.uk/events/uri">
+          <eventsource source="twilights">
+            <event>
+                    <newEvent type="internal" source="Twilights" />           
+            </event>
+          </eventsource>
+          <eventsource source="nightDisable">
+            <event>
+                    <newEvent type="internal" source="NightDisable" />            
+            </event>
+          </eventsource>
+          <eventsource source="nightEnable">
+            <event>
+                    <newEvent type="internal" source="NightEnable" />           
+            </event>
+          </eventsource>
+    </eventtype>
+        
+
+    </eventInterface>
+    
+    <eventInterface module='EventHandlers.Compound' name='Compound'>
+
+        <!-- Build conditionals to handle PIR triggering in courtyard -->
+        <eventtype type="http://id.webbrick.co.uk/events/webbrick/DO">
+            <eventsource source="webbrick/21/DO/3" >
+                <event>
+                    <action name="LightsEnabled" key="state"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <eventtype type="http://id.webbrick.co.uk/events/webbrick/TD">
+            <eventsource source="webbrick/21/TD/4" >
+                <event>
+                    <action name="PIRNorth" key="state"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <eventtype type="internal">
+            <eventsource source="Courtyard" >
+                <event>
+                    <action name="DoCourtyard" value="1"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <compound>
+            <params>
+                <testEq name='LightsEnabled' value='1' />
+                <testEq name='PIRNorth' value='1' />
+            </params>
+            <newEvent type="internal" source="GarageDwell30" />
+        </compound>
+
+
+        <compound>
+            <params>
+                <testEq name='LightsEnabled' value='1' />
+                <testEq name='DoCourtyard' value='1' />
+            </params>
+            <newState name="DoCourtyard" value="0"/>
+            <newEvent type="internal" source="garagea/fore/5Min" />
+            <newEvent type="internal" source="HouseNorthDwell/5Min" />
+            <newEvent type="internal" source="Lampposts/5Min" />
+        </compound>
+
+        <compound>
+            <params>
+                <testEq name='LightsEnabled' value='1' />
+                <testEq name='PIRNorth' value='1' />
+            </params>
+            <newEvent type="internal" source="garagea/fore/30Sec" />
+            <newEvent type="internal" source="HouseNorthDwell/30Sec" />
+        </compound>
+
+        <compound>
+            <params>
+                <testEq name='LightsEnabled' value='1' />
+                <testEq name='DoGoingOut' value='1' />
+            </params>
+            <newState name="DoGoingOut" value="0"/>
+            <newEvent type="internal" source="garagea/fore/5Min" />
+            <newEvent type="internal" source="garagea/bay/5Min" />
+            <newEvent type="internal" source="HouseNorthDwell/5Min" />
+        </compound>
+
+    </eventInterface>  
+    
+</eventInterfaces>

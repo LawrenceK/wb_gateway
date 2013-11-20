@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="Lawrence Klyne" />
+    <title>Webbrick Samples</title>
+    <style type="text/css">
+        body { margin-left: 40px; }
+    </style>
+</head>
+
+<body>
+    <h1>Webbrick Samples</h1>
+    <ul>
+
+        <li><a href="01.01WebBrickEvent.html">01.01 WebBrickEvent - Very simple</a></li>
+        <li><a href="01.02EventMapper.html">01.02 EventMapper - map external event names to easier to interpret names.</a></li>
+        <li><a href="01.03HttpAction.html">01.03 HttpAction - Use http action to provide easier to interpret names.</a></li>
+        <li><a href="02.01NightMimics.html">02.01 Use HttpAction to adjust Mimics based on dayphase.</a></li>
+        <li><a href="02.02ShellCommand.html">02.02 Use ShellAction to issue a local command.</a></li>
+        <li><a href="02.03KidTemplating.html">02.03 Create a Kid Template for a new UI page.</a></li>
+    </ul>
+</body>
+
+</html>

@@ -1,0 +1,228 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!-- !  TODO: Nothing in this file needs to be changed, unless the user does not
+            want to use the default mappings as detailed below.
+
+
+        This file listens to the 8 dayphase events and allows them to easily be 
+        mapped to other events, common events that are used as part of dayphases, 
+        and the files which they need to be configured in are: 
+        
+        
+            general_dayphase_mimics.xml
+                general/mimics/off
+                general/mimics/low
+                general/mimics/medium 
+                general/mimics/high
+
+                
+            general_dayphase_lighting.xml
+                general/lighting/comfort/off
+                general/lighting/comfort/low
+                general/lighting/comfort/medium
+                general/lighting/comfort/high
+                
+                
+            outside_dayphase_lighting.xml
+                outside/lighting/front/off
+                outside/lighting/front/low
+                outside/lighting/front/medium
+                outside/lighting/front/high
+            
+                outside/lighting/other/off
+                outside/lighting/other/low
+                outside/lighting/other/medium
+                outside/lighting/other/high
+                
+                
+            outside_dayphase_pirs.xml
+                outside/pirs/front/enable
+                outside/pirs/front/disable
+                
+                outside/pirs/other/enable
+                outside/pirs/other/disable
+            
+            
+        By default the following mappings are configured: 
+            
+            Morning:Dark
+                general/mimics/medium
+                general/lighting/comfort/medium
+                outside/lighting/front/medium
+                outside/lighting/other/medium
+                outside/pirs/front/enable
+                outside/pirs/other/enable
+            Morning:Light
+                general/mimics/high
+                general/lighting/comfort/off
+                outside/lighting/front/off
+                outside/lighting/other/off
+                outside/pirs/front/disable
+                outside/pirs/other/disable
+                
+                
+            Day:Dark
+                general/mimics/medium
+                general/lighting/comfort/medium
+                outside/lighting/front/medium
+                outside/lighting/other/medium
+                outside/pirs/front/enable
+                outside/pirs/other/enable
+            Day:Light
+                general/mimics/high
+                general/lighting/comfort/off
+                outside/lighting/front/off
+                outside/lighting/other/off
+                outside/pirs/front/disable
+                outside/pirs/other/disable
+            
+            
+            Evening:Dark
+                general/mimics/medium
+                general/lighting/comfort/medium
+                outside/lighting/front/medium
+                outside/lighting/other/medium
+                outside/pirs/front/enable
+                outside/pirs/other/enable
+            Evening:Light
+                general/mimics/high
+                general/lighting/comfort/off
+                outside/lighting/front/off
+                outside/lighting/other/off
+                outside/pirs/front/disable
+                outside/pirs/other/disable
+                
+                
+            Night:Dark
+                general/mimics/low
+                general/lighting/comfort/low
+                outside/lighting/front/off
+                outside/lighting/other/off
+                outside/pirs/front/enable
+                outside/pirs/other/enable
+            Night:Light
+                general/mimics/high
+                general/lighting/comfort/off
+                outside/lighting/front/off
+                outside/lighting/other/off
+                outside/pirs/front/disable
+                outside/pirs/other/disable
+
+-->
+            
+            
+
+
+
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+        <eventtype type="http://id.webbrick.co.uk/events/time/dayphaseext">
+            <eventsource source="time/dayphaseext" >
+                <event>
+                    <params>
+                        <testEq name='dayphasetext' value='Morning:Dark'/>
+                    </params>
+                    <newEvent type="internal" source="general/mimics/medium" />
+                    <newEvent type="internal" source="general/lighting/comfort/medium" />
+                    <newEvent type="internal" source="outside/lighting/front/medium" />
+                    <newEvent type="internal" source="outside/lighting/other/medium" />
+                    <newEvent type="internal" source="outside/pirs/front/enable" />
+                    <newEvent type="internal" source="outside/pirs/other/enable" />
+                </event>
+            </eventsource>
+            <eventsource source="time/dayphaseext" >
+                <event>
+                    <params>
+                        <testEq name='dayphasetext' value='Morning:Light'/>
+                    </params>
+                    <newEvent type="internal" source="general/mimics/high" />
+                    <newEvent type="internal" source="general/lighting/comfort/off" />
+                    <newEvent type="internal" source="outside/lighting/front/off" />
+                    <newEvent type="internal" source="outside/lighting/other/off" />
+                    <newEvent type="internal" source="outside/pirs/front/disable" />
+                    <newEvent type="internal" source="outside/pirs/other/disable" />
+                </event>
+            </eventsource>
+            
+            <eventsource source="time/dayphaseext" >
+                <event>
+                    <params>
+                        <testEq name='dayphasetext' value='Day:Dark'/>
+                    </params>
+                    <newEvent type="internal" source="general/mimics/medium" />
+                    <newEvent type="internal" source="general/lighting/comfort/medium" />
+                    <newEvent type="internal" source="outside/lighting/front/medium" />
+                    <newEvent type="internal" source="outside/lighting/other/medium" />
+                    <newEvent type="internal" source="outside/pirs/front/enable" />
+                    <newEvent type="internal" source="outside/pirs/other/enable" />
+                </event>
+            </eventsource>
+            <eventsource source="time/dayphaseext" >
+                <event>
+                    <params>
+                        <testEq name='dayphasetext' value='Day:Light'/>
+                    </params>
+                    <newEvent type="internal" source="general/mimics/high" />
+                    <newEvent type="internal" source="general/lighting/comfort/off" />
+                    <newEvent type="internal" source="outside/lighting/front/off" />
+                    <newEvent type="internal" source="outside/lighting/other/off" />
+                    <newEvent type="internal" source="outside/pirs/front/disable" />
+                    <newEvent type="internal" source="outside/pirs/other/disable" />
+                </event>
+            </eventsource>
+            
+            <eventsource source="time/dayphaseext" >
+                <event>
+                    <params>
+                        <testEq name='dayphasetext' value='Evening:Dark'/>
+                    </params>
+                    <newEvent type="internal" source="general/mimics/medium" />
+                    <newEvent type="internal" source="general/lighting/comfort/medium" />
+                    <newEvent type="internal" source="outside/lighting/front/medium" />
+                    <newEvent type="internal" source="outside/lighting/other/medium" />
+                    <newEvent type="internal" source="outside/pirs/front/enable" />
+                    <newEvent type="internal" source="outside/pirs/other/enable" />
+                </event>
+            </eventsource>
+            <eventsource source="time/dayphaseext" >
+                <event>
+                    <params>
+                        <testEq name='dayphasetext' value='Evening:Light'/>
+                    </params>
+                    <newEvent type="internal" source="general/mimics/high" />
+                    <newEvent type="internal" source="general/lighting/comfort/off" />
+                    <newEvent type="internal" source="outside/lighting/front/off" />
+                    <newEvent type="internal" source="outside/lighting/other/off" />
+                    <newEvent type="internal" source="outside/pirs/front/disable" />
+                    <newEvent type="internal" source="outside/pirs/other/disable" />
+                </event>
+            </eventsource>
+            
+            <eventsource source="time/dayphaseext" >
+                <event>
+                    <params>
+                        <testEq name='dayphasetext' value='Night:Dark'/>
+                    </params>
+                    <newEvent type="internal" source="general/mimics/low" />
+                    <newEvent type="internal" source="general/lighting/comfort/low" />
+                    <newEvent type="internal" source="outside/lighting/front/off" />
+                    <newEvent type="internal" source="outside/lighting/other/off" />
+                    <newEvent type="internal" source="outside/pirs/front/enable" />
+                    <newEvent type="internal" source="outside/pirs/other/enable" />
+                </event>
+            </eventsource>
+            <eventsource source="time/dayphaseext" >
+                <event>
+                    <params>
+                        <testEq name='dayphasetext' value='Night:Light'/>
+                    </params>
+                    <newEvent type="internal" source="general/mimics/high" />
+                    <newEvent type="internal" source="general/lighting/comfort/off" />
+                    <newEvent type="internal" source="outside/lighting/front/off" />
+                    <newEvent type="internal" source="outside/lighting/other/off" />
+                    <newEvent type="internal" source="outside/pirs/front/disable" />
+                    <newEvent type="internal" source="outside/pirs/other/disable" />
+                </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+</eventInterfaces>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Flash Widgets</title>
+  </head>
+  <body>
+    <h1>Flash Widgets</h1>
+
+<p>
+    The gateway user interface can be made richer using flash based widgets. These are small flash
+    movies that are provided with dynamic information by gateway using javascript to provide the interface.
+    The flash widgets can provide various interface concepts. Analogue displays, Digital displays,
+    Analogue control and digital control. The javacsript and gateway interfacing code is common to each
+    of the four classes, the only changes are in the flash movie, therefore any one can create new flash widgets, as
+    long as they all handle the interface. 
+</p>
+
+    <h2>Digital display</h2>
+    <p>
+        A digital display element, i.e. indicator, only has a single interface variable a state number. This is delivered
+        by specification using the wbSource attribute in the KID template.
+
+        <ul>
+            <li>wbSource - state of the indicator.</li>
+        </ul>
+    </p>
+
+    <h2>Analogue display</h2>
+    <p>
+        An analogue display element, i.e. meter, has an interface variable that controls. This is delivered
+        by specification using the wbSource attribute in the KID template.
+
+        <ul>
+            <li>wbSource - value for meter.</li>
+        </ul>
+    </p>
+
+
+    <h2>Digital control</h2>
+    <p>
+        A digital display element, i.e. indicator, only has a single interface variable a state number. This is delivered
+        by specification using the wbSource attribute in the KID template.
+
+        <ul>
+            <li>wbSource - state of the indicator.</li>
+            <li>wbTarget - url to be accessed when the control is activated.</li>
+        </ul>
+    </p>
+    <h2>Analogue control</h2>
+    <p>
+        An analogue control element, i.e. volume control, has an interface variable that controls. This is delivered
+        by specification using the wbSource attribute in the KID template.
+
+        <ul>
+            <li>wbSource - value for meter.</li>
+            <li>wbTarget - url to be accessed when the control is changed.</li>
+        </ul>
+    </p>
+
+  </body>
+</html>
+

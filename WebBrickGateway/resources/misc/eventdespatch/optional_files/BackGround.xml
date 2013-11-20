@@ -1,0 +1,47 @@
+<eventInterfaces>
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper' category='debug'>
+        <eventtype type="Disabled">
+        
+            <!-- periodically change the background on the user interface. -->
+            <!-- This could be done on second/minute/hour intervals as well. -->
+            <eventsource source="time/second" >
+                <event>
+                    <params>
+                        <testEq name='second' value='0' />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/events/state" source="background">
+                        <other_data val='/static/images/backgrounds/BackdropSeries2LogoSmall.jpg'/>
+                    </newEvent>
+                </event>
+
+                <event>
+                    <params>
+                        <testEq name='second' value='15' />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/events/state" source="background">
+                        <other_data val='/static/images/backgrounds/BackdropSeries2LogoLarge.jpg'/>
+                    </newEvent>
+                </event>
+
+                <event>
+                    <params>
+                        <testEq name='second' value='30' />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/events/state" source="background">
+                        <other_data val='/static/images/backgrounds/BackdropSeries2_1280x800.jpg'/>
+                    </newEvent>
+                </event>
+
+                <event>
+                    <params>
+                        <testEq name='second' value='45' />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/events/state" source="background">
+                        <other_data val='/static/images/backgrounds/BackdropSeries2_1280x960.jpg'/>
+                    </newEvent>
+                </event>
+
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+</eventInterfaces>

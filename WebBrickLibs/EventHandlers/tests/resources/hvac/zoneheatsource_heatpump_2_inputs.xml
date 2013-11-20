@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+<!-- Inputs relevant to the heating source 1, this should be the cheapest source - Solar -->
+
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+    
+        <!-- map physical heating inputs to logical events that are used by heating display -->
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/CT'>
+            <eventsource source='webbrick/902/CT/0'>
+                <event>
+		    <params>
+			<testNe name='val' value='0.0'/>
+		    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/heatsource/sensor" source="heatsource/2/manifold">
+                        <copy_other_data val="val" />
+                        <other_data id="1" name="Manifold Temp"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+            <eventsource source='webbrick/902/CT/1'>
+                <event>
+		    <params>
+			<testNe name='val' value='0.0'/>
+		    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/heatsource/sensor" source="heatsource/2/heatex">
+                        <copy_other_data val="val" />
+                        <other_data id="1" name="Heat Exchanger"/>
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+
+	<!-- monitor heat source state -->
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/DO'>
+            <eventsource source='webbrick/902/DO/4'>
+                <event>
+                    <params>
+                        <testEq name="state" value="0" />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/heatsource" source="heatsource/2/stopped" />
+                    
+                    <!-- !This is purely for the UI to give User feedback abotu heatsource state -->
+                    <newEvent type="http://id.webbrick.co.uk/events/config/set" source="heatsource/2/state">
+                        <other_data val='0'/>
+                    </newEvent>
+                </event>
+                <event>
+                    <params>
+                        <testEq name="state" value="1" />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/heatsource" source="heatsource/2/running" />
+                    
+                    <!-- !This is purely for the UI to give User feedback abotu heatsource state -->
+                    <newEvent type="http://id.webbrick.co.uk/events/config/set" source="heatsource/2/state">
+                        <other_data val='1'/>
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+    </eventInterface>
+
+</eventInterfaces>

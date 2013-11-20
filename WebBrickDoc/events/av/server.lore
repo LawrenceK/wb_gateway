@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+ <title>av server</title>
+</head>
+
+<body>
+
+<h2>av server</h2>
+<p>
+These events are associated with the existance of an av server device.
+</p>
+
+<h3>Event Type</h3>
+<p>
+http://id.webbrick.co.uk/events/av/server
+</p>
+
+<h3>Event Source</h3>
+<p>
+Anything
+</p>
+
+<h3>Event Payload</h3>
+<p>
+<table>
+    <tr>
+        <td>usn</td><td>a unique identifier for the target.</td><td>mandatory</td>
+        <td>name</td><td>user displayabale name</td><td></td>
+    </tr>
+</table>
+</p>
+
+</body>
+
+</html>

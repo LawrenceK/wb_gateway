@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+        <!-- we are not using digital outputs for this so we need to create running events, switch to delay the event later -->
+        <eventtype type='http://id.webbrick.co.uk/zones/zone'>
+            <eventsource source='zone1/run'>
+                <event>
+                    <newEvent type="http://id.webbrick.co.uk/zones/zone" source="zone1/running">
+                    </newEvent>
+                </event>
+            </eventsource>
+            <eventsource source='zone1/stop'>
+                <event>
+                    <newEvent type="http://id.webbrick.co.uk/zones/zone" source="zone1/stopped">
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+    </eventInterface>
+
+</eventInterfaces>

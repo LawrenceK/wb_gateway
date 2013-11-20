@@ -1,0 +1,435 @@
+/* $Id: panel.css 1801 2008-05-23 03:01:48Z webbrick $
+ *
+ * CSS definitions for WebBrick Gateway panel
+ */
+
+body    { background-image : url("/static/images/warm.png") ; 
+          font-family: Verdana, Arial, Helvetica, sans-serif; 
+          font-size: large;
+		 -moz-user-select:none;
+        }
+
+mediaPortal    { background-image : url("/static/images/mediaPortal.png") ; 
+          		font-family: Verdana, Arial, Helvetica, sans-serif; 
+          		font-size: large;
+		 		-moz-user-select:none;
+        		}
+
+dropletTheme    { background-image : url("/static/images/water.jpg") ; 
+		 -moz-user-select:none;
+        }
+
+winterTheme    { background-image : url("/static/images/wallpaper_winter.jpg") ; 
+		 -moz-user-select:none;
+        }
+
+flowerTheme    { background-image : url("/static/images/wallpaper.jpg") ; 
+		 -moz-user-select:none;
+        }
+
+leafTheme    { background-image : url("/static/images/wallpaper_leaf.jpg") ; 
+		 -moz-user-select:none;
+        }
+
+abstractTheme    { background-image : url("/static/images/feltcy.jpg") ; 
+		 -moz-user-select:none;
+        }
+
+
+
+table   { margin-left: 2% ; 
+          width : 96% ;
+          border-collapse: separate ;
+          border-spacing: 8pt 4pt ;
+/*
+          margin-left: 5% ; 
+          margin-right: 5% ;
+          width : 90% ;
+          border-style: solid ;
+          border-width: 4px ;
+          border-color: gray ;
+          border-color: rgb(40%,40%,60%) ;
+*/
+        }
+
+td      { 
+          padding: 1% ;
+		  margin: 0% ;
+		  border-spacing : 0% ;
+		  border-collapse: collapse ;
+		  line-height: 1.05 ; 
+/*
+          margin-left: 5% ; 
+          margin-right: 5% ; 
+          margin-top: 2% ; 
+          margin-bottom: 2% ; 
+          padding-left: 1% ; 
+          padding-right: 1% ; 
+          padding-top: 1% ; 
+          padding-bottom: 1% ; 
+*/
+        }
+
+.NumericBar{ 
+		padding: 0px 0px 0px 0px; 
+        margin: 0px 0px 0px 0px; 
+        border-style: none ;
+		border-spacing : 0% ;
+		border-collapse: collapse ;
+		line-height: 0.4 ; 
+        }
+
+div.NumericBar{ padding: 0%; 
+        margin: 0%; 
+        border: 0%; 
+        }
+
+img.NumericBar{ padding: 0; 
+        margin: 0%; 
+        border: 0%; 
+        }
+
+img   { padding: 0px 0px 0px 0px; 
+        margin: 0px 0px 0px 0px; 
+        border-style: none ; 
+        }
+
+
+td[wbtype="PushButton"]
+        { text-align: CENTER; 
+          color: black ;
+          font-family: Verdana, Arial, Helvetica, sans-serif; 
+          font-size: large; 
+          font-weight: bolder;
+          border-style: solid ;
+          border-color: transparent ;
+          border-width: 4px ;
+/*
+          border-color: rgb(24%,24%,80%) ;
+          border-color: transparent ;
+          background-image : url("/static/images/blue.png") ;          
+*/
+        }
+
+td[wbtype="PushButton"]:hover, .navBar:hover
+        { border-style : groove ;
+          border-color: inherit ;
+        }
+
+td[wbtype="PushButton"]:active, .navBar:active
+        { color: white ;
+          border-style : inset ;
+          border-color: inherit ;
+          background-image : url("/static/images/blue.png") ;
+        }
+
+td.buttonAbsent   
+        { background-image : url("/static/images/grey.png") ;
+          /* border-style : groove ; */
+          /* border-color: rgb(24%,24%,40%) ; */
+          color: gray ;
+        }
+
+td.buttonPending  
+        { 
+          background-image : url("/static/images/pending.png") ;
+          border-style : groove ;
+          border-color: rgb(24%,24%,40%) ;
+          color: #FFFFFF ;
+        }
+
+td.buttonDormant
+        { background-image : url("/static/images/darkGreen.png") ;
+		  color: orange /* rgb(16%,16%,80%) */ ;
+        }
+
+td.buttonSelected
+        { background-image : url("/static/images/green.png") ;
+          border-style : groove ;
+          border-color: rgb(0%,40%,80%) ;
+          color: white ;
+        }
+    
+td.buttonOn       
+        { background-image : url("/static/images/green.png") ;
+          color: #FFAAAA
+        }
+
+td.buttonOff  
+        { background-image : url("/static/images/darkGreen.png") ;
+          color: #AAFFAA ;
+        }
+
+td.buttonLocked
+        { background-image : url("/static/images/orange.png") ;
+          color: #FFAA88 ;
+        }
+
+.selectPending
+        { 
+          color: #FFFFFF ;
+        }
+
+.selectAbsent
+        { background-image : url("/static/images/grey.png") ;
+          color: #AAAAAA ;
+        }
+
+/* Caption properties */
+
+.caption
+        { text-align: LEFT; 
+          font-family: Verdana, Arial, Helvetica, sans-serif; 
+          font-size: large; 
+          font-weight: bolder;
+		  color: #FFFFFF ;
+        }
+
+td.compositeWidget
+        { border: none ;
+          margin:0%;
+          padding:0%;
+        }
+
+.compositeWidget
+        { 
+          border-style: none ;
+		  border: none ;
+          border-color: #888888;
+          border-width: 0px ;
+		  border-spacing: 0px ; 
+		  padding: 0%;
+		  margin: 0%;
+        }
+
+
+/* Other stuff -- fix up later */
+
+.flowerTheme    { background-image : url("wallpaper.jpg") }
+.leafTheme      { background-image : url("wallpaper_leaf.jpg") }
+.winterTheme    { background-image : url("wallpaper_winter.jpg") }
+.asbtractTheme  { background-image : url("feltcy.jpg") }
+.dropletTheme   { background-image : url("water.jpg") }
+
+.rule   { width : 96% ; 
+          height  : 1px ;
+          text-align : CENTER ;
+          border-spacing : 0pt ;
+          margin-left  : 2% ;
+		  border-bottom-style : solid ;
+		  border-width : 2px ;
+          border-bottom-color  : orange ;
+          padding : 0% ;
+        }
+
+.ruleBar{ 
+          height  : 0px ;
+          border-spacing : 0pt ;
+          margin  : 0% ;
+          border  : 0% ;
+          padding : 0% ;
+        }
+
+.goUp   { background-image : url("/static/images/red.png") ;
+            text-align: CENTER; 
+            font-family: Verdana, Arial, Helvetica, sans-serif; 
+            font-size: large; 
+            font-weight: bolder; 
+            color: #FF4444
+            }
+
+.goDown     {
+            background-image : url("/static/images/blue.png") ;
+            text-align: CENTER; 
+            font-family: Verdana, Arial, Helvetica, sans-serif; 
+            font-size: large; 
+            font-weight: bolder; 
+            color: #4444FF
+            }
+
+.goNext     {
+            background-image : url("next.svg") ;
+            text-align: CENTER; 
+            font-family: Verdana, Arial, Helvetica, sans-serif; 
+            font-size: large; 
+            font-weight: bolder; 
+            color: #4444FF
+            }
+
+.playButton {
+            background-image : url("play.png") ;
+            text-align: CENTER; 
+            font-family: Verdana, Arial, Helvetica, sans-serif; 
+            font-size: large; 
+            font-weight: bolder; 
+            color: #4444FF ;
+            width : 120px ;
+            height : 120px ;
+            }
+
+.pauseButton {
+            background-image : url("pause.png") ;
+            text-align: CENTER; 
+            font-family: Verdana, Arial, Helvetica, sans-serif; 
+            font-size: large; 
+            font-weight: bolder; 
+            color: #4444FF ;
+            width : 120px ;
+            height : 120px ;
+            }
+
+.prevTrack {
+            background-image : url("prevTrack.png") ;
+            text-align: CENTER; 
+            font-family: Verdana, Arial, Helvetica, sans-serif; 
+            font-size: large; 
+            font-weight: bolder; 
+            color: #4444FF ;
+            width : 120px ;
+            height : 120px ;
+            }
+
+.nextTrack {
+            background-image : url("nextTrack.png") ;
+            text-align: CENTER; 
+            font-family: Verdana, Arial, Helvetica, sans-serif; 
+            font-size: large; 
+            font-weight: bolder; 
+            color: #4444FF ;
+            width : 120px ;
+            height : 120px ;
+            }
+
+
+.infoBar    {
+            background-image : url("/static/images/yellow.png") ;
+            text-align: CENTER; 
+            font-family: Verdana, Arial, Helvetica, sans-serif; 
+            font-size: large;
+            font-weight: bolder; 
+            color: #FF6600
+            }
+.infoTable  {
+            width: 90% ;
+			margin-left: 2% ;
+            text-align: CENTER ;
+            position: absolute ;
+            top: 85% ;
+            }
+
+.navBar     {
+            background-image : url("/static/images/cyan.png") ;
+            text-align: CENTER; 
+            font-family: Verdana, Arial, Helvetica, sans-serif; 
+            font-size: x-large; 
+            font-weight: bolder; 
+            color: #0044AA ;
+            }
+.navBarSmall {
+            background-image : url("/static/images/cyan.png") ;
+            text-align: CENTER; 
+            font-family: Verdana, Arial, Helvetica, sans-serif; 
+            font-size: large; 
+            font-weight: bolder; 
+            color: #0044AA ;
+			}
+			
+.navTable   {
+            width: 90% ;
+			margin-left: 5% ;
+            text-align: CENTER ;
+            }
+	
+td.textPending, td.numericPending
+        { 
+          background-image : url("/static/images/pending.png") ;
+          /* border-style : groove ; */
+          /* border-color: rgb(24%,24%,40%) ; */
+          color: #FFFFFF ;
+        }
+
+td.textAbsent, td.numericAbsent
+        { 
+          background-image : url("/static/images/grey.png") ;
+          /* border-style : groove ; */
+          /* border-color: rgb(24%,24%,40%) ; */
+          color: gray ;
+        }
+
+td.textPresent, td.numericPresent
+        {
+          background-image : url("/static/images/yellow.png") ;
+          color: #FF6600 ;
+          /* border-style : groove ; */
+          font-family: Verdana, Arial, Helvetica, sans-serif; 
+          font-size: medium; 
+          font-weight: bolder; 
+          border-style: solid ;
+		  padding: 1% ;
+          border-color: rgb(50%,50%,0%) ;
+        }
+
+td[wbtype="Percentage"], td[wbtype="Numeric"]
+        { 
+          text-align: CENTER; 
+          font-family: Verdana, Arial, Helvetica, sans-serif; 
+          font-size: medium; 
+          font-weight: bolder;
+		  padding: 0% ;
+        }
+td.guffOn
+		{
+		/* Just a test class for looking at the UI */
+          background-image : url("/static/images/nOn.png") ;
+		  background-repeat : no-repeat ;
+		  background-position: center;
+		  width: 5% ;
+		  padding: 0% ;
+          border-color: rgb(50%,50%,0%) ;		
+		}
+		
+td.guffOff
+		{
+		/* Just a test class for looking at the UI */
+          background-image : url("/static/images/nOff.png") ;
+		  background-repeat : no-repeat ;
+		  background-position: center;
+		  width: 5% ;
+		  padding: 0% ;
+          border-color: rgb(50%,50%,0%) ;		
+		}
+		
+td.guffAbsent
+		{
+		/* Just a test class for looking at the UI */
+          background-image : url("/static/images/absent.png") ;
+		  background-repeat : no-repeat ;
+		  background-position: center;
+		  width: 5% ;
+		  padding: 0% ;
+          border-color: rgb(50%,50%,0%) ;		
+		}
+
+td.guffLocked
+		{
+		/* Just a test class for looking at the UI */
+          background-image : url("/static/images/locked.png") ;
+		  background-repeat : no-repeat ;
+		  background-position: center;
+		  width: 5% ;
+		  padding: 0% ;
+          border-color: rgb(50%,50%,0%) ;		
+		}
+
+
+td.guffPending
+		{
+		/* Just a test class for looking at the UI */
+          background-image : url("/static/images/npending.png") ;
+		  background-repeat : no-repeat ;
+		  background-position: center;
+		  width: 5% ;
+		  padding: 0% ;
+          border-color: rgb(50%,50%,0%) ;		
+		}
+																

@@ -1,0 +1,103 @@
+<eventInterfaces>
+    <eventInterface module='EventHandlers.Compound' name='Compound'>
+	
+        <!-- Ground source Low -->
+        <initialState name='availability' value='0' />
+        <initialState name='heatSourceName' value='Ground Source' />
+        <initialState name='heatSourceEnabled' value='0' />
+
+        <eventtype type="http://id.webbrick.co.uk/events/config/get">
+            <eventsource source="zoneheatsource/groundsource/enabled">
+                <event>
+                    <action name="heatSourceEnabled" key="val"/>
+                    <action name="publish" value="1" transient="true" />
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <eventtype type="">
+            <eventsource source="time/runtime">
+                <event>
+                    <params>
+                        <testEq name='elapsed' value='30' />
+                    </params>
+                    <action name="publish" value="1" transient="true" />
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <eventtype type="http://id.webbrick.co.uk/zones/heatsource">
+            <eventsource source="heatsource/groundsource/requestrun">
+                <event>
+                    <action name="requeststate" value="1"/>
+                    <action name="state" value="1"/>
+                </event>
+            </eventsource>
+            <eventsource source="heatsource/groundsource/requeststop">
+                <event>
+                    <action name="requeststate" value="0"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <eventtype type='http://id.webbrick.co.uk/zones/heatsource/sensor'>
+            <eventsource source='heatsource/groundsource/manifold'>
+                <event>
+                    <action name="manifold" key="val"/>
+                </event>
+            </eventsource>
+            <eventsource source='heatsource/groundsource/heatex'>
+                <event>
+                    <action name="heatex" key="val"/>
+                </event>
+            </eventsource>
+        </eventtype>
+
+        <compound>
+            <!-- High heat -->
+            <params>
+                <testDiffGe type='float' name='manifold' param2='heatex' diffValue='5'/>
+                <testGe type='float' name='manifold' value='50'/>
+            </params>
+            <newState name='availability' value='2' />
+            <newEvent type='http://id.webbrick.co.uk/zones/heatsource' source="heatsource/groundsource/availability" >
+                <copy_other_data availability='availability' enabled='heatSourceEnabled' name='heatSourceName'/>
+            </newEvent>                
+        </compound>
+
+        <compound>
+            <!-- Low heat -->
+            <params>
+                <testDiffGe type='float' name='manifold' param2='heatex' diffValue='5'/>
+                <testLt type='float' name='manifold' value='50'/>
+            </params>
+            <newState name='availability' value='1' />
+            <newEvent type='http://id.webbrick.co.uk/zones/source' source="heatsource/groundsource/availability" >
+                <copy_other_data availability='availability' enabled='heatSourceEnabled' name='heatSourceName'/>
+            </newEvent>                
+        </compound>
+
+        <compound>
+            <!-- No heat -->
+            <params>
+                <testDiffLe type='float' name='manifold' param2='heatex' diffValue='5'/>
+            </params>
+            <newState name='availability' value='0' />
+            <newEvent type='http://id.webbrick.co.uk/zones/source' source="heatsource/groundsource/availability" >
+                <copy_other_data availability='availability' enabled='heatSourceEnabled' name='heatSourceName'/>
+            </newEvent>                
+        </compound>
+
+        <compound>
+            <params>
+                <testEq type='int' name='publish' value='1'/>
+            </params>
+            <newState name='publish' value='0' />
+            <newEvent type='http://id.webbrick.co.uk/zones/heatsource' source="heatsource/groundsource/availability" >
+                <copy_other_data availability='availability' enabled='heatSourceEnabled' name='heatSourceName'/>
+            </newEvent>                
+        </compound>
+
+    </eventInterface>
+
+</eventInterfaces>

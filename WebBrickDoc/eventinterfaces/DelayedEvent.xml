@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eventInterfaces>
+    <eventInterface module='EventHandlers.DelayedEvent' name='DelayedEvent'>
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/DO'>
+            <eventsource source='webbrick/100/DO/5'>
+                <event>
+                    <params>
+			<testEq type='int' name='state'> 
+			    <value>0<value/>
+			</testEq>
+                    </params>
+                    <delay delayMinutes="1">
+                        <newEvent source='boiler/IsOff' type='internal'>
+                        </newEvent>
+                    </delay>
+                </event>
+                <event>
+                    <params>
+			<testEq name='state'> 
+			    <value>1<value/>
+			</testEq>
+                    </params>
+                    <delay delaySeconds="23">
+                        <newEvent source='boiler/IsOn' type='internal'>
+                        </newEvent>
+                        <newEvent source='hotwater/IsOn' type='internal'>
+                        </newEvent>
+                    </delay>
+                </event>
+            </eventsource>
+        </eventtype>
+    </eventInterface>
+</eventInterfaces>

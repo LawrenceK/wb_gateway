@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>X10</title>
+</head>
+
+<body>
+
+    <h1>X10</h1>
+
+        <p>Interface to X10, control over mains.</p>
+
+    <h2>Description</h2>
+        <p>This event handler responds to events by issuing X10 commands to a CM X10 interface, it also
+        monitors the CM interface for X10 commands issued elsewhere and turns them into events that can be processed.</p>
+
+    <h2>Configuration</h2>
+        <p>This event handler has the following parameters:</p>
+        <ul>
+        <li>serialPort - name or number of the serial port, note the windows interface appears to have a problem when the COM port 
+        name is above com9, this may happen with USB connected serial ports. In which case enter a number com1 is 0, so com10 is 9.</li>
+        </ul>
+        <p>For each mapped event there can be one or more X10 commands, these are:</p>
+        <ul>
+        <li>ChannelOn - send on command for this channel.</li>
+        <li>ChannelOff - send off command for this channel.</li>
+        <li>ChannelDim - send a dim up a number of steps or down.</li>
+        </ul>
+        <p>Each of the above has at least a house and device code attribute. The ChannelDim also has a level attribute and may have the up attribute to
+        indicate a dim up instead of dim down</p>
+        
+    <h2>Events</h2>
+        <p>The event interface also listens for X10 commands issued from elsewhere on the mains wiring and turns them into events for later processing.
+        These events hve the event type of: http://id.webbrick.co.uk/events/X10 refer to event documentation for further details.</p>
+
+    <h2>Example</h2>
+    <a href="X10.xml" class="html-listing" />
+</body>
+
+</html>

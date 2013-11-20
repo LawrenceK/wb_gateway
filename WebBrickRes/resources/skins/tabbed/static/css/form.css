@@ -1,0 +1,28 @@
+/* 
+ *
+ *  Specific definitions for forms
+ *
+ *  ASH 25-Mar-2009: New imlementation
+ *         
+ *
+ */
+
+ form {
+ padding: 5px;
+ font-size: large ;
+}
+select {
+ font-weight: bolder; 
+ color: #444444 ;
+ padding: 5px 15px 5px 10px ;
+ font-size: large ;
+}
+
+input{
+ font-weight: bolder; 
+ color: #444444 ;
+ padding: 5px;
+ font-size: large ;
+}
+
+

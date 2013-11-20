@@ -1,0 +1,94 @@
+#botbar {
+	position:absolute;
+	bottom:0px;
+	height:35px;
+	width:100%;
+	background-color: #d4d6d5;
+	background-image:url(../images/botbar/botbarbg.png);
+	background-repeat:repeat-x;
+}
+
+#botbarleft {
+	position:absolute;
+	left:25px;
+	width:90px;
+	height:35px;
+}
+
+#botbarhelp {
+	position:absolute;
+	bottom:0px;
+	width:112px;
+	right:0px;
+}
+
+#botbarhelp img {
+	border:none !important;
+}
+
+div.botbarhelp {
+	position:absolute;
+	bottom:0px;
+	width:112px;
+	height:77px;
+	right:0px;
+	background-image:url(../images/botbar/botbarhelp.png);
+	background-repeat:no-repeat;
+}
+
+
+div.botbaralertclear {
+	position:absolute;
+	bottom:0px;
+	width:66px;
+	height:66px;
+	right:0px;
+	background-image:url(../images/botbar/botbaralert.png);
+	background-repeat:no-repeat;
+	visibility:hidden ;
+}
+
+div.botbaralertset {
+	position:absolute;
+	bottom:0px;
+	width:66px;
+	height:66px;
+	right:0px;
+	background-image:url(../images/botbar/botbaralert.png);
+	background-repeat:no-repeat;
+	visibility:visible ;
+}
+
+
+div.botbarpill {
+	position:absolute;
+	top:6px;
+	height:26px;
+	background-color:#ffffff;
+}
+
+div.botbarpillleft {
+	float:left;
+	width:9px;
+	height:26px;
+	background-image:url(../images/botbar/botbartimel.png);
+	background-repeat:no-repeat;
+}
+
+div.botbarpillmid {
+	float:left;
+	height:18px;
+	background-image:url(../images/botbar/botbartimem.png);
+	background-repeat:repeat-x;
+	font-size:16px;
+	padding:4px;
+}
+
+div.botbarpillright {
+	float:left;
+	width:11px;
+	height:26px;
+	background-image:url(../images/botbar/botbartimer.png);
+	background-repeat:no-repeat;
+}
+

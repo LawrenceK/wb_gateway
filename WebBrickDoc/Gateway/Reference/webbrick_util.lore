@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>webbrick_util</title>
+  </head>
+  <body>
+    <h1>webbrick_util</h1>
+    
+    <p>
+	    webbrick_util is a command line interface that provides some generic tools to assist the installer. The main
+        task is the ability to create a new site configuration with a default set of page templates and
+        event configuration.
+    </p>
+
+    <p>
+        NOTE: typing webbrick_util --help may show commands that are as yet to be implemented.
+    </p>
+
+    <h2>commands</h2>
+    
+    <h3>--new</h3>
+    <p>
+        This command creates a new set of site configurations, to use this create a new directory for the files, go into the directory
+        and issue webbrick_util --new.
+    </p>
+    
+    <p>
+        Note: If files already exist in the directory they willo not be overwritten. This can therefore be used to get copies
+        of deleted files and new files when upgrading.
+    </p>
+
+    <h2>comments</h2>
+    <p>
+        On the Linux platform the site configuration by default is in /opt/webbrick/site, the init scripts will start the
+        gateway up looking for prod.cfg in this directory. Multiple configurations may be kept on the system in different
+        directories but the gateway will have to be started manually or the init script edited to pick up the alternate
+        configuration.
+    </p>
+  </body>
+</html>

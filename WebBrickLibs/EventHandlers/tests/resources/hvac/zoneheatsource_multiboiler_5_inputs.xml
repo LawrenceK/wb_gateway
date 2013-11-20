@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<eventInterfaces>
+
+    <eventInterface module='EventHandlers.EventMapper' name='EventMapper'>
+    
+	<!-- monitor heat source state -->
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/DO'>
+           
+            <!-- These pairs are for using a multiple boiler setup -->
+            <eventsource source='webbrick/905/DO/4'>
+                <event>
+                    <params>
+                        <testEq name="state" value="0" />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/heatsource" source="heatsource/5/1/stopped" />
+                </event>
+                <event>
+                    <params>
+                        <testEq name="state" value="1" />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/heatsource" source="heatsource/5/1/running" />
+                </event>
+            </eventsource>
+            <eventsource source='webbrick/905/DO/5'>
+                <event>
+                    <params>
+                        <testEq name="state" value="0" />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/heatsource" source="heatsource/5/2/stopped" />
+                </event>
+                <event>
+                    <params>
+                        <testEq name="state" value="1" />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/heatsource" source="heatsource/5/2/running" />
+                </event>
+            </eventsource>
+            <eventsource source='webbrick/905/DO/6'>
+                <event>
+                    <params>
+                        <testEq name="state" value="0" />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/heatsource" source="heatsource/5/3/stopped" />
+                </event>
+                <event>
+                    <params>
+                        <testEq name="state" value="1" />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/heatsource" source="heatsource/5/3/running" />
+                </event>
+            </eventsource>
+
+        </eventtype>
+    
+    
+    <!-- Pick up the state of Boiler Isolation Switch and set heatsource enable accordingly-->   
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/DI'>
+           
+            <eventsource source='webbrick/905/DI/9'>
+                <event>
+                    <params>
+                        <testEq type='int' name="state" value="0" />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/events/config/set" source="heatsource/5/enabled">
+                        <other_data val='0'/>
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/zones/heatsource" source="heatsource/5/inmaintenance" />
+                </event>
+                <event>
+                    <params>
+                        <testEq type='int' name="state" value="1" />
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/events/config/set" source="heatsource/5/enabled">
+                        <other_data val='1'/>
+                    </newEvent>
+                    <newEvent type="http://id.webbrick.co.uk/zones/heatsource" source="heatsource/5/nonmaintenance" />
+                    
+                </event>
+            </eventsource>
+        </eventtype>
+        
+        <eventtype type='http://id.webbrick.co.uk/events/webbrick/CT'>
+            <eventsource source='webbrick/905/CT/0'>
+                <event>
+                    <params>
+                        <testNe name='val' value='0.0'/>
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/heatsource/sensor" source="heatsource/5/flow">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                </event>
+            </eventsource>
+            <eventsource source='webbrick/905/CT/1'>
+                <event>
+                    <params>
+                        <testNe name='val' value='0.0'/>
+                    </params>
+                    <newEvent type="http://id.webbrick.co.uk/zones/heatsource/sensor" source="heatsource/5/return">
+                        <copy_other_data val="val" />
+                    </newEvent>
+                </event>
+            </eventsource>
+        </eventtype>
+        
+    </eventInterface>
+
+</eventInterfaces>
