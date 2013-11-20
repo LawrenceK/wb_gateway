@@ -1,0 +1,7 @@
+1) Is there any support for this code.
+No
+
+2) Is there any documentation for the gateway.
+The documentation for the gateway was written using lore markup and used to generate html and pdf output, look in WebbrickDoc.
+
+3)
