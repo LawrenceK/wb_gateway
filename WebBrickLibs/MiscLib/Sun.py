@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 #!/usr/bin/env python 
 # -*- coding: iso-8859-1 -*-
 """ 

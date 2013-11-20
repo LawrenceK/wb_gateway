@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: NumericDisplay.py 2696 2008-09-05 09:33:43Z graham.klyne $
 #
 # Widget class for simple button on a form

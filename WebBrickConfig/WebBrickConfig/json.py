@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # A JSON-based API(view) for your app.
 # Most rules would look like:
 # @jsonify.when("isinstance(obj, YourClass)")

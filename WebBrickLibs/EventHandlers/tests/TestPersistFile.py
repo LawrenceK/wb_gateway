@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: TestPersistFile.py 3736 2010-09-29 12:56:06Z tombushby $
 #
 import sys, logging, time, os

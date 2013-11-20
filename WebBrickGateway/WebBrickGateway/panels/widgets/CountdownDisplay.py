@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: CountdownDisplay.py 2607 2008-08-11 20:00:55Z graham.klyne $
 #
 # Widget class for countdown display.

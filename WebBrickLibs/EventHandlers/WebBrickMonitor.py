@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: WebBrickMonitor.py 2996 2008-12-02 14:31:18Z andy.harris $
 #
 """

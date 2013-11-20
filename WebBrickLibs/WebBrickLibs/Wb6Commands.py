@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: Wb6Commands.py 2830 2008-10-01 13:56:23Z graham.klyne $
 #
 # WebBrickSystems.com

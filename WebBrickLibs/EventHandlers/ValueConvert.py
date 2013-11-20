@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: ValueConvert.py 3682 2010-08-03 15:11:15Z andy.harris $
 #
 #  Class to handle mapping of an event to one or more new events, mapping the value attribute.

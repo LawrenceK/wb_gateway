@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 #
 #  Class to handle mapping of an event to one or more new events
 #

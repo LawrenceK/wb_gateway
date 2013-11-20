@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 #----------------------------------------------------------------------------------
 #
 #   Class handling connections to a serial device via tcp or local serial cable

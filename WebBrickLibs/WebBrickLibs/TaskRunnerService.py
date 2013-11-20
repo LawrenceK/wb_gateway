@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 import win32serviceutil, win32service
 import pywintypes, win32con, winerror
 import servicemanager

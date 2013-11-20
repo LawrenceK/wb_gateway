@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: ModeSelector.py 2621 2008-08-20 18:46:40Z graham.klyne $
 #
 # Widget class for mode selector widget (e.g. occupied / vacant)

@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: TestWbUdpCommands.py 2809 2008-09-26 16:25:53Z lawrence.klyne $
 #
 # Integration testing for WebBrick hardware unit

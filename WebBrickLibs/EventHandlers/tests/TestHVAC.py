@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: TestHVAC.py 3201 2009-06-15 15:21:25Z philipp.schuster $
 #
 import sys, logging, time, os

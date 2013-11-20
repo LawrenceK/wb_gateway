@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: UPNPBrisa.py 3199 2009-06-15 15:21:25Z philipp.schuster $
 #
 # Class to interface with Brisa UPnP framework

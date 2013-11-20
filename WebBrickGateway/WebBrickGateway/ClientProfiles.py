@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: ClientProfiles.py 3193 2009-06-09 15:47:44Z philipp.schuster $
 
 import pkg_resources

@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: TestBackup.py 3066 2009-02-17 14:34:37Z philipp.schuster $
 #
 # Unit testing for WebBrick library functions

@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: LocalData.py 3504 2010-02-02 16:30:06Z philipp.schuster $
 
 import turbogears

@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: TestShellAction.py 2911 2008-10-28 20:28:12Z lawrence.klyne $
 #
 # Unit testing for WebBrick library functions (WbAccess.py)

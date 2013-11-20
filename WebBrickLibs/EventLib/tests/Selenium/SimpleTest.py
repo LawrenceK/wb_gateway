@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 import sys
 print sys.path
 sys.path.append("C:\\Dev\\selenium-remote-control-0.9.0\\python")

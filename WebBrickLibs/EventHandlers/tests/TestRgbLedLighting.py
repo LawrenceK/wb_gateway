@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: TestRgbLedLighting.py 2612 2008-08-11 20:08:49Z graham.klyne $
 #
 # NOTE: this is not strictly a unit test, it requires a an RGB light and an RS485 port

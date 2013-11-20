@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 1# $Id: TestWrapperWrapper.py 2760 2008-09-19 14:29:53Z simon.hughes $
 #
 # Support functions for running different test suites

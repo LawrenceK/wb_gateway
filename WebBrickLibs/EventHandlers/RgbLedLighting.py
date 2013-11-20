@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: RgbLedLighting.py 2748 2008-09-16 11:46:38Z lawrence.klyne $
 #
 #  Class to sending events after a delay

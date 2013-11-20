@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: TestUtils.py 3222 2009-07-14 15:32:00Z simon.hughes $
 #
 # Some test helpers for testing event handlers. Uses a SuperGlobal to save state.

@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: main.py 2923 2008-11-05 13:48:51Z lawrence.klyne $
 #
 

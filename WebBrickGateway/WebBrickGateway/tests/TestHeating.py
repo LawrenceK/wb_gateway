@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: TestHeating.py 2609 2008-08-11 20:03:27Z graham.klyne $
 #
 #

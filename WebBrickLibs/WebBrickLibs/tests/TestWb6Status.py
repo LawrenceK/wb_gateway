@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 #!/usr/bin/python
 #
 # $Id: TestWb6Status.py 3182 2009-06-01 16:22:23Z philipp.schuster $

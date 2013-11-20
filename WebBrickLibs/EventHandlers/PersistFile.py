@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: PersistFile.py 3735 2010-09-29 12:55:52Z tombushby $
 #
 #  Class to handle event actions that are implemented as an HTTP request.

@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: HVAC.py 3201 2009-06-15 15:21:25Z philipp.schuster $
 #
 #  Heating, Ventilation and Air Conditioning File

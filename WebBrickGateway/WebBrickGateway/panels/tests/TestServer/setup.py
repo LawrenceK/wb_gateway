@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 from setuptools import setup, find_packages
 from turbogears.finddata import find_package_data
 

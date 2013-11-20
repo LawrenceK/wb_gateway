@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 #!C:\Dev\Python252\python.exe
 #
 # $Id: start-testserver.py 2644 2008-08-27 17:05:57Z graham.klyne $

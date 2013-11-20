@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: SendEvent.py 3138 2009-04-15 10:17:29Z philipp.schuster $
 
 import turbogears

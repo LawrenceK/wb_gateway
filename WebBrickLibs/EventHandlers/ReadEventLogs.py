@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 #
 #  code to handle reading event logs and doing stuff with them.
 #

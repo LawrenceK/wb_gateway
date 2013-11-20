@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: SkyDriver.py 2760 2008-09-19 14:29:53Z graham.klyne $
 # This class is responsible for decoding information using the Sky RS232 protocol. The driver class presents an easy to use interface which generates appropriate messages for the sky box
 # the driver class also processeses messsages from the lutron and puts them into event format

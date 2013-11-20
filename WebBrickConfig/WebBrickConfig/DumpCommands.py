@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: DumpCommands.py 2612 2008-08-11 20:08:49Z graham.klyne $
 #
 # I'm not sure what this is, but it appears to be a quick-and-dirty utility to dump 

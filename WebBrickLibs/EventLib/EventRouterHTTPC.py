@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # -*- coding: utf-8 -*-
 # $Id: EventRouterHTTPC.py 3675 2010-07-30 11:54:36Z tombushby $
 #

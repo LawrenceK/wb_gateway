@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: Events.py 3738 2010-10-01 15:04:17Z andy.harris $
 #
 # Some test Events

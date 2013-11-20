@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: WbConfigSettings.py 2775 2008-09-22 17:47:18Z graham.klyne $
 
 """

@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: TestEventSerializer.py 2612 2008-08-11 20:08:49Z graham.klyne $
 #
 # Unit test for event serialization and parsing

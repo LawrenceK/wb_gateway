@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: TestValueConvert.py 3682 2010-08-03 15:11:15Z andy.harris $
 #
 import sys, logging, time

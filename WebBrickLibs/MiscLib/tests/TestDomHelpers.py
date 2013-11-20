@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # -*- coding: iso-8859-1 -*-
 # $Id: TestDomHelpers.py 3625 2010-04-16 15:06:40Z andy.harris $
 #

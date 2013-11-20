@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: TestWebbrickUdpEventReceiver.py 3182 2009-06-01 16:22:23Z philipp.schuster $
 #
 # Unit testing for WebBrick library functions (WbAccess.py)

@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: TestWbConfig.py 3182 2009-06-01 16:22:23Z philipp.schuster $
 """
 WebBrick test configuration settings

@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: TCPWrapper.py 2760 2008-09-19 14:29:53Z graham.klyne $
 # This class uses sockets to read and write from a standard tcp connection
 

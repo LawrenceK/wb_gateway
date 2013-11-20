@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: Utils.py 3268 2009-09-01 16:18:16Z simon.hughes $
 #
 #  Class to handle event actions that are implemented as an HTTP request.

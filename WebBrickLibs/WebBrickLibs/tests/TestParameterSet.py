@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: TestParameterSet.py 2612 2008-08-11 20:08:49Z graham.klyne $
 #
 # Unit testing for parameter matching code.

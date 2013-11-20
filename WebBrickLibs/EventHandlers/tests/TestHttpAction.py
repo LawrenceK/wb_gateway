@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: TestHttpAction.py 3499 2010-02-02 08:55:42Z philipp.schuster $
 #
 # Unit testing for WebBrick library functions (WbAccess.py)

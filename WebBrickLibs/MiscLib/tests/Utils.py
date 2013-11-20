@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 import socket , select , time , logging , threading
  
 class TestTCPServer(threading.Thread):

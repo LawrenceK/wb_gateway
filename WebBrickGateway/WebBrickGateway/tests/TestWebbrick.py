@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: TestWebbrick.py 3026 2009-01-19 14:45:40Z andy.harris $
 #
 # Unit testing for WebBrick panel definition HTML conversions.

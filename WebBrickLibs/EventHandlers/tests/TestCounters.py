@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: TestCounters.py 3664 2010-07-13 11:55:19Z andy.harris $
 #
 import sys

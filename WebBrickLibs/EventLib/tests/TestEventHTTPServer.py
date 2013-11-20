@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: TestEventHTTPServer.py 2612 2008-08-11 20:08:49Z graham.klyne $
 #
 # Event routing HTTP server for testing client event routing functions.

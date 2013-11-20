@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: TestEventPubSub.py 2612 2008-08-11 20:08:49Z graham.klyne $
 #
 # Unit testing for basic event publish/subscribe mechanism

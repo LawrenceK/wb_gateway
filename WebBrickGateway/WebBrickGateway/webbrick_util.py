@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 #!/usr/bin/python
 #!/usr/bin/python
 # $Id: webbrick_util.py 3497 2010-02-01 13:55:26Z philipp.schuster $

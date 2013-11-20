@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 from EventHandlers.HttpAction import HttpAction
 from MiscLib.DomHelpers import getDictFromXmlString
 from EventLib.Event import *

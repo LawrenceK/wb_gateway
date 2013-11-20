@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: TestDayPhase.py 2611 2008-08-11 20:05:08Z graham.klyne $
 #
 import sys, logging, time

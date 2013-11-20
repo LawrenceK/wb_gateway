@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: EventRouter.py 2773 2008-09-22 16:48:27Z graham.klyne $
 #
 """

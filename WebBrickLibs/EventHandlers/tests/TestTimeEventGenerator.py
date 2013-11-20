@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: TestTimeEventGenerator.py 2672 2008-09-01 18:56:24Z lawrence.klyne $
 #
 # Unit testing for WebBrick library functions (WbAccess.py)

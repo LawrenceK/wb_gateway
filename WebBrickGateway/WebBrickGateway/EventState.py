@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: EventState.py 2753 2008-09-18 14:42:13Z lawrence.klyne $
 
 import turbogears

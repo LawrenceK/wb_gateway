@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: TestUtils.py 2762 2008-09-19 14:29:53Z graham.klyne $
 #
 # Support functions for running different test suites

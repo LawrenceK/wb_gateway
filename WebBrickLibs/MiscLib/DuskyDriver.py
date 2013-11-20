@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: DuskyDriver.py 2760 2008-09-19 14:29:53Z graham.klyne $
 # This class is responsible for one way communication with the Dusky IR injector that is used to communicate with a Sky boxd
 import logging

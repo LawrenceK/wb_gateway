@@ -1,3 +1,6 @@
+# Copyright L.P.Klyne 2013 
+# Licenced under 3 clause BSD licence 
+
 # $Id: Wb6Status.py 2934 2008-11-13 11:01:52Z graham.klyne $
 
 """
