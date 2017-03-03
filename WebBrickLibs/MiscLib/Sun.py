@@ -1,8 +1,9 @@
+#!/usr/bin/env python 
+# -*- coding: iso-8859-1 -*-
+
 # Copyright L.P.Klyne 2013 
 # Licenced under 3 clause BSD licence 
 
-#!/usr/bin/env python 
-# -*- coding: iso-8859-1 -*-
 """ 
 SUNRISET.C - computes Sun rise/set times, start/end of twilight, and
              the length of the day at any date and latitude
