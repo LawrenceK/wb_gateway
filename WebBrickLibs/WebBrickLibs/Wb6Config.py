@@ -452,8 +452,8 @@ class Wb6Config:
         """
         WbDefs.checkRange(idx, 0, WbDefs.SCENECOUNT)
         nodeList = self.dom.getElementsByTagName("CC")
-        ds = [None for i in range(8)]
-        as = [None for i in range(4)]
+        dscene = [None for i in range(8)]
+        ascene = [None for i in range(4)]
         if idx < len(nodeList):                 # For b/w compatibility - was fewer scenes
             node = nodeList[idx]
             Dm = int(node.attributes["Dm"].value)
@@ -462,11 +462,11 @@ class Wb6Config:
             Av = int(node.attributes["Av"].value)
             for i in range(8):
                 if ( ( Dm & ( 1 << i) ) != 0 ):
-                    ds[i] = ( ( Ds  & ( 1 << i) ) != 0 )
+                    dscene[i] = ( ( Ds  & ( 1 << i) ) != 0 )
             for i in range(4):
                 if ( ( Am & ( 1 << i) ) != 0 ):
-                    as[i] = Av & 0x0F
+                    ascene[i] = Av & 0x0F
                 Av >>= 4
-        return { "Digital": ds, "Analog": as }
+        return { "Digital": dscene, "Analog": ascene }
 
 # End. $Id: Wb6Config.py 2612 2008-08-11 20:08:49Z graham.klyne $
