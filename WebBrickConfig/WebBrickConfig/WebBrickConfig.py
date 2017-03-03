@@ -505,8 +505,8 @@ def idScene(elem):
     def mkDout(i,dm,ds):
         m = 1 << i
         return cond(m&dm,(cond(m&ds,"N","F")),"I")
-    def mkAout(i,am,as):
-        return cond(am & (1 << i), "S"+str((as>>(i*4))&0xF), "I")
+    def mkAout(i,am,av):
+        return cond(am & (1 << i), "S"+str((av>>(i*4))&0xF), "I")
     (dm,ds,am,av) = map( compose(int,elem.getAttribute), ("Dm","Ds","Am","Av") )
     params = getParams(elem,["id"]) + ";"
     for i in range(16): params = params + mkDout(i,dm,ds)
